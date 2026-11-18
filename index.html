@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#223a2d" />
+    <meta
+      name="description"
+      content="Explore um terreno 3D e construa sua vila."
+    />
+    <title>Vila Verde</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <canvas
+      id="world"
+      tabindex="-1"
+      aria-label="Terreno 3D da Vila Verde"
+    ></canvas>
+    <header class="topbar">
+      <div class="brand">
+        <span class="crest" aria-hidden="true">⌂</span>
+        <h1>Vila Verde</h1>
+      </div>
+      <div class="world-info">
+        <span class="house-mark" aria-hidden="true">⌂</span>
+        <span id="house-count">0 casas</span>
+        <span id="apartment-count" hidden></span>
+        <span id="commerce-count" hidden></span>
+        <span id="landmark-count" hidden></span>
+        <span id="lamp-count" hidden></span>
+      </div>
+      <button
+        class="hud-button help-button"
+        id="help-button"
+        aria-label="Como jogar"
+        title="Como jogar"
+        disabled
+      >
+        ?
+      </button>
+    </header>
+
+    <label class="hour-picker" for="village-hour">
+      <span>Horário</span>
+      <select id="village-hour" disabled>
+        <option value="7.5">Manhã · 07:30</option>
+        <option value="12">Meio-dia · 12:00</option>
+        <option value="18">Fim de tarde · 18:00</option>
+        <option value="23">Noite · 23:00</option>
+      </select>
+    </label>
+
+    <div class="camera-tools" role="group" aria-label="Câmera">
+      <button
+        class="hud-button"
+        id="zoom-in"
+        aria-label="Aproximar"
+        title="Aproximar"
+        disabled
+      >
+        +
+      </button>
+      <button
+        class="hud-button"
+        id="zoom-out"
+        aria-label="Afastar"
+        title="Afastar"
+        disabled
+      >
+        −
+      </button>
+      <button
+        class="hud-button"
+        id="reset-camera"
+        aria-label="Voltar à vista inicial"
+        title="Voltar à vista inicial (Home)"
+        disabled
+      >
+        ⌖
+      </button>
+    </div>
+    <div class="save-state" id="save-state" role="status">Carregando progresso…</div>
+
+    <div class="dock">
+      <div class="action-tray" id="action-tray" hidden>
+        <div class="action-copy">
+          <span id="action-mode"></span>
+          <strong id="action-title"></strong>
+        </div>
+        <div class="action-buttons">
+          <button id="move-selected" class="gold-button" hidden>Mover</button>
+          <button
+            id="rotate-left"
+            class="hud-button"
+            title="Girar 90° à esquerda (Shift+R)"
+            aria-label="Girar à esquerda"
+            hidden
+          >
+            ↺
+          </button>
+          <button
+            id="rotate-button"
+            class="hud-button"
+            title="Girar 90° à direita (R)"
+            aria-label="Girar à direita"
+            hidden
+          >
+            ↻
+          </button>
+          <button
+            id="delete-selected"
+            class="hud-button delete-building"
+            title="Excluir construção (Delete)"
+            hidden
+          >
+            Excluir
+          </button>
+          <button
+            id="road-erase"
+            class="hud-button erase-road"
+            aria-pressed="false"
+            hidden
+          >
+            Remover
+          </button>
+          <button id="place-button" class="gold-button" hidden>
+            Confirmar
+          </button>
+          <button
+            id="cancel-button"
+            class="hud-button"
+            title="Cancelar (Esc)"
+            aria-label="Cancelar"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+      <div class="walk-pad" id="walk-pad" role="group" aria-label="Direção da caminhada" hidden>
+        <button type="button" class="hud-button" data-walk="w" aria-label="Andar para frente">↑</button>
+        <button type="button" class="hud-button" data-walk="a" aria-label="Andar para a esquerda">←</button>
+        <button type="button" class="hud-button" data-walk="s" aria-label="Andar para trás">↓</button>
+        <button type="button" class="hud-button" data-walk="d" aria-label="Andar para a direita">→</button>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite">
+        Carregando Vila Verde…
+      </div>
+      <nav class="toolbar" aria-label="Ferramentas da vila">
+        <button
+          id="explore-button"
+          class="slot active"
+          aria-pressed="true"
+          disabled
+        >
+          <span class="slot-icon" aria-hidden="true">➤</span
+          ><span>Explorar</span><kbd>1</kbd>
+        </button>
+        <button
+          id="shop-button"
+          class="slot shop-slot"
+          aria-haspopup="dialog"
+          disabled
+        >
+          <span class="slot-icon shop-icon" aria-hidden="true"></span
+          ><span>Loja</span><kbd>2</kbd>
+        </button>
+        <button id="move-button" class="slot" aria-pressed="false" disabled>
+          <span class="slot-icon" aria-hidden="true">✥</span><span>Mover</span
+          ><kbd>M</kbd>
+        </button>
+        <button id="road-button" class="slot" aria-pressed="false" disabled>
+          <span class="slot-icon road-icon" aria-hidden="true"></span
+          ><span>Ruas</span><kbd>3</kbd>
+        </button>
+        <button
+          id="grid-button"
+          class="slot tool-slot"
+          aria-pressed="false"
+          aria-label="Grade"
+          title="Alternar grade (G)"
+          disabled
+        >
+          <span class="slot-icon" aria-hidden="true">▦</span><span>Grade</span>
+        </button>
+        <button
+          id="walk-button"
+          class="slot tool-slot"
+          title="Caminhar em primeira pessoa (4)"
+          aria-label="Caminhar"
+          aria-keyshortcuts="4"
+          aria-pressed="false"
+          disabled
+        >
+          <span class="slot-icon walk-icon" aria-hidden="true">🚶︎</span
+          ><span>Caminhar</span><kbd>4</kbd>
+        </button>
+      </nav>
+    </div>
+
+    <dialog id="shop-dialog" class="shop-dialog" aria-labelledby="shop-title">
+      <header class="shop-header">
+        <div class="awning" aria-hidden="true"></div>
+        <h2 id="shop-title">Loja da vila</h2>
+        <button
+          id="close-shop"
+          class="hud-button dialog-close"
+          aria-label="Fechar loja"
+        >
+          ×
+        </button>
+      </header>
+      <section class="shop-content" aria-label="Catálogo de construções">
+        <div class="catalog-header">
+          <div class="catalog-categories" role="group" aria-label="Categoria">
+            <button
+              type="button"
+              class="category-button"
+              data-category="residential"
+              aria-pressed="true"
+            >
+              Casas
+            </button>
+            <button
+              type="button"
+              class="category-button"
+              data-category="apartments"
+              aria-pressed="false"
+            >
+              Prédios
+            </button>
+            <button
+              type="button"
+              class="category-button"
+              data-category="commercial"
+              aria-pressed="false"
+            >
+              Comércios
+            </button>
+            <button
+              type="button"
+              class="category-button"
+              data-category="landmarks"
+              aria-pressed="false"
+            >
+              Monumentos
+            </button>
+            <button
+              type="button"
+              class="category-button"
+              data-category="lighting"
+              aria-pressed="false"
+            >
+              Iluminação
+            </button>
+          </div>
+          <p id="catalog-count" aria-live="polite"></p>
+        </div>
+        <div id="house-catalog" class="house-catalog"></div>
+      </section>
+    </dialog>
+
+    <dialog id="help-dialog" aria-labelledby="help-title">
+      <button
+        id="close-help"
+        class="hud-button dialog-close"
+        aria-label="Fechar ajuda"
+      >
+        ×
+      </button>
+      <h2 id="help-title">Como jogar</h2>
+      <dl>
+        <dt>Explorar</dt>
+        <dd>
+          Arraste para girar. Mova com o botão direito, WASD ou dois dedos. Use
+          a roda do mouse ou a pinça para dar zoom.
+        </dd>
+        <dt>Caminhar</dt>
+        <dd>
+          Escolha Caminhar (4) para ver a vila em primeira pessoa. Use WASD ou as
+          setas, ou segure as setas na tela de toque. Arraste para olhar ao
+          redor e escolha Explorar ou pressione Esc para voltar.
+        </dd>
+        <dt>Construir</dt>
+        <dd>
+          Abra a Loja, escolha uma construção e clique em um lote livre. No
+          celular, toque no terreno e confirme.
+        </dd>
+        <dt>Traçar ruas e definir lotes</dt>
+        <dd>
+          Escolha Ruas e coloque os blocos lado a lado. A calçada acompanha os
+          trechos e os lotes ao redor ficam demarcados. Use Remover para ajustar
+          a rua.
+        </dd>
+        <dt>Editar uma construção</dt>
+        <dd>
+          Clique ou toque na construção. Use Mover para trocar de lote, as setas
+          curvas para girar 90° em qualquer direção ou Excluir para remover a
+          construção.
+        </dd>
+        <dt>Atalhos</dt>
+        <dd>
+          Use as setas para ajustar o lote, R para girar à direita, Shift+R para
+          girar à esquerda, Delete para excluir a construção selecionada e
+          Ctrl+Z para desfazer. Enter confirma o lote e Esc cancela a seleção.
+        </dd>
+      </dl>
+    </dialog>
+    <div id="error" hidden>
+      <h2 id="error-title">Não foi possível abrir o cenário 3D</h2>
+      <p id="error-description">
+        Ative a aceleração de hardware do navegador e recarregue a página.
+      </p>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
