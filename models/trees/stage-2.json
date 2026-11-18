@@ -1,0 +1,3452 @@
+{
+  "commands": [
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-15000 * treeScale",
+          "38000 * treeScale",
+          "0 * treeScale"
+        ],
+        "radius": "170 * treeScale",
+        "top_radius": "102 * treeScale",
+        "height": "2601.55723 * treeScale",
+        "axis": [
+          0.03459466472678547,
+          0,
+          0.9994014254404691
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-1",
+        "body_name": "treeCherry-trunk-1"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "68 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "492.82959 * treeScale",
+        "axis": [
+          0.7933776944017796,
+          0,
+          -0.6087296887993194
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-2",
+        "body_name": "treeCherry-trunk-2"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "68 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "492.82959 * treeScale",
+        "axis": [
+          0.24516719052816352,
+          0.7545470261440375,
+          -0.6087296887993194
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-3",
+        "body_name": "treeCherry-trunk-3"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "68 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "492.82959 * treeScale",
+        "axis": [
+          -0.6418560377290533,
+          0.4663357082671708,
+          -0.6087296887993194
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-4",
+        "body_name": "treeCherry-trunk-4"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "68 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "492.82959 * treeScale",
+        "axis": [
+          -0.6418560377290534,
+          -0.46633570826717063,
+          -0.6087296887993194
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-5",
+        "body_name": "treeCherry-trunk-5"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "68 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "492.82959 * treeScale",
+        "axis": [
+          0.24516719052816335,
+          -0.7545470261440376,
+          -0.6087296887993194
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-6",
+        "body_name": "treeCherry-trunk-6"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-14950 * treeScale",
+          "38000 * treeScale",
+          "1850 * treeScale"
+        ],
+        "radius": "85 * treeScale",
+        "top_radius": "28 * treeScale",
+        "height": "1744.96418 * treeScale",
+        "axis": [
+          0.5730776652808002,
+          0,
+          0.8195010613515441
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-7",
+        "body_name": "treeCherry-trunk-7"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-pink-8",
+        "body_name": "treeCherry-pink-8"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-8"
+        ],
+        "factors": [
+          1.2,
+          1.08,
+          1.032
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-pink-8-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-8"
+        ],
+        "translate": [
+          "-13950 * treeScale",
+          "38000 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-pink-8-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-14950 * treeScale",
+          "38000 * treeScale",
+          "1850 * treeScale"
+        ],
+        "radius": "85 * treeScale",
+        "top_radius": "28 * treeScale",
+        "height": "1982.30512 * treeScale",
+        "axis": [
+          0.30503088915722226,
+          0.41412547956736884,
+          0.8575874555012167
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-9",
+        "body_name": "treeCherry-trunk-9"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-10",
+        "body_name": "treeCherry-blush-10"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-10"
+        ],
+        "factors": [
+          1.296,
+          1.08,
+          1.032
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-10-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-10"
+        ],
+        "translate": [
+          "-14345.33571 * treeScale",
+          "38820.92306 * treeScale",
+          "3770 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "33 deg",
+        "name": "treeCherry-blush-10-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-14950 * treeScale",
+          "38000 * treeScale",
+          "1850 * treeScale"
+        ],
+        "radius": "85 * treeScale",
+        "top_radius": "28 * treeScale",
+        "height": "2238.13867 * treeScale",
+        "axis": [
+          -0.12673342571888316,
+          0.45737751746048794,
+          0.8801956858149428
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-11",
+        "body_name": "treeCherry-trunk-11"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-pink-12",
+        "body_name": "treeCherry-pink-12"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-12"
+        ],
+        "factors": [
+          1.2,
+          1.08,
+          1.032
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-pink-12-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-12"
+        ],
+        "translate": [
+          "-15233.64698 * treeScale",
+          "39023.67431 * treeScale",
+          "4040 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "66 deg",
+        "name": "treeCherry-pink-12-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-14950 * treeScale",
+          "38000 * treeScale",
+          "1850 * treeScale"
+        ],
+        "radius": "85 * treeScale",
+        "top_radius": "28 * treeScale",
+        "height": "1801.25005 * treeScale",
+        "axis": [
+          -0.5529589370792699,
+          0.25292320013009356,
+          0.7938931091400887
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-13",
+        "body_name": "treeCherry-trunk-13"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-14",
+        "body_name": "treeCherry-blush-14"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-14"
+        ],
+        "factors": [
+          1.296,
+          1.08,
+          1.032
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-14-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-14"
+        ],
+        "translate": [
+          "-15946.01731 * treeScale",
+          "38455.57793 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "99 deg",
+        "name": "treeCherry-blush-14-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-14950 * treeScale",
+          "38000 * treeScale",
+          "1850 * treeScale"
+        ],
+        "radius": "85 * treeScale",
+        "top_radius": "28 * treeScale",
+        "height": "2022.27637 * treeScale",
+        "axis": [
+          -0.4925228442122088,
+          -0.2252797550452999,
+          0.8406368299663334
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-15",
+        "body_name": "treeCherry-trunk-15"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-pink-16",
+        "body_name": "treeCherry-pink-16"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-16"
+        ],
+        "factors": [
+          1.2,
+          1.08,
+          1.032
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-pink-16-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-16"
+        ],
+        "translate": [
+          "-15946.01731 * treeScale",
+          "37544.42207 * treeScale",
+          "3770 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "132 deg",
+        "name": "treeCherry-pink-16-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-14950 * treeScale",
+          "38000 * treeScale",
+          "1850 * treeScale"
+        ],
+        "radius": "85 * treeScale",
+        "top_radius": "28 * treeScale",
+        "height": "2238.13867 * treeScale",
+        "axis": [
+          -0.1267334257188833,
+          -0.45737751746048794,
+          0.8801956858149428
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-17",
+        "body_name": "treeCherry-trunk-17"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-18",
+        "body_name": "treeCherry-blush-18"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-18"
+        ],
+        "factors": [
+          1.296,
+          1.08,
+          1.032
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-18-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-18"
+        ],
+        "translate": [
+          "-15233.64698 * treeScale",
+          "36976.32569 * treeScale",
+          "4040 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "165 deg",
+        "name": "treeCherry-blush-18-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-14950 * treeScale",
+          "38000 * treeScale",
+          "1850 * treeScale"
+        ],
+        "radius": "85 * treeScale",
+        "top_radius": "28 * treeScale",
+        "height": "1756.25555 * treeScale",
+        "axis": [
+          0.3442917464883202,
+          -0.46742802022280633,
+          0.8142323005203185
+        ],
+        "operation": "new",
+        "name": "treeCherry-trunk-19",
+        "body_name": "treeCherry-trunk-19"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-pink-20",
+        "body_name": "treeCherry-pink-20"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-20"
+        ],
+        "factors": [
+          1.2,
+          1.08,
+          1.032
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-pink-20-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-20"
+        ],
+        "translate": [
+          "-14345.33571 * treeScale",
+          "37179.07694 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "198 deg",
+        "name": "treeCherry-pink-20-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-pink-21",
+        "body_name": "treeCherry-pink-21"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-21"
+        ],
+        "factors": [
+          1.32,
+          1.2,
+          1.08
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-pink-21-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-21"
+        ],
+        "translate": [
+          "-15000 * treeScale",
+          "38000 * treeScale",
+          "4250 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-pink-21-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-22",
+        "body_name": "treeCherry-blush-22"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-22"
+        ],
+        "factors": [
+          0.3,
+          0.25,
+          0.22
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-22-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-22"
+        ],
+        "translate": [
+          "-13200 * treeScale",
+          "38000 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-blush-22-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-23",
+        "body_name": "treeCherry-blush-23"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-23"
+        ],
+        "factors": [
+          0.3,
+          0.25,
+          0.22
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-23-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-23"
+        ],
+        "translate": [
+          "-16326.09219 * treeScale",
+          "39115.73039 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-blush-23-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-24",
+        "body_name": "treeCherry-blush-24"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-24"
+        ],
+        "factors": [
+          0.3,
+          0.25,
+          0.22
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-24-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-24"
+        ],
+        "translate": [
+          "-14846.08834 * treeScale",
+          "36356.04294 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-blush-24-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-25",
+        "body_name": "treeCherry-blush-25"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-25"
+        ],
+        "factors": [
+          0.3,
+          0.25,
+          0.22
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-25-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-25"
+        ],
+        "translate": [
+          "-13900.68676 * treeScale",
+          "39306.53475 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-blush-25-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-26",
+        "body_name": "treeCherry-blush-26"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-26"
+        ],
+        "factors": [
+          0.3,
+          0.25,
+          0.22
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-26-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-26"
+        ],
+        "translate": [
+          "-16773.67911 * treeScale",
+          "37718.86203 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-blush-26-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-27",
+        "body_name": "treeCherry-blush-27"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-27"
+        ],
+        "factors": [
+          0.3,
+          0.25,
+          0.22
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-27-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-27"
+        ],
+        "translate": [
+          "-13485.911 * treeScale",
+          "37107.70399 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-blush-27-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCherry-blush-28",
+        "body_name": "treeCherry-blush-28"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-28"
+        ],
+        "factors": [
+          0.3,
+          0.25,
+          0.22
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCherry-blush-28-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-28"
+        ],
+        "translate": [
+          "-15457.23378 * treeScale",
+          "39595.87883 * treeScale",
+          "3500 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCherry-blush-28-position"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeCherry-trunk-1",
+          "treeCherry-trunk-2",
+          "treeCherry-trunk-3",
+          "treeCherry-trunk-4",
+          "treeCherry-trunk-5",
+          "treeCherry-trunk-6",
+          "treeCherry-trunk-7",
+          "treeCherry-trunk-9",
+          "treeCherry-trunk-11",
+          "treeCherry-trunk-13",
+          "treeCherry-trunk-15",
+          "treeCherry-trunk-17",
+          "treeCherry-trunk-19"
+        ],
+        "color": "#785137",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.95,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeCherry-pink-8",
+          "treeCherry-pink-12",
+          "treeCherry-pink-16",
+          "treeCherry-pink-20",
+          "treeCherry-pink-21"
+        ],
+        "color": "#e9a7bb",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeCherry-blush-10",
+          "treeCherry-blush-14",
+          "treeCherry-blush-18",
+          "treeCherry-blush-22",
+          "treeCherry-blush-23",
+          "treeCherry-blush-24",
+          "treeCherry-blush-25",
+          "treeCherry-blush-26",
+          "treeCherry-blush-27",
+          "treeCherry-blush-28"
+        ],
+        "color": "#f6cfce",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "0 * treeScale"
+        ],
+        "radius": "200 * treeScale",
+        "top_radius": "120 * treeScale",
+        "height": "5100.79406 * treeScale",
+        "axis": [
+          0.017644311653225345,
+          0,
+          0.9998443270161029
+        ],
+        "operation": "new",
+        "name": "treePine-trunk-1",
+        "body_name": "treePine-trunk-1"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "80 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "549.18121 * treeScale",
+        "axis": [
+          0.8376105968386142,
+          0,
+          -0.5462677805469223
+        ],
+        "operation": "new",
+        "name": "treePine-trunk-2",
+        "body_name": "treePine-trunk-2"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "80 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "549.18121 * treeScale",
+        "axis": [
+          0.2588359090916744,
+          0.7966150162412368,
+          -0.5462677805469223
+        ],
+        "operation": "new",
+        "name": "treePine-trunk-3",
+        "body_name": "treePine-trunk-3"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "80 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "549.18121 * treeScale",
+        "axis": [
+          -0.6776412075109814,
+          0.49233515598563393,
+          -0.5462677805469223
+        ],
+        "operation": "new",
+        "name": "treePine-trunk-4",
+        "body_name": "treePine-trunk-4"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "80 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "549.18121 * treeScale",
+        "axis": [
+          -0.6776412075109816,
+          -0.49233515598563377,
+          -0.5462677805469223
+        ],
+        "operation": "new",
+        "name": "treePine-trunk-5",
+        "body_name": "treePine-trunk-5"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "80 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "549.18121 * treeScale",
+        "axis": [
+          0.25883590909167425,
+          -0.7966150162412369,
+          -0.5462677805469223
+        ],
+        "operation": "new",
+        "name": "treePine-trunk-6",
+        "body_name": "treePine-trunk-6"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "1250 * treeScale"
+        ],
+        "radius": "2050 * treeScale",
+        "top_radius": "45 * treeScale",
+        "height": "2100 * treeScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "treePine-dark-7",
+        "body_name": "treePine-dark-7"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "2200 * treeScale"
+        ],
+        "radius": "1730 * treeScale",
+        "top_radius": "45 * treeScale",
+        "height": "2100 * treeScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "treePine-leaf-8",
+        "body_name": "treePine-leaf-8"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "3150 * treeScale"
+        ],
+        "radius": "1410 * treeScale",
+        "top_radius": "45 * treeScale",
+        "height": "2100 * treeScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "treePine-dark-9",
+        "body_name": "treePine-dark-9"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "4100 * treeScale"
+        ],
+        "radius": "1090 * treeScale",
+        "top_radius": "45 * treeScale",
+        "height": "2100 * treeScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "treePine-leaf-10",
+        "body_name": "treePine-leaf-10"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "-5000 * treeScale",
+          "38000 * treeScale",
+          "5050 * treeScale"
+        ],
+        "radius": "770 * treeScale",
+        "top_radius": "45 * treeScale",
+        "height": "2100 * treeScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "treePine-dark-11",
+        "body_name": "treePine-dark-11"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treePine-trunk-1",
+          "treePine-trunk-2",
+          "treePine-trunk-3",
+          "treePine-trunk-4",
+          "treePine-trunk-5",
+          "treePine-trunk-6"
+        ],
+        "color": "#785137",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.95,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treePine-dark-7",
+          "treePine-dark-9",
+          "treePine-dark-11"
+        ],
+        "color": "#244e39",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treePine-leaf-8",
+          "treePine-leaf-10"
+        ],
+        "color": "#42744a",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "0 * treeScale"
+        ],
+        "radius": "210 * treeScale",
+        "top_radius": "126 * treeScale",
+        "height": "6500.62305 * treeScale",
+        "axis": [
+          0.013844826772515188,
+          0,
+          0.9999041557927636
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-1",
+        "body_name": "treeAraucaria-trunk-1"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "84 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "568.58509 * treeScale",
+        "axis": [
+          0.8494770825138312,
+          0,
+          -0.5276255170893362
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-2",
+        "body_name": "treeAraucaria-trunk-2"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "84 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "568.58509 * treeScale",
+        "axis": [
+          0.2625028548288234,
+          0.8079007147681752,
+          -0.5276255170893364
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-3",
+        "body_name": "treeAraucaria-trunk-3"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "84 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "568.58509 * treeScale",
+        "axis": [
+          -0.6872413960857391,
+          0.49931010126206654,
+          -0.5276255170893364
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-4",
+        "body_name": "treeAraucaria-trunk-4"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "84 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "568.58509 * treeScale",
+        "axis": [
+          -0.687241396085739,
+          -0.49931010126206626,
+          -0.5276255170893362
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-5",
+        "body_name": "treeAraucaria-trunk-5"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "84 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "568.58509 * treeScale",
+        "axis": [
+          0.26250285482882324,
+          -0.8079007147681752,
+          -0.5276255170893362
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-6",
+        "body_name": "treeAraucaria-trunk-6"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "3550 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "2500 * treeScale",
+        "axis": [
+          0.96,
+          0,
+          0.2800000000000001
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-7",
+        "body_name": "treeAraucaria-trunk-7"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-8",
+        "body_name": "treeAraucaria-dark-8"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-8"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-8-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-8"
+        ],
+        "translate": [
+          "7400 * treeScale",
+          "38000 * treeScale",
+          "4380 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeAraucaria-dark-8-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "3550 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "2500 * treeScale",
+        "axis": [
+          0.4800000000000001,
+          0.831384387633061,
+          0.2800000000000001
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-9",
+        "body_name": "treeAraucaria-trunk-9"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-10",
+        "body_name": "treeAraucaria-dark-10"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-10"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-10-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-10"
+        ],
+        "translate": [
+          "6200 * treeScale",
+          "40078.46097 * treeScale",
+          "4380 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "60 deg",
+        "name": "treeAraucaria-dark-10-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "3550 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "2500 * treeScale",
+        "axis": [
+          -0.4799999999999998,
+          0.8313843876330612,
+          0.2800000000000001
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-11",
+        "body_name": "treeAraucaria-trunk-11"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-12",
+        "body_name": "treeAraucaria-dark-12"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-12"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-12-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-12"
+        ],
+        "translate": [
+          "3800 * treeScale",
+          "40078.46097 * treeScale",
+          "4380 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "120 deg",
+        "name": "treeAraucaria-dark-12-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "3550 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "2500 * treeScale",
+        "axis": [
+          -0.96,
+          1.175660927181459e-16,
+          0.2800000000000001
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-13",
+        "body_name": "treeAraucaria-trunk-13"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-14",
+        "body_name": "treeAraucaria-dark-14"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-14"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-14-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-14"
+        ],
+        "translate": [
+          "2600 * treeScale",
+          "38000 * treeScale",
+          "4380 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "180 deg",
+        "name": "treeAraucaria-dark-14-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "3550 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "2500 * treeScale",
+        "axis": [
+          -0.4800000000000004,
+          -0.8313843876330609,
+          0.2800000000000001
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-15",
+        "body_name": "treeAraucaria-trunk-15"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-16",
+        "body_name": "treeAraucaria-dark-16"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-16"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-16-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-16"
+        ],
+        "translate": [
+          "3800 * treeScale",
+          "35921.53903 * treeScale",
+          "4380 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "240 deg",
+        "name": "treeAraucaria-dark-16-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "3550 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "2500 * treeScale",
+        "axis": [
+          0.4800000000000001,
+          -0.831384387633061,
+          0.2800000000000001
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-17",
+        "body_name": "treeAraucaria-trunk-17"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-18",
+        "body_name": "treeAraucaria-dark-18"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-18"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-18-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-18"
+        ],
+        "translate": [
+          "6200 * treeScale",
+          "35921.53903 * treeScale",
+          "4380 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "300 deg",
+        "name": "treeAraucaria-dark-18-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "4500 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1978.00404 * treeScale",
+        "axis": [
+          0.8731649431330089,
+          0.33517661832250617,
+          0.35389209741589117
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-19",
+        "body_name": "treeAraucaria-trunk-19"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-leaf-20",
+        "body_name": "treeAraucaria-leaf-20"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-20"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-leaf-20-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-20"
+        ],
+        "translate": [
+          "6727.12379 * treeScale",
+          "38662.98071 * treeScale",
+          "5330 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeAraucaria-leaf-20-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "4500 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1978.00404 * treeScale",
+        "axis": [
+          0.14631100534465338,
+          0.9237713316084335,
+          0.35389209741589117
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-21",
+        "body_name": "treeAraucaria-trunk-21"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-leaf-22",
+        "body_name": "treeAraucaria-leaf-22"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-22"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-leaf-22-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-22"
+        ],
+        "translate": [
+          "5289.40376 * treeScale",
+          "39827.22343 * treeScale",
+          "5330 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "60 deg",
+        "name": "treeAraucaria-leaf-22-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "4500 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1978.00404 * treeScale",
+        "axis": [
+          -0.7268539377883555,
+          0.5885947132859272,
+          0.35389209741589117
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-23",
+        "body_name": "treeAraucaria-trunk-23"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-leaf-24",
+        "body_name": "treeAraucaria-leaf-24"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-24"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-leaf-24-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-24"
+        ],
+        "translate": [
+          "3562.27997 * treeScale",
+          "39164.24272 * treeScale",
+          "5330 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "120 deg",
+        "name": "treeAraucaria-leaf-24-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "4500 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1978.00404 * treeScale",
+        "axis": [
+          -0.8731649431330089,
+          -0.3351766183225063,
+          0.35389209741589117
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-25",
+        "body_name": "treeAraucaria-trunk-25"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-leaf-26",
+        "body_name": "treeAraucaria-leaf-26"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-26"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-leaf-26-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-26"
+        ],
+        "translate": [
+          "3272.87621 * treeScale",
+          "37337.01929 * treeScale",
+          "5330 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "180 deg",
+        "name": "treeAraucaria-leaf-26-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "4500 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1978.00404 * treeScale",
+        "axis": [
+          -0.1463110053446535,
+          -0.9237713316084334,
+          0.35389209741589117
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-27",
+        "body_name": "treeAraucaria-trunk-27"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-leaf-28",
+        "body_name": "treeAraucaria-leaf-28"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-28"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-leaf-28-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-28"
+        ],
+        "translate": [
+          "4710.59624 * treeScale",
+          "36172.77657 * treeScale",
+          "5330 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "240 deg",
+        "name": "treeAraucaria-leaf-28-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "4500 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1978.00404 * treeScale",
+        "axis": [
+          0.7268539377883552,
+          -0.5885947132859276,
+          0.35389209741589117
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-29",
+        "body_name": "treeAraucaria-trunk-29"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-leaf-30",
+        "body_name": "treeAraucaria-leaf-30"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-30"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-leaf-30-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-30"
+        ],
+        "translate": [
+          "6437.72003 * treeScale",
+          "36835.75728 * treeScale",
+          "5330 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "300 deg",
+        "name": "treeAraucaria-leaf-30-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "5450 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1476.48231 * treeScale",
+        "axis": [
+          0.6543175418895542,
+          0.5891501609723759,
+          0.4740998230350176
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-31",
+        "body_name": "treeAraucaria-trunk-31"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-32",
+        "body_name": "treeAraucaria-dark-32"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-32"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-32-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-32"
+        ],
+        "translate": [
+          "5966.08827 * treeScale",
+          "38869.86979 * treeScale",
+          "6280 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeAraucaria-dark-32-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "5450 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1476.48231 * treeScale",
+        "axis": [
+          -0.18306023510099176,
+          0.8612306939043305,
+          0.4740998230350176
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-33",
+        "body_name": "treeAraucaria-trunk-33"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-34",
+        "body_name": "treeAraucaria-dark-34"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-34"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-34-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-34"
+        ],
+        "translate": [
+          "4729.7148 * treeScale",
+          "39271.59188 * treeScale",
+          "6280 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "60 deg",
+        "name": "treeAraucaria-dark-34-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "5450 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1476.48231 * treeScale",
+        "axis": [
+          -0.8373777769905459,
+          0.27208053293195467,
+          0.47409982303501763
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-35",
+        "body_name": "treeAraucaria-trunk-35"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-36",
+        "body_name": "treeAraucaria-dark-36"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-36"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-36-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-36"
+        ],
+        "translate": [
+          "3763.62653 * treeScale",
+          "38401.72209 * treeScale",
+          "6280 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "120 deg",
+        "name": "treeAraucaria-dark-36-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "5450 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1476.48231 * treeScale",
+        "axis": [
+          -0.6543175418895542,
+          -0.5891501609723759,
+          0.4740998230350176
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-37",
+        "body_name": "treeAraucaria-trunk-37"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-38",
+        "body_name": "treeAraucaria-dark-38"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-38"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-38-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-38"
+        ],
+        "translate": [
+          "4033.91173 * treeScale",
+          "37130.13021 * treeScale",
+          "6280 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "180 deg",
+        "name": "treeAraucaria-dark-38-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "5450 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1476.48231 * treeScale",
+        "axis": [
+          0.18306023510099184,
+          -0.8612306939043304,
+          0.4740998230350176
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-39",
+        "body_name": "treeAraucaria-trunk-39"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-40",
+        "body_name": "treeAraucaria-dark-40"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-40"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-40-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-40"
+        ],
+        "translate": [
+          "5270.2852 * treeScale",
+          "36728.40812 * treeScale",
+          "6280 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "240 deg",
+        "name": "treeAraucaria-dark-40-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "5450 * treeScale"
+        ],
+        "radius": "65 * treeScale",
+        "top_radius": "22 * treeScale",
+        "height": "1476.48231 * treeScale",
+        "axis": [
+          0.837377776990546,
+          -0.27208053293195394,
+          0.4740998230350175
+        ],
+        "operation": "new",
+        "name": "treeAraucaria-trunk-41",
+        "body_name": "treeAraucaria-trunk-41"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-dark-42",
+        "body_name": "treeAraucaria-dark-42"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-42"
+        ],
+        "factors": [
+          0.7,
+          0.55,
+          0.36
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-dark-42-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-42"
+        ],
+        "translate": [
+          "6236.37347 * treeScale",
+          "37598.27791 * treeScale",
+          "6280 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "300 deg",
+        "name": "treeAraucaria-dark-42-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeAraucaria-lime-43",
+        "body_name": "treeAraucaria-lime-43"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeAraucaria-lime-43"
+        ],
+        "factors": [
+          0.8,
+          0.8,
+          0.4
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeAraucaria-lime-43-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeAraucaria-lime-43"
+        ],
+        "translate": [
+          "5000 * treeScale",
+          "38000 * treeScale",
+          "6650 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeAraucaria-lime-43-position"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeAraucaria-trunk-1",
+          "treeAraucaria-trunk-2",
+          "treeAraucaria-trunk-3",
+          "treeAraucaria-trunk-4",
+          "treeAraucaria-trunk-5",
+          "treeAraucaria-trunk-6",
+          "treeAraucaria-trunk-7",
+          "treeAraucaria-trunk-9",
+          "treeAraucaria-trunk-11",
+          "treeAraucaria-trunk-13",
+          "treeAraucaria-trunk-15",
+          "treeAraucaria-trunk-17",
+          "treeAraucaria-trunk-19",
+          "treeAraucaria-trunk-21",
+          "treeAraucaria-trunk-23",
+          "treeAraucaria-trunk-25",
+          "treeAraucaria-trunk-27",
+          "treeAraucaria-trunk-29",
+          "treeAraucaria-trunk-31",
+          "treeAraucaria-trunk-33",
+          "treeAraucaria-trunk-35",
+          "treeAraucaria-trunk-37",
+          "treeAraucaria-trunk-39",
+          "treeAraucaria-trunk-41"
+        ],
+        "color": "#785137",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.95,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeAraucaria-dark-8",
+          "treeAraucaria-dark-10",
+          "treeAraucaria-dark-12",
+          "treeAraucaria-dark-14",
+          "treeAraucaria-dark-16",
+          "treeAraucaria-dark-18",
+          "treeAraucaria-dark-32",
+          "treeAraucaria-dark-34",
+          "treeAraucaria-dark-36",
+          "treeAraucaria-dark-38",
+          "treeAraucaria-dark-40",
+          "treeAraucaria-dark-42"
+        ],
+        "color": "#244e39",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeAraucaria-leaf-20",
+          "treeAraucaria-leaf-22",
+          "treeAraucaria-leaf-24",
+          "treeAraucaria-leaf-26",
+          "treeAraucaria-leaf-28",
+          "treeAraucaria-leaf-30"
+        ],
+        "color": "#42744a",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeAraucaria-lime-43"
+        ],
+        "color": "#75944f",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "0 * treeScale"
+        ],
+        "radius": "140 * treeScale",
+        "top_radius": "84 * treeScale",
+        "height": "2401.68691 * treeScale",
+        "axis": [
+          0.03747366058909428,
+          0,
+          0.9992976157091809
+        ],
+        "operation": "new",
+        "name": "treeCypress-trunk-1",
+        "body_name": "treeCypress-trunk-1"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "56 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "440.09544 * treeScale",
+        "axis": [
+          0.7316594712539656,
+          0,
+          -0.6816703148328872
+        ],
+        "operation": "new",
+        "name": "treeCypress-trunk-2",
+        "body_name": "treeCypress-trunk-2"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "56 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "440.09544 * treeScale",
+        "axis": [
+          0.22609521071286373,
+          0.6958495078451505,
+          -0.6816703148328872
+        ],
+        "operation": "new",
+        "name": "treeCypress-trunk-3",
+        "body_name": "treeCypress-trunk-3"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "56 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "440.09544 * treeScale",
+        "axis": [
+          -0.5919249463398464,
+          0.43005864690318973,
+          -0.6816703148328872
+        ],
+        "operation": "new",
+        "name": "treeCypress-trunk-4",
+        "body_name": "treeCypress-trunk-4"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "56 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "440.09544 * treeScale",
+        "axis": [
+          -0.5919249463398465,
+          -0.43005864690318957,
+          -0.6816703148328871
+        ],
+        "operation": "new",
+        "name": "treeCypress-trunk-5",
+        "body_name": "treeCypress-trunk-5"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "360 * treeScale"
+        ],
+        "radius": "56 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "440.09544 * treeScale",
+        "axis": [
+          0.2260952107128635,
+          -0.6958495078451505,
+          -0.681670314832887
+        ],
+        "operation": "new",
+        "name": "treeCypress-trunk-6",
+        "body_name": "treeCypress-trunk-6"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCypress-dark-7",
+        "body_name": "treeCypress-dark-7"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCypress-dark-7"
+        ],
+        "factors": [
+          0.75,
+          0.68,
+          1.45
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCypress-dark-7-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCypress-dark-7"
+        ],
+        "translate": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "2400 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCypress-dark-7-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCypress-leaf-8",
+        "body_name": "treeCypress-leaf-8"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCypress-leaf-8"
+        ],
+        "factors": [
+          0.65,
+          0.6000000000000001,
+          1.45
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCypress-leaf-8-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCypress-leaf-8"
+        ],
+        "translate": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "3300 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCypress-leaf-8-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCypress-dark-9",
+        "body_name": "treeCypress-dark-9"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCypress-dark-9"
+        ],
+        "factors": [
+          0.55,
+          0.52,
+          1.45
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCypress-dark-9-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCypress-dark-9"
+        ],
+        "translate": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "4200 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCypress-dark-9-position"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          0,
+          0,
+          0
+        ],
+        "radius": "1000 * treeScale",
+        "operation": "new",
+        "name": "treeCypress-leaf-10",
+        "body_name": "treeCypress-leaf-10"
+      }
+    },
+    {
+      "command": "solid.scale",
+      "params": {
+        "bodies": [
+          "treeCypress-leaf-10"
+        ],
+        "factors": [
+          0.44999999999999996,
+          0.44000000000000006,
+          1.45
+        ],
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "name": "treeCypress-leaf-10-form"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "treeCypress-leaf-10"
+        ],
+        "translate": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "5100 * treeScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "0 deg",
+        "name": "treeCypress-leaf-10-position"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15000 * treeScale",
+          "38000 * treeScale",
+          "5400 * treeScale"
+        ],
+        "radius": "390 * treeScale",
+        "top_radius": "15 * treeScale",
+        "height": "1300 * treeScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "treeCypress-dark-11",
+        "body_name": "treeCypress-dark-11"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeCypress-trunk-1",
+          "treeCypress-trunk-2",
+          "treeCypress-trunk-3",
+          "treeCypress-trunk-4",
+          "treeCypress-trunk-5",
+          "treeCypress-trunk-6"
+        ],
+        "color": "#785137",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.95,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeCypress-dark-7",
+          "treeCypress-dark-9",
+          "treeCypress-dark-11"
+        ],
+        "color": "#244e39",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "treeCypress-leaf-8",
+          "treeCypress-leaf-10"
+        ],
+        "color": "#42744a",
+        "pbr": {
+          "metallic": 0,
+          "roughness": 0.88,
+          "dielectric_ior": 1.5
+        }
+      }
+    }
+  ],
+  "expect": {
+    "bodies": 191,
+    "volume_mm3": 320791350114.44684,
+    "tol": 0.004,
+    "bbox": {
+      "min": [
+        -17545.333010921215,
+        25411.589360784925,
+        -5.919392646867327
+      ],
+      "max": [
+        17200,
+        40744.137316867374,
+        7150
+      ]
+    }
+  }
+}

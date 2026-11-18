@@ -1,0 +1,9 @@
+{
+  "source": "SolidCraft MCP",
+  "bodies": 631,
+  "trianglesBefore": 4932564,
+  "trianglesAfter": 397186,
+  "maxRelativeError": 0.0029997997917234898,
+  "bytesBefore": 120693924,
+  "bytesAfter": 5660612
+}

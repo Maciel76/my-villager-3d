@@ -47,22 +47,39 @@ export function createWalker(getHeight, viewDistance) {
     return { x: (Math.sign(x) || 1) * (CITY_EDGE + 1), z };
   }
 
-  function enter(focus, direction, houses, templates, roads) {
+  function obstacleBounds(type, x, z, rotation, matrix, templates) {
+    if (!templateBounds.has(type))
+      templateBounds.set(type, new THREE.Box3().setFromObject(templates[type]));
+    const bounds = templateBounds.get(type).clone().applyMatrix4(matrix);
+    const [halfWidth, halfDepth] = isLamp(type)
+      ? [LAMP_BASE_RADIUS, LAMP_BASE_RADIUS]
+      : footprint(type, rotation).map((size) => size / 2);
+    bounds.min.x = Math.max(bounds.min.x, x - halfWidth);
+    bounds.max.x = Math.min(bounds.max.x, x + halfWidth);
+    bounds.min.z = Math.max(bounds.min.z, z - halfDepth);
+    bounds.max.z = Math.min(bounds.max.z, z + halfDepth);
+    return bounds;
+  }
+
+  function updateObstacles(houses, templates) {
     obstacles = houses.map(({ type, model, x, z, rotation }) => {
-      if (!templateBounds.has(type))
-        templateBounds.set(type, new THREE.Box3().setFromObject(templates[type]));
       model.updateWorldMatrix(true, false);
-      const bounds = templateBounds.get(type).clone().applyMatrix4(model.matrixWorld);
       // Keep the space beyond the lot, including the sidewalk, open to walking.
-      const [halfWidth, halfDepth] = isLamp(type)
-        ? [LAMP_BASE_RADIUS, LAMP_BASE_RADIUS]
-        : footprint(type, rotation).map((size) => size / 2);
-      bounds.min.x = Math.max(bounds.min.x, x - halfWidth);
-      bounds.max.x = Math.min(bounds.max.x, x + halfWidth);
-      bounds.min.z = Math.max(bounds.min.z, z - halfDepth);
-      bounds.max.z = Math.min(bounds.max.z, z + halfDepth);
-      return bounds;
+      return obstacleBounds(type, x, z, rotation, model.matrixWorld, templates);
     });
+    if (active) position.y = getHeight(position.x, position.z) + EYE_HEIGHT;
+  }
+
+  function canBuildAt(type, x, z, rotation, templates) {
+    const matrix = new THREE.Matrix4().makeRotationY(rotation * Math.PI / 2);
+    matrix.setPosition(x, 0, z);
+    const { min, max } = obstacleBounds(type, x, z, rotation, matrix, templates);
+    return position.x <= min.x - PLAYER_RADIUS || position.x >= max.x + PLAYER_RADIUS ||
+      position.z <= min.z - PLAYER_RADIUS || position.z >= max.z + PLAYER_RADIUS;
+  }
+
+  function enter(focus, direction, houses, templates, roads) {
+    updateObstacles(houses, templates);
     const insideCity = Math.max(Math.abs(focus.x), Math.abs(focus.z)) <= CITY_EDGE;
     const { x, z } = spawnNear(insideCity ? focus.x : 0, insideCity ? focus.z : 0, roads);
     position.set(x, getHeight(x, z) + EYE_HEIGHT, z);
@@ -98,6 +115,8 @@ export function createWalker(getHeight, viewDistance) {
     },
     camera,
     enter,
+    updateObstacles,
+    canBuildAt,
     advance,
     look,
     leave() {

@@ -1,19 +1,36 @@
 import * as THREE from "three";
 import { markNightLight } from "./daylight.js";
+import { addPalaceLights } from "./palace-lights.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
-import chaletUrl from "./assets/models/chalet.glb?url";
-import townhouseUrl from "./assets/models/townhouse.glb?url";
-import modernUrl from "./assets/models/modern.glb?url";
-import courtyardUrl from "./assets/models/courtyard.glb?url";
-import terraceUrl from "./assets/models/terrace.glb?url";
-import varandasUrl from "./assets/models/varandas.glb?url";
-import miranteUrl from "./assets/models/mirante.glb?url";
-import sakuraUrl from "./assets/models/sakura.glb?url";
-import orientalUrl from "./assets/models/oriental.glb?url";
-import churchUrl from "./assets/models/church.glb?url";
-import gasStationUrl from "./assets/models/posto-gs.glb?url";
+import decorationUrl from "./assets/models/optimized/decorations.glb?url";
+import { prepareDecorationModels } from "./decorations.js";
+import treeUrl from "./assets/models/optimized/trees.glb?url";
+import { TREE_TYPES } from "./tree-types.js";
+import plantingBedUrl from "./assets/models/optimized/planting-beds.glb?url";
+import { PLANTING_BED_TYPES } from "./planting-bed-types.js";
+import chaletUrl from "./assets/models/optimized/chalet.glb?url";
+import townhouseUrl from "./assets/models/optimized/townhouse.glb?url";
+import modernUrl from "./assets/models/optimized/modern.glb?url";
+import courtyardUrl from "./assets/models/optimized/courtyard.glb?url";
+import terraceUrl from "./assets/models/optimized/terrace.glb?url";
+import varandasUrl from "./assets/models/optimized/varandas.glb?url";
+import miranteUrl from "./assets/models/optimized/mirante.glb?url";
+import sakuraUrl from "./assets/models/optimized/sakura.glb?url";
+import orientalUrl from "./assets/models/optimized/oriental.glb?url";
+import churchUrl from "./assets/models/optimized/church.glb?url";
+import gasStationUrl from "./assets/models/optimized/posto-gs.glb?url";
 import palaceUrl from "./assets/models/palacio-oriental.glb?url";
+import auroraUrl from "./assets/models/optimized/residencial-aurora.glb?url";
+import { prepareAuroraModel } from "./residencial-aurora.js";
+import cuboVerdeUrl from "./assets/models/casa-cubo-verde.glb?url";
+import { prepareCuboVerdeModel } from "./casa-cubo-verde.js";
+import belleEpoqueUrl from "./assets/models/casa-belle-epoque.glb?url";
+import { prepareBelleEpoqueModel } from "./casa-belle-epoque.js";
+import supermarketUrl from "./assets/models/optimized/supermercado-verde.glb?url";
+import { prepareSupermarketModel } from "./supermercado-verde.js";
+import rotundaUrl from "./assets/models/optimized/pavilhao-rotunda.glb?url";
+import { prepareRotundaModel } from "./pavilhao-rotunda.js";
 import grassUrl from "./assets/textures/grass.webp";
 import brickUrl from "./assets/textures/brick.webp";
 import brickNormalUrl from "./assets/textures/brick-normal.webp";
@@ -43,7 +60,7 @@ import goldNormalUrl from "./assets/textures/church-gold-normal.webp";
 
 export async function loadMaterials(renderer) {
   const loader = new THREE.TextureLoader();
-  const anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
+  const anisotropy = renderer.capabilities.getMaxAnisotropy();
   async function load(url, repeatU, repeatV, color = true) {
     const texture = await loader.loadAsync(url);
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
@@ -179,10 +196,20 @@ export async function loadBuildingModels(materials) {
     church: churchUrl,
     gasStation: gasStationUrl,
     palace: palaceUrl,
+    aurora: auroraUrl,
+    cuboVerde: cuboVerdeUrl,
+    belleEpoque: belleEpoqueUrl,
+    supermarket: supermarketUrl,
+    rotunda: rotundaUrl,
   };
   const models = await Promise.all(
     Object.entries(sources).map(async ([type, url]) => {
       const { scene } = await loader.loadAsync(url);
+      if (type === "aurora") return [type, prepareAuroraModel(scene, materials, projectTexture)];
+      if (type === "cuboVerde") return [type, prepareCuboVerdeModel(scene, materials, projectTexture)];
+      if (type === "belleEpoque") return [type, prepareBelleEpoqueModel(scene, materials, projectTexture)];
+      if (type === "supermarket") return [type, prepareSupermarketModel(scene, materials, projectTexture)];
+      if (type === "rotunda") return [type, prepareRotundaModel(scene, materials, projectTexture)];
       scene.updateMatrixWorld(true);
       const bounds = new THREE.Box3().setFromObject(scene);
       const origin = bounds.getCenter(new THREE.Vector3());
@@ -202,10 +229,6 @@ export async function loadBuildingModels(materials) {
           if (finish === "glass" || finish === "glassLight")
             markNightLight(material, 0.65);
         }
-        if (palace && !material.userData.nightGlow) {
-          if (finish === "lantern") markNightLight(material, 2.05);
-          if (finish === "window") markNightLight(material, 1.05);
-        }
         const geometry = part.geometry.clone().applyMatrix4(part.matrixWorld);
         geometry.translate(-origin.x, -origin.y, -origin.z);
         if (material.map) {
@@ -224,8 +247,13 @@ export async function loadBuildingModels(materials) {
         surface.receiveShadow = true;
         building.add(surface);
       });
+      if (palace) addPalaceLights(building);
       return [type, building];
     }),
   );
-  return Object.fromEntries(models);
+  const [decorations, trees, beds] = await Promise.all([
+    loader.loadAsync(decorationUrl), loader.loadAsync(treeUrl), loader.loadAsync(plantingBedUrl),
+  ]);
+  return { ...Object.fromEntries(models), ...prepareDecorationModels(decorations.scene),
+    ...prepareDecorationModels(trees.scene, TREE_TYPES), ...prepareDecorationModels(beds.scene, PLANTING_BED_TYPES) };
 }

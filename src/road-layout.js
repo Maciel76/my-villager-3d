@@ -2,9 +2,11 @@ import {
   BUILD_LIMIT,
   LAMP_BASE_RADIUS,
   LOT_SIZE,
+  DECORATION_STEP,
   canPlace,
   footprint,
   isLamp,
+  isDecoration,
   isLargeFootprint,
   overlapsLot,
   snap,
@@ -87,6 +89,10 @@ export function roadLots(roads) {
 }
 
 export function houseSite(x, z, lots, type, rotation) {
+  if (isDecoration(type)) return {
+    x: Math.round(x / DECORATION_STEP) * DECORATION_STEP || 0,
+    z: Math.round(z / DECORATION_STEP) * DECORATION_STEP || 0,
+  };
   if (isLamp(type)) return { x: Math.round(x) || 0, z: Math.round(z) || 0 };
   if (isLargeFootprint(type)) {
     const [width, depth] = footprint(type, rotation);
@@ -99,13 +105,14 @@ export function houseSite(x, z, lots, type, rotation) {
 
 export function canBuildHouse(x, z, houses, roads, lots, ignored, type, rotation) {
   if (!canPlace(x, z, houses, ignored, type, rotation)) return false;
+  if (isDecoration(type)) return true;
   if (isLamp(type)) return lampSiteHeight(x, z, roads) !== null;
   const area = footprint(type, rotation);
   for (const road of roads.values()) {
     if (overlapsLot(x, z, area, road)) return false;
   }
   // Larger footprints are aligned to the lot grid and cover whole parcels.
-  if (!isLargeFootprint(type)) {
+  if (!isLargeFootprint(type) && !isDecoration(type)) {
     for (const lot of lots.values()) {
       if (overlapsLot(x, z, area, lot) && (lot.x !== x || lot.z !== z))
         return false;
@@ -134,13 +141,27 @@ export function canBuildRoad(x, z, houses, roads) {
     x === snapTile(x) &&
     z === snapTile(z) &&
     !roads.has(tileKey(x, z)) &&
-    canPlace(x, z, houses.filter(({ type }) => !isLamp(type))) &&
+    canPlace(x, z, houses.filter(({ type }) => !isLamp(type) && !isDecoration(type))) &&
     preservesLampSites(x, z, houses, roads, false)
   );
 }
 
 export function canRemoveRoad(x, z, houses, roads) {
   return roads.has(tileKey(x, z)) && preservesLampSites(x, z, houses, roads, true);
+}
+
+export function canMoveRoad(x, z, source, houses, roads) {
+  if (!roads.has(tileKey(source.x, source.z))) return false;
+  if (x === source.x && z === source.z) return true;
+  const next = new Map(roads);
+  next.delete(tileKey(source.x, source.z));
+  const buildings = houses.filter(({ type }) => !isLamp(type));
+  if (!canBuildRoad(x, z, buildings, next)) return false;
+  next.set(tileKey(x, z), { ...source, x, z });
+  // Validate both ends of the move together, including the changed connections.
+  return houses.every((house) =>
+    !isLamp(house.type) || lampSiteHeight(house.x, house.z, next) !== null
+  );
 }
 
 export function readRoads(records, houses, nextOrder) {

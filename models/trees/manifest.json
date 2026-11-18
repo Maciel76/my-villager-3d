@@ -1,0 +1,102 @@
+{
+  "units": "mm",
+  "source": "SolidCraft MCP",
+  "items": [
+    {
+      "type": "treeOak",
+      "parts": 21,
+      "origin_mm": [
+        -15000,
+        28000
+      ]
+    },
+    {
+      "type": "treeMaple",
+      "parts": 21,
+      "origin_mm": [
+        -5000,
+        28000
+      ]
+    },
+    {
+      "type": "treeIpeYellow",
+      "parts": 28,
+      "origin_mm": [
+        5000,
+        28000
+      ]
+    },
+    {
+      "type": "treeIpePurple",
+      "parts": 28,
+      "origin_mm": [
+        15000,
+        28000
+      ]
+    },
+    {
+      "type": "treeCherry",
+      "parts": 28,
+      "origin_mm": [
+        -15000,
+        38000
+      ]
+    },
+    {
+      "type": "treePine",
+      "parts": 11,
+      "origin_mm": [
+        -5000,
+        38000
+      ]
+    },
+    {
+      "type": "treeAraucaria",
+      "parts": 43,
+      "origin_mm": [
+        5000,
+        38000
+      ]
+    },
+    {
+      "type": "treeCypress",
+      "parts": 11,
+      "origin_mm": [
+        15000,
+        38000
+      ]
+    },
+    {
+      "type": "treePalm",
+      "parts": 40,
+      "origin_mm": [
+        -15000,
+        48000
+      ]
+    },
+    {
+      "type": "treeApple",
+      "parts": 32,
+      "origin_mm": [
+        -5000,
+        48000
+      ]
+    },
+    {
+      "type": "treeOrange",
+      "parts": 34,
+      "origin_mm": [
+        5000,
+        48000
+      ]
+    },
+    {
+      "type": "treeWillow",
+      "parts": 35,
+      "origin_mm": [
+        15000,
+        48000
+      ]
+    }
+  ]
+}

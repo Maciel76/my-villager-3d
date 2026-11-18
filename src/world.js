@@ -229,8 +229,12 @@ export function createWorld(scene, materials) {
     // A corner of the view reaches farther than the far plane's center.
     // Include every chunk that can reach the view from this camera cell.
     const vertical = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-    const range =
-      camera.far * Math.hypot(1, vertical, vertical * camera.aspect);
+    // Camera damping changes the far distance by tiny amounts every frame.
+    // Cache whole chunk rings, otherwise every camera tick regenerates the
+    // shadow map and scans the entire forest even when no chunk changed.
+    const range = Math.ceil(
+      camera.far * Math.hypot(1, vertical, vertical * camera.aspect) / CHUNK_SIZE,
+    ) * CHUNK_SIZE;
     if (centerX === lastX && centerZ === lastZ && range === lastRange)
       return false;
     lastX = centerX;

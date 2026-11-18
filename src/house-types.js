@@ -1,3 +1,7 @@
+import { DECORATION_TYPES } from "./decoration-types.js";
+import { TREE_TYPES } from "./tree-types.js";
+import { PLANTING_BED_TYPES } from "./planting-bed-types.js";
+
 export const DEFAULT_HOUSE = "cottage";
 
 export const HOUSE_TYPES = {
@@ -5,6 +9,8 @@ export const HOUSE_TYPES = {
   chalet: { label: "Chalé de madeira" },
   townhouse: { label: "Sobrado de tijolos" },
   modern: { label: "Casa moderna" },
+  cuboVerde: { label: "Casa Cubo Verde", lotSpan: 2 },
+  belleEpoque: { label: "Casa Belle Époque", lotSpan: 2 },
   courtyard: { label: "Casa Pátio" },
   terrace: { label: "Casa Terraço" },
   sakura: {
@@ -17,6 +23,7 @@ export const HOUSE_TYPES = {
 export const COMMERCIAL_TYPES = {
   bakery: { label: "Padaria" },
   market: { label: "Mercado" },
+  supermarket: { label: "Supermercado Verde", lotSpan: 3 },
   cafe: { label: "Café" },
   pharmacy: { label: "Farmácia" },
   gasStation: { label: "Posto de Gasolina GS", lotSpan: 2 },
@@ -25,9 +32,11 @@ export const COMMERCIAL_TYPES = {
 const APARTMENTS = {
   varandas: { label: "Residencial Varandas" },
   mirante: { label: "Torre Mirante" },
+  aurora: { label: "Residencial Aurora", lotSpan: 2 },
 };
 
 const LANDMARKS = {
+  rotunda: { label: "Pavilhão Rotunda" },
   church: {
     label: "Igreja das Cúpulas",
     lotSpan: 2,
@@ -51,6 +60,7 @@ export const BUILDING_TYPES = Object.fromEntries(
     commercial: COMMERCIAL_TYPES,
     landmarks: LANDMARKS,
     lighting: LIGHTING,
+    decoration: { ...DECORATION_TYPES, ...TREE_TYPES, ...PLANTING_BED_TYPES },
   }).flatMap(([category, models]) =>
     Object.entries(models).map(([type, details]) => [
       type,

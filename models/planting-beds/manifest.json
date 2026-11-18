@@ -1,0 +1,46 @@
+{
+  "source": "SolidCraft MCP",
+  "items": [
+    {
+      "type": "bedSquare",
+      "parts": 10
+    },
+    {
+      "type": "bedRectangle",
+      "parts": 10
+    },
+    {
+      "type": "bedRound",
+      "parts": 3
+    },
+    {
+      "type": "bedMedian",
+      "parts": 12
+    },
+    {
+      "type": "bedCapsule",
+      "parts": 10
+    },
+    {
+      "type": "bedDouble",
+      "parts": 11
+    }
+  ],
+  "expect": {
+    "bodies": 56,
+    "volume_mm3": 20009813912.59241,
+    "tol": 0.004,
+    "bbox": {
+      "min": [
+        -8213.5,
+        59800,
+        0
+      ],
+      "max": [
+        8500,
+        73010,
+        400
+      ]
+    }
+  }
+}

@@ -73,9 +73,9 @@ p {
 }
 .topbar > button {
   pointer-events: auto;
+  margin-left: auto;
 }
 .brand,
-.world-info,
 .hud-button,
 .toolbar,
 .action-tray,
@@ -110,21 +110,17 @@ h1 {
   font: 800 clamp(21px, 3vw, 28px)/1 var(--heading);
   letter-spacing: -0.035em;
 }
-.world-info {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 41px;
-  padding: 0 12px;
-  border-radius: 7px;
-  font-size: 13px;
-  font-weight: 700;
-}
-.house-mark {
-  color: var(--gold);
-  font-size: 21px;
-  line-height: 1;
+.walk-reticle {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, -50%);
+  border: 2px solid #fff7df;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #223a2d, 0 1px 5px #0008;
+  pointer-events: none;
 }
 .hud-button {
   display: grid;
@@ -416,7 +412,9 @@ dialog dd {
   color: var(--ink);
 }
 .shop-header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: flex;
   gap: 15px;
   align-items: center;
@@ -489,12 +487,33 @@ dialog dd {
   color: var(--sand);
   background: var(--forest);
 }
-#apartment-count,
-#commerce-count,
-#landmark-count,
-#lamp-count {
-  border-left: 1px solid #a7aa7d70;
-  padding-left: 7px;
+.decoration-menu {
+  margin: 0 0 15px;
+  color: #4f6146;
+  font-size: 13px;
+}
+.decoration-menu p { margin: 3px 0 10px; }
+.decoration-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+.decoration-filters button {
+  min-height: 34px;
+  padding: 6px 12px;
+  border: 1px solid #aaa77e;
+  border-radius: 20px;
+  color: #3d533d;
+  background: #f6e8cb;
+  font: 700 12px/1.2 "DM Sans", system-ui, sans-serif;
+}
+.decoration-filters button[aria-pressed="true"] {
+  background: #d4dfb8;
+  border-color: #536c48;
+  color: #223a2d;
+}
+.decoration-choice { grid-template-rows: auto auto 1fr auto; }
+.decoration-description {
+  padding: 0 9px 9px;
+  color: #5d624a;
+  font-size: 11px;
+  line-height: 1.4;
 }
 .house-catalog {
   display: grid;
@@ -558,12 +577,6 @@ dialog dd {
     width: 30px;
     height: 33px;
     font-size: 28px;
-  }
-  .world-info {
-    gap: 4px;
-    min-height: 38px;
-    padding-inline: 8px;
-    font-size: 11px;
   }
   .help-button {
     min-width: 38px;
@@ -682,24 +695,6 @@ dialog dd {
 }
 
 @media (max-width: 480px) {
-  .world-info {
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 3px 6px;
-    max-width: 47vw;
-    padding-block: 4px;
-    line-height: 1.14;
-  }
-  .world-info .house-mark {
-    display: none;
-  }
-  #commerce-count,
-  #apartment-count,
-  #landmark-count,
-  #lamp-count {
-    padding-left: 0;
-    border-left: 0;
-  }
   .catalog-categories {
     display: grid;
     width: 100%;

@@ -3,11 +3,16 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import {
   BUILD_LIMIT,
   LOT_SIZE,
+  DECORATION_STEP,
   buildLimit,
   canPlace,
   footprint,
   insideBuildArea,
   isLamp,
+  isDecoration,
+  isTree,
+  isPlantingBed,
+  plantingBedUnder,
   isLargeFootprint,
   readSave,
   snap,
@@ -36,6 +41,7 @@ import { createNightLights } from "./night-lights.js";
 import {
   canBuildHouse,
   canBuildRoad,
+  canMoveRoad,
   canRemoveRoad,
   houseSite,
   lampSiteHeight,
@@ -48,38 +54,35 @@ import {
 import { createStreetLayer } from "./street.js";
 import { createWalker } from "./walking.js";
 import { createVillageStore, loadVillage } from "./village-storage.js";
+import { villageOverview } from "./camera-framing.js";
+import { optimizeBuildingTemplates, createBuildingBatches } from "./building-batches.js";
+import { registerDecorationObstacles, decorationSurfaceHeight } from "./decoration-obstacles.js";
 import "./style.css";
 
 const categoryCopy = {
   residential: {
-    counter: "house-count",
     noun: "Casa",
-    plural: "casas",
     ending: "a",
   },
   apartments: {
-    counter: "apartment-count",
     noun: "Prédio",
-    plural: "prédios",
     ending: "o",
   },
   commercial: {
-    counter: "commerce-count",
     noun: "Comércio",
-    plural: "comércios",
     ending: "o",
   },
   landmarks: {
-    counter: "landmark-count",
     noun: "Monumento",
-    plural: "monumentos",
     ending: "o",
   },
   lighting: {
-    counter: "lamp-count",
     noun: "Poste",
-    plural: "postes",
     ending: "o",
+  },
+  decoration: {
+    noun: "Decoração",
+    ending: "a",
   },
 };
 
@@ -108,6 +111,7 @@ if (renderer)
   });
 
 async function startGame(renderer) {
+  let preparing = true;
   let saved;
   try {
     saved = await loadVillage();
@@ -139,6 +143,8 @@ async function startGame(renderer) {
   addSakuraGarden(buildingTemplates.sakura, materials);
   addOrientalGarden(buildingTemplates.oriental, materials);
   addChurchDetails(buildingTemplates.church, materials);
+  registerDecorationObstacles(buildingTemplates);
+  optimizeBuildingTemplates(buildingTemplates);
   const scene = new THREE.Scene();
   scene.background = new THREE.Color("#c6dfd9");
   const viewDistance = 410;
@@ -152,7 +158,7 @@ async function startGame(renderer) {
   controls.minPolarAngle = 0.13;
   controls.maxPolarAngle = Math.PI * 0.43;
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.shadowMap.autoUpdate = false;
@@ -160,7 +166,9 @@ async function startGame(renderer) {
   renderer.toneMappingExposure = 1.15;
 
   const daylight = createDaylight(scene, renderer, buildingTemplates);
-  const nightLights = createNightLights(scene);
+  const nightLights = createNightLights(scene, { clustered: true });
+  Object.values(buildingTemplates).forEach(model => nightLights.bind(model));
+  const buildingBatches = createBuildingBatches(scene, buildingTemplates);
 
   const {
     ground,
@@ -239,6 +247,7 @@ async function startGame(renderer) {
 
   const pointer = new THREE.Vector2();
   const raycaster = new THREE.Raycaster();
+  raycaster.layers.enable(1);
   const forward = new THREE.Vector3();
   const right = new THREE.Vector3();
   const movement = new THREE.Vector3();
@@ -268,11 +277,11 @@ async function startGame(renderer) {
     buildingTemplates,
     beginPlacement,
     invalidate,
+    nightLights,
   );
   const hourPicker = element("village-hour");
   if (saved.hour) hourPicker.value = saved.hour;
   daylight.setHour(Number(hourPicker.value));
-  hourPicker.disabled = false;
   hourPicker.addEventListener("change", () => {
     daylight.setHour(Number(hourPicker.value));
     invalidate();
@@ -294,7 +303,7 @@ async function startGame(renderer) {
   }
 
   function scheduleFrame() {
-    if (!framePending) {
+    if (!preparing && !framePending) {
       framePending = true;
       requestAnimationFrame(draw);
     }
@@ -310,28 +319,9 @@ async function startGame(renderer) {
     if (status.textContent !== message) status.textContent = message;
   }
 
-  function updateCount() {
-    const counts = {
-      residential: 0,
-      apartments: 0,
-      commercial: 0,
-      landmarks: 0,
-      lighting: 0,
-    };
-    for (const { type } of houses) counts[BUILDING_TYPES[type].category]++;
-    for (const [key, { counter, noun, plural }] of Object.entries(
-      categoryCopy,
-    )) {
-      const count = counts[key];
-      const node = element(counter);
-      node.hidden = count === 0 && key !== "residential";
-      node.textContent = `${count} ${count === 1 ? noun.toLowerCase() : plural}`;
-    }
-  }
-
   function syncModel(house) {
     const { model, x, z, rotation } = house;
-    model.position.set(x, isLamp(house.type) ? lampBaseHeight(x, z) : 0, z);
+    model.position.set(x, isLamp(house.type) ? lampBaseHeight(x, z) : isDecoration(house.type) ? placementHeight(x, z, house.type) : 0, z);
     model.rotation.y = (rotation * Math.PI) / 2;
     model.updateMatrixWorld();
     renderer.shadowMap.needsUpdate = true;
@@ -373,7 +363,7 @@ async function startGame(renderer) {
       houseOrder: houses.map((house) => house.order),
       roads: [...roads.values()],
     } });
-    updateCount();
+    if (walker.active) walker.updateObstacles(houses, buildingTemplates);
   }
 
   const initial = saved.world ? readSave(saved.world) : STARTER_HOUSES;
@@ -382,10 +372,14 @@ async function startGame(renderer) {
   for (const { order } of roads.values())
     nextOrder = Math.max(nextOrder, order + 1);
   syncStreets();
-  updateCount();
   setStatus("Abra a Loja ou escolha Ruas para construir.");
 
   function syncParcels() {
+    for (const house of houses)
+      if (isDecoration(house.type)) {
+        house.model.position.y = placementHeight(house.x, house.z, house.type);
+        house.model.updateMatrixWorld();
+      }
     parcels = roadLots(roads);
     for (const [key, { x, z }] of parcels) {
       const alignedHouse = houses.some(
@@ -394,6 +388,7 @@ async function startGame(renderer) {
       if (!alignedHouse && !canPlace(x, z, houses)) parcels.delete(key);
     }
     streets.updatePlots([...parcels.values()]);
+    streets.plotsLayer.visible = !walker.active && (Boolean(placement) || showGrid);
   }
 
   function syncStreets() {
@@ -401,6 +396,7 @@ async function startGame(renderer) {
     updatePaving((x, z) => streets.covers(x, z, roads));
     for (const { type, x, z, model } of houses) {
       if (isLamp(type)) model.position.y = lampBaseHeight(x, z);
+      if (isDecoration(type)) model.position.y = placementHeight(x, z, type);
     }
     renderer.shadowMap.needsUpdate = true;
     syncParcels();
@@ -419,6 +415,14 @@ async function startGame(renderer) {
   }
 
   function placementHeight(x, z, type) {
+    if (isTree(type)) {
+      const bed = plantingBedUnder({ type, x, z, rotation: placement?.rotation ?? 0 }, houses);
+      if (bed) return placementHeight(bed.x, bed.z, bed.type) + BUILDING_TYPES[bed.type].plantingBed.height;
+    }
+    if (isDecoration(type)) return Math.max(
+      terrainHeight(x, z), streets.surfaceHeight(x, z, roads) ?? 0,
+      decorationSurfaceHeight(x, z, houses),
+    );
     return isLamp(type) ? lampBaseHeight(x, z) : terrainHeight(x, z);
   }
 
@@ -428,17 +432,21 @@ async function startGame(renderer) {
       ((x - bounds.left) / bounds.width) * 2 - 1,
       1 - ((y - bounds.top) / bounds.height) * 2,
     );
-    camera.updateMatrixWorld();
-    raycaster.setFromCamera(pointer, camera);
+    const view = walker.active ? walker.camera : camera;
+    view.updateMatrixWorld();
+    raycaster.setFromCamera(pointer, view);
   }
 
   function pointLot(x, y) {
     castRay(x, y);
-    const hit = raycaster.intersectObjects(ground.children, false)[0];
-    if (!hit) return null;
+    const targets = isTree(placement?.type)
+      ? [...ground.children, ...houses.filter(house => isPlantingBed(house.type)).map(house => house.model)]
+      : ground.children;
+    const hit = raycaster.intersectObjects(targets, isTree(placement?.type))[0];
+    if (!hit || (walker.active && hit.distance > 60)) return null;
     const site = placementSite(hit.point.x, hit.point.z);
-    const height = isLamp(placement?.type)
-      ? lampBaseHeight(site.x, site.z)
+    const height = isLamp(placement?.type) || isDecoration(placement?.type)
+      ? placementHeight(site.x, site.z, placement.type)
       : hit.point.y;
     return { ...site, y: height };
   }
@@ -459,8 +467,12 @@ async function startGame(renderer) {
   }
 
   function refreshPreview() {
-    const target =
-      placement && (aim ? pointLot(aim.x, aim.y) : placement.target);
+    const bounds = canvas.getBoundingClientRect();
+    const following = walker.active && placement?.followView;
+    const target = placement && (following
+      ? pointLot(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
+      : aim ? pointLot(aim.x, aim.y) : placement.target);
+    element("walk-reticle").hidden = !following;
     const roadMode = Boolean(placement?.road);
     const active = placement ?? selection;
     const [width, depth] = footprint(active?.type, active?.rotation);
@@ -470,9 +482,11 @@ async function startGame(renderer) {
       const { x, z, y } = target;
       const erasing = placement.erasing;
       const valid = roadMode
-        ? erasing
-          ? canRemoveRoad(x, z, houses, roads)
-          : canBuildRoad(x, z, houses, roads)
+        ? placement.movingRoad
+          ? canMoveRoad(x, z, placement.movingRoad, houses, roads)
+          : erasing
+            ? canRemoveRoad(x, z, houses, roads)
+            : canBuildRoad(x, z, houses, roads)
         : canBuildHouse(
             x,
             z,
@@ -482,10 +496,13 @@ async function startGame(renderer) {
             placement.moving,
             placement.type,
             placement.rotation,
-          );
+          ) && (!walker.active || walker.canBuildAt(placement.type, x, z, placement.rotation, buildingTemplates));
       candidate = { x, z, valid };
       if (roadMode) {
-        const mask = roadMask(x, z, roads);
+        const previewRoads = placement.movingRoad ? new Map(roads) : roads;
+        if (placement.movingRoad)
+          previewRoads.delete(tileKey(placement.movingRoad.x, placement.movingRoad.z));
+        const mask = roadMask(x, z, previewRoads);
         if (mask !== roadGhostMask) {
           roadGhost.clear().add(streets.preview(mask, roadGhostMaterial));
           roadGhostMask = mask;
@@ -507,7 +524,7 @@ async function startGame(renderer) {
     } else {
       candidate = null;
       if (selection) {
-        border.position.set(selection.x, selection.model.position.y + 0.11, selection.z);
+        border.position.set(selection.x, selection.road ? 0.185 : selection.model.position.y + 0.11, selection.z);
         border.material.color.set("#ffcf79");
       }
     }
@@ -521,9 +538,9 @@ async function startGame(renderer) {
 
   function updateActions() {
     const target = placement || selection;
-    const roadMode = Boolean(placement?.road);
+    const roadMode = Boolean(target?.road);
     const editing = Boolean(placement);
-    const moving = choosingHouse || Boolean(placement?.moving);
+    const moving = choosingHouse || Boolean(placement?.moving || placement?.movingRoad);
     document.body.classList.toggle("placing", editing);
     document.body.classList.toggle("selecting", Boolean(selection));
     element("action-tray").hidden = !target;
@@ -531,12 +548,12 @@ async function startGame(renderer) {
     element("delete-selected").hidden = !selection;
     element("rotate-left").hidden = element("rotate-button").hidden =
       !target || roadMode;
-    element("road-erase").hidden = !roadMode;
+    element("road-erase").hidden = !placement?.road || Boolean(placement.movingRoad);
     element("road-erase").setAttribute(
       "aria-pressed",
       Boolean(placement?.erasing),
     );
-    element("road-button").setAttribute("aria-pressed", roadMode);
+    element("road-button").setAttribute("aria-pressed", Boolean(placement?.road));
     element("place-button").textContent = placement?.erasing
       ? "Retirar trecho"
       : "Confirmar";
@@ -546,25 +563,27 @@ async function startGame(renderer) {
     element("explore-button").classList.toggle("active", exploring);
     element("move-button").setAttribute("aria-pressed", moving);
     if (roadMode) {
-      element("action-title").textContent = placement.erasing
-        ? "Trecho de rua"
-        : "Asfalto e calçada";
-      element("action-mode").textContent = placement.erasing
-        ? "Remover rua"
-        : "Rua modular";
+      element("action-title").textContent = "Trecho de rua";
+      element("action-mode").textContent = !placement
+        ? "Rua selecionada"
+        : placement.movingRoad
+          ? "Mover trecho"
+          : placement.erasing
+            ? "Remover rua"
+            : "Rua modular";
     } else if (target) {
       const { noun, ending } = categoryFor(target.type);
       element("action-title").textContent = BUILDING_TYPES[target.type].label;
       element("action-mode").textContent = placement
         ? placement.moving
-          ? "Novo lote"
-          : "Nova construção"
+          ? "Novo local"
+          : isDecoration(target.type) ? "Decorar a vila" : "Nova construção"
         : `${noun} selecionad${ending}`;
     }
     canvas.style.cursor = editing || choosingHouse ? "crosshair" : "grab";
     grid.visible = !walker.active && !roadMode && (showGrid || editing);
     roadGrid.visible = roadMode;
-    streets.plotsLayer.visible = !walker.active;
+    streets.plotsLayer.visible = !walker.active && (editing || showGrid);
     refreshPreview();
     invalidate();
   }
@@ -584,11 +603,18 @@ async function startGame(renderer) {
   function explore() {
     stopWalking();
     clearAction();
-    setStatus("Clique em uma construção para selecioná-la.");
+    setStatus("Clique em uma construção ou trecho de rua para selecionar.");
+  }
+
+  function cancelAction() {
+    if (walker.active && (placement || selection || choosingHouse)) {
+      clearAction();
+      canvas.focus({ preventScroll: true });
+      setStatus("Você continua caminhando. Abra a Loja para construir ou Esc para sair do passeio.");
+    } else explore();
   }
 
   function beginPlacement(type, moving = null) {
-    stopWalking();
     clearAction();
     if (moving) {
       finishHouseAnimation(moving);
@@ -597,22 +623,33 @@ async function startGame(renderer) {
     }
     const site = moving
       ? { x: moving.x, z: moving.z }
-      : placementSite(controls.target.x, controls.target.z, type);
+      : placementSite(
+          walker.active ? walker.camera.position.x : controls.target.x,
+          walker.active ? walker.camera.position.z : controls.target.z,
+          type,
+        );
     placement = {
       type,
       moving,
       rotation: moving?.rotation ?? 0,
       target: { ...site, y: placementHeight(site.x, site.z, type) },
+      followView: walker.active,
     };
     updateGhostModel(type);
     updateActions();
     canvas.focus({ preventScroll: true });
     const [width, depth] = footprint(type);
     setStatus(
-      moving
+      walker.active
+        ? "Mire no chão e clique para construir; Enter também confirma. Arraste para olhar. Esc cancela."
+        : moving
         ? "Escolha o novo local para a construção."
         : isLamp(type)
-          ? "Escolha uma calçada ou um espaço livre para o poste."
+          ? "Instale vários postes seguidos. Pressione Esc ou Explorar para terminar."
+          : isDecoration(type)
+            ? isPlantingBed(type)
+              ? "Coloque o canteiro no meio da rua. Depois escolha uma árvore e plante dentro dele."
+              : "Decore jardins, calçadas e espaços entre casas. As setas ajustam 25 cm; R gira a peça."
           : isLargeFootprint(type)
             ? `Escolha ${(width * depth) / LOT_SIZE ** 2} lotes livres em uma área de ${width / LOT_SIZE} × ${depth / LOT_SIZE}.`
             : "Escolha um espaço livre para construir.",
@@ -620,18 +657,19 @@ async function startGame(renderer) {
   }
 
   function chooseRoad() {
-    stopWalking();
     if (placement?.road) {
-      explore();
+      cancelAction();
       return;
     }
     clearAction();
-    const x = snapTile(controls.target.x);
-    const z = snapTile(controls.target.z);
+    const focus = walker.active ? walker.camera.position : controls.target;
+    const x = snapTile(focus.x);
+    const z = snapTile(focus.z);
     placement = {
       road: true,
       erasing: false,
       target: { x, z, y: terrainHeight(x, z) },
+      followView: walker.active,
     };
     updateActions();
     canvas.focus({ preventScroll: true });
@@ -639,7 +677,7 @@ async function startGame(renderer) {
   }
 
   function toggleRoadErase() {
-    if (!placement?.road) return;
+    if (!placement?.road || placement.movingRoad) return;
     placement.erasing = !placement.erasing;
     updateActions();
     setStatus(
@@ -649,41 +687,61 @@ async function startGame(renderer) {
     );
   }
 
+  function beginRoadMove(road) {
+    clearAction();
+    placement = {
+      road: true,
+      movingRoad: roads.get(tileKey(road.x, road.z)),
+      target: { x: road.x, z: road.z, y: terrainHeight(road.x, road.z) },
+      followView: walker.active,
+    };
+    updateActions();
+    canvas.focus({ preventScroll: true });
+    setStatus("Escolha o novo local do trecho e confirme. Esc cancela a mudança.");
+  }
+
   function chooseMove() {
-    stopWalking();
-    if (placement?.moving || choosingHouse) {
-      explore();
+    if (placement?.moving || placement?.movingRoad || choosingHouse) {
+      cancelAction();
       return;
     }
     if (selection) {
-      beginPlacement(selection.type, selection);
+      if (selection.road) beginRoadMove(selection);
+      else beginPlacement(selection.type, selection);
       return;
     }
     clearAction();
     choosingHouse = true;
     updateActions();
-    setStatus("Clique ou toque na construção que você quer mover.");
+    setStatus("Clique ou toque na construção ou no trecho de rua que você quer mover.");
   }
 
   function selectHouse(x, y) {
     castRay(x, y);
     const hit = raycaster.intersectObjects(
-      houses.map(({ model }) => model),
+      [...houses.map(({ model }) => model), streets.roadsLayer],
       true,
     )[0];
     let model = hit?.object;
     while (model && model.parent !== scene) model = model.parent;
     selection = houses.find((house) => house.model === model) ?? null;
+    if (model === streets.roadsLayer) {
+      const road = roads.get(tileKey(snapTile(hit.point.x), snapTile(hit.point.z)));
+      if (road) selection = { ...road, road: true };
+    }
     if (selection && choosingHouse) {
-      beginPlacement(selection.type, selection);
+      if (selection.road) beginRoadMove(selection);
+      else beginPlacement(selection.type, selection);
     } else {
       updateActions();
       setStatus(
         selection
-          ? "Use os botões para mover, girar ou excluir."
+          ? selection.road
+            ? "Use Mover ou Excluir para editar este trecho de rua."
+            : "Use os botões para mover, girar ou excluir."
           : choosingHouse
-            ? "Clique ou toque na construção que você quer mover."
-            : "Abra a Loja para construir ou selecione uma construção.",
+            ? "Escolha a construção ou o trecho de rua que você quer mover."
+            : "Selecione uma construção ou trecho de rua, ou abra a Loja.",
       );
     }
   }
@@ -700,15 +758,19 @@ async function startGame(renderer) {
     }
     if (!candidate.valid) {
       setStatus(
-        placement.erasing
-          ? roads.has(tileKey(candidate.x, candidate.z))
-            ? "Mova o poste da calçada antes de retirar este trecho."
-            : "Escolha um trecho de rua existente."
-          : isLamp(placement.type)
-            ? "Escolha uma calçada ou um espaço livre para o poste."
-            : isLargeFootprint(placement.type)
-              ? "Todos os lotes da construção precisam estar livres de ruas e construções."
-              : "Este lote está ocupado ou faz parte de outra divisão.",
+        placement.movingRoad
+          ? "Escolha um bloco livre sem obstruir construções ou postes nas calçadas."
+          : placement.erasing
+            ? roads.has(tileKey(candidate.x, candidate.z))
+              ? "Mova o poste da calçada antes de retirar este trecho."
+              : "Escolha um trecho de rua existente."
+            : isLamp(placement.type)
+              ? "Escolha uma calçada ou um espaço livre para o poste."
+              : isDecoration(placement.type)
+                ? "Aproxime a peça de um espaço livre, sem atravessar paredes ou outra decoração."
+              : isLargeFootprint(placement.type)
+                ? "Todos os lotes da construção precisam estar livres de ruas e construções."
+                : "Este lote está ocupado ou faz parte de outra divisão.",
       );
       return;
     }
@@ -733,14 +795,39 @@ async function startGame(renderer) {
       undoHistory.push({ house });
     }
     saveWorld();
-    clearAction();
     syncParcels();
+    if ((isLamp(type) || isDecoration(type)) && !moving) {
+      aim = null;
+      placement.lastSite = { x, z, y: placementHeight(x, z, type) };
+      placement.target = null;
+      placement.followView = walker.active;
+      updateActions();
+      canvas.focus({ preventScroll: true });
+      setStatus(isDecoration(type)
+        ? "Decoração colocada. Escolha o próximo local. Esc ou Explorar para terminar."
+        : "Poste instalado. Escolha o próximo local. Esc ou Explorar para terminar.");
+      return;
+    }
+    clearAction();
     const { noun, ending } = categoryFor(type);
     setStatus(`${noun} ${moving ? "movid" : "construíd"}${ending}.`);
   }
 
   function placeRoad(x, z) {
     const key = tileKey(x, z);
+    const source = placement.movingRoad;
+    if (source) {
+      if (source.x !== x || source.z !== z) {
+        undoHistory.push({ roadMove: { source, destinationKey: key } });
+        roads.delete(tileKey(source.x, source.z));
+        roads.set(key, { ...source, x, z });
+      }
+      clearAction();
+      syncStreets();
+      saveWorld();
+      setStatus("Trecho de rua movido.");
+      return;
+    }
     const previousRoad = roads.get(key);
     undoHistory.push({ roadKey: key, previousRoad });
     if (placement.erasing) {
@@ -759,6 +846,22 @@ async function startGame(renderer) {
 
   function deleteSelectedHouse() {
     if (!selection) return;
+    if (selection.road) {
+      const { x, z } = selection;
+      if (!canRemoveRoad(x, z, houses, roads)) {
+        setStatus("Mova o poste da calçada antes de retirar este trecho.");
+        return;
+      }
+      const key = tileKey(x, z);
+      undoHistory.push({ roadKey: key, previousRoad: roads.get(key) });
+      roads.delete(key);
+      clearAction();
+      syncStreets();
+      saveWorld();
+      canvas.focus({ preventScroll: true });
+      setStatus("Trecho de rua excluído.");
+      return;
+    }
     const house = selection;
     const removedIndex = removeHouse(house);
     undoHistory.push({ house, removedIndex });
@@ -772,7 +875,6 @@ async function startGame(renderer) {
 
   function undoConstruction() {
     if (!houses.length && !roads.size && !undoHistory.length) return;
-    stopWalking();
     clearAction();
     let change = undoHistory.pop();
     if (!change) {
@@ -786,7 +888,13 @@ async function startGame(renderer) {
           ? { roadKey: tileKey(latestRoad.x, latestRoad.z) }
           : { house: lastHouse };
     }
-    if (change.roadKey) {
+    if (change.roadMove) {
+      const { source, destinationKey } = change.roadMove;
+      roads.delete(destinationKey);
+      roads.set(tileKey(source.x, source.z), source);
+      syncStreets();
+      setStatus("O trecho voltou ao local anterior.");
+    } else if (change.roadKey) {
       if (change.previousRoad) roads.set(change.roadKey, change.previousRoad);
       else roads.delete(change.roadKey);
       syncStreets();
@@ -814,13 +922,13 @@ async function startGame(renderer) {
       removeHouse(change.house);
       setStatus("A última construção foi removida.");
     }
-    if (!change.roadKey) syncParcels();
+    if (!change.roadKey && !change.roadMove) syncParcels();
     saveWorld();
     invalidate();
   }
 
   function rotateHouse(turn) {
-    if (placement?.road) return;
+    if (placement?.road || selection?.road) return;
     let house = placement ?? selection;
     if (!house) return;
     const { rotation, type } = house;
@@ -831,7 +939,7 @@ async function startGame(renderer) {
     }
     house.rotation = (rotation + turn + 4) % 4;
     if (placement) {
-      const target = placement.target;
+      const target = candidate || placement.target || placement.lastSite;
       const site = placementSite(target.x, target.z, type);
       placement.target = { ...site, y: placementHeight(site.x, site.z, type) };
       setStatus(width !== depth && placement.moving
@@ -848,7 +956,6 @@ async function startGame(renderer) {
   }
 
   function toggleGrid() {
-    if (walker.active) explore();
     showGrid = !showGrid;
     grid.visible = !placement?.road && (Boolean(placement) || showGrid);
     element("grid-button").setAttribute("aria-pressed", showGrid);
@@ -911,6 +1018,12 @@ async function startGame(renderer) {
     controls.target.set(0, 0, 0);
     const scale = window.innerWidth / window.innerHeight < 0.8 ? 1.22 : 1;
     camera.position.set(88 * scale, 82 * scale, 93 * scale);
+    const overview = villageOverview(houses, roads.values(), canvas.clientWidth / canvas.clientHeight);
+    if (overview) {
+      controls.target.copy(overview.target);
+      camera.position.copy(overview.position);
+    }
+    controls.maxDistance = Math.max(245, overview?.distance * 1.25 || 0);
     controls.update();
     controls.saveState();
     invalidate();
@@ -929,6 +1042,7 @@ async function startGame(renderer) {
   }
 
   function resize() {
+    renderer.setPixelRatio(window.devicePixelRatio || 1);
     renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     const aspect = canvas.clientWidth / canvas.clientHeight;
     for (const view of [camera, walker.camera]) {
@@ -991,9 +1105,21 @@ async function startGame(renderer) {
       }
       daylight.positionLights(target);
       daylight.sky.position.copy(view.position);
-      if (updateWorld(view)) renderer.shadowMap.needsUpdate = true;
+      const overviewDistance = walker.active ? 0 : view.position.distanceTo(target);
+      const far = Math.max(viewDistance, overviewDistance + 190);
+      if (view.far !== far) {
+        view.far = far;
+        view.updateProjectionMatrix();
+      }
+      scene.fog.near = Math.max(165, overviewDistance + 10);
+      scene.fog.far = far;
+      if (updateWorld(view)) {
+        renderer.shadowMap.needsUpdate = true;
+        nightLights.bind(scene);
+      }
       refreshPreview();
-      nightLights.update(houses, view, target, daylight.lampPower);
+      buildingBatches.sync(houses, animations);
+      nightLights.update(houses, view, daylight.lampPower);
       renderer.render(scene, view);
       dirty = false;
     }
@@ -1003,6 +1129,23 @@ async function startGame(renderer) {
 
   controls.addEventListener("change", invalidate);
   canvas.style.cursor = "grab";
+  function clickWorld(event) {
+    if (!placement) {
+      selectHouse(event.clientX, event.clientY);
+      return;
+    }
+    aim = null;
+    placement.followView = false;
+    placement.target = pointLot(event.clientX, event.clientY);
+    if (event.pointerType === "touch") {
+      refreshPreview();
+      setStatus(candidate?.valid
+        ? "Confirme a seleção ou toque em outro lugar."
+        : placement.erasing ? "Escolha um trecho de rua existente."
+          : "Escolha um espaço livre dentro da grade e longe dos seus pés.");
+      invalidate();
+    } else placeConstruction();
+  }
   for (const type of ["touchstart", "touchmove"]) {
     canvas.addEventListener(type, (event) => {
       // In first person, pointer events handle the drag instead of browser gestures.
@@ -1013,7 +1156,10 @@ async function startGame(renderer) {
     if (walker.active) {
       if (event.button !== 0 || walkLook) return;
       event.preventDefault();
-      walkLook = { id: event.pointerId, x: event.clientX, y: event.clientY };
+      walkLook = {
+        id: event.pointerId, x: event.clientX, y: event.clientY,
+        startX: event.clientX, startY: event.clientY, moved: false,
+      };
       canvas.setPointerCapture(event.pointerId);
       canvas.style.cursor = "grabbing";
       return;
@@ -1032,11 +1178,22 @@ async function startGame(renderer) {
   });
   canvas.addEventListener("pointermove", (event) => {
     if (walker.active) {
-      if (walkLook?.id !== event.pointerId) return;
-      walker.look(event.clientX - walkLook.x, event.clientY - walkLook.y);
-      walkLook.x = event.clientX;
-      walkLook.y = event.clientY;
-      invalidate();
+      if (walkLook?.id === event.pointerId) {
+        if (Math.hypot(event.clientX - walkLook.startX, event.clientY - walkLook.startY) > 5)
+          walkLook.moved = true;
+        if (walkLook.moved) {
+          walker.look(event.clientX - walkLook.x, event.clientY - walkLook.y);
+          aim = null;
+          if (placement) placement.followView = true;
+          invalidate();
+        }
+        walkLook.x = event.clientX;
+        walkLook.y = event.clientY;
+      } else if (placement && event.pointerType !== "touch") {
+        aim = { x: event.clientX, y: event.clientY };
+        placement.followView = false;
+        invalidate();
+      }
       return;
     }
     if (
@@ -1055,33 +1212,23 @@ async function startGame(renderer) {
     canvas.style.cursor = "grab";
   });
   canvas.addEventListener("pointerup", (event) => {
-    if (walker.active) return;
+    if (walker.active) {
+      const clicked = walkLook?.id === event.pointerId && !walkLook.moved;
+      if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+      walkLook = null;
+      canvas.style.cursor = placement || choosingHouse ? "crosshair" : "grab";
+      if (clicked) clickWorld(event);
+      return;
+    }
     pointers.delete(event.pointerId);
     canvas.style.cursor = placement || choosingHouse ? "crosshair" : "grab";
     if (gesture?.id === event.pointerId && !gesture.moved && !pointers.size) {
-      if (!placement) {
-        selectHouse(event.clientX, event.clientY);
-      } else {
-        aim = null;
-        placement.target = pointLot(event.clientX, event.clientY);
-        if (event.pointerType === "touch") {
-          refreshPreview();
-          setStatus(
-            candidate?.valid
-              ? "Confirme a seleção ou toque em outro lugar."
-              : placement.erasing
-                ? "Escolha um trecho de rua existente."
-                : "Escolha um espaço livre dentro da grade.",
-          );
-          invalidate();
-        } else {
-          placeConstruction();
-        }
-      }
+      clickWorld(event);
     }
     if (!pointers.size) gesture = null;
   });
   canvas.addEventListener("pointercancel", (event) => {
+    if (walkLook?.id === event.pointerId) walkLook = null;
     pointers.delete(event.pointerId);
     gesture = null;
     canvas.style.cursor = placement || choosingHouse ? "crosshair" : "grab";
@@ -1108,7 +1255,7 @@ async function startGame(renderer) {
     }
   }
 
-  for (const id of [
+  const readyButtons = [
     "shop-button",
     "explore-button",
     "move-button",
@@ -1119,10 +1266,9 @@ async function startGame(renderer) {
     "zoom-in",
     "zoom-out",
     "help-button",
-  ])
-    element(id).disabled = false;
+  ];
   element("explore-button").onclick = explore;
-  element("cancel-button").onclick = explore;
+  element("cancel-button").onclick = cancelAction;
   element("road-button").onclick = chooseRoad;
   element("road-erase").onclick = toggleRoadErase;
   element("move-button").onclick = chooseMove;
@@ -1134,9 +1280,6 @@ async function startGame(renderer) {
   element("grid-button").onclick = toggleGrid;
   element("reset-camera").onclick = resetCamera;
   walkButton.onclick = toggleWalking;
-  element("shop-button").addEventListener("click", () => {
-    if (walker.active) explore();
-  });
   element("zoom-in").onclick = () => zoom(0.83);
   element("zoom-out").onclick = () => zoom(1.2);
   element("help-button").onclick = () => help.showModal();
@@ -1146,6 +1289,7 @@ async function startGame(renderer) {
   }
 
   window.addEventListener("keydown", (event) => {
+    if (preparing) return;
     if (
       help.open ||
       shop.open ||
@@ -1179,8 +1323,9 @@ async function startGame(renderer) {
         placement.target &&
         parcels.has(tileKey(placement.target.x, placement.target.z));
       const large = isLargeFootprint(placement.type);
-      const lamp = isLamp(placement.type);
-      const scale = lamp ? 0.5 : placement.road || onParcel || large ? LOT_SIZE / 2 : 1;
+      const decoration = isDecoration(placement.type);
+      const lamp = isLamp(placement.type) || decoration;
+      const scale = decoration ? DECORATION_STEP / 2 : lamp ? 0.5 : placement.road || onParcel || large ? LOT_SIZE / 2 : 1;
       const target =
         (aim && pointLot(aim.x, aim.y)) ||
         placement.target ||
@@ -1202,7 +1347,8 @@ async function startGame(renderer) {
       return;
     }
     if (event.repeat) return;
-    if (key === "1" || key === "escape") explore();
+    if (key === "1") explore();
+    if (key === "escape") cancelAction();
     if (key === "2") element("shop-button").click();
     if (key === "3") chooseRoad();
     if (key === "4") toggleWalking();
@@ -1230,5 +1376,29 @@ async function startGame(renderer) {
   window.addEventListener("resize", resize);
   resetCamera();
   resize();
+  setStatus("Preparando a cidade…");
+  camera.far = Math.max(viewDistance, camera.position.distanceTo(controls.target) + 190);
+  camera.updateProjectionMatrix();
+  updateWorld(camera);
+  buildingBatches.sync(houses, animations);
+  nightLights.bind(scene);
+  // Warm both lighting variants asynchronously. A saved night-time city uses
+  // the same small shaders, and changing hour does not compile hundreds of lights.
+  const chosenHour = Number(hourPicker.value);
+  for (const hour of [7.5, 23]) {
+    daylight.setHour(hour);
+    daylight.positionLights(controls.target);
+    nightLights.update(houses, camera, daylight.lampPower);
+    scene.updateMatrixWorld(true);
+    await renderer.compileAsync(scene, camera);
+  }
+  daylight.setHour(chosenHour);
+  daylight.positionLights(controls.target);
+  nightLights.update(houses, camera, daylight.lampPower);
+  preparing = false;
+  readyButtons.forEach(id => { element(id).disabled = false; });
+  hourPicker.disabled = false;
+  setStatus("Abra a Loja ou escolha Ruas para construir.");
   renderer.shadowMap.needsUpdate = true;
+  invalidate();
 }

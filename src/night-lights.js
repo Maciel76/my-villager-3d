@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { createClusteredLights } from "./clustered-lights.js";
 
 export function addLampEmitter(model, position, options) {
   (model.userData.lampEmitters ??= []).push({ position, ...options });
@@ -19,10 +20,9 @@ function makeHaloTexture() {
   return texture;
 }
 
-export function createNightLights(scene) {
-  const pointSlots = Array.from({ length: 9 }, () => new THREE.PointLight());
-  const spotSlots = Array.from({ length: 3 }, () => new THREE.SpotLight());
+export function createNightLights(scene, { clustered = false } = {}) {
   const haloMap = makeHaloTexture();
+  if (clustered) return createClusteredLights(scene, haloMap);
   const createSlot = (light) => {
     const halo = new THREE.Sprite(new THREE.SpriteMaterial({
       map: haloMap,
@@ -36,55 +36,46 @@ export function createNightLights(scene) {
     if (light.isSpotLight) scene.add(light.target);
     return { light, halo };
   };
-  const points = pointSlots.map(createSlot);
-  const spots = spotSlots.map(createSlot);
-  const projected = new THREE.Vector3();
+  const points = [];
+  const spots = [];
   const direction = new THREE.Vector3();
 
-  function update(houses, camera, target, power) {
-    const candidates = [];
-    if (power > 0.015) {
-      camera.updateMatrixWorld();
-      for (const { model } of houses) {
-        const emitters = model.userData.lampEmitters;
-        if (!model.visible || !emitters) continue;
-        model.updateMatrixWorld();
-        for (const emitter of emitters) {
-          const point = new THREE.Vector3(...emitter.position).applyMatrix4(model.matrixWorld);
-          projected.copy(point).project(camera);
-          if (projected.z < -1 || projected.z > 1 ||
-              Math.abs(projected.x) > 1.4 || Math.abs(projected.y) > 1.4) continue;
-          const score = point.distanceToSquared(target) * 0.54 +
-            110 * (projected.x ** 2 + projected.y ** 2);
-          candidates.push({ emitter, model, point, score });
-        }
-      }
-      candidates.sort((a, b) => a.score - b.score);
+  function resize(slots, count, Light) {
+    while (slots.length < count) slots.push(createSlot(new Light()));
+    while (slots.length > count) {
+      const { light, halo } = slots.pop();
+      light.removeFromParent();
+      if (light.isSpotLight) light.target.removeFromParent();
+      halo.removeFromParent();
+      halo.material.dispose();
+      light.dispose();
     }
-    const countPerModel = new Map();
+  }
+
+  function update(houses, camera, power) {
     const activePoints = [];
     const activeSpots = [];
-    for (const candidate of candidates) {
-      const { model, emitter } = candidate;
-      const list = emitter.direction ? activeSpots : activePoints;
-      const limit = emitter.direction ? spots.length : points.length;
-      const chosen = countPerModel.get(model) ?? 0;
-      if (list.length >= limit || chosen >= 4) continue;
-      list.push(candidate);
-      countPerModel.set(model, chosen + 1);
+    for (const { model } of houses) {
+      const emitters = model.userData.lampEmitters;
+      if (!model.visible || !emitters) continue;
+      model.updateWorldMatrix(true, false);
+      for (const emitter of emitters) {
+        const point = new THREE.Vector3(...emitter.position).applyMatrix4(model.matrixWorld);
+        const list = emitter.direction ? activeSpots : activePoints;
+        // Every emitter lights the scene, including those outside the camera whose
+        // range can still reach visible surfaces. Camera movement cannot turn them off.
+        list.push({ emitter, model, point });
+      }
     }
+    resize(points, activePoints.length, THREE.PointLight);
+    resize(spots, activeSpots.length, THREE.SpotLight);
 
     function apply(slots, active) {
       slots.forEach(({ light, halo }, index) => {
-        const candidate = active[index];
-        // Keep a fixed light count while lit so moving the camera reuses shaders.
-        light.visible = active.length > 0;
-        light.intensity = 0;
-        halo.visible = false;
-        if (!candidate) return;
-        const { emitter, model, point } = candidate;
+        const { emitter, model, point } = active[index];
+        light.visible = power > 0.015;
         light.color.set(emitter.color);
-        light.intensity = power * emitter.intensity;
+        light.intensity = power * emitter.intensity * 1.75;
         light.distance = emitter.range;
         light.position.copy(point);
         if (light.isSpotLight) {
@@ -93,13 +84,13 @@ export function createNightLights(scene) {
           light.angle = emitter.angle ?? 0.84;
           light.penumbra = 0.78;
         }
-        halo.visible = Boolean(emitter.halo);
+        halo.visible = light.visible && Boolean(emitter.halo);
         if (halo.visible) {
           // Give the bloom room to show around the glass without washing out its cage.
           halo.position.copy(point).lerp(camera.position, 0.003);
           halo.scale.setScalar(emitter.halo);
           halo.material.color.copy(light.color);
-          halo.material.opacity = power * 0.52;
+          halo.material.opacity = power * 0.7;
         }
       });
     }

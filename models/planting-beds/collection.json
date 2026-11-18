@@ -1,0 +1,1273 @@
+{
+  "commands": [
+    {
+      "command": "parameters.add",
+      "params": {
+        "name": "bedScale",
+        "expression": "1",
+        "unit": ""
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "62000 * bedScale",
+          "45 * bedScale"
+        ],
+        "length": "2400 * bedScale",
+        "width": "2400 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-stone-1",
+        "body_name": "bedSquare-stone-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "62000 * bedScale",
+          "210 * bedScale"
+        ],
+        "length": "2040 * bedScale",
+        "width": "2040 * bedScale",
+        "height": "200 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-soil-2",
+        "body_name": "bedSquare-soil-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8110 * bedScale",
+          "62000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "2400 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-rim-3",
+        "body_name": "bedSquare-rim-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-5890 * bedScale",
+          "62000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "2400 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-rim-4",
+        "body_name": "bedSquare-rim-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "60890 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "2040 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-rim-5",
+        "body_name": "bedSquare-rim-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "63110 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "2040 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-rim-6",
+        "body_name": "bedSquare-rim-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8206 * bedScale",
+          "61280 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-reflector-7",
+        "body_name": "bedSquare-reflector-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8206 * bedScale",
+          "62720 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-reflector-8",
+        "body_name": "bedSquare-reflector-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-5794 * bedScale",
+          "61280 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-reflector-9",
+        "body_name": "bedSquare-reflector-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-5794 * bedScale",
+          "62720 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedSquare-reflector-10",
+        "body_name": "bedSquare-reflector-10"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedSquare-stone-1"
+        ],
+        "color": "#b4b7ac",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedSquare-soil-2"
+        ],
+        "color": "#546a3a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedSquare-rim-3",
+          "bedSquare-rim-4",
+          "bedSquare-rim-5",
+          "bedSquare-rim-6"
+        ],
+        "color": "#e1ddcb",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedSquare-reflector-7",
+          "bedSquare-reflector-8",
+          "bedSquare-reflector-9",
+          "bedSquare-reflector-10"
+        ],
+        "color": "#f2cd68",
+        "pbr": {
+          "roughness": 0.45,
+          "metallic": 0.25,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * bedScale",
+          "62000 * bedScale",
+          "45 * bedScale"
+        ],
+        "length": "2200 * bedScale",
+        "width": "4400 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-stone-1",
+        "body_name": "bedRectangle-stone-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * bedScale",
+          "62000 * bedScale",
+          "210 * bedScale"
+        ],
+        "length": "1840 * bedScale",
+        "width": "4040 * bedScale",
+        "height": "200 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-soil-2",
+        "body_name": "bedRectangle-soil-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1010 * bedScale",
+          "62000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "4400 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-rim-3",
+        "body_name": "bedRectangle-rim-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1010 * bedScale",
+          "62000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "4400 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-rim-4",
+        "body_name": "bedRectangle-rim-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * bedScale",
+          "59890 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "1840 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-rim-5",
+        "body_name": "bedRectangle-rim-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * bedScale",
+          "64110 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "1840 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-rim-6",
+        "body_name": "bedRectangle-rim-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1106 * bedScale",
+          "60680 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-reflector-7",
+        "body_name": "bedRectangle-reflector-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1106 * bedScale",
+          "63320 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-reflector-8",
+        "body_name": "bedRectangle-reflector-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1106 * bedScale",
+          "60680 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-reflector-9",
+        "body_name": "bedRectangle-reflector-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1106 * bedScale",
+          "63320 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedRectangle-reflector-10",
+        "body_name": "bedRectangle-reflector-10"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedRectangle-stone-1"
+        ],
+        "color": "#b4b7ac",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedRectangle-soil-2"
+        ],
+        "color": "#546a3a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedRectangle-rim-3",
+          "bedRectangle-rim-4",
+          "bedRectangle-rim-5",
+          "bedRectangle-rim-6"
+        ],
+        "color": "#e1ddcb",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedRectangle-reflector-7",
+          "bedRectangle-reflector-8",
+          "bedRectangle-reflector-9",
+          "bedRectangle-reflector-10"
+        ],
+        "color": "#f2cd68",
+        "pbr": {
+          "roughness": 0.45,
+          "metallic": 0.25,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "7000 * bedScale",
+          "62000 * bedScale",
+          "0 * bedScale"
+        ],
+        "radius": "1500 * bedScale",
+        "height": "320 * bedScale",
+        "operation": "new",
+        "name": "bedRound-stone-1",
+        "body_name": "bedRound-stone-1"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "7000 * bedScale",
+          "62000 * bedScale",
+          "280 * bedScale"
+        ],
+        "radius": "1300 * bedScale",
+        "height": "50 * bedScale",
+        "operation": "new",
+        "name": "bedRound-soil-2",
+        "body_name": "bedRound-soil-2"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "7000 * bedScale",
+          "62000 * bedScale",
+          "300 * bedScale"
+        ],
+        "major": "1400 * bedScale",
+        "minor": "100 * bedScale",
+        "operation": "new",
+        "name": "bedRound-rim-3",
+        "body_name": "bedRound-rim-3"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedRound-stone-1"
+        ],
+        "color": "#b4b7ac",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedRound-soil-2"
+        ],
+        "color": "#546a3a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedRound-rim-3"
+        ],
+        "color": "#e1ddcb",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "70000 * bedScale",
+          "45 * bedScale"
+        ],
+        "length": "1800 * bedScale",
+        "width": "6000 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-stone-1",
+        "body_name": "bedMedian-stone-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "70000 * bedScale",
+          "210 * bedScale"
+        ],
+        "length": "1440 * bedScale",
+        "width": "5640 * bedScale",
+        "height": "200 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-soil-2",
+        "body_name": "bedMedian-soil-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7810 * bedScale",
+          "70000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "6000 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-rim-3",
+        "body_name": "bedMedian-rim-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-6190 * bedScale",
+          "70000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "6000 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-rim-4",
+        "body_name": "bedMedian-rim-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "67090 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "1440 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-rim-5",
+        "body_name": "bedMedian-rim-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "72910 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "1440 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-rim-6",
+        "body_name": "bedMedian-rim-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7906 * bedScale",
+          "68200 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-reflector-7",
+        "body_name": "bedMedian-reflector-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7906 * bedScale",
+          "71800 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-reflector-8",
+        "body_name": "bedMedian-reflector-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-6094 * bedScale",
+          "68200 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-reflector-9",
+        "body_name": "bedMedian-reflector-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-6094 * bedScale",
+          "71800 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-reflector-10",
+        "body_name": "bedMedian-reflector-10"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "67050 * bedScale",
+          "190 * bedScale"
+        ],
+        "length": "1100 * bedScale",
+        "width": "120 * bedScale",
+        "height": "160 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-dark-11",
+        "body_name": "bedMedian-dark-11"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7000 * bedScale",
+          "72950 * bedScale",
+          "190 * bedScale"
+        ],
+        "length": "1100 * bedScale",
+        "width": "120 * bedScale",
+        "height": "160 * bedScale",
+        "operation": "new",
+        "name": "bedMedian-dark-12",
+        "body_name": "bedMedian-dark-12"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedMedian-stone-1"
+        ],
+        "color": "#b4b7ac",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedMedian-soil-2"
+        ],
+        "color": "#546a3a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedMedian-rim-3",
+          "bedMedian-rim-4",
+          "bedMedian-rim-5",
+          "bedMedian-rim-6"
+        ],
+        "color": "#e1ddcb",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedMedian-reflector-7",
+          "bedMedian-reflector-8",
+          "bedMedian-reflector-9",
+          "bedMedian-reflector-10"
+        ],
+        "color": "#f2cd68",
+        "pbr": {
+          "roughness": 0.45,
+          "metallic": 0.25,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedMedian-dark-11",
+          "bedMedian-dark-12"
+        ],
+        "color": "#45534b",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * bedScale",
+          "70000 * bedScale",
+          "160 * bedScale"
+        ],
+        "length": "2200 * bedScale",
+        "width": "2400 * bedScale",
+        "height": "320 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-stone-1",
+        "body_name": "bedCapsule-stone-1"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * bedScale",
+          "68800 * bedScale",
+          "0 * bedScale"
+        ],
+        "radius": "1100 * bedScale",
+        "height": "320 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-stone-2",
+        "body_name": "bedCapsule-stone-2"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * bedScale",
+          "71200 * bedScale",
+          "0 * bedScale"
+        ],
+        "radius": "1100 * bedScale",
+        "height": "320 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-stone-3",
+        "body_name": "bedCapsule-stone-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * bedScale",
+          "70000 * bedScale",
+          "305 * bedScale"
+        ],
+        "length": "1860 * bedScale",
+        "width": "2400 * bedScale",
+        "height": "50 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-soil-4",
+        "body_name": "bedCapsule-soil-4"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * bedScale",
+          "68800 * bedScale",
+          "280 * bedScale"
+        ],
+        "radius": "930 * bedScale",
+        "height": "50 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-soil-5",
+        "body_name": "bedCapsule-soil-5"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * bedScale",
+          "71200 * bedScale",
+          "280 * bedScale"
+        ],
+        "radius": "930 * bedScale",
+        "height": "50 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-soil-6",
+        "body_name": "bedCapsule-soil-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1105 * bedScale",
+          "69300 * bedScale",
+          "220 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-reflector-7",
+        "body_name": "bedCapsule-reflector-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1105 * bedScale",
+          "70700 * bedScale",
+          "220 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-reflector-8",
+        "body_name": "bedCapsule-reflector-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1105 * bedScale",
+          "69300 * bedScale",
+          "220 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-reflector-9",
+        "body_name": "bedCapsule-reflector-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1105 * bedScale",
+          "70700 * bedScale",
+          "220 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedCapsule-reflector-10",
+        "body_name": "bedCapsule-reflector-10"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedCapsule-stone-1",
+          "bedCapsule-stone-2",
+          "bedCapsule-stone-3"
+        ],
+        "color": "#b4b7ac",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedCapsule-soil-4",
+          "bedCapsule-soil-5",
+          "bedCapsule-soil-6"
+        ],
+        "color": "#546a3a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedCapsule-reflector-7",
+          "bedCapsule-reflector-8",
+          "bedCapsule-reflector-9",
+          "bedCapsule-reflector-10"
+        ],
+        "color": "#f2cd68",
+        "pbr": {
+          "roughness": 0.45,
+          "metallic": 0.25,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7000 * bedScale",
+          "70000 * bedScale",
+          "45 * bedScale"
+        ],
+        "length": "2400 * bedScale",
+        "width": "5600 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-stone-1",
+        "body_name": "bedDouble-stone-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7000 * bedScale",
+          "70000 * bedScale",
+          "210 * bedScale"
+        ],
+        "length": "2040 * bedScale",
+        "width": "5240 * bedScale",
+        "height": "200 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-soil-2",
+        "body_name": "bedDouble-soil-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "5890 * bedScale",
+          "70000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "5600 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-rim-3",
+        "body_name": "bedDouble-rim-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8110 * bedScale",
+          "70000 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "180 * bedScale",
+        "width": "5600 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-rim-4",
+        "body_name": "bedDouble-rim-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7000 * bedScale",
+          "67290 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "2040 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-rim-5",
+        "body_name": "bedDouble-rim-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7000 * bedScale",
+          "72710 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "2040 * bedScale",
+        "width": "180 * bedScale",
+        "height": "300 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-rim-6",
+        "body_name": "bedDouble-rim-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "5794 * bedScale",
+          "68320 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-reflector-7",
+        "body_name": "bedDouble-reflector-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "5794 * bedScale",
+          "71680 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-reflector-8",
+        "body_name": "bedDouble-reflector-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8206 * bedScale",
+          "68320 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-reflector-9",
+        "body_name": "bedDouble-reflector-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8206 * bedScale",
+          "71680 * bedScale",
+          "230 * bedScale"
+        ],
+        "length": "15 * bedScale",
+        "width": "200 * bedScale",
+        "height": "90 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-reflector-10",
+        "body_name": "bedDouble-reflector-10"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7000 * bedScale",
+          "70000 * bedScale",
+          "235 * bedScale"
+        ],
+        "length": "2040 * bedScale",
+        "width": "180 * bedScale",
+        "height": "290 * bedScale",
+        "operation": "new",
+        "name": "bedDouble-rim-11",
+        "body_name": "bedDouble-rim-11"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedDouble-stone-1"
+        ],
+        "color": "#b4b7ac",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedDouble-soil-2"
+        ],
+        "color": "#546a3a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedDouble-rim-3",
+          "bedDouble-rim-4",
+          "bedDouble-rim-5",
+          "bedDouble-rim-6",
+          "bedDouble-rim-11"
+        ],
+        "color": "#e1ddcb",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "bedDouble-reflector-7",
+          "bedDouble-reflector-8",
+          "bedDouble-reflector-9",
+          "bedDouble-reflector-10"
+        ],
+        "color": "#f2cd68",
+        "pbr": {
+          "roughness": 0.45,
+          "metallic": 0.25,
+          "dielectric_ior": 1.5
+        }
+      }
+    }
+  ],
+  "expect": {
+    "bodies": 56,
+    "volume_mm3": 20009813912.59241,
+    "tol": 0.004,
+    "bbox": {
+      "min": [
+        -8213.5,
+        59800,
+        0
+      ],
+      "max": [
+        8500,
+        73010,
+        400
+      ]
+    }
+  }
+}

@@ -1,0 +1,3237 @@
+{
+  "commands": [
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "12000 * decorScale",
+          "50 * decorScale"
+        ],
+        "length": "3600 * decorScale",
+        "width": "1350 * decorScale",
+        "height": "100 * decorScale",
+        "operation": "new",
+        "name": "decorBikeRack-stone-1",
+        "body_name": "decorBikeRack-stone-1"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-17350 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-2",
+        "body_name": "decorBikeRack-iron-2"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-17350 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-3",
+        "body_name": "decorBikeRack-gold-3"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-17350 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-4",
+        "body_name": "decorBikeRack-iron-4"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-17350 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-5",
+        "body_name": "decorBikeRack-gold-5"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-17350 * decorScale",
+          "11570 * decorScale",
+          "970 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0.86,
+          0
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-copper-6",
+        "body_name": "decorBikeRack-copper-6"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-16450 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-7",
+        "body_name": "decorBikeRack-iron-7"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-16450 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-8",
+        "body_name": "decorBikeRack-gold-8"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-16450 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-9",
+        "body_name": "decorBikeRack-iron-9"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-16450 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-10",
+        "body_name": "decorBikeRack-gold-10"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-16450 * decorScale",
+          "11570 * decorScale",
+          "970 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0.86,
+          0
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-copper-11",
+        "body_name": "decorBikeRack-copper-11"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-15550 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-12",
+        "body_name": "decorBikeRack-iron-12"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-15550 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-13",
+        "body_name": "decorBikeRack-gold-13"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-15550 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-14",
+        "body_name": "decorBikeRack-iron-14"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-15550 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-15",
+        "body_name": "decorBikeRack-gold-15"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-15550 * decorScale",
+          "11570 * decorScale",
+          "970 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0.86,
+          0
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-copper-16",
+        "body_name": "decorBikeRack-copper-16"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-14650 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-17",
+        "body_name": "decorBikeRack-iron-17"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-14650 * decorScale",
+          "11570 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-18",
+        "body_name": "decorBikeRack-gold-18"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-14650 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "870 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-iron-19",
+        "body_name": "decorBikeRack-iron-19"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-14650 * decorScale",
+          "12430 * decorScale",
+          "100 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-gold-20",
+        "body_name": "decorBikeRack-gold-20"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-14650 * decorScale",
+          "11570 * decorScale",
+          "970 * decorScale"
+        ],
+        "radius": "45 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0.86,
+          0
+        ],
+        "operation": "new",
+        "name": "decorBikeRack-copper-21",
+        "body_name": "decorBikeRack-copper-21"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBikeRack-stone-1"
+        ],
+        "color": "#aaa99a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBikeRack-iron-2",
+          "decorBikeRack-iron-4",
+          "decorBikeRack-iron-7",
+          "decorBikeRack-iron-9",
+          "decorBikeRack-iron-12",
+          "decorBikeRack-iron-14",
+          "decorBikeRack-iron-17",
+          "decorBikeRack-iron-19"
+        ],
+        "color": "#334c49",
+        "pbr": {
+          "roughness": 0.5,
+          "metallic": 0.65,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBikeRack-gold-3",
+          "decorBikeRack-gold-5",
+          "decorBikeRack-gold-8",
+          "decorBikeRack-gold-10",
+          "decorBikeRack-gold-13",
+          "decorBikeRack-gold-15",
+          "decorBikeRack-gold-18",
+          "decorBikeRack-gold-20"
+        ],
+        "color": "#ceaa55",
+        "pbr": {
+          "roughness": 0.48,
+          "metallic": 0.55,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBikeRack-copper-6",
+          "decorBikeRack-copper-11",
+          "decorBikeRack-copper-16",
+          "decorBikeRack-copper-21"
+        ],
+        "color": "#537e75",
+        "pbr": {
+          "roughness": 0.53,
+          "metallic": 0.55,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "12000 * decorScale",
+          "50 * decorScale"
+        ],
+        "length": "2700 * decorScale",
+        "width": "1150 * decorScale",
+        "height": "100 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-stone-1",
+        "body_name": "decorRecycling-stone-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8975 * decorScale",
+          "12000 * decorScale",
+          "530 * decorScale"
+        ],
+        "length": "540 * decorScale",
+        "width": "620 * decorScale",
+        "height": "850 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-blue-2",
+        "body_name": "decorRecycling-blue-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8975 * decorScale",
+          "12000 * decorScale",
+          "990 * decorScale"
+        ],
+        "length": "590 * decorScale",
+        "width": "690 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-iron-3",
+        "body_name": "decorRecycling-iron-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8975 * decorScale",
+          "11648 * decorScale",
+          "770 * decorScale"
+        ],
+        "length": "300 * decorScale",
+        "width": "25 * decorScale",
+        "height": "110 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-soil-4",
+        "body_name": "decorRecycling-soil-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8975 * decorScale",
+          "11680 * decorScale",
+          "490 * decorScale"
+        ],
+        "length": "180 * decorScale",
+        "width": "20 * decorScale",
+        "height": "140 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-cream-5",
+        "body_name": "decorRecycling-cream-5"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8975 * decorScale",
+          "11780 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-6",
+        "body_name": "decorRecycling-iron-6"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8975 * decorScale",
+          "12220 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-7",
+        "body_name": "decorRecycling-iron-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8325 * decorScale",
+          "12000 * decorScale",
+          "530 * decorScale"
+        ],
+        "length": "540 * decorScale",
+        "width": "620 * decorScale",
+        "height": "850 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-red-8",
+        "body_name": "decorRecycling-red-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8325 * decorScale",
+          "12000 * decorScale",
+          "990 * decorScale"
+        ],
+        "length": "590 * decorScale",
+        "width": "690 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-iron-9",
+        "body_name": "decorRecycling-iron-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8325 * decorScale",
+          "11648 * decorScale",
+          "770 * decorScale"
+        ],
+        "length": "300 * decorScale",
+        "width": "25 * decorScale",
+        "height": "110 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-soil-10",
+        "body_name": "decorRecycling-soil-10"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8325 * decorScale",
+          "11680 * decorScale",
+          "490 * decorScale"
+        ],
+        "length": "180 * decorScale",
+        "width": "20 * decorScale",
+        "height": "140 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-cream-11",
+        "body_name": "decorRecycling-cream-11"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8325 * decorScale",
+          "11780 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-12",
+        "body_name": "decorRecycling-iron-12"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8325 * decorScale",
+          "12220 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-13",
+        "body_name": "decorRecycling-iron-13"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7675 * decorScale",
+          "12000 * decorScale",
+          "530 * decorScale"
+        ],
+        "length": "540 * decorScale",
+        "width": "620 * decorScale",
+        "height": "850 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-leaf-14",
+        "body_name": "decorRecycling-leaf-14"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7675 * decorScale",
+          "12000 * decorScale",
+          "990 * decorScale"
+        ],
+        "length": "590 * decorScale",
+        "width": "690 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-iron-15",
+        "body_name": "decorRecycling-iron-15"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7675 * decorScale",
+          "11648 * decorScale",
+          "770 * decorScale"
+        ],
+        "length": "300 * decorScale",
+        "width": "25 * decorScale",
+        "height": "110 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-soil-16",
+        "body_name": "decorRecycling-soil-16"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7675 * decorScale",
+          "11680 * decorScale",
+          "490 * decorScale"
+        ],
+        "length": "180 * decorScale",
+        "width": "20 * decorScale",
+        "height": "140 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-cream-17",
+        "body_name": "decorRecycling-cream-17"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-7675 * decorScale",
+          "11780 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-18",
+        "body_name": "decorRecycling-iron-18"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-7675 * decorScale",
+          "12220 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-19",
+        "body_name": "decorRecycling-iron-19"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7025 * decorScale",
+          "12000 * decorScale",
+          "530 * decorScale"
+        ],
+        "length": "540 * decorScale",
+        "width": "620 * decorScale",
+        "height": "850 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-yellow-20",
+        "body_name": "decorRecycling-yellow-20"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7025 * decorScale",
+          "12000 * decorScale",
+          "990 * decorScale"
+        ],
+        "length": "590 * decorScale",
+        "width": "690 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-iron-21",
+        "body_name": "decorRecycling-iron-21"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7025 * decorScale",
+          "11648 * decorScale",
+          "770 * decorScale"
+        ],
+        "length": "300 * decorScale",
+        "width": "25 * decorScale",
+        "height": "110 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-soil-22",
+        "body_name": "decorRecycling-soil-22"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7025 * decorScale",
+          "11680 * decorScale",
+          "490 * decorScale"
+        ],
+        "length": "180 * decorScale",
+        "width": "20 * decorScale",
+        "height": "140 * decorScale",
+        "operation": "new",
+        "name": "decorRecycling-cream-23",
+        "body_name": "decorRecycling-cream-23"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-7025 * decorScale",
+          "11780 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-24",
+        "body_name": "decorRecycling-iron-24"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-7025 * decorScale",
+          "12220 * decorScale",
+          "130 * decorScale"
+        ],
+        "radius": "70 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorRecycling-iron-25",
+        "body_name": "decorRecycling-iron-25"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-stone-1"
+        ],
+        "color": "#aaa99a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-blue-2"
+        ],
+        "color": "#4b91ba",
+        "pbr": {
+          "roughness": 0.65,
+          "metallic": 0.12,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-iron-3",
+          "decorRecycling-iron-6",
+          "decorRecycling-iron-7",
+          "decorRecycling-iron-9",
+          "decorRecycling-iron-12",
+          "decorRecycling-iron-13",
+          "decorRecycling-iron-15",
+          "decorRecycling-iron-18",
+          "decorRecycling-iron-19",
+          "decorRecycling-iron-21",
+          "decorRecycling-iron-24",
+          "decorRecycling-iron-25"
+        ],
+        "color": "#334c49",
+        "pbr": {
+          "roughness": 0.5,
+          "metallic": 0.65,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-soil-4",
+          "decorRecycling-soil-10",
+          "decorRecycling-soil-16",
+          "decorRecycling-soil-22"
+        ],
+        "color": "#493a2c",
+        "pbr": {
+          "roughness": 1,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-cream-5",
+          "decorRecycling-cream-11",
+          "decorRecycling-cream-17",
+          "decorRecycling-cream-23"
+        ],
+        "color": "#f7e8c3",
+        "pbr": {
+          "roughness": 0.87,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-red-8"
+        ],
+        "color": "#bd5142",
+        "pbr": {
+          "roughness": 0.8,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-leaf-14"
+        ],
+        "color": "#42734d",
+        "pbr": {
+          "roughness": 0.96,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorRecycling-yellow-20"
+        ],
+        "color": "#f4ca59",
+        "pbr": {
+          "roughness": 0.79,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "9550 * decorScale",
+          "120 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-1",
+        "body_name": "decorBridge-lightwood-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "9856.25 * decorScale",
+          "213.64335 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-2",
+        "body_name": "decorBridge-lightwood-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "10162.5 * decorScale",
+          "303.68805 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-3",
+        "body_name": "decorBridge-lightwood-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "10468.75 * decorScale",
+          "386.67371 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-4",
+        "body_name": "decorBridge-lightwood-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "10775 * decorScale",
+          "459.41125 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-5",
+        "body_name": "decorBridge-lightwood-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "11081.25 * decorScale",
+          "519.10541 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-6",
+        "body_name": "decorBridge-lightwood-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "11387.5 * decorScale",
+          "563.46218 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-7",
+        "body_name": "decorBridge-lightwood-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "11693.75 * decorScale",
+          "590.77693 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-8",
+        "body_name": "decorBridge-lightwood-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "12000 * decorScale",
+          "600 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-9",
+        "body_name": "decorBridge-lightwood-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "12306.25 * decorScale",
+          "590.77693 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-10",
+        "body_name": "decorBridge-lightwood-10"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "12612.5 * decorScale",
+          "563.46218 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-11",
+        "body_name": "decorBridge-lightwood-11"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "12918.75 * decorScale",
+          "519.10541 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-12",
+        "body_name": "decorBridge-lightwood-12"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "13225 * decorScale",
+          "459.41125 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-13",
+        "body_name": "decorBridge-lightwood-13"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "13531.25 * decorScale",
+          "386.67371 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-14",
+        "body_name": "decorBridge-lightwood-14"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "13837.5 * decorScale",
+          "303.68805 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-15",
+        "body_name": "decorBridge-lightwood-15"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "14143.75 * decorScale",
+          "213.64335 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-16",
+        "body_name": "decorBridge-lightwood-16"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "14450 * decorScale",
+          "120 * decorScale"
+        ],
+        "length": "2050 * decorScale",
+        "width": "285 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-lightwood-17",
+        "body_name": "decorBridge-lightwood-17"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1020 * decorScale",
+          "9600 * decorScale",
+          "550 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-18",
+        "body_name": "decorBridge-wood-18"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "9600 * decorScale",
+          "1070 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.33941125496954294
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-19",
+        "body_name": "decorBridge-wood-19"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "9600 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.33941125496954283
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-20",
+        "body_name": "decorBridge-wood-20"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1020 * decorScale",
+          "10800 * decorScale",
+          "889.41125 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-21",
+        "body_name": "decorBridge-wood-21"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "10800 * decorScale",
+          "1409.41125 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-22",
+        "body_name": "decorBridge-wood-22"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "10800 * decorScale",
+          "929.41125 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-23",
+        "body_name": "decorBridge-wood-23"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1020 * decorScale",
+          "12000 * decorScale",
+          "1030 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-24",
+        "body_name": "decorBridge-wood-24"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "12000 * decorScale",
+          "1550 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          -0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-25",
+        "body_name": "decorBridge-wood-25"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "12000 * decorScale",
+          "1070 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          -0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-26",
+        "body_name": "decorBridge-wood-26"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1020 * decorScale",
+          "13200 * decorScale",
+          "889.41125 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-27",
+        "body_name": "decorBridge-wood-27"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "13200 * decorScale",
+          "1409.41125 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.1999999999999997,
+          -0.3394112549695427
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-28",
+        "body_name": "decorBridge-wood-28"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-1020 * decorScale",
+          "13200 * decorScale",
+          "929.41125 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.1999999999999997,
+          -0.3394112549695427
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-29",
+        "body_name": "decorBridge-wood-29"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-1020 * decorScale",
+          "14400 * decorScale",
+          "550 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-30",
+        "body_name": "decorBridge-wood-30"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1020 * decorScale",
+          "9600 * decorScale",
+          "550 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-31",
+        "body_name": "decorBridge-wood-31"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "9600 * decorScale",
+          "1070 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.33941125496954294
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-32",
+        "body_name": "decorBridge-wood-32"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "9600 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.33941125496954283
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-33",
+        "body_name": "decorBridge-wood-33"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1020 * decorScale",
+          "10800 * decorScale",
+          "889.41125 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-34",
+        "body_name": "decorBridge-wood-34"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "10800 * decorScale",
+          "1409.41125 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-35",
+        "body_name": "decorBridge-wood-35"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "10800 * decorScale",
+          "929.41125 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-36",
+        "body_name": "decorBridge-wood-36"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1020 * decorScale",
+          "12000 * decorScale",
+          "1030 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-37",
+        "body_name": "decorBridge-wood-37"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "12000 * decorScale",
+          "1550 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          -0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-38",
+        "body_name": "decorBridge-wood-38"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "12000 * decorScale",
+          "1070 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1208.20743 * decorScale",
+        "axis": [
+          0,
+          1.2,
+          -0.14058874503045704
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-39",
+        "body_name": "decorBridge-wood-39"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1020 * decorScale",
+          "13200 * decorScale",
+          "889.41125 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-40",
+        "body_name": "decorBridge-wood-40"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "13200 * decorScale",
+          "1409.41125 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.1999999999999997,
+          -0.3394112549695427
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-41",
+        "body_name": "decorBridge-wood-41"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "1020 * decorScale",
+          "13200 * decorScale",
+          "929.41125 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "1247.07658 * decorScale",
+        "axis": [
+          0,
+          1.1999999999999997,
+          -0.3394112549695427
+        ],
+        "operation": "new",
+        "name": "decorBridge-wood-42",
+        "body_name": "decorBridge-wood-42"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "1020 * decorScale",
+          "14400 * decorScale",
+          "550 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "110 * decorScale",
+        "height": "950 * decorScale",
+        "operation": "new",
+        "name": "decorBridge-wood-43",
+        "body_name": "decorBridge-wood-43"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBridge-lightwood-1",
+          "decorBridge-lightwood-2",
+          "decorBridge-lightwood-3",
+          "decorBridge-lightwood-4",
+          "decorBridge-lightwood-5",
+          "decorBridge-lightwood-6",
+          "decorBridge-lightwood-7",
+          "decorBridge-lightwood-8",
+          "decorBridge-lightwood-9",
+          "decorBridge-lightwood-10",
+          "decorBridge-lightwood-11",
+          "decorBridge-lightwood-12",
+          "decorBridge-lightwood-13",
+          "decorBridge-lightwood-14",
+          "decorBridge-lightwood-15",
+          "decorBridge-lightwood-16",
+          "decorBridge-lightwood-17"
+        ],
+        "color": "#d6ac70",
+        "pbr": {
+          "roughness": 0.82,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBridge-wood-18",
+          "decorBridge-wood-19",
+          "decorBridge-wood-20",
+          "decorBridge-wood-21",
+          "decorBridge-wood-22",
+          "decorBridge-wood-23",
+          "decorBridge-wood-24",
+          "decorBridge-wood-25",
+          "decorBridge-wood-26",
+          "decorBridge-wood-27",
+          "decorBridge-wood-28",
+          "decorBridge-wood-29",
+          "decorBridge-wood-30",
+          "decorBridge-wood-31",
+          "decorBridge-wood-32",
+          "decorBridge-wood-33",
+          "decorBridge-wood-34",
+          "decorBridge-wood-35",
+          "decorBridge-wood-36",
+          "decorBridge-wood-37",
+          "decorBridge-wood-38",
+          "decorBridge-wood-39",
+          "decorBridge-wood-40",
+          "decorBridge-wood-41",
+          "decorBridge-wood-42",
+          "decorBridge-wood-43"
+        ],
+        "color": "#98633d",
+        "pbr": {
+          "roughness": 0.86,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "12000 * decorScale",
+          "0 * decorScale"
+        ],
+        "radius": "800 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-soil-1",
+        "body_name": "decorFirepit-soil-1"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "8720 * decorScale",
+          "12000 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-2",
+        "body_name": "decorFirepit-stone-2"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "8623.53829 * decorScale",
+          "12360 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-3",
+        "body_name": "decorFirepit-stone-3"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "8360 * decorScale",
+          "12623.53829 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-4",
+        "body_name": "decorFirepit-stone-4"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "12720 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-5",
+        "body_name": "decorFirepit-stone-5"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "7640 * decorScale",
+          "12623.53829 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-6",
+        "body_name": "decorFirepit-stone-6"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "7376.46171 * decorScale",
+          "12360 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-7",
+        "body_name": "decorFirepit-stone-7"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "7280 * decorScale",
+          "12000 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-8",
+        "body_name": "decorFirepit-stone-8"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "7376.46171 * decorScale",
+          "11640 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-9",
+        "body_name": "decorFirepit-stone-9"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "7640 * decorScale",
+          "11376.46171 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-10",
+        "body_name": "decorFirepit-stone-10"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "11280 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-11",
+        "body_name": "decorFirepit-stone-11"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "8360 * decorScale",
+          "11376.46171 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-12",
+        "body_name": "decorFirepit-stone-12"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "8623.53829 * decorScale",
+          "11640 * decorScale",
+          "170 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-stone-13",
+        "body_name": "decorFirepit-stone-13"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "7500 * decorScale",
+          "11800 * decorScale",
+          "180 * decorScale"
+        ],
+        "radius": "100 * decorScale",
+        "height": "1000 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-14",
+        "body_name": "decorFirepit-wood-14"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "7500 * decorScale",
+          "12200 * decorScale",
+          "180 * decorScale"
+        ],
+        "radius": "100 * decorScale",
+        "height": "1000 * decorScale",
+        "axis": [
+          1,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-15",
+        "body_name": "decorFirepit-wood-15"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "7780 * decorScale",
+          "11570 * decorScale",
+          "330 * decorScale"
+        ],
+        "radius": "90 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0.86,
+          0
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-16",
+        "body_name": "decorFirepit-wood-16"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8220 * decorScale",
+          "11570 * decorScale",
+          "330 * decorScale"
+        ],
+        "radius": "90 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0.86,
+          0
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-17",
+        "body_name": "decorFirepit-wood-17"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "8190 * decorScale",
+          "12000 * decorScale",
+          "340 * decorScale"
+        ],
+        "radius": "130 * decorScale",
+        "height": "420 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "0 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-orange-18",
+        "body_name": "decorFirepit-orange-18"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "8058.71323 * decorScale",
+          "12180.70074 * decorScale",
+          "340 * decorScale"
+        ],
+        "radius": "130 * decorScale",
+        "height": "580 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "0 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-fire-19",
+        "body_name": "decorFirepit-fire-19"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "7846.28677 * decorScale",
+          "12111.6792 * decorScale",
+          "340 * decorScale"
+        ],
+        "radius": "130 * decorScale",
+        "height": "420 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "0 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-orange-20",
+        "body_name": "decorFirepit-orange-20"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "7846.28677 * decorScale",
+          "11888.3208 * decorScale",
+          "340 * decorScale"
+        ],
+        "radius": "130 * decorScale",
+        "height": "580 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "0 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-fire-21",
+        "body_name": "decorFirepit-fire-21"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "8058.71323 * decorScale",
+          "11819.29926 * decorScale",
+          "340 * decorScale"
+        ],
+        "radius": "130 * decorScale",
+        "height": "420 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "0 * decorScale",
+        "operation": "new",
+        "name": "decorFirepit-orange-22",
+        "body_name": "decorFirepit-orange-22"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "9650 * decorScale",
+          "12000 * decorScale",
+          "0 * decorScale"
+        ],
+        "radius": "300 * decorScale",
+        "height": "420 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-23",
+        "body_name": "decorFirepit-wood-23"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "9650 * decorScale",
+          "12000 * decorScale",
+          "420 * decorScale"
+        ],
+        "radius": "310 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-lightwood-24",
+        "body_name": "decorFirepit-lightwood-24"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "13650 * decorScale",
+          "0 * decorScale"
+        ],
+        "radius": "300 * decorScale",
+        "height": "420 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-25",
+        "body_name": "decorFirepit-wood-25"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "13650 * decorScale",
+          "420 * decorScale"
+        ],
+        "radius": "310 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-lightwood-26",
+        "body_name": "decorFirepit-lightwood-26"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "6350 * decorScale",
+          "12000 * decorScale",
+          "0 * decorScale"
+        ],
+        "radius": "300 * decorScale",
+        "height": "420 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-27",
+        "body_name": "decorFirepit-wood-27"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "6350 * decorScale",
+          "12000 * decorScale",
+          "420 * decorScale"
+        ],
+        "radius": "310 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-lightwood-28",
+        "body_name": "decorFirepit-lightwood-28"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "10350 * decorScale",
+          "0 * decorScale"
+        ],
+        "radius": "300 * decorScale",
+        "height": "420 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-wood-29",
+        "body_name": "decorFirepit-wood-29"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "10350 * decorScale",
+          "420 * decorScale"
+        ],
+        "radius": "310 * decorScale",
+        "height": "60 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFirepit-lightwood-30",
+        "body_name": "decorFirepit-lightwood-30"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFirepit-soil-1"
+        ],
+        "color": "#493a2c",
+        "pbr": {
+          "roughness": 1,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFirepit-stone-2",
+          "decorFirepit-stone-3",
+          "decorFirepit-stone-4",
+          "decorFirepit-stone-5",
+          "decorFirepit-stone-6",
+          "decorFirepit-stone-7",
+          "decorFirepit-stone-8",
+          "decorFirepit-stone-9",
+          "decorFirepit-stone-10",
+          "decorFirepit-stone-11",
+          "decorFirepit-stone-12",
+          "decorFirepit-stone-13"
+        ],
+        "color": "#aaa99a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFirepit-wood-14",
+          "decorFirepit-wood-15",
+          "decorFirepit-wood-16",
+          "decorFirepit-wood-17",
+          "decorFirepit-wood-23",
+          "decorFirepit-wood-25",
+          "decorFirepit-wood-27",
+          "decorFirepit-wood-29"
+        ],
+        "color": "#98633d",
+        "pbr": {
+          "roughness": 0.86,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFirepit-orange-18",
+          "decorFirepit-orange-20",
+          "decorFirepit-orange-22"
+        ],
+        "color": "#e88135",
+        "pbr": {
+          "roughness": 0.85,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFirepit-fire-19",
+          "decorFirepit-fire-21"
+        ],
+        "color": "#ffb83e",
+        "pbr": {
+          "roughness": 0.6,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFirepit-lightwood-24",
+          "decorFirepit-lightwood-26",
+          "decorFirepit-lightwood-28",
+          "decorFirepit-lightwood-30"
+        ],
+        "color": "#d6ac70",
+        "pbr": {
+          "roughness": 0.82,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "15170 * decorScale",
+          "12000 * decorScale",
+          "80 * decorScale"
+        ],
+        "length": "280 * decorScale",
+        "width": "300 * decorScale",
+        "height": "160 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-stone-1",
+        "body_name": "decorSignpost-stone-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "15170 * decorScale",
+          "12000 * decorScale",
+          "1150 * decorScale"
+        ],
+        "length": "130 * decorScale",
+        "width": "140 * decorScale",
+        "height": "2300 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-wood-2",
+        "body_name": "decorSignpost-wood-2"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15170 * decorScale",
+          "12000 * decorScale",
+          "2350 * decorScale"
+        ],
+        "radius": "90 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-gold-3",
+        "body_name": "decorSignpost-gold-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16830 * decorScale",
+          "12000 * decorScale",
+          "80 * decorScale"
+        ],
+        "length": "280 * decorScale",
+        "width": "300 * decorScale",
+        "height": "160 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-stone-4",
+        "body_name": "decorSignpost-stone-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16830 * decorScale",
+          "12000 * decorScale",
+          "1150 * decorScale"
+        ],
+        "length": "130 * decorScale",
+        "width": "140 * decorScale",
+        "height": "2300 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-wood-5",
+        "body_name": "decorSignpost-wood-5"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16830 * decorScale",
+          "12000 * decorScale",
+          "2350 * decorScale"
+        ],
+        "radius": "90 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-gold-6",
+        "body_name": "decorSignpost-gold-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "12000 * decorScale",
+          "1790 * decorScale"
+        ],
+        "length": "2250 * decorScale",
+        "width": "180 * decorScale",
+        "height": "880 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-wood-7",
+        "body_name": "decorSignpost-wood-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "11895 * decorScale",
+          "1790 * decorScale"
+        ],
+        "length": "2070 * decorScale",
+        "width": "35 * decorScale",
+        "height": "690 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-lightwood-8",
+        "body_name": "decorSignpost-lightwood-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "15100 * decorScale",
+          "11870 * decorScale",
+          "1790 * decorScale"
+        ],
+        "length": "25 * decorScale",
+        "width": "25 * decorScale",
+        "height": "530 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-gold-9",
+        "body_name": "decorSignpost-gold-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16900 * decorScale",
+          "11870 * decorScale",
+          "1790 * decorScale"
+        ],
+        "length": "25 * decorScale",
+        "width": "25 * decorScale",
+        "height": "530 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-gold-10",
+        "body_name": "decorSignpost-gold-10"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "15300 * decorScale",
+          "11850 * decorScale",
+          "1600 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "360 * decorScale",
+        "axis": [
+          0,
+          0,
+          0.3599999999999999
+        ],
+        "operation": "new",
+        "name": "decorSignpost-copper-11",
+        "body_name": "decorSignpost-copper-11"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15180 * decorScale",
+          "11840 * decorScale",
+          "1960 * decorScale"
+        ],
+        "radius": "100 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-leaf-12",
+        "body_name": "decorSignpost-leaf-12"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15420 * decorScale",
+          "11840 * decorScale",
+          "1960 * decorScale"
+        ],
+        "radius": "100 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-leaf-13",
+        "body_name": "decorSignpost-leaf-13"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "15150 * decorScale",
+          "11780 * decorScale",
+          "150 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "height": "380 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "250 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-red-14",
+        "body_name": "decorSignpost-red-14"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "15150 * decorScale",
+          "11780 * decorScale",
+          "510 * decorScale"
+        ],
+        "major": "250 * decorScale",
+        "minor": "35 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-lightwood-15",
+        "body_name": "decorSignpost-lightwood-15"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "15150 * decorScale",
+          "11780 * decorScale",
+          "515 * decorScale"
+        ],
+        "radius": "222.5 * decorScale",
+        "height": "25 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorSignpost-soil-16",
+        "body_name": "decorSignpost-soil-16"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "15150 * decorScale",
+          "11780 * decorScale",
+          "530 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorSignpost-leaf-17",
+        "body_name": "decorSignpost-leaf-17"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15214 * decorScale",
+          "11780 * decorScale",
+          "634 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-leaf-18",
+        "body_name": "decorSignpost-leaf-18"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15222 * decorScale",
+          "11780 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-19",
+        "body_name": "decorSignpost-yellow-19"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15172.24922 * decorScale",
+          "11848.47607 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-20",
+        "body_name": "decorSignpost-yellow-20"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15091.75078 * decorScale",
+          "11822.32054 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-21",
+        "body_name": "decorSignpost-yellow-21"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15091.75078 * decorScale",
+          "11737.67946 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-22",
+        "body_name": "decorSignpost-yellow-22"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15172.24922 * decorScale",
+          "11711.52393 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-23",
+        "body_name": "decorSignpost-yellow-23"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15150 * decorScale",
+          "11780 * decorScale",
+          "802 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-24",
+        "body_name": "decorSignpost-yellow-24"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "16850 * decorScale",
+          "11780 * decorScale",
+          "150 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "height": "380 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "250 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-red-25",
+        "body_name": "decorSignpost-red-25"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "16850 * decorScale",
+          "11780 * decorScale",
+          "510 * decorScale"
+        ],
+        "major": "250 * decorScale",
+        "minor": "35 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-lightwood-26",
+        "body_name": "decorSignpost-lightwood-26"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "16850 * decorScale",
+          "11780 * decorScale",
+          "515 * decorScale"
+        ],
+        "radius": "222.5 * decorScale",
+        "height": "25 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorSignpost-soil-27",
+        "body_name": "decorSignpost-soil-27"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "16850 * decorScale",
+          "11780 * decorScale",
+          "530 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorSignpost-leaf-28",
+        "body_name": "decorSignpost-leaf-28"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16914 * decorScale",
+          "11780 * decorScale",
+          "634 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-leaf-29",
+        "body_name": "decorSignpost-leaf-29"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16922 * decorScale",
+          "11780 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-30",
+        "body_name": "decorSignpost-yellow-30"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16872.24922 * decorScale",
+          "11848.47607 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-31",
+        "body_name": "decorSignpost-yellow-31"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16791.75078 * decorScale",
+          "11822.32054 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-32",
+        "body_name": "decorSignpost-yellow-32"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16791.75078 * decorScale",
+          "11737.67946 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-33",
+        "body_name": "decorSignpost-yellow-33"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16872.24922 * decorScale",
+          "11711.52393 * decorScale",
+          "770 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-34",
+        "body_name": "decorSignpost-yellow-34"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16850 * decorScale",
+          "11780 * decorScale",
+          "802 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorSignpost-yellow-35",
+        "body_name": "decorSignpost-yellow-35"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-stone-1",
+          "decorSignpost-stone-4"
+        ],
+        "color": "#aaa99a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-wood-2",
+          "decorSignpost-wood-5",
+          "decorSignpost-wood-7"
+        ],
+        "color": "#98633d",
+        "pbr": {
+          "roughness": 0.86,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-gold-3",
+          "decorSignpost-gold-6",
+          "decorSignpost-gold-9",
+          "decorSignpost-gold-10"
+        ],
+        "color": "#ceaa55",
+        "pbr": {
+          "roughness": 0.48,
+          "metallic": 0.55,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-lightwood-8",
+          "decorSignpost-lightwood-15",
+          "decorSignpost-lightwood-26"
+        ],
+        "color": "#d6ac70",
+        "pbr": {
+          "roughness": 0.82,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-copper-11"
+        ],
+        "color": "#537e75",
+        "pbr": {
+          "roughness": 0.53,
+          "metallic": 0.55,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-leaf-12",
+          "decorSignpost-leaf-13",
+          "decorSignpost-leaf-17",
+          "decorSignpost-leaf-18",
+          "decorSignpost-leaf-28",
+          "decorSignpost-leaf-29"
+        ],
+        "color": "#42734d",
+        "pbr": {
+          "roughness": 0.96,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-red-14",
+          "decorSignpost-red-25"
+        ],
+        "color": "#bd5142",
+        "pbr": {
+          "roughness": 0.8,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-soil-16",
+          "decorSignpost-soil-27"
+        ],
+        "color": "#493a2c",
+        "pbr": {
+          "roughness": 1,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorSignpost-yellow-19",
+          "decorSignpost-yellow-20",
+          "decorSignpost-yellow-21",
+          "decorSignpost-yellow-22",
+          "decorSignpost-yellow-23",
+          "decorSignpost-yellow-24",
+          "decorSignpost-yellow-30",
+          "decorSignpost-yellow-31",
+          "decorSignpost-yellow-32",
+          "decorSignpost-yellow-33",
+          "decorSignpost-yellow-34",
+          "decorSignpost-yellow-35"
+        ],
+        "color": "#f4ca59",
+        "pbr": {
+          "roughness": 0.79,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    }
+  ],
+  "expect": {
+    "bodies": 631,
+    "volume_mm3": 41045824956.73932,
+    "tol": 0.004,
+    "bbox": {
+      "min": [
+        -18550,
+        -13850,
+        -19.99999999999999
+      ],
+      "max": [
+        18325,
+        14592.5,
+        4320
+      ]
+    }
+  }
+}

@@ -1,0 +1,5088 @@
+{
+  "commands": [
+    {
+      "command": "parameters.add",
+      "params": {
+        "name": "decorScale",
+        "expression": "1",
+        "unit": ""
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16900 * decorScale",
+          "-12000 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "120 * decorScale",
+        "width": "640 * decorScale",
+        "height": "500 * decorScale",
+        "operation": "new",
+        "name": "decorBench-iron-1",
+        "body_name": "decorBench-iron-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16900 * decorScale",
+          "-11690 * decorScale",
+          "720 * decorScale"
+        ],
+        "length": "100 * decorScale",
+        "width": "100 * decorScale",
+        "height": "850 * decorScale",
+        "operation": "new",
+        "name": "decorBench-iron-2",
+        "body_name": "decorBench-iron-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16900 * decorScale",
+          "-12040 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "640 * decorScale",
+        "height": "80 * decorScale",
+        "operation": "new",
+        "name": "decorBench-iron-3",
+        "body_name": "decorBench-iron-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-15100 * decorScale",
+          "-12000 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "120 * decorScale",
+        "width": "640 * decorScale",
+        "height": "500 * decorScale",
+        "operation": "new",
+        "name": "decorBench-iron-4",
+        "body_name": "decorBench-iron-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-15100 * decorScale",
+          "-11690 * decorScale",
+          "720 * decorScale"
+        ],
+        "length": "100 * decorScale",
+        "width": "100 * decorScale",
+        "height": "850 * decorScale",
+        "operation": "new",
+        "name": "decorBench-iron-5",
+        "body_name": "decorBench-iron-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-15100 * decorScale",
+          "-12040 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "110 * decorScale",
+        "width": "640 * decorScale",
+        "height": "80 * decorScale",
+        "operation": "new",
+        "name": "decorBench-iron-6",
+        "body_name": "decorBench-iron-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-12260 * decorScale",
+          "510 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "105 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorBench-wood-7",
+        "body_name": "decorBench-wood-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-12130 * decorScale",
+          "510 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "105 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorBench-wood-8",
+        "body_name": "decorBench-wood-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-12000 * decorScale",
+          "510 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "105 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorBench-wood-9",
+        "body_name": "decorBench-wood-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-11870 * decorScale",
+          "510 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "105 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorBench-wood-10",
+        "body_name": "decorBench-wood-10"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-11740 * decorScale",
+          "510 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "105 * decorScale",
+        "height": "90 * decorScale",
+        "operation": "new",
+        "name": "decorBench-wood-11",
+        "body_name": "decorBench-wood-11"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-11670 * decorScale",
+          "800 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBench-lightwood-12",
+        "body_name": "decorBench-lightwood-12"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-11670 * decorScale",
+          "960 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBench-lightwood-13",
+        "body_name": "decorBench-lightwood-13"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-16000 * decorScale",
+          "-11670 * decorScale",
+          "1120 * decorScale"
+        ],
+        "length": "2350 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorBench-lightwood-14",
+        "body_name": "decorBench-lightwood-14"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-16900 * decorScale",
+          "-11725 * decorScale",
+          "820 * decorScale"
+        ],
+        "radius": "28 * decorScale",
+        "operation": "new",
+        "name": "decorBench-gold-15",
+        "body_name": "decorBench-gold-15"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-16900 * decorScale",
+          "-11725 * decorScale",
+          "1120 * decorScale"
+        ],
+        "radius": "28 * decorScale",
+        "operation": "new",
+        "name": "decorBench-gold-16",
+        "body_name": "decorBench-gold-16"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-15100 * decorScale",
+          "-11725 * decorScale",
+          "820 * decorScale"
+        ],
+        "radius": "28 * decorScale",
+        "operation": "new",
+        "name": "decorBench-gold-17",
+        "body_name": "decorBench-gold-17"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-15100 * decorScale",
+          "-11725 * decorScale",
+          "1120 * decorScale"
+        ],
+        "radius": "28 * decorScale",
+        "operation": "new",
+        "name": "decorBench-gold-18",
+        "body_name": "decorBench-gold-18"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBench-iron-1",
+          "decorBench-iron-2",
+          "decorBench-iron-3",
+          "decorBench-iron-4",
+          "decorBench-iron-5",
+          "decorBench-iron-6"
+        ],
+        "color": "#334c49",
+        "pbr": {
+          "roughness": 0.5,
+          "metallic": 0.65,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBench-wood-7",
+          "decorBench-wood-8",
+          "decorBench-wood-9",
+          "decorBench-wood-10",
+          "decorBench-wood-11"
+        ],
+        "color": "#98633d",
+        "pbr": {
+          "roughness": 0.86,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBench-lightwood-12",
+          "decorBench-lightwood-13",
+          "decorBench-lightwood-14"
+        ],
+        "color": "#d6ac70",
+        "pbr": {
+          "roughness": 0.82,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorBench-gold-15",
+          "decorBench-gold-16",
+          "decorBench-gold-17",
+          "decorBench-gold-18"
+        ],
+        "color": "#ceaa55",
+        "pbr": {
+          "roughness": 0.48,
+          "metallic": 0.55,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-12000 * decorScale",
+          "160 * decorScale"
+        ],
+        "length": "2150 * decorScale",
+        "width": "780 * decorScale",
+        "height": "220 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-wood-1",
+        "body_name": "decorPlanter-wood-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-12000 * decorScale",
+          "550 * decorScale"
+        ],
+        "length": "1950 * decorScale",
+        "width": "600 * decorScale",
+        "height": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-soil-2",
+        "body_name": "decorPlanter-soil-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-12370 * decorScale",
+          "260 * decorScale"
+        ],
+        "length": "2200 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-lightwood-3",
+        "body_name": "decorPlanter-lightwood-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-12370 * decorScale",
+          "410 * decorScale"
+        ],
+        "length": "2200 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-lightwood-4",
+        "body_name": "decorPlanter-lightwood-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-12370 * decorScale",
+          "560 * decorScale"
+        ],
+        "length": "2200 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-lightwood-5",
+        "body_name": "decorPlanter-lightwood-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-11630 * decorScale",
+          "260 * decorScale"
+        ],
+        "length": "2200 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-lightwood-6",
+        "body_name": "decorPlanter-lightwood-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-11630 * decorScale",
+          "410 * decorScale"
+        ],
+        "length": "2200 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-lightwood-7",
+        "body_name": "decorPlanter-lightwood-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8000 * decorScale",
+          "-11630 * decorScale",
+          "560 * decorScale"
+        ],
+        "length": "2200 * decorScale",
+        "width": "80 * decorScale",
+        "height": "120 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-lightwood-8",
+        "body_name": "decorPlanter-lightwood-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-9060 * decorScale",
+          "-12000 * decorScale",
+          "410 * decorScale"
+        ],
+        "length": "90 * decorScale",
+        "width": "790 * decorScale",
+        "height": "580 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-wood-9",
+        "body_name": "decorPlanter-wood-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-6940 * decorScale",
+          "-12000 * decorScale",
+          "410 * decorScale"
+        ],
+        "length": "90 * decorScale",
+        "width": "790 * decorScale",
+        "height": "580 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-wood-10",
+        "body_name": "decorPlanter-wood-10"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8900 * decorScale",
+          "-12425 * decorScale",
+          "400 * decorScale"
+        ],
+        "length": "70 * decorScale",
+        "width": "25 * decorScale",
+        "height": "500 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-iron-11",
+        "body_name": "decorPlanter-iron-11"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-8900 * decorScale",
+          "-11575 * decorScale",
+          "400 * decorScale"
+        ],
+        "length": "70 * decorScale",
+        "width": "25 * decorScale",
+        "height": "500 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-iron-12",
+        "body_name": "decorPlanter-iron-12"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7100 * decorScale",
+          "-12425 * decorScale",
+          "400 * decorScale"
+        ],
+        "length": "70 * decorScale",
+        "width": "25 * decorScale",
+        "height": "500 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-iron-13",
+        "body_name": "decorPlanter-iron-13"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "-7100 * decorScale",
+          "-11575 * decorScale",
+          "400 * decorScale"
+        ],
+        "length": "70 * decorScale",
+        "width": "25 * decorScale",
+        "height": "500 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-iron-14",
+        "body_name": "decorPlanter-iron-14"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8830 * decorScale",
+          "-12100 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPlanter-leaf-15",
+        "body_name": "decorPlanter-leaf-15"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8766 * decorScale",
+          "-12100 * decorScale",
+          "694 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-leaf-16",
+        "body_name": "decorPlanter-leaf-16"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8758 * decorScale",
+          "-12100 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-17",
+        "body_name": "decorPlanter-pink-17"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8807.75078 * decorScale",
+          "-12031.52393 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-18",
+        "body_name": "decorPlanter-pink-18"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8888.24922 * decorScale",
+          "-12057.67946 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-19",
+        "body_name": "decorPlanter-pink-19"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8888.24922 * decorScale",
+          "-12142.32054 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-20",
+        "body_name": "decorPlanter-pink-20"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8807.75078 * decorScale",
+          "-12168.47607 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-21",
+        "body_name": "decorPlanter-pink-21"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8830 * decorScale",
+          "-12100 * decorScale",
+          "862 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-22",
+        "body_name": "decorPlanter-yellow-22"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8555 * decorScale",
+          "-11900 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPlanter-leaf-23",
+        "body_name": "decorPlanter-leaf-23"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8491 * decorScale",
+          "-11900 * decorScale",
+          "694 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-leaf-24",
+        "body_name": "decorPlanter-leaf-24"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8483 * decorScale",
+          "-11900 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-25",
+        "body_name": "decorPlanter-yellow-25"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8532.75078 * decorScale",
+          "-11831.52393 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-26",
+        "body_name": "decorPlanter-yellow-26"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8613.24922 * decorScale",
+          "-11857.67946 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-27",
+        "body_name": "decorPlanter-yellow-27"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8613.24922 * decorScale",
+          "-11942.32054 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-28",
+        "body_name": "decorPlanter-yellow-28"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8532.75078 * decorScale",
+          "-11968.47607 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-29",
+        "body_name": "decorPlanter-yellow-29"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8555 * decorScale",
+          "-11900 * decorScale",
+          "862 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-30",
+        "body_name": "decorPlanter-yellow-30"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8280 * decorScale",
+          "-12100 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPlanter-leaf-31",
+        "body_name": "decorPlanter-leaf-31"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8216 * decorScale",
+          "-12100 * decorScale",
+          "694 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-leaf-32",
+        "body_name": "decorPlanter-leaf-32"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8208 * decorScale",
+          "-12100 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-33",
+        "body_name": "decorPlanter-pink-33"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8257.75078 * decorScale",
+          "-12031.52393 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-34",
+        "body_name": "decorPlanter-pink-34"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8338.24922 * decorScale",
+          "-12057.67946 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-35",
+        "body_name": "decorPlanter-pink-35"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8338.24922 * decorScale",
+          "-12142.32054 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-36",
+        "body_name": "decorPlanter-pink-36"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8257.75078 * decorScale",
+          "-12168.47607 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-37",
+        "body_name": "decorPlanter-pink-37"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8280 * decorScale",
+          "-12100 * decorScale",
+          "862 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-38",
+        "body_name": "decorPlanter-yellow-38"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-8005 * decorScale",
+          "-11900 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPlanter-leaf-39",
+        "body_name": "decorPlanter-leaf-39"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7941 * decorScale",
+          "-11900 * decorScale",
+          "694 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-leaf-40",
+        "body_name": "decorPlanter-leaf-40"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7933 * decorScale",
+          "-11900 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-41",
+        "body_name": "decorPlanter-yellow-41"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7982.75078 * decorScale",
+          "-11831.52393 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-42",
+        "body_name": "decorPlanter-yellow-42"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8063.24922 * decorScale",
+          "-11857.67946 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-43",
+        "body_name": "decorPlanter-yellow-43"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8063.24922 * decorScale",
+          "-11942.32054 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-44",
+        "body_name": "decorPlanter-yellow-44"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7982.75078 * decorScale",
+          "-11968.47607 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-45",
+        "body_name": "decorPlanter-yellow-45"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-8005 * decorScale",
+          "-11900 * decorScale",
+          "862 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-46",
+        "body_name": "decorPlanter-yellow-46"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-7730 * decorScale",
+          "-12100 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPlanter-leaf-47",
+        "body_name": "decorPlanter-leaf-47"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7666 * decorScale",
+          "-12100 * decorScale",
+          "694 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-leaf-48",
+        "body_name": "decorPlanter-leaf-48"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7658 * decorScale",
+          "-12100 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-49",
+        "body_name": "decorPlanter-pink-49"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7707.75078 * decorScale",
+          "-12031.52393 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-50",
+        "body_name": "decorPlanter-pink-50"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7788.24922 * decorScale",
+          "-12057.67946 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-51",
+        "body_name": "decorPlanter-pink-51"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7788.24922 * decorScale",
+          "-12142.32054 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-52",
+        "body_name": "decorPlanter-pink-52"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7707.75078 * decorScale",
+          "-12168.47607 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-53",
+        "body_name": "decorPlanter-pink-53"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7730 * decorScale",
+          "-12100 * decorScale",
+          "862 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-54",
+        "body_name": "decorPlanter-yellow-54"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-7455 * decorScale",
+          "-11900 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPlanter-leaf-55",
+        "body_name": "decorPlanter-leaf-55"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7391 * decorScale",
+          "-11900 * decorScale",
+          "694 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-leaf-56",
+        "body_name": "decorPlanter-leaf-56"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7383 * decorScale",
+          "-11900 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-57",
+        "body_name": "decorPlanter-yellow-57"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7432.75078 * decorScale",
+          "-11831.52393 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-58",
+        "body_name": "decorPlanter-yellow-58"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7513.24922 * decorScale",
+          "-11857.67946 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-59",
+        "body_name": "decorPlanter-yellow-59"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7513.24922 * decorScale",
+          "-11942.32054 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-60",
+        "body_name": "decorPlanter-yellow-60"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7432.75078 * decorScale",
+          "-11968.47607 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-61",
+        "body_name": "decorPlanter-yellow-61"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7455 * decorScale",
+          "-11900 * decorScale",
+          "862 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-62",
+        "body_name": "decorPlanter-yellow-62"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-7180 * decorScale",
+          "-12100 * decorScale",
+          "590 * decorScale"
+        ],
+        "radius": "20 * decorScale",
+        "height": "208 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPlanter-leaf-63",
+        "body_name": "decorPlanter-leaf-63"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7116 * decorScale",
+          "-12100 * decorScale",
+          "694 * decorScale"
+        ],
+        "radius": "80 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-leaf-64",
+        "body_name": "decorPlanter-leaf-64"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7108 * decorScale",
+          "-12100 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-65",
+        "body_name": "decorPlanter-pink-65"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7157.75078 * decorScale",
+          "-12031.52393 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-66",
+        "body_name": "decorPlanter-pink-66"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7238.24922 * decorScale",
+          "-12057.67946 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-67",
+        "body_name": "decorPlanter-pink-67"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7238.24922 * decorScale",
+          "-12142.32054 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-68",
+        "body_name": "decorPlanter-pink-68"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7157.75078 * decorScale",
+          "-12168.47607 * decorScale",
+          "830 * decorScale"
+        ],
+        "radius": "64 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-pink-69",
+        "body_name": "decorPlanter-pink-69"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "-7180 * decorScale",
+          "-12100 * decorScale",
+          "862 * decorScale"
+        ],
+        "radius": "44 * decorScale",
+        "operation": "new",
+        "name": "decorPlanter-yellow-70",
+        "body_name": "decorPlanter-yellow-70"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPlanter-wood-1",
+          "decorPlanter-wood-9",
+          "decorPlanter-wood-10"
+        ],
+        "color": "#98633d",
+        "pbr": {
+          "roughness": 0.86,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPlanter-soil-2"
+        ],
+        "color": "#493a2c",
+        "pbr": {
+          "roughness": 1,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPlanter-lightwood-3",
+          "decorPlanter-lightwood-4",
+          "decorPlanter-lightwood-5",
+          "decorPlanter-lightwood-6",
+          "decorPlanter-lightwood-7",
+          "decorPlanter-lightwood-8"
+        ],
+        "color": "#d6ac70",
+        "pbr": {
+          "roughness": 0.82,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPlanter-iron-11",
+          "decorPlanter-iron-12",
+          "decorPlanter-iron-13",
+          "decorPlanter-iron-14"
+        ],
+        "color": "#334c49",
+        "pbr": {
+          "roughness": 0.5,
+          "metallic": 0.65,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPlanter-leaf-15",
+          "decorPlanter-leaf-16",
+          "decorPlanter-leaf-23",
+          "decorPlanter-leaf-24",
+          "decorPlanter-leaf-31",
+          "decorPlanter-leaf-32",
+          "decorPlanter-leaf-39",
+          "decorPlanter-leaf-40",
+          "decorPlanter-leaf-47",
+          "decorPlanter-leaf-48",
+          "decorPlanter-leaf-55",
+          "decorPlanter-leaf-56",
+          "decorPlanter-leaf-63",
+          "decorPlanter-leaf-64"
+        ],
+        "color": "#42734d",
+        "pbr": {
+          "roughness": 0.96,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPlanter-pink-17",
+          "decorPlanter-pink-18",
+          "decorPlanter-pink-19",
+          "decorPlanter-pink-20",
+          "decorPlanter-pink-21",
+          "decorPlanter-pink-33",
+          "decorPlanter-pink-34",
+          "decorPlanter-pink-35",
+          "decorPlanter-pink-36",
+          "decorPlanter-pink-37",
+          "decorPlanter-pink-49",
+          "decorPlanter-pink-50",
+          "decorPlanter-pink-51",
+          "decorPlanter-pink-52",
+          "decorPlanter-pink-53",
+          "decorPlanter-pink-65",
+          "decorPlanter-pink-66",
+          "decorPlanter-pink-67",
+          "decorPlanter-pink-68",
+          "decorPlanter-pink-69"
+        ],
+        "color": "#e782a3",
+        "pbr": {
+          "roughness": 0.8,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPlanter-yellow-22",
+          "decorPlanter-yellow-25",
+          "decorPlanter-yellow-26",
+          "decorPlanter-yellow-27",
+          "decorPlanter-yellow-28",
+          "decorPlanter-yellow-29",
+          "decorPlanter-yellow-30",
+          "decorPlanter-yellow-38",
+          "decorPlanter-yellow-41",
+          "decorPlanter-yellow-42",
+          "decorPlanter-yellow-43",
+          "decorPlanter-yellow-44",
+          "decorPlanter-yellow-45",
+          "decorPlanter-yellow-46",
+          "decorPlanter-yellow-54",
+          "decorPlanter-yellow-57",
+          "decorPlanter-yellow-58",
+          "decorPlanter-yellow-59",
+          "decorPlanter-yellow-60",
+          "decorPlanter-yellow-61",
+          "decorPlanter-yellow-62",
+          "decorPlanter-yellow-70"
+        ],
+        "color": "#f4ca59",
+        "pbr": {
+          "roughness": 0.79,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "0 * decorScale"
+        ],
+        "radius": "1650 * decorScale",
+        "height": "160 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-stone-1",
+        "body_name": "decorFountain-stone-1"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "160 * decorScale"
+        ],
+        "radius": "1500 * decorScale",
+        "height": "170 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-pale-2",
+        "body_name": "decorFountain-pale-2"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "330 * decorScale"
+        ],
+        "radius": "1360 * decorScale",
+        "height": "35 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-3",
+        "body_name": "decorFountain-water-3"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "390 * decorScale"
+        ],
+        "major": "1430 * decorScale",
+        "minor": "100 * decorScale",
+        "operation": "new",
+        "name": "decorFountain-pale-4",
+        "body_name": "decorFountain-pale-4"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "340 * decorScale"
+        ],
+        "radius": "230 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "160 * decorScale",
+        "operation": "new",
+        "name": "decorFountain-stone-5",
+        "body_name": "decorFountain-stone-5"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "1080 * decorScale"
+        ],
+        "radius": "380 * decorScale",
+        "height": "220 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "830 * decorScale",
+        "operation": "new",
+        "name": "decorFountain-pale-6",
+        "body_name": "decorFountain-pale-6"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "1320 * decorScale"
+        ],
+        "major": "800 * decorScale",
+        "minor": "55 * decorScale",
+        "operation": "new",
+        "name": "decorFountain-gold-7",
+        "body_name": "decorFountain-gold-7"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "1300 * decorScale"
+        ],
+        "radius": "760 * decorScale",
+        "height": "35 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-8",
+        "body_name": "decorFountain-water-8"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "1330 * decorScale"
+        ],
+        "radius": "105 * decorScale",
+        "height": "600 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-stone-9",
+        "body_name": "decorFountain-stone-9"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "1860 * decorScale"
+        ],
+        "radius": "190 * decorScale",
+        "height": "130 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "430 * decorScale",
+        "operation": "new",
+        "name": "decorFountain-pale-10",
+        "body_name": "decorFountain-pale-10"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "2000 * decorScale"
+        ],
+        "major": "400 * decorScale",
+        "minor": "45 * decorScale",
+        "operation": "new",
+        "name": "decorFountain-pale-11",
+        "body_name": "decorFountain-pale-11"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "1990 * decorScale"
+        ],
+        "radius": "360 * decorScale",
+        "height": "20 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-12",
+        "body_name": "decorFountain-water-12"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "2010 * decorScale"
+        ],
+        "radius": "28 * decorScale",
+        "height": "370 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-13",
+        "body_name": "decorFountain-water-13"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "0 * decorScale",
+          "-12000 * decorScale",
+          "2400 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "operation": "new",
+        "name": "decorFountain-water-14",
+        "body_name": "decorFountain-water-14"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "690 * decorScale",
+          "-12000 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-15",
+        "body_name": "decorFountain-water-15"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "487.90368 * decorScale",
+          "-11512.09632 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-16",
+        "body_name": "decorFountain-water-16"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-11310 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-17",
+        "body_name": "decorFountain-water-17"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-487.90368 * decorScale",
+          "-11512.09632 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-18",
+        "body_name": "decorFountain-water-18"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-690 * decorScale",
+          "-12000 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-19",
+        "body_name": "decorFountain-water-19"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "-487.90368 * decorScale",
+          "-12487.90368 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-20",
+        "body_name": "decorFountain-water-20"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "0 * decorScale",
+          "-12690 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-21",
+        "body_name": "decorFountain-water-21"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "487.90368 * decorScale",
+          "-12487.90368 * decorScale",
+          "400 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "860 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorFountain-water-22",
+        "body_name": "decorFountain-water-22"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFountain-stone-1",
+          "decorFountain-stone-5",
+          "decorFountain-stone-9"
+        ],
+        "color": "#aaa99a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFountain-pale-2",
+          "decorFountain-pale-4",
+          "decorFountain-pale-6",
+          "decorFountain-pale-10",
+          "decorFountain-pale-11"
+        ],
+        "color": "#e4dac0",
+        "pbr": {
+          "roughness": 0.9,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFountain-water-3",
+          "decorFountain-water-8",
+          "decorFountain-water-12",
+          "decorFountain-water-13",
+          "decorFountain-water-14",
+          "decorFountain-water-15",
+          "decorFountain-water-16",
+          "decorFountain-water-17",
+          "decorFountain-water-18",
+          "decorFountain-water-19",
+          "decorFountain-water-20",
+          "decorFountain-water-21",
+          "decorFountain-water-22"
+        ],
+        "color": "#3fa5b1",
+        "pbr": {
+          "roughness": 0.23,
+          "metallic": 0.18,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorFountain-gold-7"
+        ],
+        "color": "#ceaa55",
+        "pbr": {
+          "roughness": 0.48,
+          "metallic": 0.55,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "-12000 * decorScale",
+          "0 * decorScale"
+        ],
+        "radius": "1070 * decorScale",
+        "height": "130 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorWell-stone-1",
+        "body_name": "decorWell-stone-1"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "-12000 * decorScale",
+          "140 * decorScale"
+        ],
+        "radius": "760 * decorScale",
+        "height": "30 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorWell-water-2",
+        "body_name": "decorWell-water-2"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "-12000 * decorScale",
+          "840 * decorScale"
+        ],
+        "major": "880 * decorScale",
+        "minor": "120 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-3",
+        "body_name": "decorWell-pale-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8870 * decorScale",
+          "-12000 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-4",
+        "body_name": "decorWell-stone-4"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-4"
+        ],
+        "origin": [
+          "8870 * decorScale",
+          "-12000 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "90 deg",
+        "name": "decorWell-stone-4-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8753.4421 * decorScale",
+          "-11565 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-5",
+        "body_name": "decorWell-stone-5"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-5"
+        ],
+        "origin": [
+          "8753.4421 * decorScale",
+          "-11565 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "120 deg",
+        "name": "decorWell-stone-5-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8435 * decorScale",
+          "-11246.5579 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-6",
+        "body_name": "decorWell-stone-6"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-6"
+        ],
+        "origin": [
+          "8435 * decorScale",
+          "-11246.5579 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "150 deg",
+        "name": "decorWell-stone-6-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "-11130 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-7",
+        "body_name": "decorWell-stone-7"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-7"
+        ],
+        "origin": [
+          "8000 * decorScale",
+          "-11130 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "180 deg",
+        "name": "decorWell-stone-7-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7565 * decorScale",
+          "-11246.5579 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-8",
+        "body_name": "decorWell-stone-8"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-8"
+        ],
+        "origin": [
+          "7565 * decorScale",
+          "-11246.5579 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "210 deg",
+        "name": "decorWell-stone-8-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7246.5579 * decorScale",
+          "-11565 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-9",
+        "body_name": "decorWell-stone-9"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-9"
+        ],
+        "origin": [
+          "7246.5579 * decorScale",
+          "-11565 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "240.00000000000003 deg",
+        "name": "decorWell-stone-9-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7130 * decorScale",
+          "-12000 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-10",
+        "body_name": "decorWell-stone-10"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-10"
+        ],
+        "origin": [
+          "7130 * decorScale",
+          "-12000 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "270 deg",
+        "name": "decorWell-stone-10-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7246.5579 * decorScale",
+          "-12435 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-11",
+        "body_name": "decorWell-stone-11"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-11"
+        ],
+        "origin": [
+          "7246.5579 * decorScale",
+          "-12435 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "300 deg",
+        "name": "decorWell-stone-11-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7565 * decorScale",
+          "-12753.4421 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-12",
+        "body_name": "decorWell-stone-12"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-12"
+        ],
+        "origin": [
+          "7565 * decorScale",
+          "-12753.4421 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "330 deg",
+        "name": "decorWell-stone-12-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "-12870 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-13",
+        "body_name": "decorWell-stone-13"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-13"
+        ],
+        "origin": [
+          "8000 * decorScale",
+          "-12870 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "360 deg",
+        "name": "decorWell-stone-13-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8435 * decorScale",
+          "-12753.4421 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-14",
+        "body_name": "decorWell-stone-14"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-14"
+        ],
+        "origin": [
+          "8435 * decorScale",
+          "-12753.4421 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "390.00000000000006 deg",
+        "name": "decorWell-stone-14-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8753.4421 * decorScale",
+          "-12435 * decorScale",
+          "250 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-15",
+        "body_name": "decorWell-stone-15"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-15"
+        ],
+        "origin": [
+          "8753.4421 * decorScale",
+          "-12435 * decorScale",
+          "250 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "419.99999999999994 deg",
+        "name": "decorWell-stone-15-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8840.35547 * decorScale",
+          "-11774.82743 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-16",
+        "body_name": "decorWell-pale-16"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-16"
+        ],
+        "origin": [
+          "8840.35547 * decorScale",
+          "-11774.82743 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "105 deg",
+        "name": "decorWell-pale-16-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8615.1829 * decorScale",
+          "-11384.8171 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-17",
+        "body_name": "decorWell-pale-17"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-17"
+        ],
+        "origin": [
+          "8615.1829 * decorScale",
+          "-11384.8171 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "135 deg",
+        "name": "decorWell-pale-17-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8225.17257 * decorScale",
+          "-11159.64453 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-18",
+        "body_name": "decorWell-pale-18"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-18"
+        ],
+        "origin": [
+          "8225.17257 * decorScale",
+          "-11159.64453 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "165 deg",
+        "name": "decorWell-pale-18-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7774.82743 * decorScale",
+          "-11159.64453 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-19",
+        "body_name": "decorWell-pale-19"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-19"
+        ],
+        "origin": [
+          "7774.82743 * decorScale",
+          "-11159.64453 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "195 deg",
+        "name": "decorWell-pale-19-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7384.8171 * decorScale",
+          "-11384.8171 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-20",
+        "body_name": "decorWell-pale-20"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-20"
+        ],
+        "origin": [
+          "7384.8171 * decorScale",
+          "-11384.8171 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "225 deg",
+        "name": "decorWell-pale-20-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7159.64453 * decorScale",
+          "-11774.82743 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-21",
+        "body_name": "decorWell-pale-21"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-21"
+        ],
+        "origin": [
+          "7159.64453 * decorScale",
+          "-11774.82743 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "254.99999999999997 deg",
+        "name": "decorWell-pale-21-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7159.64453 * decorScale",
+          "-12225.17257 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-22",
+        "body_name": "decorWell-pale-22"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-22"
+        ],
+        "origin": [
+          "7159.64453 * decorScale",
+          "-12225.17257 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "285 deg",
+        "name": "decorWell-pale-22-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7384.8171 * decorScale",
+          "-12615.1829 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-23",
+        "body_name": "decorWell-pale-23"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-23"
+        ],
+        "origin": [
+          "7384.8171 * decorScale",
+          "-12615.1829 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "315 deg",
+        "name": "decorWell-pale-23-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7774.82743 * decorScale",
+          "-12840.35547 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-24",
+        "body_name": "decorWell-pale-24"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-24"
+        ],
+        "origin": [
+          "7774.82743 * decorScale",
+          "-12840.35547 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "345 deg",
+        "name": "decorWell-pale-24-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8225.17257 * decorScale",
+          "-12840.35547 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-25",
+        "body_name": "decorWell-pale-25"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-25"
+        ],
+        "origin": [
+          "8225.17257 * decorScale",
+          "-12840.35547 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "375 deg",
+        "name": "decorWell-pale-25-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8615.1829 * decorScale",
+          "-12615.1829 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-26",
+        "body_name": "decorWell-pale-26"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-26"
+        ],
+        "origin": [
+          "8615.1829 * decorScale",
+          "-12615.1829 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "405 deg",
+        "name": "decorWell-pale-26-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8840.35547 * decorScale",
+          "-12225.17257 * decorScale",
+          "470 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-pale-27",
+        "body_name": "decorWell-pale-27"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-pale-27"
+        ],
+        "origin": [
+          "8840.35547 * decorScale",
+          "-12225.17257 * decorScale",
+          "470 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "434.99999999999994 deg",
+        "name": "decorWell-pale-27-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8870 * decorScale",
+          "-12000 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-28",
+        "body_name": "decorWell-stone-28"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-28"
+        ],
+        "origin": [
+          "8870 * decorScale",
+          "-12000 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "90 deg",
+        "name": "decorWell-stone-28-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8753.4421 * decorScale",
+          "-11565 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-29",
+        "body_name": "decorWell-stone-29"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-29"
+        ],
+        "origin": [
+          "8753.4421 * decorScale",
+          "-11565 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "120 deg",
+        "name": "decorWell-stone-29-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8435 * decorScale",
+          "-11246.5579 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-30",
+        "body_name": "decorWell-stone-30"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-30"
+        ],
+        "origin": [
+          "8435 * decorScale",
+          "-11246.5579 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "150 deg",
+        "name": "decorWell-stone-30-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "-11130 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-31",
+        "body_name": "decorWell-stone-31"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-31"
+        ],
+        "origin": [
+          "8000 * decorScale",
+          "-11130 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "180 deg",
+        "name": "decorWell-stone-31-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7565 * decorScale",
+          "-11246.5579 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-32",
+        "body_name": "decorWell-stone-32"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-32"
+        ],
+        "origin": [
+          "7565 * decorScale",
+          "-11246.5579 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "210 deg",
+        "name": "decorWell-stone-32-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7246.5579 * decorScale",
+          "-11565 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-33",
+        "body_name": "decorWell-stone-33"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-33"
+        ],
+        "origin": [
+          "7246.5579 * decorScale",
+          "-11565 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "240.00000000000003 deg",
+        "name": "decorWell-stone-33-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7130 * decorScale",
+          "-12000 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-34",
+        "body_name": "decorWell-stone-34"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-34"
+        ],
+        "origin": [
+          "7130 * decorScale",
+          "-12000 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "270 deg",
+        "name": "decorWell-stone-34-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7246.5579 * decorScale",
+          "-12435 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-35",
+        "body_name": "decorWell-stone-35"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-35"
+        ],
+        "origin": [
+          "7246.5579 * decorScale",
+          "-12435 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "300 deg",
+        "name": "decorWell-stone-35-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7565 * decorScale",
+          "-12753.4421 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-36",
+        "body_name": "decorWell-stone-36"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-36"
+        ],
+        "origin": [
+          "7565 * decorScale",
+          "-12753.4421 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "330 deg",
+        "name": "decorWell-stone-36-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "-12870 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-37",
+        "body_name": "decorWell-stone-37"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-37"
+        ],
+        "origin": [
+          "8000 * decorScale",
+          "-12870 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "360 deg",
+        "name": "decorWell-stone-37-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8435 * decorScale",
+          "-12753.4421 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-38",
+        "body_name": "decorWell-stone-38"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-38"
+        ],
+        "origin": [
+          "8435 * decorScale",
+          "-12753.4421 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "390.00000000000006 deg",
+        "name": "decorWell-stone-38-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8753.4421 * decorScale",
+          "-12435 * decorScale",
+          "690 * decorScale"
+        ],
+        "length": "430 * decorScale",
+        "width": "220 * decorScale",
+        "height": "200 * decorScale",
+        "operation": "new",
+        "name": "decorWell-stone-39",
+        "body_name": "decorWell-stone-39"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-stone-39"
+        ],
+        "origin": [
+          "8753.4421 * decorScale",
+          "-12435 * decorScale",
+          "690 * decorScale"
+        ],
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "419.99999999999994 deg",
+        "name": "decorWell-stone-39-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "6920 * decorScale",
+          "-12000 * decorScale",
+          "1160 * decorScale"
+        ],
+        "length": "160 * decorScale",
+        "width": "180 * decorScale",
+        "height": "2320 * decorScale",
+        "operation": "new",
+        "name": "decorWell-wood-40",
+        "body_name": "decorWell-wood-40"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "9080 * decorScale",
+          "-12000 * decorScale",
+          "1160 * decorScale"
+        ],
+        "length": "160 * decorScale",
+        "width": "180 * decorScale",
+        "height": "2320 * decorScale",
+        "operation": "new",
+        "name": "decorWell-wood-41",
+        "body_name": "decorWell-wood-41"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "6820 * decorScale",
+          "-12000 * decorScale",
+          "1450 * decorScale"
+        ],
+        "radius": "90 * decorScale",
+        "height": "2360 * decorScale",
+        "axis": [
+          2.36,
+          0,
+          0
+        ],
+        "operation": "new",
+        "name": "decorWell-lightwood-42",
+        "body_name": "decorWell-lightwood-42"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "9180 * decorScale",
+          "-12000 * decorScale",
+          "1450 * decorScale"
+        ],
+        "radius": "40 * decorScale",
+        "height": "310 * decorScale",
+        "axis": [
+          0,
+          0,
+          -0.31000000000000005
+        ],
+        "operation": "new",
+        "name": "decorWell-iron-43",
+        "body_name": "decorWell-iron-43"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "-12000 * decorScale",
+          "820 * decorScale"
+        ],
+        "radius": "14 * decorScale",
+        "height": "690 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorWell-lightwood-44",
+        "body_name": "decorWell-lightwood-44"
+      }
+    },
+    {
+      "command": "solid.cone",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "-12000 * decorScale",
+          "550 * decorScale"
+        ],
+        "radius": "180 * decorScale",
+        "height": "250 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "top_radius": "220 * decorScale",
+        "operation": "new",
+        "name": "decorWell-iron-45",
+        "body_name": "decorWell-iron-45"
+      }
+    },
+    {
+      "command": "solid.torus",
+      "params": {
+        "center": [
+          "8000 * decorScale",
+          "-12000 * decorScale",
+          "800 * decorScale"
+        ],
+        "major": "210 * decorScale",
+        "minor": "25 * decorScale",
+        "operation": "new",
+        "name": "decorWell-gold-46",
+        "body_name": "decorWell-gold-46"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "7362.5 * decorScale",
+          "-12000 * decorScale",
+          "2547.27113 * decorScale"
+        ],
+        "length": "1536.80685 * decorScale",
+        "width": "2250 * decorScale",
+        "height": "100 * decorScale",
+        "operation": "new",
+        "name": "decorWell-red-47",
+        "body_name": "decorWell-red-47"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-red-47"
+        ],
+        "origin": [
+          "7362.5 * decorScale",
+          "-12000 * decorScale",
+          "2547.27113 * decorScale"
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "angle": "-25 deg",
+        "name": "decorWell-red-47-rotate"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "8637.5 * decorScale",
+          "-12000 * decorScale",
+          "2547.27113 * decorScale"
+        ],
+        "length": "1536.80685 * decorScale",
+        "width": "2250 * decorScale",
+        "height": "100 * decorScale",
+        "operation": "new",
+        "name": "decorWell-red-48",
+        "body_name": "decorWell-red-48"
+      }
+    },
+    {
+      "command": "solid.move",
+      "params": {
+        "bodies": [
+          "decorWell-red-48"
+        ],
+        "origin": [
+          "8637.5 * decorScale",
+          "-12000 * decorScale",
+          "2547.27113 * decorScale"
+        ],
+        "axis": [
+          0,
+          1,
+          0
+        ],
+        "angle": "25 deg",
+        "name": "decorWell-red-48-rotate"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "8000 * decorScale",
+          "-13125 * decorScale",
+          "2899.54226 * decorScale"
+        ],
+        "radius": "60 * decorScale",
+        "height": "2250 * decorScale",
+        "axis": [
+          0,
+          2.25,
+          0
+        ],
+        "operation": "new",
+        "name": "decorWell-gold-49",
+        "body_name": "decorWell-gold-49"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-stone-1",
+          "decorWell-stone-4",
+          "decorWell-stone-5",
+          "decorWell-stone-6",
+          "decorWell-stone-7",
+          "decorWell-stone-8",
+          "decorWell-stone-9",
+          "decorWell-stone-10",
+          "decorWell-stone-11",
+          "decorWell-stone-12",
+          "decorWell-stone-13",
+          "decorWell-stone-14",
+          "decorWell-stone-15",
+          "decorWell-stone-28",
+          "decorWell-stone-29",
+          "decorWell-stone-30",
+          "decorWell-stone-31",
+          "decorWell-stone-32",
+          "decorWell-stone-33",
+          "decorWell-stone-34",
+          "decorWell-stone-35",
+          "decorWell-stone-36",
+          "decorWell-stone-37",
+          "decorWell-stone-38",
+          "decorWell-stone-39"
+        ],
+        "color": "#aaa99a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-water-2"
+        ],
+        "color": "#3fa5b1",
+        "pbr": {
+          "roughness": 0.23,
+          "metallic": 0.18,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-pale-3",
+          "decorWell-pale-16",
+          "decorWell-pale-17",
+          "decorWell-pale-18",
+          "decorWell-pale-19",
+          "decorWell-pale-20",
+          "decorWell-pale-21",
+          "decorWell-pale-22",
+          "decorWell-pale-23",
+          "decorWell-pale-24",
+          "decorWell-pale-25",
+          "decorWell-pale-26",
+          "decorWell-pale-27"
+        ],
+        "color": "#e4dac0",
+        "pbr": {
+          "roughness": 0.9,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-wood-40",
+          "decorWell-wood-41"
+        ],
+        "color": "#98633d",
+        "pbr": {
+          "roughness": 0.86,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-lightwood-42",
+          "decorWell-lightwood-44"
+        ],
+        "color": "#d6ac70",
+        "pbr": {
+          "roughness": 0.82,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-iron-43",
+          "decorWell-iron-45"
+        ],
+        "color": "#334c49",
+        "pbr": {
+          "roughness": 0.5,
+          "metallic": 0.65,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-gold-46",
+          "decorWell-gold-49"
+        ],
+        "color": "#ceaa55",
+        "pbr": {
+          "roughness": 0.48,
+          "metallic": 0.55,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorWell-red-47",
+          "decorWell-red-48"
+        ],
+        "color": "#bd5142",
+        "pbr": {
+          "roughness": 0.8,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-13450 * decorScale",
+          "90 * decorScale"
+        ],
+        "length": "360 * decorScale",
+        "width": "360 * decorScale",
+        "height": "180 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-stone-1",
+        "body_name": "decorPergola-stone-1"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-13450 * decorScale",
+          "1420 * decorScale"
+        ],
+        "length": "170 * decorScale",
+        "width": "170 * decorScale",
+        "height": "2650 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-2",
+        "body_name": "decorPergola-wood-2"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-10550 * decorScale",
+          "90 * decorScale"
+        ],
+        "length": "360 * decorScale",
+        "width": "360 * decorScale",
+        "height": "180 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-stone-3",
+        "body_name": "decorPergola-stone-3"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-10550 * decorScale",
+          "1420 * decorScale"
+        ],
+        "length": "170 * decorScale",
+        "width": "170 * decorScale",
+        "height": "2650 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-4",
+        "body_name": "decorPergola-wood-4"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-13450 * decorScale",
+          "90 * decorScale"
+        ],
+        "length": "360 * decorScale",
+        "width": "360 * decorScale",
+        "height": "180 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-stone-5",
+        "body_name": "decorPergola-stone-5"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-13450 * decorScale",
+          "1420 * decorScale"
+        ],
+        "length": "170 * decorScale",
+        "width": "170 * decorScale",
+        "height": "2650 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-6",
+        "body_name": "decorPergola-wood-6"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-10550 * decorScale",
+          "90 * decorScale"
+        ],
+        "length": "360 * decorScale",
+        "width": "360 * decorScale",
+        "height": "180 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-stone-7",
+        "body_name": "decorPergola-stone-7"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-10550 * decorScale",
+          "1420 * decorScale"
+        ],
+        "length": "170 * decorScale",
+        "width": "170 * decorScale",
+        "height": "2650 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-8",
+        "body_name": "decorPergola-wood-8"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-12000 * decorScale",
+          "2760 * decorScale"
+        ],
+        "length": "200 * decorScale",
+        "width": "3700 * decorScale",
+        "height": "220 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-9",
+        "body_name": "decorPergola-wood-9"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-12000 * decorScale",
+          "2760 * decorScale"
+        ],
+        "length": "200 * decorScale",
+        "width": "3700 * decorScale",
+        "height": "220 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-10",
+        "body_name": "decorPergola-wood-10"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-13650 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-11",
+        "body_name": "decorPergola-lightwood-11"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-13180 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-12",
+        "body_name": "decorPergola-lightwood-12"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-12710 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-13",
+        "body_name": "decorPergola-lightwood-13"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-12240 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-14",
+        "body_name": "decorPergola-lightwood-14"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-11770 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-15",
+        "body_name": "decorPergola-lightwood-15"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-11300 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-16",
+        "body_name": "decorPergola-lightwood-16"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-10830 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-17",
+        "body_name": "decorPergola-lightwood-17"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "16000 * decorScale",
+          "-10360 * decorScale",
+          "2950 * decorScale"
+        ],
+        "length": "4650 * decorScale",
+        "width": "140 * decorScale",
+        "height": "190 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-18",
+        "body_name": "decorPergola-lightwood-18"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-13100 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-19",
+        "body_name": "decorPergola-wood-19"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-12550 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-20",
+        "body_name": "decorPergola-wood-20"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-12000 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-21",
+        "body_name": "decorPergola-wood-21"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-11450 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-22",
+        "body_name": "decorPergola-wood-22"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14100 * decorScale",
+          "-10900 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-23",
+        "body_name": "decorPergola-wood-23"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-13100 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-24",
+        "body_name": "decorPergola-wood-24"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-12550 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-25",
+        "body_name": "decorPergola-wood-25"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-12000 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-26",
+        "body_name": "decorPergola-wood-26"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-11450 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-27",
+        "body_name": "decorPergola-wood-27"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17900 * decorScale",
+          "-10900 * decorScale",
+          "1050 * decorScale"
+        ],
+        "length": "60 * decorScale",
+        "width": "60 * decorScale",
+        "height": "1600 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-wood-28",
+        "body_name": "decorPergola-wood-28"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14080 * decorScale",
+          "-12000 * decorScale",
+          "550 * decorScale"
+        ],
+        "length": "75 * decorScale",
+        "width": "2950 * decorScale",
+        "height": "60 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-29",
+        "body_name": "decorPergola-lightwood-29"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14080 * decorScale",
+          "-12000 * decorScale",
+          "950 * decorScale"
+        ],
+        "length": "75 * decorScale",
+        "width": "2950 * decorScale",
+        "height": "60 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-30",
+        "body_name": "decorPergola-lightwood-30"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "14080 * decorScale",
+          "-12000 * decorScale",
+          "1350 * decorScale"
+        ],
+        "length": "75 * decorScale",
+        "width": "2950 * decorScale",
+        "height": "60 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-31",
+        "body_name": "decorPergola-lightwood-31"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17920 * decorScale",
+          "-12000 * decorScale",
+          "550 * decorScale"
+        ],
+        "length": "75 * decorScale",
+        "width": "2950 * decorScale",
+        "height": "60 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-32",
+        "body_name": "decorPergola-lightwood-32"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17920 * decorScale",
+          "-12000 * decorScale",
+          "950 * decorScale"
+        ],
+        "length": "75 * decorScale",
+        "width": "2950 * decorScale",
+        "height": "60 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-33",
+        "body_name": "decorPergola-lightwood-33"
+      }
+    },
+    {
+      "command": "solid.box",
+      "params": {
+        "center": [
+          "17920 * decorScale",
+          "-12000 * decorScale",
+          "1350 * decorScale"
+        ],
+        "length": "75 * decorScale",
+        "width": "2950 * decorScale",
+        "height": "60 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-lightwood-34",
+        "body_name": "decorPergola-lightwood-34"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14300 * decorScale",
+          "-13460 * decorScale",
+          "3050 * decorScale"
+        ],
+        "radius": "280 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaflight-35",
+        "body_name": "decorPergola-leaflight-35"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "14300 * decorScale",
+          "-13600 * decorScale",
+          "3080 * decorScale"
+        ],
+        "radius": "16.25 * decorScale",
+        "height": "169 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPergola-leaf-36",
+        "body_name": "decorPergola-leaf-36"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14352 * decorScale",
+          "-13600 * decorScale",
+          "3164.5 * decorScale"
+        ],
+        "radius": "65 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaf-37",
+        "body_name": "decorPergola-leaf-37"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14358.5 * decorScale",
+          "-13600 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-38",
+        "body_name": "decorPergola-pink-38"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14318.07749 * decorScale",
+          "-13544.36319 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-39",
+        "body_name": "decorPergola-pink-39"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14252.67251 * decorScale",
+          "-13565.61456 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-40",
+        "body_name": "decorPergola-pink-40"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14252.67251 * decorScale",
+          "-13634.38544 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-41",
+        "body_name": "decorPergola-pink-41"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14318.07749 * decorScale",
+          "-13655.63681 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-42",
+        "body_name": "decorPergola-pink-42"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14300 * decorScale",
+          "-13600 * decorScale",
+          "3301 * decorScale"
+        ],
+        "radius": "35.75 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-yellow-43",
+        "body_name": "decorPergola-yellow-43"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "14850 * decorScale",
+          "-13460 * decorScale",
+          "3050 * decorScale"
+        ],
+        "radius": "280 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaf-44",
+        "body_name": "decorPergola-leaf-44"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15400 * decorScale",
+          "-13460 * decorScale",
+          "3050 * decorScale"
+        ],
+        "radius": "280 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaflight-45",
+        "body_name": "decorPergola-leaflight-45"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "15400 * decorScale",
+          "-13600 * decorScale",
+          "3080 * decorScale"
+        ],
+        "radius": "16.25 * decorScale",
+        "height": "169 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPergola-leaf-46",
+        "body_name": "decorPergola-leaf-46"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15452 * decorScale",
+          "-13600 * decorScale",
+          "3164.5 * decorScale"
+        ],
+        "radius": "65 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaf-47",
+        "body_name": "decorPergola-leaf-47"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15458.5 * decorScale",
+          "-13600 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-48",
+        "body_name": "decorPergola-pink-48"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15418.07749 * decorScale",
+          "-13544.36319 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-49",
+        "body_name": "decorPergola-pink-49"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15352.67251 * decorScale",
+          "-13565.61456 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-50",
+        "body_name": "decorPergola-pink-50"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15352.67251 * decorScale",
+          "-13634.38544 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-51",
+        "body_name": "decorPergola-pink-51"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15418.07749 * decorScale",
+          "-13655.63681 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-52",
+        "body_name": "decorPergola-pink-52"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15400 * decorScale",
+          "-13600 * decorScale",
+          "3301 * decorScale"
+        ],
+        "radius": "35.75 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-yellow-53",
+        "body_name": "decorPergola-yellow-53"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "15950 * decorScale",
+          "-13460 * decorScale",
+          "3050 * decorScale"
+        ],
+        "radius": "280 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaf-54",
+        "body_name": "decorPergola-leaf-54"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16500 * decorScale",
+          "-13460 * decorScale",
+          "3050 * decorScale"
+        ],
+        "radius": "280 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaflight-55",
+        "body_name": "decorPergola-leaflight-55"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "16500 * decorScale",
+          "-13600 * decorScale",
+          "3080 * decorScale"
+        ],
+        "radius": "16.25 * decorScale",
+        "height": "169 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPergola-leaf-56",
+        "body_name": "decorPergola-leaf-56"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16552 * decorScale",
+          "-13600 * decorScale",
+          "3164.5 * decorScale"
+        ],
+        "radius": "65 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaf-57",
+        "body_name": "decorPergola-leaf-57"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16558.5 * decorScale",
+          "-13600 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-58",
+        "body_name": "decorPergola-pink-58"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16518.07749 * decorScale",
+          "-13544.36319 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-59",
+        "body_name": "decorPergola-pink-59"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16452.67251 * decorScale",
+          "-13565.61456 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-60",
+        "body_name": "decorPergola-pink-60"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16452.67251 * decorScale",
+          "-13634.38544 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-61",
+        "body_name": "decorPergola-pink-61"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16518.07749 * decorScale",
+          "-13655.63681 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-62",
+        "body_name": "decorPergola-pink-62"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "16500 * decorScale",
+          "-13600 * decorScale",
+          "3301 * decorScale"
+        ],
+        "radius": "35.75 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-yellow-63",
+        "body_name": "decorPergola-yellow-63"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17050 * decorScale",
+          "-13460 * decorScale",
+          "3050 * decorScale"
+        ],
+        "radius": "280 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaf-64",
+        "body_name": "decorPergola-leaf-64"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17600 * decorScale",
+          "-13460 * decorScale",
+          "3050 * decorScale"
+        ],
+        "radius": "280 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaflight-65",
+        "body_name": "decorPergola-leaflight-65"
+      }
+    },
+    {
+      "command": "solid.cylinder",
+      "params": {
+        "base": [
+          "17600 * decorScale",
+          "-13600 * decorScale",
+          "3080 * decorScale"
+        ],
+        "radius": "16.25 * decorScale",
+        "height": "169 * decorScale",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "operation": "new",
+        "name": "decorPergola-leaf-66",
+        "body_name": "decorPergola-leaf-66"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17652 * decorScale",
+          "-13600 * decorScale",
+          "3164.5 * decorScale"
+        ],
+        "radius": "65 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-leaf-67",
+        "body_name": "decorPergola-leaf-67"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17658.5 * decorScale",
+          "-13600 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-68",
+        "body_name": "decorPergola-pink-68"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17618.07749 * decorScale",
+          "-13544.36319 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-69",
+        "body_name": "decorPergola-pink-69"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17552.67251 * decorScale",
+          "-13565.61456 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-70",
+        "body_name": "decorPergola-pink-70"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17552.67251 * decorScale",
+          "-13634.38544 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-71",
+        "body_name": "decorPergola-pink-71"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17618.07749 * decorScale",
+          "-13655.63681 * decorScale",
+          "3275 * decorScale"
+        ],
+        "radius": "52 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-pink-72",
+        "body_name": "decorPergola-pink-72"
+      }
+    },
+    {
+      "command": "solid.sphere",
+      "params": {
+        "center": [
+          "17600 * decorScale",
+          "-13600 * decorScale",
+          "3301 * decorScale"
+        ],
+        "radius": "35.75 * decorScale",
+        "operation": "new",
+        "name": "decorPergola-yellow-73",
+        "body_name": "decorPergola-yellow-73"
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPergola-stone-1",
+          "decorPergola-stone-3",
+          "decorPergola-stone-5",
+          "decorPergola-stone-7"
+        ],
+        "color": "#aaa99a",
+        "pbr": {
+          "roughness": 0.94,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPergola-wood-2",
+          "decorPergola-wood-4",
+          "decorPergola-wood-6",
+          "decorPergola-wood-8",
+          "decorPergola-wood-9",
+          "decorPergola-wood-10",
+          "decorPergola-wood-19",
+          "decorPergola-wood-20",
+          "decorPergola-wood-21",
+          "decorPergola-wood-22",
+          "decorPergola-wood-23",
+          "decorPergola-wood-24",
+          "decorPergola-wood-25",
+          "decorPergola-wood-26",
+          "decorPergola-wood-27",
+          "decorPergola-wood-28"
+        ],
+        "color": "#98633d",
+        "pbr": {
+          "roughness": 0.86,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPergola-lightwood-11",
+          "decorPergola-lightwood-12",
+          "decorPergola-lightwood-13",
+          "decorPergola-lightwood-14",
+          "decorPergola-lightwood-15",
+          "decorPergola-lightwood-16",
+          "decorPergola-lightwood-17",
+          "decorPergola-lightwood-18",
+          "decorPergola-lightwood-29",
+          "decorPergola-lightwood-30",
+          "decorPergola-lightwood-31",
+          "decorPergola-lightwood-32",
+          "decorPergola-lightwood-33",
+          "decorPergola-lightwood-34"
+        ],
+        "color": "#d6ac70",
+        "pbr": {
+          "roughness": 0.82,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPergola-leaflight-35",
+          "decorPergola-leaflight-45",
+          "decorPergola-leaflight-55",
+          "decorPergola-leaflight-65"
+        ],
+        "color": "#739553",
+        "pbr": {
+          "roughness": 0.95,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPergola-leaf-36",
+          "decorPergola-leaf-37",
+          "decorPergola-leaf-44",
+          "decorPergola-leaf-46",
+          "decorPergola-leaf-47",
+          "decorPergola-leaf-54",
+          "decorPergola-leaf-56",
+          "decorPergola-leaf-57",
+          "decorPergola-leaf-64",
+          "decorPergola-leaf-66",
+          "decorPergola-leaf-67"
+        ],
+        "color": "#42734d",
+        "pbr": {
+          "roughness": 0.96,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPergola-pink-38",
+          "decorPergola-pink-39",
+          "decorPergola-pink-40",
+          "decorPergola-pink-41",
+          "decorPergola-pink-42",
+          "decorPergola-pink-48",
+          "decorPergola-pink-49",
+          "decorPergola-pink-50",
+          "decorPergola-pink-51",
+          "decorPergola-pink-52",
+          "decorPergola-pink-58",
+          "decorPergola-pink-59",
+          "decorPergola-pink-60",
+          "decorPergola-pink-61",
+          "decorPergola-pink-62",
+          "decorPergola-pink-68",
+          "decorPergola-pink-69",
+          "decorPergola-pink-70",
+          "decorPergola-pink-71",
+          "decorPergola-pink-72"
+        ],
+        "color": "#e782a3",
+        "pbr": {
+          "roughness": 0.8,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    },
+    {
+      "command": "appearance.assign",
+      "params": {
+        "bodies": [
+          "decorPergola-yellow-43",
+          "decorPergola-yellow-53",
+          "decorPergola-yellow-63",
+          "decorPergola-yellow-73"
+        ],
+        "color": "#f4ca59",
+        "pbr": {
+          "roughness": 0.79,
+          "metallic": 0,
+          "dielectric_ior": 1.5
+        }
+      }
+    }
+  ],
+  "expect": {
+    "bodies": 232,
+    "volume_mm3": 9558337099.287016,
+    "tol": 0.004,
+    "bbox": {
+      "min": [
+        -17175,
+        -13850,
+        0
+      ],
+      "max": [
+        18325,
+        -10150,
+        3336.7500000000005
+      ]
+    }
+  }
+}

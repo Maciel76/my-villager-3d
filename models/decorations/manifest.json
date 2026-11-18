@@ -1,0 +1,166 @@
+{
+  "units": "mm",
+  "source": "SolidCraft MCP",
+  "items": [
+    {
+      "type": "decorBench",
+      "parts": 18,
+      "origin_mm": [
+        -16000,
+        -12000
+      ]
+    },
+    {
+      "type": "decorPlanter",
+      "parts": 70,
+      "origin_mm": [
+        -8000,
+        -12000
+      ]
+    },
+    {
+      "type": "decorFountain",
+      "parts": 22,
+      "origin_mm": [
+        0,
+        -12000
+      ]
+    },
+    {
+      "type": "decorWell",
+      "parts": 49,
+      "origin_mm": [
+        8000,
+        -12000
+      ]
+    },
+    {
+      "type": "decorPergola",
+      "parts": 73,
+      "origin_mm": [
+        16000,
+        -12000
+      ]
+    },
+    {
+      "type": "decorGazebo",
+      "parts": 25,
+      "origin_mm": [
+        -16000,
+        -4000
+      ]
+    },
+    {
+      "type": "decorPicnic",
+      "parts": 21,
+      "origin_mm": [
+        -8000,
+        -4000
+      ]
+    },
+    {
+      "type": "decorSwing",
+      "parts": 15,
+      "origin_mm": [
+        0,
+        -4000
+      ]
+    },
+    {
+      "type": "decorSlide",
+      "parts": 19,
+      "origin_mm": [
+        8000,
+        -4000
+      ]
+    },
+    {
+      "type": "decorSeesaw",
+      "parts": 10,
+      "origin_mm": [
+        16000,
+        -4000
+      ]
+    },
+    {
+      "type": "decorMarket",
+      "parts": 51,
+      "origin_mm": [
+        -16000,
+        4000
+      ]
+    },
+    {
+      "type": "decorBirdbath",
+      "parts": 11,
+      "origin_mm": [
+        -8000,
+        4000
+      ]
+    },
+    {
+      "type": "decorSundial",
+      "parts": 18,
+      "origin_mm": [
+        0,
+        4000
+      ]
+    },
+    {
+      "type": "decorWindmill",
+      "parts": 30,
+      "origin_mm": [
+        8000,
+        4000
+      ]
+    },
+    {
+      "type": "decorFlowerCart",
+      "parts": 45,
+      "origin_mm": [
+        16000,
+        4000
+      ]
+    },
+    {
+      "type": "decorBikeRack",
+      "parts": 21,
+      "origin_mm": [
+        -16000,
+        12000
+      ]
+    },
+    {
+      "type": "decorRecycling",
+      "parts": 25,
+      "origin_mm": [
+        -8000,
+        12000
+      ]
+    },
+    {
+      "type": "decorBridge",
+      "parts": 43,
+      "origin_mm": [
+        0,
+        12000
+      ]
+    },
+    {
+      "type": "decorFirepit",
+      "parts": 30,
+      "origin_mm": [
+        8000,
+        12000
+      ]
+    },
+    {
+      "type": "decorSignpost",
+      "parts": 35,
+      "origin_mm": [
+        16000,
+        12000
+      ]
+    }
+  ]
+}

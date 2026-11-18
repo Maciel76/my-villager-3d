@@ -22,14 +22,6 @@
         <span class="crest" aria-hidden="true">⌂</span>
         <h1>Vila Verde</h1>
       </div>
-      <div class="world-info">
-        <span class="house-mark" aria-hidden="true">⌂</span>
-        <span id="house-count">0 casas</span>
-        <span id="apartment-count" hidden></span>
-        <span id="commerce-count" hidden></span>
-        <span id="landmark-count" hidden></span>
-        <span id="lamp-count" hidden></span>
-      </div>
       <button
         class="hud-button help-button"
         id="help-button"
@@ -40,6 +32,7 @@
         ?
       </button>
     </header>
+    <div id="walk-reticle" class="walk-reticle" aria-hidden="true" hidden></div>
 
     <label class="hour-picker" for="village-hour">
       <span>Horário</span>
@@ -111,7 +104,7 @@
           <button
             id="delete-selected"
             class="hud-button delete-building"
-            title="Excluir construção (Delete)"
+            title="Excluir seleção (Delete)"
             hidden
           >
             Excluir
@@ -253,8 +246,28 @@
             >
               Iluminação
             </button>
+            <button
+              type="button"
+              class="category-button"
+              data-category="decoration"
+              aria-pressed="false"
+            >
+              Decorações
+            </button>
           </div>
           <p id="catalog-count" aria-live="polite"></p>
+        </div>
+        <div id="decoration-menu" class="decoration-menu" hidden>
+          <p>Detalhes que dão vida à vila. Escolha uma peça e encontre um cantinho para ela.</p>
+          <div class="decoration-filters" role="group" aria-label="Tipo de decoração">
+            <button type="button" data-decoration-family="all" aria-pressed="true">Todas</button>
+            <button type="button" data-decoration-family="garden" aria-pressed="false">Jardim</button>
+            <button type="button" data-decoration-family="square" aria-pressed="false">Praça</button>
+            <button type="button" data-decoration-family="leisure" aria-pressed="false">Lazer</button>
+            <button type="button" data-decoration-family="rustic" aria-pressed="false">Rústico</button>
+            <button type="button" data-decoration-family="trees" aria-pressed="false">Árvores</button>
+            <button type="button" data-decoration-family="beds" aria-pressed="false">Canteiros</button>
+          </div>
         </div>
         <div id="house-catalog" class="house-catalog"></div>
       </section>
@@ -279,18 +292,22 @@
         <dd>
           Escolha Caminhar (4) para ver a vila em primeira pessoa. Use WASD ou as
           setas, ou segure as setas na tela de toque. Arraste para olhar ao
-          redor e escolha Explorar ou pressione Esc para voltar.
+          redor. A Loja permite construir sem sair do passeio. Escolha Explorar
+          para voltar à vista aérea; Esc cancela a construção antes de sair.
         </dd>
         <dt>Construir</dt>
         <dd>
           Abra a Loja, escolha uma construção e clique em um lote livre. No
-          celular, toque no terreno e confirme.
+          celular, toque no terreno e confirme. Em primeira pessoa, mire no chão
+          e clique ou pressione Enter; arrastar continua girando a visão. Ao instalar postes, continue
+          colocando o mesmo modelo sem reabrir a Loja. Esc ou Explorar encerra.
         </dd>
         <dt>Traçar ruas e definir lotes</dt>
         <dd>
           Escolha Ruas e coloque os blocos lado a lado. A calçada acompanha os
-          trechos e os lotes ao redor ficam demarcados. Use Remover para ajustar
-          a rua.
+          trechos e os lotes ao redor ficam demarcados. Para editar, volte a
+          Explorar e selecione um bloco de rua: use Mover ou Excluir. Em Ruas,
+          Remover permite retirar vários trechos seguidos.
         </dd>
         <dt>Editar uma construção</dt>
         <dd>
@@ -301,7 +318,7 @@
         <dt>Atalhos</dt>
         <dd>
           Use as setas para ajustar o lote, R para girar à direita, Shift+R para
-          girar à esquerda, Delete para excluir a construção selecionada e
+          girar à esquerda, Delete para excluir a construção ou rua selecionada e
           Ctrl+Z para desfazer. Enter confirma o lote e Esc cancela a seleção.
         </dd>
       </dl>

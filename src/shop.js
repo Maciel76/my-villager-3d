@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { BUILDING_TYPES } from "./house-types.js";
-import { footprint, isLamp, LOT_SIZE } from "./placement.js";
+import { footprint, isLamp, isDecoration, LOT_SIZE } from "./placement.js";
 
-function capturePreviews(renderer, templates) {
+function capturePreviews(renderer, templates, cityLights) {
   const lighting = Object.keys(templates).every(isLamp);
   const stage = new THREE.Scene();
   stage.background = new THREE.Color(lighting ? "#384458" : "#e5dfbe");
@@ -25,6 +25,9 @@ function capturePreviews(renderer, templates) {
   copy.height = 200;
   const context = copy.getContext("2d");
   const lampStates = new Map();
+  const cityPower = cityLights?.uniforms.cityPower;
+  const previousPower = cityPower?.value;
+  if (cityPower) cityPower.value = 0;
   for (const model of Object.values(templates)) {
     model.traverse(({ material }) => {
       if (!material?.userData.nightGlow || lampStates.has(material)) return;
@@ -55,6 +58,7 @@ function capturePreviews(renderer, templates) {
       }),
     );
   } finally {
+    if (cityPower) cityPower.value = previousPower;
     for (const [material, intensity] of lampStates)
       material.emissiveIntensity = intensity;
     renderer.setSize(size.x, size.y, false);
@@ -62,7 +66,7 @@ function capturePreviews(renderer, templates) {
   }
 }
 
-export function createShop(renderer, templates, onChoose, onRenderPreview) {
+export function createShop(renderer, templates, onChoose, onRenderPreview, cityLights) {
   const dialog = document.getElementById("shop-dialog");
   const catalog = document.getElementById("house-catalog");
   const countLabel = document.getElementById("catalog-count");
@@ -72,12 +76,17 @@ export function createShop(renderer, templates, onChoose, onRenderPreview) {
   const modelButtons = new Map();
   const images = new Map();
   let activeCategory = "residential";
+  let activeFamily = "all";
+  const decorationMenu = document.getElementById("decoration-menu");
+  const familyButtons = [...dialog.querySelectorAll("[data-decoration-family]")];
 
   function updateCatalog() {
     let count = 0;
     const previewsNeeded = {};
     for (const [type, button] of modelButtons) {
-      const matches = BUILDING_TYPES[type].category === activeCategory;
+      const details = BUILDING_TYPES[type];
+      const matches = details.category === activeCategory &&
+        (activeCategory !== "decoration" || activeFamily === "all" || details.family === activeFamily);
       button.hidden = !matches;
       if (!matches) continue;
       count++;
@@ -85,7 +94,7 @@ export function createShop(renderer, templates, onChoose, onRenderPreview) {
         previewsNeeded[type] = templates[type];
     }
     if (Object.keys(previewsNeeded).length) {
-      const previews = capturePreviews(renderer, previewsNeeded);
+      const previews = capturePreviews(renderer, previewsNeeded, cityLights);
       onRenderPreview();
       for (const [type, source] of Object.entries(previews))
         images.get(type).src = source;
@@ -96,7 +105,17 @@ export function createShop(renderer, templates, onChoose, onRenderPreview) {
         button.dataset.category === activeCategory,
       );
     }
-    countLabel.textContent = `${count} ${count === 1 ? "modelo" : "modelos"}`;
+    decorationMenu.hidden = activeCategory !== "decoration";
+    for (const button of familyButtons)
+      button.setAttribute("aria-pressed", button.dataset.decorationFamily === activeFamily);
+    countLabel.textContent = `${count} ${activeCategory === "decoration" ? count === 1 ? "decoração" : "decorações" : count === 1 ? "modelo" : "modelos"}`;
+  }
+
+  for (const button of familyButtons) {
+    button.onclick = () => {
+      activeFamily = button.dataset.decorationFamily;
+      updateCatalog();
+    };
   }
 
   for (const button of categories) {
@@ -111,7 +130,7 @@ export function createShop(renderer, templates, onChoose, onRenderPreview) {
     button.type = "button";
     button.className = "house-choice";
     button.dataset.house = type;
-    button.setAttribute("aria-label", `Construir: ${details.label}`);
+    button.setAttribute("aria-label", `${isDecoration(type) ? "Decorar" : "Construir"}: ${details.label}`);
     const image = document.createElement("img");
     images.set(type, image);
     image.alt = "";
@@ -121,12 +140,23 @@ export function createShop(renderer, templates, onChoose, onRenderPreview) {
     const command = document.createElement("span");
     command.className = "house-command";
     const [width, depth] = footprint(type);
-    command.textContent = details.lotSpan
+    const formatSize = value => value.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
+    command.textContent = isDecoration(type)
+      ? `${details.family === "trees" ? "Plantio " : ""}${formatSize(width)} × ${formatSize(depth)} m · ${details.plantingBed ? "Recebe árvores" : "Posicionar"}`
+      : details.lotSpan
       ? `${(width * depth) / LOT_SIZE ** 2} lotes · ${width} × ${depth} m`
       : "Posicionar";
     if (details.lotSpan)
       button.setAttribute("aria-description", command.textContent);
-    button.append(image, label, command);
+    button.append(image, label);
+    if (isDecoration(type)) {
+      const description = document.createElement("span");
+      description.className = "decoration-description";
+      description.textContent = details.description;
+      button.append(description);
+      button.classList.add("decoration-choice");
+    }
+    button.append(command);
     button.onclick = () => {
       dialog.close();
       onChoose(type);

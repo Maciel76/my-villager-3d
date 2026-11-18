@@ -30,13 +30,30 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   Pressione **Home** para voltar à clareira.
 - Escolha **Caminhar** (tecla **4**) para passear em primeira pessoa. Use **WASD**
   ou as setas, e arraste para olhar ao redor. No celular, segure as setas na
-  tela. Escolha **Explorar** ou pressione **Esc** para sair do passeio.
+  tela. A **Loja** também funciona durante o passeio e mantém a posição e a
+  direção da câmera. Escolha **Explorar** para voltar à vista aérea.
 - Abra a **Loja** para escolher construções. Clique num lote livre para construir.
   Em uma tela de toque, escolha o lote e toque em **Confirmar**.
+- Em primeira pessoa, mire no chão e clique para construir ou use **Enter**
+  com a mira central. Arraste para olhar sem colocar uma peça. No celular,
+  toque no local e confirme. **Esc** ou **Cancelar** encerra a colocação e
+  mantém a caminhada; outro **Esc** sai do passeio. As colisões se atualizam
+  depois de construir, mover, excluir ou desfazer.
 - Em **Loja → Iluminação**, escolha um dos seis postes e instale-o na calçada
-  ou num espaço livre. Os postes usam uma grade de 1 m.
+  ou num espaço livre. Continue instalando o mesmo modelo sem reabrir a Loja;
+  **Esc** ou **Explorar** encerra. Os postes usam uma grade de 1 m.
 - Clique ou toque em uma construção para **Mover**, girar em passos de 90°
   com **↺** e **↻**, ou **Excluir**.
+- Em **Loja → Decorações**, escolha as 20 peças de jardim, praça, lazer e
+  estilo rústico, mais **12 árvores** e **6 canteiros**. Decorações podem
+  ocupar os espaços vazios dentro dos lotes, entre casas, nas calçadas e nas
+  ruas. A colisão considera as construções reais, e as setas ajustam **25 cm**.
+  **R** gira, **Esc** encerra, e a posição fica salva com a vila.
+- No filtro **Canteiros**, escolha um bloco e coloque no meio da rua. Depois,
+  em **Árvores**, escolha uma espécie e clique na terra do canteiro. As árvores
+  apoiam na altura correta, permitem várias unidades nos módulos longos e
+  continuam plantadas ao reabrir a vila. As copas podem se sobrepor; a área de
+  plantio considera o tronco. Os canteiros podem ser girados em passos de 90°.
 - As **setas** ajustam o lote, **R** gira à direita e **Shift+R** gira à
   esquerda. **Enter** confirma, **Esc** cancela, **Delete** exclui a construção
   selecionada e **Ctrl+Z** desfaz a última ação.
@@ -54,7 +71,32 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
 - O **Palácio Oriental**, em **Loja → Monumentos**, tem cerca de **21 m de altura**
   e ocupa seis lotes livres em uma área de **36 × 24 m**. Para girar um palácio
   já construído, confirme a nova posição da área girada.
-- Use **Remover** para retirar trechos de rua. Um poste sobre a calçada pode
+- O **Residencial Aurora**, em **Loja → Prédios**, ocupa quatro lotes de
+  **24 × 24 m**. O edifício tem térreo, seis pavimentos residenciais, varandas,
+  terraço com pergolado e cobertura com abertura circular. As proporções foram
+  aproximadas a partir das imagens de referência; a altura é de cerca de 24 m.
+- A **Casa Cubo Verde**, em **Loja → Casas**, ocupa **24 × 24 m**. Tem três
+  níveis, fachadas envidraçadas, terraços, revestimento de madeira e um jardim
+  sobre a ala de dois pavimentos. A reprodução usa proporções aproximadas da
+  imagem de referência, com um lote modelado de 20 × 20 m.
+- A **Casa Belle Époque**, em **Loja → Casas**, ocupa **24 × 24 m** e reproduz
+  a referência com telhados cruzados, sótão, duas chaminés, janelas salientes
+  arredondadas, arcos, balaustradas e escadarias. As medidas são aproximadas.
+- O **Supermercado Verde**, em **Loja → Comércios**, ocupa nove lotes de
+  **36 × 36 m**. Inclui salão de vendas com gôndolas abastecidas e caixas,
+  café com mesas e máquina de café, três caixas eletrônicos, portas de vidro,
+  estacionamento, carrinhos, totem e uma área de serviço nos fundos.
+  A fachada verde e o letreiro foram modelados a partir das referências,
+  com dimensões aproximadas.
+- O **Pavilhão Rotunda**, em **Loja → Monumentos**, ocupa um lote. A base
+  circular tem 11,4 m de diâmetro e a altura é de aproximadamente 10,12 m.
+  Tem doze colunas caneladas e afuniladas, capitéis com volutas, três degraus,
+  piso com medalhão, cornija denticulada e uma cúpula oca com painéis internos.
+  Luzes discretas iluminam as colunas à noite.
+- Em **Explorar**, selecione um bloco de rua e use **Mover** ou **Excluir**.
+  **Esc** cancela a mudança e **Ctrl+Z** restaura o bloco no local anterior.
+  Em **Ruas**, use **Remover** para retirar vários trechos seguidos.
+  Um poste sobre a calçada pode
   precisar ser movido antes de alterar o cruzamento. **Ctrl+Z** desfaz a última
   ação. As ruas ficam salvas no MongoDB local.
 
@@ -64,6 +106,58 @@ Use o menu **Horário** para escolher manhã, meio-dia, fim de tarde ou noite.
 A luz e a direção das sombras ficam fixas no horário escolhido. À noite, as
 janelas acendem e os postes e lanternas iluminam as superfícies próximas.
 O MongoDB guarda o último horário selecionado.
+
+## Cidade planejada
+
+A versão paisagística em `src/garden-city-plan.js` distribui 47 construções,
+44 árvores, 24 canteiros, 83 peças de decoração e 140 postes pelas nove quadras.
+Quarenta lotes ficam reservados a jardins, pequenas praças e lazer. O plano
+inclui todos os modelos atuais, com fontes, gazebos, áreas de piquenique,
+brinquedos, uma praça da igreja e uma alameda de cerejeiras junto ao palácio.
+
+Valide com `node scripts/build-city.js --garden`. Para reconstruir a vila
+salva com essa versão, use `node scripts/build-city.js --garden --apply`.
+O comando preserva o salvamento anterior em `backups/` antes de gravar.
+
+O plano em `src/city-plan.js` organiza toda a clareira em nove quadras, com
+71 casas, seis prédios, 17 comércios, dois monumentos e 110 postes. Os 24
+modelos da loja estão representados. As ruas formam uma rede conectada, as
+entradas ficam voltadas para a rua e dois miolos de quadra ficam verdes.
+
+Para validar o plano sem mudar o progresso, execute `node scripts/build-city.js`.
+Para aplicá-lo à vila local, execute `node scripts/build-city.js --apply` com o
+servidor em execução. O endereço padrão é `http://127.0.0.1:5174`; outro endereço
+local pode ser passado como argumento. Antes de gravar, o comando cria uma
+cópia completa do salvamento anterior em `backups/village-before-city-*.json`.
+Se a vila mudar durante a operação, o controle de revisão impede sobrescrevê-la.
+O arquivo `backups/city-plan.json` guarda a cidade depois da confirmação no banco.
+
+## Desempenho e qualidade
+
+As construções repetidas usam `InstancedMesh`, com os mesmos vértices, materiais
+e texturas. As peças compatíveis são agrupadas uma vez por modelo; seleção,
+movimento, giro, animação de construção e desfazer continuam individuais.
+
+A iluminação usa uma grade espacial de 12 m e texturas de dados na GPU.
+Cada superfície calcula todas as luzes que podem alcançá-la, incluindo fontes
+fora da câmera. Adicionar postes não aumenta o código dos shaders. Os halos
+compartilham um desenho, e `compileAsync` prepara os modos de dia e noite.
+A floresta guarda anéis inteiros de terreno em cache, evitando recalcular
+sombras a cada pequeno movimento da câmera.
+
+A imagem mantém a resolução nativa da tela, antialiasing e filtragem anisotrópica
+máxima da GPU. Não há redução automática de resolução ou simplificação dos modelos.
+
+`npm run optimize:models` gera os GLBs em `src/assets/models/optimized/` usando
+glTF Transform e Meshoptimizer. Os originais ficam intactos. O processo não
+quantiza, simplifica ou altera texturas e verifica a igualdade dos atributos
+e dos triângulos após decodificar cada arquivo. Os 12 arquivos processados
+ficaram 45% menores; o palácio mantém seu arquivo anteriormente comprimido.
+
+`npm test` executa os testes de dados e renderização. Os cenários de navegador
+estão em `tests/village-browser.cjs` e `tests/quality-browser.cjs`, com o servidor
+local em `http://127.0.0.1:5174` e Playwright disponível. Eles usam salvamentos
+simulados e não modificam a vila do MongoDB.
 
 ## Código
 
@@ -76,6 +170,23 @@ O MongoDB guarda o último horário selecionado.
   `src/oriental-garden.js` acrescenta os detalhes do jardim e dos telhados no jogo.
 - `models/palacio-oriental.sc` contém a arquitetura e os lagos editáveis do
   palácio. O modelo do jogo inclui as telhas, as ornamentações e a vegetação.
+- `models/residencial-aurora.sc` guarda o prédio editável no SolidCraft, com
+  os parâmetros Largura, Profundidade, Pavimento e Andares.
+  `src/residencial-aurora.js` prepara os acabamentos, a iluminação das janelas
+  e agrupa a geometria exportada para reduzir as chamadas de desenho.
+- `models/casa-cubo-verde.sc` contém a casa moderna editável no SolidCraft.
+  `src/casa-cubo-verde.js` prepara o vidro, a madeira e a iluminação noturna;
+  o GLB do jogo usa versões leves das copas e arbustos do modelo CAD.
+- `models/casa-belle-epoque.sc` contém a casa clássica editável, com telhados
+  e arcos definidos por esboços paramétricos. `src/casa-belle-epoque.js`
+  prepara os acabamentos e as janelas e lanternas que acendem à noite.
+- `models/supermercado-verde.sc` guarda a arquitetura, os móveis e os letreiros
+  editáveis no SolidCraft. `src/supermercado-verde.js` prepara as vitrines
+  transparentes, os materiais e a iluminação. O modelo da loja mantém a
+  geometria de prateleiras, produtos, caixas, equipamentos e carros.
+- `models/pavilhao-rotunda.sc` guarda os sólidos paramétricos da rotunda.
+  `src/pavilhao-rotunda.js` agrupa os acabamentos e prepara a iluminação;
+  o GLB usa uma tesselação mais econômica dos cilindros e toros analíticos.
 - `src/placement.js` define a área de construção e valida o progresso salvo.
 - `src/main.js` conecta câmera, interface, posicionamento e salvamento.
 - `src/walking.js` controla a câmera em primeira pessoa e as colisões da caminhada.
