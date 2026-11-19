@@ -21,7 +21,7 @@ test("road moves reject occupied tiles, buildings, off-grid locations and map bo
   assert.equal(canMoveRoad(0, 0, source, [], roads), false);
   assert.equal(canMoveRoad(12, 0, source, [{ x: 12, z: 0, type: "cottage" }], roads), false);
   assert.equal(canMoveRoad(6, 0, source, [], roads), false);
-  assert.equal(canMoveRoad(96, 0, source, [], roads), false);
+  assert.equal(canMoveRoad(180, 0, source, [], roads), false);
   assert.equal(canMoveRoad(24, 0, { x: -12, z: 0 }, [], roads), false);
 });
 

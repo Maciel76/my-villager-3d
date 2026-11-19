@@ -2,7 +2,11 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createCityPlan, cityPlanSummary } from "../src/city-plan.js";
 import { BUILDING_TYPES } from "../src/house-types.js";
+<<<<<<< HEAD
 import { footprint, isDecoration, isLamp, isPaving, readSave } from "../src/placement.js";
+=======
+import { footprint, isLamp, isFreeLight, readSave } from "../src/placement.js";
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 import { canBuildHouse, lampSiteHeight, readRoads, roadLots, tileKey } from "../src/road-layout.js";
 import { isVillageWorld } from "../src/village-data.js";
 import { buildArea } from "../src/village-area.js";
@@ -13,7 +17,11 @@ test("the complete city survives the game's save loader with every building and 
   assert.equal(readSave(world).length, world.houses.length);
   assert.equal(readRoads(world.roads, world.houses, 0, buildArea(world.expansion)).size, world.roads.length);
   assert.deepEqual(new Set(world.houses.map(h => h.type)), new Set(Object.keys(BUILDING_TYPES)
+<<<<<<< HEAD
     .filter(type => !isDecoration(type) && !isPaving(type))));
+=======
+    .filter(type => BUILDING_TYPES[type].category !== "decoration" && !isFreeLight(type))));
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   const orders = [...world.houseOrder, ...world.roads.map(r => r.order)];
   assert.equal(new Set(orders).size, orders.length);
 });

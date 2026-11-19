@@ -1,5 +1,9 @@
 import { BUILDING_TYPES } from "./house-types.js";
+<<<<<<< HEAD
 import { footprint, isDecoration, isLamp, isPaving, overlapsLot } from "./placement.js";
+=======
+import { footprint, isDecoration, isLamp, isFreeLight, overlapsLot } from "./placement.js";
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
 import { CITY_STREETS, CITY_EXPANSION, MIRANTE_AVENUE, extendNorthernAvenue, extendEasternAvenue } from "./city-plan.js";
 import { buildArea } from "./village-area.js";
@@ -168,7 +172,7 @@ export function createGardenCityPlan() {
     else if(v)add(x<0?"lampUrban":"lampSolar",x+side*4,z,side>0?2:0);
     else add(z< -24?"lampColonial":"lampUrban",x,z+side*4,side>0?1:3);
   }
-  const missing=Object.keys(BUILDING_TYPES).filter(type=>!houses.some(h=>h.type===type));
+  const missing=Object.keys(BUILDING_TYPES).filter(type=>!isFreeLight(type)&&!houses.some(h=>h.type===type));
   if(missing.length)throw new Error(`Catálogo sem lugar no plano: ${missing.join(", ")}`);
   return {version:1,houses,houseOrder:houses.map((_,i)=>roads.size+i),roads:[...roads.values()],expansion:{...CITY_EXPANSION}};
 }

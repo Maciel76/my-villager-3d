@@ -35,11 +35,19 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
 - Escolha **Caminhar** (tecla **4**) para passear em primeira pessoa. Use **WASD**
   ou as setas, e arraste para olhar ao redor. No celular, segure as setas na
   tela. A **Loja** também funciona durante o passeio e mantém a posição e a
+<<<<<<< HEAD
   direção da câmera. Toque em **Caminhar** novamente para voltar à vista aérea.
 - Durante a caminhada, pressione **F** ou toque em **Voar** para decolar.
   Use **Espaço** para subir, **Shift** para descer e **WASD** ou as setas para
   se mover. No celular, use os botões de altura. Arraste para ver o céu ou
   olhar para a vila. Pressione **F** de novo ou toque em **Pousar** para voltar ao chão.
+=======
+  direção da câmera. Escolha **Caminhar** novamente para voltar à vista aérea.
+- O terreno inicial tem **360 × 360 m**. Use **Estender** (tecla **1**) para
+  aumentar a largura e o comprimento em **180 m** por expansão: são 90 m a mais
+  em cada borda. Repita quando precisar; o tamanho fica salvo com a vila,
+  sem mover construções, ruas ou a câmera durante o passeio.
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 - Abra a **Loja** para escolher construções. Clique num lote livre para construir.
   Em uma tela de toque, escolha o lote e toque em **Confirmar**.
 - Em primeira pessoa, mire no chão e clique para construir ou use **Enter**
@@ -49,6 +57,7 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   depois de construir, mover, excluir ou desfazer.
 - Em **Loja → Iluminação**, escolha um dos seis postes e instale-o na calçada
   ou num espaço livre. Continue instalando o mesmo modelo sem reabrir a Loja;
+<<<<<<< HEAD
   **Esc** ou **×** encerra. Os postes usam uma grade de 1 m.
 - Em **Loja → Calçadas**, escolha concreto, pedra portuguesa, tijolinho
   terracota ou lajota grafite. Encaixe blocos de **2 × 2 m** em áreas verdes
@@ -58,6 +67,17 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   Calçadas colocadas antes ficam sob o lote e preservam seu gramado. Para
   pavimentar o jardim, coloque os blocos depois da construção, nos espaços
   livres. Mudar um bloco ou construção de lugar conta como nova colocação.
+=======
+  **Esc** encerra. Os postes usam uma grade de 1 m.
+- Em **Loja → Iluminação → Bloco de luz livre**, coloque apenas a luz: o
+  cubinho de 18 cm é um marcador, sem poste, e não bloqueia construções ou
+  caminhada. Clique em telhados, paredes ou no chão; a prévia se apoia na
+  superfície. Use **Altura da luz**, **−/+** ou **Page Up/Page Down** para
+  subir ou descer em passos de 25 cm (**Shift** ajusta 1 m pelo teclado).
+  A altura vai de −20 a 100 m, permite luzes dentro ou abaixo dos objetos e
+  fica salva no MongoDB. Selecione o marcador para alterar a altura, mover ou
+  excluir; **Ctrl+Z** desfaz. Funciona também em primeira pessoa e no toque.
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 - Clique ou toque em uma construção para **Mover**, girar em passos de 90°
   com **↺** e **↻**, ou **Excluir**.
 - Em **Loja → Decorações**, escolha as 20 peças de jardim, praça, lazer e
@@ -124,7 +144,11 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   Tem doze colunas caneladas e afuniladas, capitéis com volutas, três degraus,
   piso com medalhão, cornija denticulada e uma cúpula oca com painéis internos.
   Luzes discretas iluminam as colunas à noite.
+<<<<<<< HEAD
 - Fora do modo de construção, selecione um trecho de rua e use **Mover** ou **Excluir**.
+=======
+- Pressione **Esc**, selecione um bloco de rua e use **Mover** ou **Excluir**.
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   **Esc** cancela a mudança e **Ctrl+Z** restaura o bloco no local anterior.
   Em **Ruas**, use **Remover** para retirar vários trechos seguidos.
   Ao excluir uma rua, os postes permanecem e se ajustam à superfície restante.

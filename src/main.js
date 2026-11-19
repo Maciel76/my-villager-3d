@@ -9,6 +9,11 @@ import {
   insideBuildArea,
   isBuilding,
   isLamp,
+  isFreeLight,
+  isLightHeight,
+  FREE_LIGHT_MIN_Y,
+  FREE_LIGHT_MAX_Y,
+  FREE_LIGHT_DEFAULT_Y,
   isDecoration,
   isPaving,
   isTree,
@@ -19,6 +24,7 @@ import {
   readSave,
 } from "./placement.js";
 import { createHouse, createWorld, terrainHeight } from "./world.js";
+<<<<<<< HEAD
 import { buildArea, EXPANSION_LIMIT, EXPANSION_SIZE } from "./village-area.js";
 import { loadBuildingModels, loadMaterials, projectTexture } from "./assets.js";
 import { createMiranteOriental } from "./mirante-oriental.js";
@@ -26,6 +32,10 @@ import { createEdificioOrion } from "./edificio-orion.js";
 import { createConvergencia } from "./convergencia.js";
 import { createConvergenceAnimation } from "./convergencia-efeitos.js";
 import { createFerrisWheel, createFerrisWheelAnimation } from "./roda-gigante.js";
+=======
+import { DEFAULT_AREA_SIZE, getBuildAreaSize, nextAreaSize, setBuildAreaSize } from "./build-area.js";
+import { loadBuildingModels, loadMaterials } from "./assets.js";
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 import {
   BUILDING_TYPES,
   DEFAULT_HOUSE,
@@ -104,7 +114,7 @@ const categoryCopy = {
   },
 };
 
-const categoryFor = (type) => categoryCopy[BUILDING_TYPES[type].category];
+const categoryFor = (type) => isFreeLight(type) ? { noun: "Luz", ending: "a" } : categoryCopy[BUILDING_TYPES[type].category];
 const element = (id) => document.getElementById(id);
 const canvas = element("world");
 let renderer;
@@ -141,6 +151,7 @@ async function startGame(renderer) {
     element("error").hidden = false;
     return;
   }
+  setBuildAreaSize(saved.world?.areaSize ?? DEFAULT_AREA_SIZE);
   const saveState = element("save-state");
   const store = createVillageStore(saved.revision, (message, failed = false) => {
     saveState.textContent = message;
@@ -207,7 +218,33 @@ async function startGame(renderer) {
     updatePaving,
   } = createWorld(scene, materials, area);
   const streets = createStreetLayer(materials);
+<<<<<<< HEAD
   scene.add(streets.roadsLayer, streets.plotsLayer);
+=======
+  const roadGrid = new THREE.GridHelper(12, 1, "#efe5b0", "#efe5b0");
+  roadGrid.position.y = 0.036;
+  roadGrid.material.transparent = true;
+  roadGrid.material.opacity = 0.42;
+  roadGrid.visible = false;
+  scene.add(streets.roadsLayer, streets.plotsLayer, roadGrid);
+  let roadGridSize;
+  function updateRoadGrid(focus) {
+    const tiles = Math.floor(Math.min(getBuildAreaSize(), 480) / LOT_SIZE);
+    const divisions = tiles % 2 ? tiles : tiles - 1;
+    const size = divisions * LOT_SIZE;
+    if (roadGridSize !== size) {
+      const replacement = new THREE.GridHelper(size, divisions);
+      roadGrid.geometry.dispose();
+      roadGrid.geometry = replacement.geometry;
+      replacement.material.dispose();
+      roadGridSize = size;
+    }
+    const edge = Math.floor((getBuildAreaSize() - size) / 2 / LOT_SIZE) * LOT_SIZE;
+    roadGrid.position.x = THREE.MathUtils.clamp(snapTile(focus.x), -edge, edge);
+    roadGrid.position.z = THREE.MathUtils.clamp(snapTile(focus.z), -edge, edge);
+  }
+  updateRoadGrid(controls.target);
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   let roads = new Map();
   const pavingBlocks = new Map();
   const traffic = createTraffic(scene, (x, z) => Math.max(
@@ -338,8 +375,34 @@ async function startGame(renderer) {
   });
 
   const help = element("help-dialog");
+  const extend = element("extend-dialog");
+
+  function showExtension() {
+    clearMovement();
+    const size = getBuildAreaSize();
+    const format = value => `${value.toLocaleString("pt-BR")} × ${value.toLocaleString("pt-BR")} m`;
+    element("current-area").textContent = format(size);
+    element("next-area").textContent = format(nextAreaSize(size));
+    extend.showModal();
+  }
+
+  function expandArea() {
+    const size = nextAreaSize(getBuildAreaSize());
+    setBuildAreaSize(size);
+    updateWorld(walker.active ? walker.camera : camera, walker.active ? walker.camera.position : controls.target);
+    updateRoadGrid(walker.active ? walker.camera.position : controls.target);
+    syncParcels();
+    renderer.shadowMap.needsUpdate = true;
+    nightLights.bind(scene);
+    saveWorld();
+    extend.close();
+    canvas.focus({ preventScroll: true });
+    setStatus(`Terreno ampliado para ${size} × ${size} m. Continue construindo!`);
+    invalidate();
+  }
 
   function updateGhostModel(type) {
+    ghostMaterial.depthTest = !isFreeLight(type);
     const preview = buildingTemplates[type].clone();
     preview.traverse((part) => {
       if (part.isMesh) {
@@ -370,9 +433,15 @@ async function startGame(renderer) {
   }
 
   function syncModel(house) {
+<<<<<<< HEAD
     const { model, x, z, rotation, type, order } = house;
     const raised = isBuilding(type) || isLamp(type) || isDecoration(type) || isPaving(type);
     model.position.set(x, raised ? placementHeight(x, z, type, rotation, order) : 0, z);
+=======
+    const { model, x, z, rotation } = house;
+    model.position.set(x, isFreeLight(house.type) ? house.y ?? FREE_LIGHT_DEFAULT_Y
+      : isLamp(house.type) ? lampBaseHeight(x, z) : isDecoration(house.type) ? placementHeight(x, z, house.type) : 0, z);
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     model.rotation.y = (rotation * Math.PI) / 2;
     model.updateMatrixWorld();
     renderer.shadowMap.needsUpdate = true;
@@ -388,7 +457,8 @@ async function startGame(renderer) {
 
   function addHouse(data, animate = false) {
     const model = buildingTemplates[data.type].clone();
-    const house = { order: nextOrder, ...data, model };
+    const house = { order: nextOrder, ...data,
+      ...(isFreeLight(data.type) ? { y: data.y ?? FREE_LIGHT_DEFAULT_Y } : {}), model };
     nextOrder = Math.max(nextOrder, house.order + 1);
     houses.push(house);
     attachHouse(house);
@@ -424,7 +494,9 @@ async function startGame(renderer) {
     showEconomy();
     store({ world: {
       version: 1,
-      houses: houses.map(({ x, z, rotation, type }) => ({ x, z, rotation, type })),
+      areaSize: getBuildAreaSize(),
+      houses: houses.map(({ x, y, z, rotation, type }) => ({ x, z, rotation, type,
+        ...(isFreeLight(type) ? { y } : {}) })),
       houseOrder: houses.map((house) => house.order),
       roads: [...roads.values()],
       economy: { ...treasury },
@@ -558,7 +630,16 @@ async function startGame(renderer) {
 
   function syncStreets() {
     streets.updateRoads(roads);
+<<<<<<< HEAD
     traffic.setRoads(roads);
+=======
+    updatePaving((x, z) => streets.covers(x, z, roads));
+    for (const { type, x, z, model } of houses) {
+      if (isLamp(type) && !isFreeLight(type)) model.position.y = lampBaseHeight(x, z);
+      if (isDecoration(type)) model.position.y = placementHeight(x, z, type);
+    }
+    renderer.shadowMap.needsUpdate = true;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     syncParcels();
     invalidate();
   }
@@ -569,6 +650,7 @@ async function startGame(renderer) {
       : houseSite(x, z, parcels, type, placement?.rotation);
   }
 
+<<<<<<< HEAD
   function placementHeight(x, z, type, rotation = 0, order = nextOrder) {
     const terrain = terrainAt(x, z);
     if (isBuilding(type)) {
@@ -583,6 +665,15 @@ async function startGame(renderer) {
     }
     const paved = pavingHeightAt(x, z, pavingBlocks);
     if (isLamp(type)) return Math.max(terrain, paved, foundationHeightAt(x, z), lampRestHeight(x, z, roads));
+=======
+  function lampBaseHeight(x, z) {
+    const sidewalk = lampSiteHeight(x, z, roads);
+    return sidewalk || terrainHeight(x, z);
+  }
+
+  function placementHeight(x, z, type) {
+    if (isFreeLight(type)) return placement?.height ?? FREE_LIGHT_DEFAULT_Y;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     if (isTree(type)) {
       const bed = plantingBedUnder({ type, x, z, rotation }, houses);
       if (bed) return placementHeight(bed.x, bed.z, bed.type, bed.rotation) + BUILDING_TYPES[bed.type].plantingBed.height;
@@ -607,15 +698,34 @@ async function startGame(renderer) {
 
   function pointLot(x, y) {
     castRay(x, y);
-    const targets = isTree(placement?.type)
+    const freeLight = isFreeLight(placement?.type);
+    const targets = freeLight
+      ? [...ground.children, ...houses.filter(h => !isFreeLight(h.type) && h !== placement.moving).map(h => h.model)]
+      : isTree(placement?.type)
       ? [...ground.children, ...houses.filter(house => isPlantingBed(house.type)).map(house => house.model)]
       : ground.children;
+<<<<<<< HEAD
     const hit = raycaster.intersectObjects(targets, isTree(placement?.type))[0];
     if (!hit || (walker.active && hit.distance > (walker.flying ? 180 : 60))) return null;
     const site = placementSite(hit.point.x, hit.point.z);
     const height = isBuilding(placement?.type) || isLamp(placement?.type) ||
       isDecoration(placement?.type) || isPaving(placement?.type)
       ? placementHeight(site.x, site.z, placement.type, placement.rotation, siteOrder(site.x, site.z))
+=======
+    const hit = raycaster.intersectObjects(targets, freeLight || isTree(placement?.type))[0];
+    if (!hit || (walker.active && hit.distance > 60)) return null;
+    let point = hit.point;
+    if (freeLight && hit.face) {
+      const normal = hit.face.normal.clone().transformDirection(hit.object.matrixWorld);
+      if (normal.dot(raycaster.ray.direction) > 0) normal.negate();
+      point = point.clone().addScaledVector(normal, .2);
+    }
+    const site = placementSite(point.x, point.z);
+    const height = freeLight
+      ? placement.heightLocked ? placement.height : THREE.MathUtils.clamp(point.y, FREE_LIGHT_MIN_Y, FREE_LIGHT_MAX_Y)
+      : isLamp(placement?.type) || isDecoration(placement?.type)
+      ? placementHeight(site.x, site.z, placement.type)
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       : hit.point.y;
     return { ...site, y: height };
   }
@@ -643,9 +753,11 @@ async function startGame(renderer) {
   function refreshPreview() {
     const bounds = canvas.getBoundingClientRect();
     const following = walker.active && placement?.followView;
-    const target = placement && (following
+    let target = placement && (following
       ? pointLot(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2)
       : aim ? pointLot(aim.x, aim.y) : placement.target);
+    const freeLight = isFreeLight(placement?.type);
+    if (target && freeLight && placement.heightLocked) target = { ...target, y: placement.height };
     element("walk-reticle").hidden = !following;
     const roadMode = Boolean(placement?.road);
     const price = placementPrice();
@@ -675,9 +787,14 @@ async function startGame(renderer) {
             placement.moving,
             placement.type,
             placement.rotation,
+<<<<<<< HEAD
             area,
           ) && (!walker.active || walker.canBuildAt(placement.type, x, z, placement.rotation, buildingTemplates, y));
       candidate = { x, z, valid };
+=======
+          ) && (!walker.active || walker.canBuildAt(placement.type, x, z, placement.rotation, buildingTemplates)) && (!freeLight || isLightHeight(y));
+      candidate = { x, y, z, valid };
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       if (roadMode) {
         const previewRoads = placement.movingRoad ? new Map(roads) : roads;
         if (placement.movingRoad)
@@ -690,7 +807,7 @@ async function startGame(renderer) {
         roadGhost.position.set(x, y + 0.035, z);
         roadGhostMaterial.color.set(valid && affordable && !erasing ? "#e8f4b4" : "#ff9a75");
       } else {
-        ghost.position.set(x, y + 0.08, z);
+        ghost.position.set(x, y + (freeLight ? 0 : 0.08), z);
         ghost.rotation.y = (placement.rotation * Math.PI) / 2;
         ghostMaterial.color.set(valid && affordable ? "#e8ffcb" : "#ffab8e");
       }
@@ -711,12 +828,59 @@ async function startGame(renderer) {
         border.material.color.set("#ffcf79");
       }
     }
-    lot.visible = Boolean(candidate);
-    ghost.visible = lot.visible && !roadMode;
-    roadGhost.visible = lot.visible && roadMode;
+    lot.visible = Boolean(candidate) && !freeLight;
+    ghost.visible = Boolean(candidate) && !roadMode;
+    roadGhost.visible = Boolean(candidate) && roadMode;
     border.visible = Boolean(candidate || selection);
     plotLines.visible = Boolean(candidate && isLargeFootprint(active?.type));
+<<<<<<< HEAD
     element("place-button").disabled = !candidate?.valid || !affordable;
+=======
+    element("place-button").disabled = !candidate?.valid;
+    updateLightHeightControls();
+  }
+
+  function lightHeightValue() {
+    return placement && isFreeLight(placement.type)
+      ? placement.heightLocked ? placement.height : candidate?.y ?? placement.target?.y ?? placement.lastSite?.y ?? placement.height
+      : selection?.y ?? FREE_LIGHT_DEFAULT_Y;
+  }
+
+  function updateLightHeightControls() {
+    const free = isFreeLight((placement || selection)?.type);
+    element("light-height-controls").hidden = !free;
+    if (!free) return;
+    const y = lightHeightValue();
+    const input = element("light-height");
+    if (document.activeElement !== input) input.value = Number(y.toFixed(2));
+    element("light-lower").disabled = y <= FREE_LIGHT_MIN_Y;
+    element("light-raise").disabled = y >= FREE_LIGHT_MAX_Y;
+  }
+
+  function setLightHeight(value) {
+    if (!isFreeLight((placement || selection)?.type)) return;
+    if (!isLightHeight(value)) {
+      element("light-height").value = lightHeightValue();
+      setStatus(`Use uma altura entre ${FREE_LIGHT_MIN_Y} e ${FREE_LIGHT_MAX_Y} metros.`);
+      return;
+    }
+    if (placement) {
+      placement.height = value;
+      placement.heightLocked = true;
+      if (placement.target) placement.target.y = value;
+    } else if (selection.y !== value) {
+      undoHistory.push({ house: selection, previous: { y: selection.y } });
+      selection.y = value;
+      syncModel(selection);
+      saveWorld();
+    }
+    refreshPreview();
+    invalidate();
+  }
+
+  function stepLightHeight(delta) {
+    setLightHeight(THREE.MathUtils.clamp(lightHeightValue() + delta, FREE_LIGHT_MIN_Y, FREE_LIGHT_MAX_Y));
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   }
 
   function updateActions() {
@@ -731,7 +895,7 @@ async function startGame(renderer) {
     element("move-selected").hidden = !selection;
     element("delete-selected").hidden = !selection;
     element("rotate-left").hidden = element("rotate-button").hidden =
-      !target || roadMode;
+      !target || roadMode || isFreeLight(target.type);
     element("road-erase").hidden = !placement?.road || Boolean(placement.movingRoad);
     element("road-erase").setAttribute(
       "aria-pressed",
@@ -742,10 +906,13 @@ async function startGame(renderer) {
       ? "Retirar trecho"
       : "Confirmar";
     element("place-button").hidden = !editing;
+<<<<<<< HEAD
     expansionPanel.hidden = !expanding;
     expansionButton.setAttribute("aria-expanded", expanding);
     expansionButton.classList.toggle("active", expanding);
     expansionOutline.visible = expanding;
+=======
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     element("move-button").setAttribute("aria-pressed", moving);
     if (roadMode) {
       element("action-title").textContent = "Trecho de rua";
@@ -873,7 +1040,12 @@ async function startGame(renderer) {
       type,
       moving,
       rotation: moving?.rotation ?? 0,
+<<<<<<< HEAD
       target: { ...site, y: placementHeight(site.x, site.z, type, moving?.rotation, moving?.order) },
+=======
+      target: { ...site, y: placementHeight(site.x, site.z, type) },
+      ...(isFreeLight(type) ? { height: moving?.y ?? FREE_LIGHT_DEFAULT_Y, heightLocked: Boolean(moving) } : {}),
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       followView: walker.active,
     };
     updateGhostModel(type);
@@ -881,15 +1053,22 @@ async function startGame(renderer) {
     canvas.focus({ preventScroll: true });
     const [width, depth] = footprint(type);
     setStatus(
-      walker.active
+      isFreeLight(type)
+        ? "Clique em uma superfície ou ajuste a Altura. Page Up/Down sobe e desce a luz; Esc termina."
+        : walker.active
         ? "Mire no chão e clique para construir; Enter também confirma. Arraste para olhar. Esc cancela."
         : moving
         ? "Escolha o novo local para a construção."
         : isLamp(type)
+<<<<<<< HEAD
           ? "Instale vários postes seguidos. Use Esc ou × para terminar."
           : isPaving(type)
             ? "Assente os blocos na área verde, lado a lado. Esc ou × termina a calçada."
             : isDecoration(type)
+=======
+          ? "Instale vários postes seguidos. Pressione Esc para terminar."
+          : isDecoration(type)
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
             ? isPlantingBed(type)
               ? "Coloque o canteiro no meio da rua. Depois escolha uma árvore e plante dentro dele."
               : "Decore jardins, calçadas e espaços entre casas. As setas ajustam 25 cm; R gira a peça."
@@ -961,8 +1140,14 @@ async function startGame(renderer) {
 
   function selectHouse(x, y) {
     castRay(x, y);
+<<<<<<< HEAD
     const hit = raycaster.intersectObjects(
       [...houses.map(({ model }) => model), streets.roadsLayer, ...(lotFoundations?.visible ? [lotFoundations] : [])],
+=======
+    const lightHandle = raycaster.intersectObjects(houses.filter(h => isFreeLight(h.type)).map(h => h.model), true)[0];
+    const hit = lightHandle ?? raycaster.intersectObjects(
+      [...houses.map(({ model }) => model), streets.roadsLayer],
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       true,
     )[0];
     let model = hit?.object;
@@ -1019,18 +1204,23 @@ async function startGame(renderer) {
       return;
     }
 
+<<<<<<< HEAD
     const { x, z } = candidate;
     const price = placementPrice();
     if (!charge(price)) return;
+=======
+    const { x, y, z } = candidate;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     if (placement.road) {
       placeRoad(x, z, price);
       return;
     }
     const { type, rotation, moving } = placement;
     if (moving) {
-      if (moving.x !== x || moving.z !== z || moving.rotation !== rotation) {
+      if (moving.x !== x || moving.z !== z || moving.rotation !== rotation || (isFreeLight(type) && moving.y !== y)) {
         undoHistory.push({
           house: moving,
+<<<<<<< HEAD
           previous: { x: moving.x, z: moving.z, rotation: moving.rotation, order: moving.order },
         });
         const changesLayer = (moving.x !== x || moving.z !== z) && (isBuilding(type) || isPaving(type));
@@ -1041,21 +1231,44 @@ async function startGame(renderer) {
     } else {
       const house = addHouse({ x, z, rotation, type }, true);
       undoHistory.push({ house, paid: price });
+=======
+          previous: { x: moving.x, z: moving.z, rotation: moving.rotation,
+            ...(isFreeLight(type) ? { y: moving.y } : {}) },
+        });
+        Object.assign(moving, { x, z, rotation, ...(isFreeLight(type) ? { y } : {}) });
+        syncModel(moving);
+      }
+    } else {
+      const house = addHouse({ x, z, rotation, type, ...(isFreeLight(type) ? { y } : {}) }, true);
+      undoHistory.push({ house });
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     }
     syncParcels();
     saveWorld();
     if ((isPaving(type) || isLamp(type) || isDecoration(type)) && !moving) {
       aim = null;
+<<<<<<< HEAD
       placement.lastSite = { x, z, y: placementHeight(x, z, type, rotation) };
+=======
+      placement.lastSite = { x, z, y };
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       placement.target = null;
       placement.followView = walker.active;
       updateActions();
       canvas.focus({ preventScroll: true });
+<<<<<<< HEAD
       setStatus(isPaving(type)
         ? "Bloco assentado. Escolha o próximo local. Esc ou × para terminar."
         : isDecoration(type)
         ? "Decoração colocada. Escolha o próximo local. Esc ou × para terminar."
         : "Poste instalado. Escolha o próximo local. Esc ou × para terminar.");
+=======
+      setStatus(isFreeLight(type)
+        ? "Luz colocada. Escolha outro ponto ou ajuste a altura. Esc termina."
+        : isDecoration(type)
+        ? "Decoração colocada. Escolha o próximo local. Esc para terminar."
+        : "Poste instalado. Escolha o próximo local. Esc para terminar.");
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       return;
     }
     clearAction();
@@ -1180,6 +1393,7 @@ async function startGame(renderer) {
   }
 
   function rotateHouse(turn) {
+    if (isFreeLight((placement || selection)?.type)) return;
     if (placement?.road || selection?.road) return;
     let house = placement ?? selection;
     if (!house) return;
@@ -1392,7 +1606,8 @@ async function startGame(renderer) {
       }
       scene.fog.near = Math.max(165, overviewDistance + 10);
       scene.fog.far = far;
-      if (updateWorld(view)) {
+      updateRoadGrid(target);
+      if (updateWorld(view, target)) {
         renderer.shadowMap.needsUpdate = true;
         nightLights.bind(scene);
       }
@@ -1552,7 +1767,11 @@ async function startGame(renderer) {
 
   const readyButtons = [
     "shop-button",
+<<<<<<< HEAD
     "expand-button",
+=======
+    "extend-button",
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     "move-button",
     "road-button",
     "grid-button",
@@ -1562,6 +1781,7 @@ async function startGame(renderer) {
     "zoom-out",
     "help-button",
   ];
+<<<<<<< HEAD
   expansionButton.onclick = toggleExpansion;
   for (const button of expansionOptions) {
     const side = button.dataset.expand;
@@ -1579,6 +1799,11 @@ async function startGame(renderer) {
   element("shop-button").addEventListener("click", () => {
     if (expanding) clearAction();
   });
+=======
+  element("extend-button").onclick = showExtension;
+  element("close-extend").onclick = () => extend.close();
+  element("expand-area").onclick = expandArea;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   element("cancel-button").onclick = cancelAction;
   element("road-button").onclick = chooseRoad;
   element("road-erase").onclick = toggleRoadErase;
@@ -1588,6 +1813,9 @@ async function startGame(renderer) {
   element("rotate-button").onclick = () => rotateHouse(-1);
   element("delete-selected").onclick = deleteSelection;
   element("place-button").onclick = placeConstruction;
+  element("light-height").onchange = event => setLightHeight(event.target.valueAsNumber);
+  element("light-lower").onclick = () => stepLightHeight(-.25);
+  element("light-raise").onclick = () => stepLightHeight(.25);
   element("grid-button").onclick = toggleGrid;
   element("reset-camera").onclick = resetCamera;
   walkButton.onclick = toggleWalking;
@@ -1596,7 +1824,7 @@ async function startGame(renderer) {
   element("zoom-out").onclick = () => zoom(1.2);
   element("help-button").onclick = () => help.showModal();
   element("close-help").onclick = () => help.close();
-  for (const dialog of [shop, help]) {
+  for (const dialog of [shop, help, extend]) {
     dialog.addEventListener("focusin", clearMovement);
   }
 
@@ -1605,12 +1833,22 @@ async function startGame(renderer) {
     if (
       help.open ||
       shop.open ||
+      extend.open ||
       event.altKey ||
       (event.target instanceof HTMLElement &&
         event.target.matches("input, textarea, select, [contenteditable]"))
     )
       return;
+<<<<<<< HEAD
     const key = event.code === "Space" ? "space" : event.key.toLowerCase();
+=======
+    const key = event.key.toLowerCase();
+    if ((key === "pageup" || key === "pagedown") && isFreeLight((placement || selection)?.type)) {
+      event.preventDefault();
+      stepLightHeight((key === "pageup" ? 1 : -1) * (event.shiftKey ? 1 : .25));
+      return;
+    }
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     if (event.ctrlKey || event.metaKey) {
       if (key === "z" && !event.shiftKey && !event.repeat) {
         event.preventDefault();
@@ -1641,8 +1879,12 @@ async function startGame(renderer) {
         placement.target &&
         parcels.has(tileKey(placement.target.x, placement.target.z));
       const large = isLargeFootprint(placement.type);
+<<<<<<< HEAD
       const decoration = isDecoration(placement.type);
       const paving = isPaving(placement.type);
+=======
+      const decoration = isDecoration(placement.type) || isFreeLight(placement.type);
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       const lamp = isLamp(placement.type) || decoration;
       const scale = decoration ? DECORATION_STEP / 2 : lamp ? 0.5 : !paving && (placement.road || onParcel || large) ? LOT_SIZE / 2 : 1;
       const target =
@@ -1663,12 +1905,24 @@ async function startGame(renderer) {
         clampOnGrid(target.z + dz * scale, minZ, maxZ, large ? (depth - LOT_SIZE) / 2 : 0),
       );
       aim = null;
+<<<<<<< HEAD
       placement.target = { ...site, y: placementHeight(site.x, site.z, placement.type, placement.rotation, siteOrder(site.x, site.z)) };
+=======
+      if (isFreeLight(placement.type)) {
+        placement.height = target.y;
+        placement.heightLocked = true;
+      }
+      placement.target = { ...site, y: placementHeight(site.x, site.z, placement.type) };
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
       invalidate();
       return;
     }
     if (event.repeat) return;
+<<<<<<< HEAD
     if (key === "1") toggleExpansion();
+=======
+    if (key === "1") showExtension();
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     if (key === "escape") cancelAction();
     if (key === "2") element("shop-button").click();
     if (key === "3") chooseRoad();
@@ -1701,7 +1955,7 @@ async function startGame(renderer) {
   setStatus("Preparando a cidade…");
   camera.far = Math.max(viewDistance, camera.position.distanceTo(controls.target) + 190);
   camera.updateProjectionMatrix();
-  updateWorld(camera);
+  updateWorld(camera, controls.target);
   buildingBatches.sync(houses, animations);
   convergenceAnimation.update(camera, 0, animations, false);
   nightLights.bind(scene);

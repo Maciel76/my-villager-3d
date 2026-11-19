@@ -94,6 +94,14 @@
           <strong id="action-title"></strong>
           <span id="action-cost" hidden></span>
         </div>
+        <div id="light-height-controls" class="light-height-controls" hidden>
+          <label for="light-height">Altura da luz · m</label>
+          <div>
+            <button id="light-lower" class="hud-button" aria-label="Descer luz" title="Descer 25 cm (Page Down)">−</button>
+            <input id="light-height" type="number" min="-20" max="100" step="0.25" value="3" inputmode="decimal" />
+            <button id="light-raise" class="hud-button" aria-label="Subir luz" title="Subir 25 cm (Page Up)">+</button>
+          </div>
+        </div>
         <div class="action-buttons">
           <button id="move-selected" class="gold-button" hidden>Mover</button>
           <button
@@ -166,6 +174,7 @@
       </div>
       <nav class="toolbar" aria-label="Ferramentas da vila">
         <button
+<<<<<<< HEAD
           id="expand-button"
           class="slot"
           aria-controls="expansion-panel"
@@ -176,6 +185,16 @@
         >
           <span class="slot-icon" aria-hidden="true">⤢</span
           ><span>Expandir</span><kbd>1</kbd>
+=======
+          id="extend-button"
+          class="slot"
+          aria-haspopup="dialog"
+          aria-keyshortcuts="1"
+          disabled
+        >
+          <span class="slot-icon" aria-hidden="true">⛶</span
+          ><span>Estender</span><kbd>1</kbd>
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
         </button>
         <button
           id="shop-button"
@@ -218,6 +237,18 @@
         </button>
       </nav>
     </div>
+
+    <dialog id="extend-dialog" aria-labelledby="extend-title" aria-describedby="extend-description">
+      <button id="close-extend" class="hud-button dialog-close" aria-label="Fechar expansão">×</button>
+      <h2 id="extend-title">Mais espaço para a vila</h2>
+      <p id="extend-description">Amplie o terreno para construir além dos limites atuais. A cidade permanece no lugar.</p>
+      <dl class="area-measures">
+        <dt>Terreno atual</dt><dd id="current-area"></dd>
+        <dt>Após estender</dt><dd id="next-area"></dd>
+      </dl>
+      <p class="area-note">A expansão libera 90 m em cada borda. Você pode estender novamente sempre que precisar.</p>
+      <button id="expand-area" class="gold-button" type="button">Estender terreno</button>
+    </dialog>
 
     <dialog id="shop-dialog" class="shop-dialog" aria-labelledby="shop-title">
       <header class="shop-header">
@@ -314,6 +345,7 @@
       </button>
       <h2 id="help-title">Como jogar</h2>
       <dl>
+<<<<<<< HEAD
         <dt>Economia da cidade</dt>
         <dd>
           Casas e prédios trazem moradores. Lojas e serviços geram receita
@@ -322,6 +354,9 @@
           calçadas, decorações e expansões custam moedas.
         </dd>
         <dt>Explorar</dt>
+=======
+        <dt>Vista aérea</dt>
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
         <dd>
           Arraste para girar. Mova com o botão direito, WASD ou dois dedos. Use
           a roda do mouse ou a pinça para dar zoom.
@@ -335,6 +370,7 @@
         <dd>
           Escolha Caminhar (4) para ver a vila em primeira pessoa. Use WASD ou as
           setas, ou segure as setas na tela de toque. Arraste para olhar ao
+<<<<<<< HEAD
           redor. A Loja permite construir sem sair do passeio. Toque em
           Caminhar novamente para voltar à vista aérea. Esc cancela a construção antes de sair.
         </dd>
@@ -344,19 +380,32 @@
           subir, Shift para descer e WASD ou as setas para se mover. No celular,
           use os botões de altura ao lado da tela. Arraste para olhar para o céu
           ou para a vila. Pressione F novamente para pousar.
+=======
+          redor. A Loja permite construir sem sair do passeio. Escolha Caminhar
+          novamente para voltar à vista aérea; Esc cancela a construção antes de sair.
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
         </dd>
         <dt>Construir</dt>
         <dd>
           Abra a Loja, escolha uma construção e clique em um lote livre. No
           celular, toque no terreno e confirme. Em primeira pessoa, mire no chão
           e clique ou pressione Enter; arrastar continua girando a visão. Ao instalar postes, continue
+<<<<<<< HEAD
           colocando o mesmo modelo sem reabrir a Loja. Use Esc ou × para encerrar.
+=======
+          colocando o mesmo modelo sem reabrir a Loja. Esc encerra.
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
         </dd>
         <dt>Traçar ruas e definir lotes</dt>
         <dd>
           Escolha Ruas e coloque os blocos lado a lado. A calçada acompanha os
+<<<<<<< HEAD
           trechos e os lotes ao redor ficam demarcados. Para editar, encerre o
           modo de construção e selecione um trecho. Use Mover ou Excluir. Em Ruas,
+=======
+          trechos e os lotes ao redor ficam demarcados. Para editar, pressione
+          Esc e selecione um bloco de rua: use Mover ou Excluir. Em Ruas,
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
           Remover permite retirar vários trechos seguidos.
         </dd>
         <dt>Editar uma construção</dt>
@@ -364,6 +413,11 @@
           Clique ou toque na construção. Use Mover para trocar de lote, as setas
           curvas para girar 90° em qualquer direção ou Excluir para remover a
           construção.
+        </dd>
+        <dt>Estender o terreno</dt>
+        <dd>
+          Escolha Estender (1) e confirme para aumentar a largura e o comprimento
+          em 180 m. A expansão é salva com a vila e pode ser repetida.
         </dd>
         <dt>Atalhos</dt>
         <dd>

@@ -50,6 +50,7 @@ const LANDMARKS = {
 };
 
 const LIGHTING = {
+  lightBlock: { label: "Bloco de luz livre", freeLight: true, description: "Somente luz. Posicione em superfícies ou ajuste a altura livremente." },
   lampColonial: { label: "Clássico Colonial" },
   lampOriental: { label: "Oriental (Tōrō)" },
   lampUrban: { label: "Moderno Urbano" },

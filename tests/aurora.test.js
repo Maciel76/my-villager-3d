@@ -21,5 +21,6 @@ test("Aurora's footprint respects streets, lot alignment and the village boundar
   assert.equal(valid(6, 18), true);
   assert.equal(valid(6, 6), false);
   assert.equal(valid(0, 18), false);
-  assert.equal(valid(90, 18), false);
+  assert.equal(valid(90, 18), true);
+  assert.equal(valid(174, 18), false);
 });

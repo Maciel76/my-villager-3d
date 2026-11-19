@@ -253,6 +253,7 @@ export function createLampModels() {
   });
 
   return {
+    lightBlock: createLightBlock(),
     lampColonial: colonial.finish(),
     lampOriental: oriental.finish(),
     lampUrban: urban.finish(),
@@ -260,4 +261,17 @@ export function createLampModels() {
     lampZen: zen.finish(),
     lampSolar: solar.finish(),
   };
+}
+
+function createLightBlock() {
+  const model = new THREE.Group();
+  const material = markNightLight(new THREE.MeshStandardMaterial({
+    color: "#ffe6b6", roughness: .55, emissive: "#ffbd70", depthTest: false, depthWrite: false,
+  }), 3.5);
+  const marker = new THREE.Mesh(new THREE.BoxGeometry(.18, .18, .18), material);
+  marker.name = "Pequeno marcador da luz livre";
+  marker.renderOrder = 20;
+  model.add(marker);
+  addLampEmitter(model, [0, 0, 0], { color: "#ffbe77", intensity: 36, range: 8.5, halo: 1.3 });
+  return model;
 }

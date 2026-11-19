@@ -1,5 +1,9 @@
 import { BUILDING_TYPES } from "./house-types.js";
+<<<<<<< HEAD
 import { LOT_SIZE, footprint, isDecoration, isLamp, isPaving } from "./placement.js";
+=======
+import { LOT_SIZE, footprint, isLamp, isFreeLight } from "./placement.js";
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
 import { buildArea } from "./village-area.js";
 
@@ -126,7 +130,11 @@ export function createCityPlan() {
   };
   // The architectural plan uses its parcels for buildings and street lighting.
   const missing = Object.keys(BUILDING_TYPES).filter((type) =>
+<<<<<<< HEAD
     !isDecoration(type) && !isPaving(type) && !houses.some((h) => h.type === type));
+=======
+    BUILDING_TYPES[type].category !== "decoration" && !isFreeLight(type) && !houses.some((h) => h.type === type));
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   if (missing.length) throw new Error(`Modelos ausentes: ${missing.join(", ")}`);
   return world;
 }

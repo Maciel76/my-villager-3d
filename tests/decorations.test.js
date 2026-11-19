@@ -7,7 +7,7 @@ import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { DECORATION_TYPES } from "../src/decoration-types.js";
 import { prepareDecorationModels } from "../src/decorations.js";
 import { optimizeBuildingTemplates } from "../src/building-batches.js";
-import { canPlace, footprint, readSave } from "../src/placement.js";
+import { BUILD_LIMIT, canPlace, footprint, readSave } from "../src/placement.js";
 import { canBuildHouse, canBuildRoad, houseSite, roadLots, tileKey } from "../src/road-layout.js";
 
 test("all twenty SolidCraft decorations load, fit their placement areas and keep their night light", async () => {
@@ -38,7 +38,7 @@ test("decorations use fine placement between parcels and on roads, with clearanc
   assert.equal(canBuildHouse(12, 3, [bench], roads, lots, null, "decorPlanter", 0), false);
   assert.equal(canBuildRoad(12, 0, [bench], roads), true);
   assert.deepEqual(footprint("decorBridge", 1), [5.25, 2.25]);
-  assert.equal(canPlace(88, 0, [], null, "decorBridge", 1), false);
+  assert.equal(canPlace(BUILD_LIMIT + 1, 0, [], null, "decorBridge", 1), false);
   assert.equal(canPlace(12.5, 3, [], null, "decorBench", 0), true);
 });
 

@@ -1,11 +1,23 @@
 import { DEFAULT_HOUSE, BUILDING_TYPES } from "./house-types.js";
+<<<<<<< HEAD
 import { BASE_AREA, LOT_SIZE, buildArea, containsPoint } from "./village-area.js";
 import { PAVING_SIZE, snapPaving } from "./paving-types.js";
 
 export { BUILD_LIMIT, LOT_SIZE } from "./village-area.js";
+=======
+import { BUILD_LIMIT, LEGACY_AREA_SIZE, areaBuildLimit, isAreaSize } from "./build-area.js";
+export { BUILD_LIMIT } from "./build-area.js";
+
+export const LOT_SIZE = 12;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 export const LAMP_FOOTPRINT = 2;
 export const LAMP_BASE_RADIUS = 0.33;
 export const DECORATION_STEP = .25;
+export const FREE_LIGHT_MIN_Y = -20;
+export const FREE_LIGHT_MAX_Y = 100;
+export const FREE_LIGHT_DEFAULT_Y = 3;
+export const isFreeLight = type => Boolean(BUILDING_TYPES[type]?.freeLight);
+export const isLightHeight = y => Number.isFinite(y) && y >= FREE_LIGHT_MIN_Y && y <= FREE_LIGHT_MAX_Y;
 
 // Populated from rendered models before reading a saved village. A server or
 // offline save reader has no meshes and must never discard garden decorations
@@ -34,7 +46,11 @@ export function snap(value) {
 }
 
 export function footprint(type, rotation = 0) {
+<<<<<<< HEAD
   if (isPaving(type)) return [PAVING_SIZE, PAVING_SIZE];
+=======
+  if (isFreeLight(type)) return [.25, .25];
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   if (isLamp(type)) return [LAMP_FOOTPRINT, LAMP_FOOTPRINT];
   if (isDecoration(type)) {
     const [width, depth] = BUILDING_TYPES[type].placementSize ?? BUILDING_TYPES[type].size;
@@ -55,6 +71,7 @@ export function snapFootprint(value, size) {
   return Math.round((value - offset) / LOT_SIZE) * LOT_SIZE + offset;
 }
 
+<<<<<<< HEAD
 export function placementBounds(type, rotation, area = BASE_AREA) {
   const [width, depth] = footprint(type, rotation);
   const x = isPaving(type) ? width / 2 : Math.max(0, width - LOT_SIZE) / 2;
@@ -64,6 +81,19 @@ export function placementBounds(type, rotation, area = BASE_AREA) {
 
 export function insideBuildArea(x, z, type, rotation, area) {
   return containsPoint(placementBounds(type, rotation, area), x, z);
+=======
+export const buildLimit = (size, limit = BUILD_LIMIT) =>
+  limit - Math.max(0, size - LOT_SIZE) / 2;
+
+export function insideBuildArea(x, z, type, rotation, limit = BUILD_LIMIT) {
+  const [width, depth] = footprint(type, rotation);
+  return (
+    Number.isFinite(x) &&
+    Number.isFinite(z) &&
+    Math.abs(x) <= buildLimit(width, limit) &&
+    Math.abs(z) <= buildLimit(depth, limit)
+  );
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 }
 
 export function overlapsLot(x, z, [width, depth], other) {
@@ -74,10 +104,18 @@ export function overlapsLot(x, z, [width, depth], other) {
   );
 }
 
+<<<<<<< HEAD
 export function canPlace(x, z, houses, ignored = null, type, rotation, area, order) {
   const [width, depth] = footprint(type, rotation);
   if (!insideBuildArea(x, z, type, rotation, area)) return false;
   if (isPaving(type) && (snapPaving(x) !== x || snapPaving(z) !== z)) return false;
+=======
+export function canPlace(x, z, houses, ignored = null, type, rotation, limit = BUILD_LIMIT) {
+  const area = footprint(type, rotation);
+  const [width, depth] = area;
+  if (!insideBuildArea(x, z, type, rotation, limit)) return false;
+  if (isFreeLight(type)) return true;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   if (isLamp(type) && (!Number.isInteger(x) || !Number.isInteger(z))) return false;
   if (
     isLargeFootprint(type) &&
@@ -109,6 +147,7 @@ export function pavingUnderBuilding(paving, building) {
 }
 
 export function overlapsPlacement(first, second) {
+<<<<<<< HEAD
   if (isPaving(first.type) || isPaving(second.type)) {
     const paving = isPaving(first.type) ? first : second;
     const other = paving === first ? second : first;
@@ -119,6 +158,9 @@ export function overlapsPlacement(first, second) {
     const pavingFirst = paving === first ? firstOrder < secondOrder : secondOrder < firstOrder;
     return !pavingFirst && decorationHitsBuilding(paving, other);
   }
+=======
+  if (isFreeLight(first.type) || isFreeLight(second.type)) return false;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   if (isTree(first.type) && isPlantingBed(second.type) && treeFitsPlantingBed(first, second)) return false;
   if (isTree(second.type) && isPlantingBed(first.type) && treeFitsPlantingBed(second, first)) return false;
   const firstDecoration = isDecoration(first.type), secondDecoration = isDecoration(second.type);
@@ -159,23 +201,33 @@ export function plantingBedUnder(tree, houses) {
 export function readSave(save, area = buildArea(save?.expansion)) {
   if (save.version !== 1 || !Array.isArray(save.houses))
     throw new Error("Save inválido");
+  const areaSize = save.areaSize === undefined ? LEGACY_AREA_SIZE : save.areaSize;
+  if (!isAreaSize(areaSize)) throw new Error("Terreno salvo inválido");
+  const limit = areaBuildLimit(areaSize);
   const houses = [];
   for (const [index, h] of save.houses.entries()) {
     if (!h) continue;
     const type = Object.hasOwn(BUILDING_TYPES, h.type) ? h.type : DEFAULT_HOUSE;
+    const lightY = Object.hasOwn(h, "y") ? h.y : FREE_LIGHT_DEFAULT_Y;
+    if (isFreeLight(type) && !isLightHeight(lightY)) continue;
     if (
       Number.isInteger(h.rotation) &&
       h.rotation >= 0 &&
       h.rotation < 4 &&
+<<<<<<< HEAD
       // Previously saved blocks under a wall still belong to the lower layer.
       canPlace(h.x, h.z, houses, null, type, h.rotation, area, isPaving(type) ? -Infinity : Infinity)
+=======
+      canPlace(h.x, h.z, houses, null, type, h.rotation, limit)
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     ) {
       const storedOrder = save.houseOrder?.[index];
       const order =
         Number.isSafeInteger(storedOrder) && storedOrder >= 0
           ? storedOrder
           : index;
-      houses.push({ x: h.x, z: h.z, rotation: h.rotation, type, order });
+      houses.push({ x: h.x, z: h.z, rotation: h.rotation, type, order,
+        ...(isFreeLight(type) ? { y: lightY } : {}) });
     }
   }
   return houses;

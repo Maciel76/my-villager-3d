@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { buildArea, containsPoint, isExpansion } from "./village-area.js";
 import { ECONOMY_CYCLE_MS, MAX_BALANCE } from "./economy.js";
+=======
+import { isFreeLight, isLightHeight } from "./placement.js";
+import { LEGACY_AREA_SIZE, areaBuildLimit, isAreaSize } from "./build-area.js";
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 
 const hourOptions = new Set(["7.5", "12", "18", "23"]);
 export const isVillageHour = (value) => hourOptions.has(value);
@@ -22,6 +27,7 @@ function isTreasury(value) {
 }
 
 export function isVillageWorld(world) {
+<<<<<<< HEAD
   if (!record(world, ["version", "houses", "houseOrder", "roads", "expansion", "economy"]) ||
       world.version !== 1 ||
       (world.economy !== undefined && !isTreasury(world.economy)) ||
@@ -33,6 +39,21 @@ export function isVillageWorld(world) {
       (house) =>
         record(house, ["x", "z", "rotation", "type"]) &&
         containsPoint(area, house.x, house.z) &&
+=======
+  const size = world?.areaSize === undefined ? LEGACY_AREA_SIZE : world.areaSize;
+  const coordinate = value => Number.isFinite(value) && Math.abs(value) <= areaBuildLimit(size);
+  return (
+    record(world, ["version", "areaSize", "houses", "houseOrder", "roads"]) &&
+    isAreaSize(size) &&
+    world.version === 1 &&
+    Array.isArray(world.houses) &&
+    world.houses.every(
+      (house) =>
+        record(house, ["x", "y", "z", "rotation", "type"]) &&
+        (!Object.hasOwn(house, "y") || (isFreeLight(house.type) && isLightHeight(house.y))) &&
+        coordinate(house.x) &&
+        coordinate(house.z) &&
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
         Number.isInteger(house.rotation) &&
         house.rotation >= 0 &&
         house.rotation < 4 &&

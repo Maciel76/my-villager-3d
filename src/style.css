@@ -319,6 +319,7 @@ h1 {
   background: #804c38;
   border-color: #e1a27d;
 }
+<<<<<<< HEAD
 .expansion-options {
   display: grid;
   grid-template-columns: repeat(4, max-content);
@@ -349,6 +350,11 @@ h1 {
   .expansion-options .hud-button {
     padding-inline: 5px;
   }
+=======
+#extend-button .slot-icon {
+  color: var(--gold);
+  font-size: 30px;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 }
 .tool-slot {
   min-width: 69px;
@@ -416,6 +422,19 @@ h1 {
 .action-copy {
   display: grid;
   gap: 2px;
+}
+.light-height-controls { display: grid; gap: 3px; flex-shrink: 0; }
+.light-height-controls label { color: #d9ccad; font-size: 11px; }
+.light-height-controls > div { display: flex; align-items: center; gap: 4px; }
+.light-height-controls .hud-button { min-width: 32px; min-height: 32px; font-size: 18px; }
+.light-height-controls input {
+  width: 76px; min-height: 32px; padding: 4px; border: 1px solid var(--edge);
+  border-radius: 5px; color: var(--sand); background: var(--forest); font: inherit;
+}
+@media (max-width: 640px) {
+  .action-tray:has(.light-height-controls:not([hidden])) { flex-wrap: wrap; }
+  .action-tray:has(.light-height-controls:not([hidden])) .action-copy { flex: 1 1 45%; }
+  .action-tray:has(.light-height-controls:not([hidden])) .action-buttons { flex: 1 1 100%; justify-content: flex-end; }
 }
 #action-mode {
   color: #d9ccad;
@@ -492,6 +511,38 @@ dialog dd {
   padding: 0;
   background: var(--sand);
   color: var(--ink);
+}
+
+#extend-dialog p {
+  line-height: 1.6;
+}
+#extend-title {
+  padding-right: 36px;
+  font-size: clamp(22px, 5vw, 30px);
+}
+.area-measures {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+}
+.area-measures dt {
+  margin: 0;
+}
+.area-measures dd {
+  font: 700 17px/1.4 var(--heading);
+  text-align: right;
+}
+.area-note {
+  color: #e4d6ba;
+  font-size: 13px;
+}
+#expand-area {
+  width: 100%;
+  margin-top: 8px;
 }
 .shop-header {
   position: sticky;

@@ -1,7 +1,12 @@
 import * as THREE from "three";
 import { markNightLight } from "./daylight.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+<<<<<<< HEAD
 import { BASE_AREA, LOT_SIZE } from "./village-area.js";
+=======
+import { BUILD_LIMIT, LOT_SIZE } from "./placement.js";
+import { getBuildAreaSize } from "./build-area.js";
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 import { projectTexture } from "./assets.js";
 
 const mat = (color) =>
@@ -72,7 +77,10 @@ export function createHouse(materials) {
 }
 
 const CHUNK_SIZE = 120;
+<<<<<<< HEAD
 const CLEARING_MARGIN = LOT_SIZE / 2 + 1;
+=======
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
 const TREE_SPACING = 12;
 const TREE_ROWS = CHUNK_SIZE / TREE_SPACING;
 
@@ -88,10 +96,18 @@ function seededRandom(seed) {
   };
 }
 
+<<<<<<< HEAD
 function distanceFromClearing(x, z, area) {
   return Math.hypot(
     Math.max(0, area.minX - x - CLEARING_MARGIN, x - area.maxX - CLEARING_MARGIN),
     Math.max(0, area.minZ - z - CLEARING_MARGIN, z - area.maxZ - CLEARING_MARGIN),
+=======
+function distanceFromClearing(x, z) {
+  const clearingEdge = BUILD_LIMIT + LOT_SIZE / 2 + 1;
+  return Math.hypot(
+    Math.max(0, Math.abs(x) - clearingEdge),
+    Math.max(0, Math.abs(z) - clearingEdge),
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
   );
 }
 
@@ -225,8 +241,35 @@ export function createWorld(scene, materials, initialArea = BASE_AREA) {
   const createForest = createForestGenerator();
   const chunks = new Map();
   let lastX, lastZ, lastRange;
+  let renderedArea = getBuildAreaSize();
 
-  function update(camera) {
+  function disposeChunk(chunk) {
+    chunk.surface.removeFromParent();
+    chunk.surface.geometry.dispose();
+    for (const trees of chunk.forest) {
+      trees.removeFromParent();
+      trees.dispose();
+    }
+  }
+
+  function update(camera, focus = camera.position) {
+    const size = getBuildAreaSize();
+    const areaChanged = renderedArea !== size;
+    if (areaChanged) {
+      // Rebuild only the loaded surroundings, never the entire expanded map.
+      for (const chunk of chunks.values()) disposeChunk(chunk);
+      chunks.clear();
+      renderedArea = size;
+      lastX = lastZ = lastRange = undefined;
+      resizeGrid();
+    }
+    const gridEdge = (size - Math.min(size, 480)) / 2;
+    grid.position.x = THREE.MathUtils.clamp(Math.round(focus.x / 120) * 120, -gridEdge, gridEdge);
+    grid.position.z = THREE.MathUtils.clamp(Math.round(focus.z / 120) * 120, -gridEdge, gridEdge);
+    const meadowX = Math.floor(focus.x / CHUNK_SIZE);
+    const meadowZ = Math.floor(focus.z / CHUNK_SIZE);
+    if (areaChanged || meadowX !== grassX || meadowZ !== grassZ)
+      updateMeadow(meadowX, meadowZ);
     const centerX = Math.floor(camera.position.x / CHUNK_SIZE);
     const centerZ = Math.floor(camera.position.z / CHUNK_SIZE);
     // A corner of the view reaches farther than the far plane's center.
@@ -252,8 +295,16 @@ export function createWorld(scene, materials, initialArea = BASE_AREA) {
         CHUNK_SIZE <=
       range;
 
+<<<<<<< HEAD
     for (const [key, chunk] of chunks)
       if (!inRange(chunk.x, chunk.z)) removeChunk(key, chunk);
+=======
+    for (const [key, chunk] of chunks) {
+      if (inRange(chunk.x, chunk.z)) continue;
+      disposeChunk(chunk);
+      chunks.delete(key);
+    }
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     for (let z = centerZ - radius; z <= centerZ + radius; z++) {
       for (let x = centerX - radius; x <= centerX + radius; x++) {
         const key = `${x},${z}`;
@@ -302,25 +353,36 @@ export function createWorld(scene, materials, initialArea = BASE_AREA) {
   const grass = new THREE.InstancedMesh(
     new THREE.ConeGeometry(0.22, 0.75, 3),
     mat("#769f4d"),
-    1400,
+    10000,
   );
-  const random = seededRandom(751);
   const dummy = new THREE.Object3D();
   const grassPlacements = [];
-  for (let i = 0; i < grass.count; i++) {
-    dummy.position.set((random() - 0.5) * 180, 0.26, (random() - 0.5) * 180);
-    dummy.rotation.y = random() * Math.PI;
-    dummy.scale.setScalar(0.6 + random());
-    dummy.updateMatrix();
-    grassPlacements.push({
-      x: dummy.position.x,
-      z: dummy.position.z,
-      matrix: dummy.matrix.clone(),
-    });
-    grass.setMatrixAt(i, dummy.matrix);
+  let grassX, grassZ;
+  let isPaved = () => false;
+  function updateMeadow(centerX, centerZ) {
+    grassX = centerX;
+    grassZ = centerZ;
+    grassPlacements.length = 0;
+    const size = getBuildAreaSize();
+    const span = Math.min(size, 480);
+    const edge = (size - span) / 2;
+    const offsetX = THREE.MathUtils.clamp(centerX * CHUNK_SIZE, -edge, edge);
+    const offsetZ = THREE.MathUtils.clamp(centerZ * CHUNK_SIZE, -edge, edge);
+    const random = seededRandom(coordinateSeed(offsetX, offsetZ) ^ 751);
+    const count = Math.floor(1400 * (span / 180) ** 2);
+    for (let i = 0; i < count; i++) {
+      dummy.position.set(offsetX + (random() - 0.5) * span, 0.26, offsetZ + (random() - 0.5) * span);
+      dummy.rotation.y = random() * Math.PI;
+      dummy.scale.setScalar(0.6 + random());
+      dummy.updateMatrix();
+      grassPlacements.push({ x: dummy.position.x, z: dummy.position.z, matrix: dummy.matrix.clone() });
+    }
+    updatePaving(isPaved);
   }
+  updateMeadow(0, 0);
   scene.add(grass);
 
+<<<<<<< HEAD
   function makeGrid(color, opacity, y) {
     const result = new THREE.LineSegments(new THREE.BufferGeometry(),
       new THREE.LineBasicMaterial({ color, transparent: true, opacity }));
@@ -349,6 +411,24 @@ export function createWorld(scene, materials, initialArea = BASE_AREA) {
   }
   updateGrids();
   function updatePaving(isPaved) {
+=======
+  const gridSize = Math.min(getBuildAreaSize(), 480);
+  const grid = new THREE.GridHelper(gridSize, gridSize / 2, "#cce3ae", "#cce3ae");
+  grid.position.y = 0.035;
+  grid.material.transparent = true;
+  grid.material.opacity = 0.22;
+  grid.visible = false;
+  scene.add(grid);
+  function resizeGrid() {
+    const size = Math.min(getBuildAreaSize(), 480);
+    const replacement = new THREE.GridHelper(size, size / 2);
+    grid.geometry.dispose();
+    grid.geometry = replacement.geometry;
+    replacement.material.dispose();
+  }
+  function updatePaving(predicate) {
+    isPaved = predicate;
+>>>>>>> 9c3bcfe (ajustando jogabilidade2)
     let count = 0;
     for (const { x, z, matrix } of grassPlacements) {
       if (isPaved(x, z)) continue;
@@ -356,6 +436,7 @@ export function createWorld(scene, materials, initialArea = BASE_AREA) {
     }
     grass.count = count;
     grass.instanceMatrix.needsUpdate = true;
+    grass.computeBoundingSphere();
   }
 
   return { ground, grid, roadGrid, setArea, update, updatePaving };
