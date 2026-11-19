@@ -80,7 +80,9 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   marcado. Funciona na vista aérea e em primeira pessoa.
 - Em **Loja → Iluminação → Bloco de luz livre**, coloque apenas a luz: o
   cubinho de 18 cm é um marcador, sem poste, e não bloqueia construções ou
-  caminhada. Clique em telhados, paredes ou no chão; a prévia se apoia na
+  caminhada. O marcador respeita paredes e aparece apenas até 36 m; a luz
+  continua funcionando normalmente, mesmo quando o cubo não aparece.
+  Clique em telhados, paredes ou no chão; a prévia se apoia na
   superfície. Use **Altura da luz**, **−/+** ou **Page Up/Page Down** para
   subir ou descer em passos de 25 cm (**Shift** ajusta 1 m pelo teclado).
   A altura vai de −20 a 100 m, permite luzes dentro ou abaixo dos objetos e

@@ -7,6 +7,7 @@ import { canBuildHouse, canMoveRoad, canRemoveRoad, houseSite, roadLots, tileKey
 import { createLampModels } from "../src/lamp-models.js";
 import { createNightLights } from "../src/night-lights.js";
 import { createWalker } from "../src/walking.js";
+import { createBuildingBatches, optimizeBuildingTemplates } from "../src/building-batches.js";
 
 const light=(y=3)=>({type:"lightBlock",x:0,z:0,rotation:0,y});
 test("free lights coexist with occupied parcels, roads, other lights and arbitrary sub-metre positions",()=>{
@@ -53,4 +54,33 @@ test("the light block uses the same warm point-light effect at its saved 3D posi
   assert.deepEqual(walker.camera.position.toArray(),[0,1.68,0]);
   assert.equal(walker.canBuildAt("lightBlock",0,0,0,templates),true);
   assert.equal(walker.advance(new THREE.Vector3(0,0,-1),.04),true);
+});
+
+test("light markers respect scene depth and distant handles disappear without switching off their emitters",()=>{
+  const templates=createLampModels();
+  const marker=templates.lightBlock.children[0];
+  assert.equal(marker.material.depthTest,true);
+  assert.equal(marker.material.depthWrite,true);
+  assert.equal(marker.renderOrder,0);
+  assert.equal(templates.lightBlock.userData.lampEmitters[0].halo,0,"An invisible light needs no floating halo");
+  optimizeBuildingTemplates(templates);
+  const scene=new THREE.Scene(),model=templates.lightBlock.clone();scene.add(model);
+  const houses=[{type:"lightBlock",model}],camera=new THREE.PerspectiveCamera(62,1,.08,410);
+  const night=createNightLights(scene,{clustered:true}),batches=createBuildingBatches(scene,templates);
+  camera.position.set(0,0,10);scene.updateMatrixWorld(true);
+  batches.sync(houses,new Map(),camera);night.update(houses,camera,1);
+  const batch=batches.root.children[0];
+  assert.equal(batch.count,1);
+  const data=night.uniforms.cityLights.value,rebuilds=night.stats.rebuilds;
+  camera.position.set(0,0,80);
+  batches.sync(houses,new Map(),camera);night.update(houses,camera,1);
+  assert.equal(batch.count,0);
+  assert.equal(model.visible,true);
+  assert.equal(night.stats.emitters,1);
+  assert.equal(night.uniforms.cityLights.value,data);
+  assert.equal(night.stats.rebuilds,rebuilds);
+  camera.position.set(0,0,10);
+  batches.sync(houses,new Map(),camera);night.update(houses,camera,1);
+  assert.equal(batch.count,1);
+  assert.equal(night.uniforms.cityLights.value,data);
 });

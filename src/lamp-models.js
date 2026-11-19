@@ -265,13 +265,13 @@ export function createLampModels() {
 
 function createLightBlock() {
   const model = new THREE.Group();
+  model.userData.markerViewDistance = 36;
   const material = markNightLight(new THREE.MeshStandardMaterial({
-    color: "#ffe6b6", roughness: .55, emissive: "#ffbd70", depthTest: false, depthWrite: false,
+    color: "#ffe6b6", roughness: .55, emissive: "#ffbd70",
   }), 3.5);
   const marker = new THREE.Mesh(new THREE.BoxGeometry(.18, .18, .18), material);
   marker.name = "Pequeno marcador da luz livre";
-  marker.renderOrder = 20;
   model.add(marker);
-  addLampEmitter(model, [0, 0, 0], { color: "#ffbe77", intensity: 36, range: 8.5, halo: 1.3 });
+  addLampEmitter(model, [0, 0, 0], { color: "#ffbe77", intensity: 36, range: 8.5, halo: 0 });
   return model;
 }

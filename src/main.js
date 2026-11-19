@@ -415,7 +415,6 @@ async function startGame(renderer) {
   }
 
   function updateGhostModel(type) {
-    ghostMaterial.depthTest = !isFreeLight(type);
     const preview = buildingTemplates[type].clone();
     preview.traverse((part) => {
       if (part.isMesh) {
@@ -1551,7 +1550,7 @@ async function startGame(renderer) {
         nightLights.bind(scene);
       }
       refreshPreview();
-      buildingBatches.sync(houses, animations);
+      buildingBatches.sync(houses, animations, view);
       nightLights.update(houses, view, daylight.lampPower);
       dirty = false;
     }
@@ -1872,7 +1871,7 @@ async function startGame(renderer) {
   camera.far = Math.max(viewDistance, camera.position.distanceTo(controls.target) + 190);
   camera.updateProjectionMatrix();
   updateWorld(camera, controls.target);
-  buildingBatches.sync(houses, animations);
+  buildingBatches.sync(houses, animations, camera);
   convergenceAnimation.update(camera, 0, animations, false);
   nightLights.bind(scene);
   // Warm both lighting variants asynchronously. A saved night-time city uses

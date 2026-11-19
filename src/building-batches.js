@@ -80,8 +80,11 @@ export function createBuildingBatches(scene, templates) {
   root.name = "Construções instanciadas";
   scene.add(root);
   const batches = new Map();
+  const cameraPosition = new THREE.Vector3();
+  const modelPosition = new THREE.Vector3();
   let rebuilds = 0;
-  function sync(houses, animations) {
+  function sync(houses, animations, camera) {
+    if (camera) camera.getWorldPosition(cameraPosition);
     const groups = new Map();
     for (const house of houses) {
       if (house.model.userData.hasMovingParts) continue;
@@ -94,6 +97,12 @@ export function createBuildingBatches(scene, templates) {
         house.model.userData.renderLayer = layer;
       }
       if (animated || !house.model.visible) continue;
+      // Editor handles can disappear at a distance without hiding the model
+      // that owns its light emitters or rebuilding the lighting data.
+      const markerDistance = house.model.userData.markerViewDistance;
+      if (camera && markerDistance && cameraPosition.distanceToSquared(
+        modelPosition.setFromMatrixPosition(house.model.matrixWorld),
+      ) > markerDistance ** 2) continue;
       if (!groups.has(house.type)) groups.set(house.type, []);
       groups.get(house.type).push(house);
     }
