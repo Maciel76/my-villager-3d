@@ -94,7 +94,7 @@ export function registerDecorationObstacles(templates) {
         if (Math.max(a.y, b.y, c.y) > .6 || Math.min(a.y, b.y, c.y) < -.1) continue;
         const normalY = (b.z - a.z) * (c.x - a.x) - (b.x - a.x) * (c.z - a.z);
         if (normalY <= 1e-7) continue;
-        surfaces.push([a.x, a.z, a.y, b.x, b.z, b.y, c.x, c.z, c.y]);
+        surfaces.push([a.x, a.z, a.y, b.x, b.z, b.y, c.x, c.z, c.y, Boolean(part.userData.groundCover)]);
       }
     });
     gardenSurfaces.set(type, { surfaces, bounds: new THREE.Box3().setFromObject(model) });
@@ -114,7 +114,8 @@ export function decorationSurfaceHeight(x, z, houses) {
     const dx = x - house.x, dz = z - house.z, lx = dx * cos - dz * sin, lz = dx * sin + dz * cos;
     if (lx < bounds.min.x || lx > bounds.max.x || lz < bounds.min.z || lz > bounds.max.z) continue;
     const base = house.model?.position.y ?? 0;
-    for (const [ax, az, ay, bx, bz, by, cx, cz, cy] of surfaces) {
+    for (const [ax, az, ay, bx, bz, by, cx, cz, cy, groundCover] of surfaces) {
+      if (groundCover && house.model?.userData.pavedGround) continue;
       if (lx < Math.min(ax, bx, cx) || lx > Math.max(ax, bx, cx) ||
         lz < Math.min(az, bz, cz) || lz > Math.max(az, bz, cz)) continue;
       const denominator = (bz - cz) * (ax - cx) + (cx - bx) * (az - cz);

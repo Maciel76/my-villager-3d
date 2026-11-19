@@ -26,7 +26,7 @@ export function updateConstruction(sequence, time) {
   const progress = (time - sequence.started) / DURATION;
   for (const { part, delay, finalY } of sequence.parts) {
     const phase = THREE.MathUtils.clamp((progress - delay) / 0.41, 0, 1);
-    part.visible = phase > 0;
+    part.visible = phase > 0 && !part.userData.hiddenByPaving;
     part.position.y = finalY + Math.pow(1 - phase, 3) * (delay === 0 ? 1.4 : 6);
   }
   return progress >= 1;
@@ -34,7 +34,7 @@ export function updateConstruction(sequence, time) {
 
 export function finishConstruction(sequence) {
   for (const { part, finalY } of sequence.parts) {
-    part.visible = true;
+    part.visible = !part.userData.hiddenByPaving;
     part.position.y = finalY;
   }
 }

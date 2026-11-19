@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { splitGroundCover } from "./ground-cover.js";
 
 const transparent = material => (Array.isArray(material) ? material : [material]).some(m => m?.transparent);
 
@@ -7,7 +8,14 @@ const transparent = material => (Array.isArray(material) ? material : [material]
 // construction phases, material finishes, ground covers, and shadow flags.
 export function optimizeBuildingTemplates(templates) {
   for (const template of Object.values(templates)) {
-    if (template.userData.hasMovingParts) continue;
+    if (template.userData.hasMovingParts) {
+      template.updateMatrixWorld(true);
+      template.traverse(part => {
+        if (part.isMesh && part.userData.groundCover)
+          part.userData.lowGroundCover = new THREE.Box3().setFromObject(part).max.y <= .6;
+      });
+      continue;
+    }
     template.updateMatrixWorld(true);
     const bounds = new THREE.Box3().setFromObject(template);
     const height = bounds.max.y - bounds.min.y;
@@ -21,6 +29,8 @@ export function optimizeBuildingTemplates(templates) {
         mesh.receiveShadow = part.receiveShadow;
         mesh.renderOrder = part.renderOrder;
         mesh.userData = { ...part.userData };
+        mesh.geometry.computeBoundingBox();
+        mesh.userData.lowGroundCover = Boolean(part.userData.groundCover) && mesh.geometry.boundingBox.max.y <= .6;
         mesh.name = part.name;
         retained.push(mesh);
         return;
@@ -34,17 +44,19 @@ export function optimizeBuildingTemplates(templates) {
         for (let i = 0; i < count; i++) indices[i] = i;
         geometry.setIndex(new THREE.BufferAttribute(indices, 1));
       }
-      geometry.computeBoundingBox();
-      const b = geometry.boundingBox;
-      const phase = b.max.y < height * .16 ? 0 : (b.min.y + b.max.y) / 2 > height * .63 ? 2 : 1;
-      const key = [part.material.uuid, part.castShadow, part.receiveShadow,
-        Boolean(part.userData.groundCover), part.renderOrder, phase, Object.keys(geometry.attributes).sort().join(",")].join(":");
-      if (!groups.has(key)) groups.set(key, { source: part, geometries: [] });
-      groups.get(key).geometries.push(geometry);
+      for (const piece of splitGroundCover(geometry, part.userData.groundCover)) {
+        piece.geometry.computeBoundingBox();
+        const b = piece.geometry.boundingBox;
+        const phase = b.max.y < height * .16 ? 0 : (b.min.y + b.max.y) / 2 > height * .63 ? 2 : 1;
+        const key = [part.material.uuid, part.castShadow, part.receiveShadow,
+          Boolean(part.userData.groundCover), piece.low, part.renderOrder, phase, Object.keys(piece.geometry.attributes).sort().join(",")].join(":");
+        if (!groups.has(key)) groups.set(key, { source: part, low: piece.low, geometries: [] });
+        groups.get(key).geometries.push(piece.geometry);
+      }
     });
     template.clear();
     if (retained.length) template.add(...retained);
-    for (const { source, geometries } of groups.values()) {
+    for (const { source, low, geometries } of groups.values()) {
       const geometry = mergeGeometries(geometries);
       if (!geometry) throw new Error(`Não foi possível agrupar ${template.name}`);
       geometries.forEach(g => g.dispose());
@@ -54,6 +66,7 @@ export function optimizeBuildingTemplates(templates) {
       mesh.receiveShadow = source.receiveShadow;
       mesh.renderOrder = source.renderOrder;
       mesh.userData = { ...source.userData };
+      mesh.userData.lowGroundCover = low;
       mesh.name = source.name;
       template.add(mesh);
     }
@@ -77,7 +90,7 @@ export function createBuildingBatches(scene, templates) {
       if (house.model.userData.renderLayer !== layer) {
         // Transparent glass keeps per-object sorting and its original draw
         // order. Instancing transparent buildings would change their blending.
-        house.model.traverse(part => part.layers.set(animated || transparent(part.material) ? 0 : 1));
+        house.model.traverse(part => part.layers.set(part.userData.hiddenByPaving ? 2 : animated || transparent(part.material) ? 0 : 1));
         house.model.userData.renderLayer = layer;
       }
       if (animated || !house.model.visible) continue;
@@ -86,7 +99,7 @@ export function createBuildingBatches(scene, templates) {
     }
     for (const type of new Set([...batches.keys(), ...groups.keys()])) {
       const members = groups.get(type) ?? [];
-      const stamp = members.map(({ model }) => `${model.id}:${model.position.toArray()}:${model.rotation.y}`).join(";");
+      const stamp = members.map(({ model }) => `${model.id}:${model.position.toArray()}:${model.rotation.y}:${Boolean(model.userData.pavedGround)}`).join(";");
       let batch = batches.get(type);
       if (batch?.stamp === stamp) continue;
       if (!batch || batch.capacity < members.length) {
@@ -99,6 +112,7 @@ export function createBuildingBatches(scene, templates) {
           mesh.receiveShadow = source.receiveShadow;
           mesh.renderOrder = source.renderOrder;
           mesh.name = `instances-${type}`;
+          mesh.userData.lowGroundCover = Boolean(source.userData.lowGroundCover);
           root.add(mesh);
           return mesh;
         });
@@ -107,11 +121,12 @@ export function createBuildingBatches(scene, templates) {
       }
       batch.stamp = stamp;
       for (const mesh of batch.meshes) {
-        mesh.count = members.length;
-        mesh.visible = members.length > 0;
-        members.forEach(({ model }, i) => mesh.setMatrixAt(i, model.matrixWorld));
+        const visible = mesh.userData.lowGroundCover ? members.filter(({ model }) => !model.userData.pavedGround) : members;
+        mesh.count = visible.length;
+        mesh.visible = visible.length > 0;
+        visible.forEach(({ model }, i) => mesh.setMatrixAt(i, model.matrixWorld));
         mesh.instanceMatrix.needsUpdate = true;
-        if (members.length) mesh.computeBoundingSphere();
+        if (visible.length) mesh.computeBoundingSphere();
       }
       rebuilds++;
     }

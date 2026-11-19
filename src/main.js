@@ -6,6 +6,7 @@ import {
   placementBounds,
   canPlace,
   footprint,
+  overlapsLot,
   insideBuildArea,
   isBuilding,
   isLamp,
@@ -23,9 +24,10 @@ import {
   isLargeFootprint,
   readSave,
 } from "./placement.js";
+import { setPavingGroundCover } from "./ground-cover.js";
 import { createHouse, createWorld, terrainHeight } from "./world.js";
 import { buildArea, EXPANSION_LIMIT, EXPANSION_SIZE } from "./village-area.js";
-import { loadBuildingModels, loadMaterials, projectTexture } from "./assets.js";
+import { loadBuildingModels, loadMaterials } from "./assets.js";
 import { createMiranteOriental } from "./mirante-oriental.js";
 import { createEdificioOrion } from "./edificio-orion.js";
 import { createConvergencia } from "./convergencia.js";
@@ -52,7 +54,7 @@ import { createDaylight } from "./daylight.js";
 import { createLampModels } from "./lamp-models.js";
 import { createNightLights } from "./night-lights.js";
 import { createPavingModels } from "./paving-models.js";
-import { PAVING_HEIGHT, PAVING_SIZE, pavingHeightAt } from "./paving-types.js";
+import { PAVING_HEIGHT, pavingHeightAt } from "./paving-types.js";
 import {
   canBuildHouse,
   canBuildRoad,
@@ -220,13 +222,10 @@ async function startGame(renderer) {
   const traffic = createTraffic(scene, (x, z) => Math.max(
     streets.surfaceHeight(x, z, roads) ?? 0, pavingHeightAt(x, z, pavingBlocks),
   ));
-  let raisedLots = [];
-  let lotFoundations;
-  const foundationGeometry = projectTexture(new THREE.BoxGeometry(LOT_SIZE, 1, LOT_SIZE));
   const walker = createWalker(
     (x, z) => Math.max(
       streets.surfaceHeight(x, z, roads) ?? 0, terrainAt(x, z),
-      pavingHeightAt(x, z, pavingBlocks), foundationHeightAt(x, z),
+      pavingHeightAt(x, z, pavingBlocks),
     ),
     viewDistance,
   );
@@ -411,6 +410,8 @@ async function startGame(renderer) {
     const { model, x, z, rotation, type, order } = house;
     const raised = isBuilding(type) || isLamp(type) || isDecoration(type) || isPaving(type);
     model.position.set(x, isFreeLight(type) ? house.y ?? FREE_LIGHT_DEFAULT_Y : raised ? placementHeight(x, z, type, rotation, order) : 0, z);
+    if (isBuilding(type)) setPavingGroundCover(model, houses.some(block =>
+      isPaving(block.type) && overlapsLot(block.x, block.z, footprint(block.type), house)), animations.has(model));
     model.rotation.y = (rotation * Math.PI) / 2;
     model.updateMatrixWorld();
     renderer.shadowMap.needsUpdate = true;
@@ -528,19 +529,14 @@ async function startGame(renderer) {
 
   function syncParcels() {
     pavingBlocks.clear();
-    raisedLots = [];
     for (const house of houses) {
       const { x, z, type, rotation, order, model } = house;
       if (!isBuilding(type)) continue;
       model.position.y = placementHeight(x, z, type, rotation, order);
       model.updateMatrixWorld();
-      if (model.position.y > 0) {
-        const [width, depth] = footprint(type, rotation);
-        // Keep the lawn clear of the older pavers even in the distant city view.
-        raisedLots.push({ house, width, depth, top: model.position.y + .01 });
-      }
+      setPavingGroundCover(model, houses.some(block => isPaving(block.type) &&
+        overlapsLot(block.x, block.z, footprint(block.type), house)), animations.has(model));
     }
-    updateLotFoundations();
     for (const { x, z, type, order, model } of houses) {
       if (!isPaving(type)) continue;
       model.position.y = placementHeight(x, z, type, 0, order);
@@ -552,7 +548,7 @@ async function startGame(renderer) {
       model.position.y = placementHeight(x, z, type, rotation);
       model.updateMatrixWorld();
     }
-    updatePaving((x, z) => Math.max(pavingHeightAt(x, z, pavingBlocks), foundationHeightAt(x, z)) > 0 ||
+    updatePaving((x, z) => pavingHeightAt(x, z, pavingBlocks) > 0 ||
       streets.covers(x, z, roads));
     renderer.shadowMap.needsUpdate = true;
     parcels = roadLots(roads, area);
@@ -564,39 +560,6 @@ async function startGame(renderer) {
     }
     streets.updatePlots([...parcels.values()]);
     streets.plotsLayer.visible = !walker.active && (Boolean(placement) || showGrid);
-  }
-
-  function updateLotFoundations() {
-    const count = raisedLots.length;
-    if (count && (!lotFoundations || lotFoundations.instanceMatrix.count < count)) {
-      if (lotFoundations) {
-        lotFoundations.removeFromParent();
-        lotFoundations.dispose();
-      }
-      lotFoundations = new THREE.InstancedMesh(
-        foundationGeometry, materials.lawn, THREE.MathUtils.ceilPowerOfTwo(count),
-      );
-      lotFoundations.receiveShadow = true;
-      scene.add(lotFoundations);
-    }
-    if (!lotFoundations) return;
-    const matrix = new THREE.Matrix4();
-    raisedLots.forEach(({ house: { x, z }, width, depth, top }, i) => {
-      const ground = terrainAt(x, z);
-      matrix.makeScale(width / LOT_SIZE, top - ground, depth / LOT_SIZE);
-      matrix.setPosition(x, (top + ground) / 2, z);
-      lotFoundations.setMatrixAt(i, matrix);
-    });
-    lotFoundations.count = count;
-    lotFoundations.visible = count > 0;
-    lotFoundations.instanceMatrix.needsUpdate = true;
-    if (count) lotFoundations.computeBoundingSphere();
-  }
-
-  function foundationHeightAt(x, z, margin = 0) {
-    return raisedLots.find(({ house, width, depth }) =>
-      Math.abs(x - house.x) < width / 2 + margin && Math.abs(z - house.z) < depth / 2 + margin
-    )?.top ?? 0;
   }
 
   function syncStreets() {
@@ -623,16 +586,16 @@ async function startGame(renderer) {
     if (isPaving(type)) {
       const block = { x, z, type, order };
       if (houses.some(house => isBuilding(house.type) && pavingUnderBuilding(block, house))) return terrain;
-      return Math.max(terrain, foundationHeightAt(x, z, PAVING_SIZE / 2), decorationSurfaceHeight(x, z, houses));
+      return Math.max(terrain, decorationSurfaceHeight(x, z, houses));
     }
     const paved = pavingHeightAt(x, z, pavingBlocks);
-    if (isLamp(type)) return Math.max(terrain, paved, foundationHeightAt(x, z), lampRestHeight(x, z, roads));
+    if (isLamp(type)) return Math.max(terrain, paved, lampRestHeight(x, z, roads));
     if (isTree(type)) {
       const bed = plantingBedUnder({ type, x, z, rotation }, houses);
       if (bed) return placementHeight(bed.x, bed.z, bed.type, bed.rotation) + BUILDING_TYPES[bed.type].plantingBed.height;
     }
     if (isDecoration(type)) return Math.max(
-      terrain, paved, foundationHeightAt(x, z), streets.surfaceHeight(x, z, roads) ?? 0,
+      terrain, paved, streets.surfaceHeight(x, z, roads) ?? 0,
       decorationSurfaceHeight(x, z, houses),
     );
     return terrain;
@@ -1043,13 +1006,12 @@ async function startGame(renderer) {
     castRay(x, y);
     const lightHandle = raycaster.intersectObjects(houses.filter(h => isFreeLight(h.type)).map(h => h.model), true)[0];
     const hit = lightHandle ?? raycaster.intersectObjects(
-      [...houses.map(({ model }) => model), streets.roadsLayer, ...(lotFoundations?.visible ? [lotFoundations] : [])],
+      [...houses.map(({ model }) => model), streets.roadsLayer],
       true,
     )[0];
     let model = hit?.object;
     while (model && model.parent !== scene) model = model.parent;
     selection = houses.find((house) => house.model === model) ?? null;
-    if (model && model === lotFoundations) selection = raisedLots[hit.instanceId]?.house ?? null;
     if (model === streets.roadsLayer) {
       const road = roads.get(tileKey(snapTile(hit.point.x), snapTile(hit.point.z)));
       if (road) selection = { ...road, road: true };

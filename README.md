@@ -67,9 +67,10 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   para criar caminhos ou praças. Postes, bancos, floreiras e outras decorações
   ficam apoiados na calçada, e dá para passar por ela no modo **Caminhar**.
   Casas, prédios, monumentos e comércios podem ser assentados sobre os blocos.
-  Calçadas colocadas antes ficam sob o lote e preservam seu gramado. Para
-  pavimentar o jardim, coloque os blocos depois da construção, nos espaços
-  livres. Mudar um bloco ou construção de lugar conta como nova colocação.
+  A construção fica apoiada sobre as calçadas colocadas antes. Os blocos
+  continuam visíveis nas áreas livres, sem uma camada de gramado por cima.
+  Para pavimentar um jardim existente, coloque os blocos nos espaços livres.
+  Mudar um bloco ou construção de lugar conta como nova colocação.
 - Em **Loja → Iluminação → Bloco de luz livre**, coloque apenas a luz: o
   cubinho de 18 cm é um marcador, sem poste, e não bloqueia construções ou
   caminhada. Clique em telhados, paredes ou no chão; a prévia se apoia na

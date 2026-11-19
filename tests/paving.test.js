@@ -48,7 +48,7 @@ test("a house and the paving beneath it survive loading in either order", () => 
   }
 });
 
-test("the lot covers older paving and leaves later garden paving above it in all four building categories", () => {
+test("buildings rest on older paving and keep later garden paving separate in all four building categories", () => {
   for (const type of ["cottage", "varandas", "rotunda", "bakery"]) {
     const building = { type, x: 0, z: 0, rotation: 0, order: 2 };
     const older = { ...concrete, x: -4, z: 4, order: 1 };
