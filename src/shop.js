@@ -50,7 +50,7 @@ function capturePreviews(renderer, templates, cityLights) {
         const palace = type === "palace";
         const convergence = type === "convergencia";
         const wheel = type === "rodaGigante";
-        const tower = type === "miranteOriental" || type === "edificioOrion";
+        const tower = type === "miranteOriental" || type === "edificioOrion" || type === "lexCorp";
         const angle = wheel ? [.31, .18, 1] : convergence ? [.29, .29, 1] : tower
           ? [0.36, 0.21, 0.91]
           : isPaving(type) ? [0.46, 1.35, 0.89]

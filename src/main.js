@@ -33,6 +33,7 @@ import { createEdificioOrion } from "./edificio-orion.js";
 import { createConvergencia } from "./convergencia.js";
 import { createConvergenceAnimation } from "./convergencia-efeitos.js";
 import { createFerrisWheel, createFerrisWheelAnimation } from "./roda-gigante.js";
+import { createLexCorpAnimation } from "./torre-lexcorp.js";
 import { DEFAULT_AREA_SIZE, getBuildAreaSize, nextAreaSize, setBuildAreaSize } from "./build-area.js";
 import {
   BUILDING_TYPES,
@@ -190,7 +191,8 @@ async function startGame(renderer) {
   controls.enableDamping = true;
   controls.screenSpacePanning = false;
   controls.minDistance = 24;
-  controls.maxDistance = 245;
+  const catalogViewDistance = Math.max(245, ...Object.values(BUILDING_TYPES).map(details => (details.height ?? 0) * 2.7));
+  controls.maxDistance = catalogViewDistance;
   controls.minPolarAngle = 0.13;
   controls.maxPolarAngle = Math.PI * 0.43;
 
@@ -207,6 +209,7 @@ async function startGame(renderer) {
   const buildingBatches = createBuildingBatches(scene, buildingTemplates);
   const convergenceAnimation = createConvergenceAnimation(scene);
   const ferrisWheelAnimation = createFerrisWheelAnimation();
+  const lexCorpAnimation = createLexCorpAnimation(scene,{groundHeight:terrainAt});
 
   const {
     ground,
@@ -460,6 +463,7 @@ async function startGame(renderer) {
     scene.add(house.model);
     if (house.type === "convergencia") convergenceAnimation.add(house.model);
     if (house.type === "rodaGigante") ferrisWheelAnimation.add(house.model);
+    if (house.type === "lexCorp") lexCorpAnimation.add(house.model);
     syncModel(house);
   }
 
@@ -488,6 +492,7 @@ async function startGame(renderer) {
     finishHouseAnimation(house);
     convergenceAnimation.remove(house.model);
     ferrisWheelAnimation.remove(house.model);
+    lexCorpAnimation.remove(house.model);
     scene.remove(house.model);
     renderer.shadowMap.needsUpdate = true;
     return index;
@@ -497,6 +502,7 @@ async function startGame(renderer) {
     if (layoutChanged) {
       metrics = cityEconomy(houses);
       traffic.setDemand(metrics.residents, metrics.employed);
+      lexCorpAnimation.setCity(houses);
       if (walker.active) walker.updateObstacles(houses, buildingTemplates);
     }
     showEconomy();
@@ -1445,7 +1451,7 @@ async function startGame(renderer) {
       controls.target.copy(overview.target);
       camera.position.copy(overview.position);
     }
-    controls.maxDistance = Math.max(245, overview?.distance * 1.25 || 0);
+    controls.maxDistance = Math.max(catalogViewDistance, overview?.distance * 1.25 || 0);
     controls.update();
     controls.saveState();
     invalidate();
@@ -1556,12 +1562,13 @@ async function startGame(renderer) {
     }
     const convergenceMoving = convergenceAnimation.update(view, time, animations, !reduceMotion.matches);
     const wheelMoving = ferrisWheelAnimation.update(view, time, animations, !reduceMotion.matches);
+    const lexCorpMoving = lexCorpAnimation.update(view, time, animations, !reduceMotion.matches,daylight.lampPower);
     const trafficFocus = walker.active ? view.position : controls.target;
     const trafficZoom = walker.active
       ? Math.max(0, view.position.y - terrainAt(view.position.x, view.position.z)) * 2
       : view.position.distanceTo(controls.target);
     const trafficMoving = traffic.update(trafficFocus, trafficZoom, delta, !reduceMotion.matches);
-    const effectsAnimated = convergenceMoving || wheelMoving || trafficMoving;
+    const effectsAnimated = convergenceMoving || wheelMoving || lexCorpMoving || trafficMoving;
     const effectFrame = effectsAnimated && time - lastRenderedFrame >= 1000 / 30 - 2;
     if (sceneChanged || effectFrame) {
       renderer.render(scene, view);
@@ -1865,6 +1872,7 @@ async function startGame(renderer) {
   );
   window.addEventListener("blur", clearMovement);
   window.addEventListener("resize", resize);
+  lexCorpAnimation.setCity(houses);
   resetCamera();
   resize();
   setStatus("Preparando a cidade…");

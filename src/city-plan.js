@@ -27,6 +27,12 @@ export function extendEasternAvenue(roads) {
   }
 }
 
+export function extendLexCorpAvenue(roads) {
+  roads.set(tileKey(-72, -96), { x: -72, z: -96, order: roads.size });
+  for (let x = -84; x <= -48; x += LOT_SIZE)
+    roads.set(tileKey(x, -108), { x, z: -108, order: roads.size });
+}
+
 export function createCityPlan() {
   const roads = new Map();
   for (let x = -84; x <= 84; x += LOT_SIZE) {
@@ -37,6 +43,7 @@ export function createCityPlan() {
   }
   extendNorthernAvenue(roads);
   extendEasternAvenue(roads);
+  extendLexCorpAvenue(roads);
   const area = buildArea(CITY_EXPANSION, LEGACY_AREA_SIZE);
   const lots = roadLots(roads, area);
   const houses = [];
@@ -53,6 +60,7 @@ export function createCityPlan() {
   add("edificioOrion", -18, -144);
   add("convergencia", 126, -114);
   add("rodaGigante", 120, -54, 2);
+  add("lexCorp", -66, -138);
   for (const [index, type] of ["bakery", "market", "pharmacy"].entries())
     add(type, -12 + index * 12, -12, 2);
 
@@ -104,7 +112,7 @@ export function createCityPlan() {
   // at four-way junctions; directional LED arms point inward over the lane.
   for (const { x, z } of roads.values()) {
     const vertical = CITY_STREETS.includes(x);
-    const horizontal = CITY_STREETS.includes(z) || z === MIRANTE_AVENUE;
+    const horizontal = CITY_STREETS.includes(z) || z === MIRANTE_AVENUE || (z === -108 && x <= -48);
     const alternating = z === MIRANTE_AVENUE || Math.abs((vertical ? z : x) / 12) % 2 ? 1 : -1;
     if (vertical && horizontal) {
       add("lampDouble", x + 4, z + 4, 0);

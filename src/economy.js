@@ -20,13 +20,13 @@ export function economyProfile(type) {
   const details = BUILDING_TYPES[type];
   if (!details) return { price: 0, residents: 0, jobs: 0 };
   const residents = homes[type] ?? 0;
-  const openings = jobs[type] ?? 0;
+  const openings = details.workplaces ?? jobs[type] ?? 0;
   const [width, depth] = footprint(type);
   const lots = width * depth / LOT_SIZE ** 2;
   let price;
   switch (details.category) {
     case "residential": price = 90 + residents * 36 + lots * 50; break;
-    case "apartments": price = 250 + residents * 43 + lots * 70; break;
+    case "apartments": price = 250 + residents * 43 + openings * 35 + lots * 70; break;
     case "commercial": price = 120 + openings * 35 + lots * 80; break;
     case "landmarks": price = 550 + lots * 260; break;
     case "lighting": price = type === "lampSolar" ? 155 : 90; break;

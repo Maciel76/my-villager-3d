@@ -7,14 +7,16 @@ import { BUILDING_TYPES } from "../src/house-types.js";
 import { isVillageWorld } from "../src/village-data.js";
 
 test("every shop item has a price and larger buildings hold more residents or workers", () => {
-  for (const [type, { category }] of Object.entries(BUILDING_TYPES)) {
+  for (const [type, { category, workplaces }] of Object.entries(BUILDING_TYPES)) {
     const { price, residents, jobs } = economyProfile(type);
     assert(Number.isSafeInteger(price) && price > 0, type);
-    assert.equal(residents > 0, category === "residential" || category === "apartments", type);
-    assert.equal(jobs > 0, category === "commercial", type);
+    assert.equal(residents > 0, category === "residential" || (category === "apartments" && !workplaces), type);
+    assert.equal(jobs > 0, category === "commercial" || Boolean(workplaces), type);
   }
   assert(economyProfile("edificioOrion").residents > economyProfile("cottage").residents);
   assert(economyProfile("supermarket").jobs > economyProfile("market").jobs);
+  assert.equal(economyProfile("lexCorp").residents, 0);
+  assert(economyProfile("lexCorp").jobs > economyProfile("supermarket").jobs);
 });
 
 test("commercial income depends on filled jobs and revenue arrives at the end of a cycle", () => {

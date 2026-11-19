@@ -136,6 +136,19 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
 - O **Edifício Orion**, em **Loja → Prédios**, tem **56 m** de altura e um
   terreno modelado de **40 × 30 m**. Reserva **48 × 36 m** na grade da vila
   para o térreo comercial, doze pavimentos, terraços e piscina na cobertura.
+- A **Torre LexCorp**, em **Loja → Prédios**, tem aproximadamente **180 m** de
+  altura e ocupa **48 × 48 m** (16 lotes). Reproduz os volumes curvos de vidro,
+  os coroamentos diagonais, a faixa em espiral, o emblema e o letreiro.
+  O helicóptero acelera os rotores, decola, sobrevoa os bairros e retorna para
+  pousar no heliponto. O patrulhamento começa perto de 38 m de altura, sobe
+  localmente sobre os telhados mais altos e contorna os grandes arranha-céus.
+  Um refletor sob a cabine varre as ruas: tem facho visível e ilumina as
+  superfícies, com maior destaque à noite. Após o pouso, os rotores desaceleram
+  e o ciclo recomeça. A torre
+  pode ser girada ou movida; o pouso acompanha a nova posição. Uma faixa de luz
+  percorre a fachada. As janelas acendem à noite. A opção de movimento reduzido
+  pausa a animação. A câmera permite afastamento suficiente para a torre inteira.
+  Como sede empresarial, oferece 240 vagas de trabalho na economia da vila.
 - A **Casa Cubo Verde**, em **Loja → Casas**, ocupa **24 × 24 m**. Tem três
   níveis, fachadas envidraçadas, terraços, revestimento de madeira e um jardim
   sobre a ala de dois pavimentos. A reprodução usa proporções aproximadas da
@@ -259,6 +272,12 @@ simulados e não modificam a vila do MongoDB.
 - `models/edificio-orion.sc` contém a arquitetura editável do Orion, incluindo
   as faixas orbitais, o coroamento inclinado e o letreiro. A versão em
   `src/edificio-orion.js` acrescenta os acabamentos, os jardins e a iluminação.
+- `models/torre-lexcorp.sc` contém a torre e o helicóptero editáveis, com
+  os parâmetros Lote e Altura. `src/torre-lexcorp.js` prepara os vidros,
+  a iluminação e os grupos de rotores; `src/lexcorp-flight.js` planeja o voo
+  pela cidade e a aproximação e o pouso de cada helicóptero.
+  `src/lexcorp-searchlight.js` acompanha a aeronave com um holofote e o
+  interrompe na primeira fachada ou cobertura atingida.
 - `models/casa-cubo-verde.sc` contém a casa moderna editável no SolidCraft.
   `src/casa-cubo-verde.js` prepara o vidro, a madeira e a iluminação noturna;
   o GLB do jogo usa versões leves das copas e arbustos do modelo CAD.

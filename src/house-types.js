@@ -31,6 +31,7 @@ export const COMMERCIAL_TYPES = {
 };
 
 const APARTMENTS = {
+  lexCorp: { label: "Torre LexCorp", lotSpan: 4, height: 180, workplaces: 240 },
   varandas: { label: "Residencial Varandas" },
   mirante: { label: "Torre Mirante" },
   miranteOriental: { label: "Torre Mirante Oriental", lotSpan: 2, height: 40 },

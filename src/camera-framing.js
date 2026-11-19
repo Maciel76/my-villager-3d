@@ -15,7 +15,7 @@ export function villageOverview(houses, roads, aspect) {
     bounds.expandByPoint(new THREE.Vector3(road.x - 6, 0, road.z - 6));
     bounds.expandByPoint(new THREE.Vector3(road.x + 6, 0, road.z + 6));
   }
-  if (bounds.isEmpty() || Math.max(bounds.max.x - bounds.min.x, bounds.max.z - bounds.min.z) <= 60)
+  if (bounds.isEmpty() || (Math.max(bounds.max.x - bounds.min.x, bounds.max.z - bounds.min.z) <= 60 && bounds.max.y <= 60))
     return null;
 
   const target = bounds.getCenter(new THREE.Vector3());
