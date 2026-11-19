@@ -111,7 +111,7 @@ export function villageApi({ uri, database }) {
     const client = new MongoClient(uri, {
       maxPoolSize: 5,
       serverSelectionTimeoutMS: 2500,
-      timeoutMS: 5000,
+      connectTimeoutMS: 5000,
     });
     const collection = client.db(database).collection("villages");
     server.httpServer?.once("close", () => {

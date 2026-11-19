@@ -15,6 +15,14 @@ O servidor do jogo usa `mongodb://127.0.0.1:27017`, banco `vila_verde` e coleç�
 `villages`. Use `MONGODB_URI` e `MONGODB_DATABASE` no ambiente ou em `.env.local`
 se precisar alterar a conexão.
 
+No Windows, confirme que o serviço **MongoDB** está iniciado. Se executar
+`npm run dev` ou `npm run preview` pelo Ubuntu/WSL e o MongoDB estiver apenas
+no Windows, o inicializador usa o Node.js LTS instalado no Windows para acessar
+o mesmo banco. Isso também funciona com versões instaladas pelo NVM. Se precisar
+escolher o executável, defina `VILLAGE_WINDOWS_NODE=C:/caminho/node.exe` em
+`.env.local`. Um MongoDB disponível dentro do WSL continua sendo usado normalmente;
+conexões remotas configuradas em `MONGODB_URI` também são preservadas.
+
 A vila e o horário são compartilhados entre os navegadores que acessam esse
 servidor local. Para importar o progresso antigo, abra o jogo no mesmo perfil
 do navegador e endereço de antes. A importação só preenche os dados que ainda

@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/start-server.js",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "node scripts/start-server.js preview",
     "test": "node --test tests/*.test.js",
     "optimize:models": "node scripts/optimize-models.js"
   },
