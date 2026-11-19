@@ -71,6 +71,13 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   continuam visíveis nas áreas livres, sem uma camada de gramado por cima.
   Para pavimentar um jardim existente, coloque os blocos nos espaços livres.
   Mudar um bloco ou construção de lugar conta como nova colocação.
+- Para criar uma **linha de calçada**, selecione o modelo, use **Shift+clique**
+  no primeiro ponto e clique no ponto final. A linha preenche os blocos de 2 m,
+  inclusive na diagonal, pulando paredes, asfalto, blocos existentes e áreas
+  proibidas. A prévia marca os espaços livres em verde, os bloqueados em vermelho
+  e os que excedem o saldo em amarelo. Só os blocos colocados são cobrados;
+  **Ctrl+Z** desfaz a linha inteira e devolve as moedas. **Esc** cancela o início
+  marcado. Funciona na vista aérea e em primeira pessoa.
 - Em **Loja → Iluminação → Bloco de luz livre**, coloque apenas a luz: o
   cubinho de 18 cm é um marcador, sem poste, e não bloqueia construções ou
   caminhada. Clique em telhados, paredes ou no chão; a prévia se apoia na

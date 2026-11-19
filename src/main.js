@@ -55,6 +55,7 @@ import { createLampModels } from "./lamp-models.js";
 import { createNightLights } from "./night-lights.js";
 import { createPavingModels } from "./paving-models.js";
 import { PAVING_HEIGHT, pavingHeightAt } from "./paving-types.js";
+import { planPavingLine } from "./paving-line.js";
 import {
   canBuildHouse,
   canBuildRoad,
@@ -269,6 +270,43 @@ async function startGame(renderer) {
   });
   ghost.visible = false;
   scene.add(ghost);
+  const pavingLineGeometry = new THREE.PlaneGeometry(1.9, 1.9).rotateX(-Math.PI / 2);
+  const pavingLineMaterial = new THREE.MeshBasicMaterial({
+    transparent: true, opacity: .5, depthTest: false, depthWrite: false,
+  });
+  let pavingLineGhost, drawnPavingLine;
+  const pavingLineMatrix = new THREE.Matrix4();
+  const pavingLineColor = new THREE.Color();
+
+  function updatePavingLineGhost(plan) {
+    if (!plan?.cells.length) {
+      if (pavingLineGhost) pavingLineGhost.visible = false;
+      drawnPavingLine = null;
+      return;
+    }
+    if (pavingLineGhost) pavingLineGhost.visible = true;
+    if (drawnPavingLine === plan) return;
+    if (!pavingLineGhost || pavingLineGhost.instanceMatrix.count < plan.cells.length) {
+      if (pavingLineGhost) { pavingLineGhost.removeFromParent(); pavingLineGhost.dispose(); }
+      pavingLineGhost = new THREE.InstancedMesh(pavingLineGeometry, pavingLineMaterial,
+        THREE.MathUtils.ceilPowerOfTwo(plan.cells.length));
+      pavingLineGhost.renderOrder = 5;
+      pavingLineGhost.raycast = () => {};
+      scene.add(pavingLineGhost);
+    }
+    plan.cells.forEach((cell, index) => {
+      pavingLineMatrix.makeTranslation(cell.x, cell.y + PAVING_HEIGHT + .09, cell.z);
+      pavingLineGhost.setMatrixAt(index, pavingLineMatrix);
+      pavingLineColor.set(cell.state === "ready" ? "#b8ed86" : cell.state === "blocked" ? "#ef806b" : "#efbd68");
+      pavingLineGhost.setColorAt(index, pavingLineColor);
+    });
+    pavingLineGhost.count = plan.cells.length;
+    pavingLineGhost.visible = true;
+    pavingLineGhost.instanceMatrix.needsUpdate = true;
+    pavingLineGhost.instanceColor.needsUpdate = true;
+    pavingLineGhost.computeBoundingSphere();
+    drawnPavingLine = plan;
+  }
 
   const lotShape = new THREE.PlaneGeometry(LOT_SIZE, LOT_SIZE);
   const lotMaterial = new THREE.MeshBasicMaterial({
@@ -322,6 +360,7 @@ async function startGame(renderer) {
   let placement = null;
   let candidate = null;
   let showGrid = false;
+  let layoutVersion = 0;
   let dirty = true;
   let framePending = false;
   let lastFrame = 0;
@@ -528,6 +567,7 @@ async function startGame(renderer) {
   setStatus("Abra a Loja ou escolha Ruas para construir.");
 
   function syncParcels() {
+    layoutVersion++;
     pavingBlocks.clear();
     for (const house of houses) {
       const { x, z, type, rotation, order, model } = house;
@@ -667,10 +707,11 @@ async function startGame(renderer) {
     if (target && freeLight && placement.heightLocked) target = { ...target, y: placement.height };
     element("walk-reticle").hidden = !following;
     const roadMode = Boolean(placement?.road);
-    const price = placementPrice();
+    const linePlan = placement?.lineStart && target ? pavingLinePlan(target) : null;
+    const price = linePlan ? linePlan.cost : placementPrice();
     const affordable = price <= treasury.coins;
     actionCost.hidden = price === 0;
-    if (price) actionCost.textContent = priceLabel(price);
+    if (price) actionCost.textContent = linePlan ? `${linePlan.ready.length} blocos · ${priceLabel(price)}` : priceLabel(price);
     actionCost.classList.toggle("unaffordable", !affordable);
     const active = placement ?? selection;
     const [width, depth] = footprint(active?.type, active?.rotation);
@@ -730,13 +771,57 @@ async function startGame(renderer) {
         border.material.color.set("#ffcf79");
       }
     }
-    lot.visible = Boolean(candidate) && !freeLight;
-    ghost.visible = Boolean(candidate) && !roadMode;
+    lot.visible = Boolean(candidate) && !freeLight && !placement?.lineStart;
+    ghost.visible = Boolean(candidate) && !roadMode && !placement?.lineStart;
     roadGhost.visible = Boolean(candidate) && roadMode;
-    border.visible = Boolean(candidate || selection);
+    border.visible = Boolean(candidate || selection) && !placement?.lineStart;
     plotLines.visible = Boolean(candidate && isLargeFootprint(active?.type));
-    element("place-button").disabled = !candidate?.valid || !affordable;
+    updatePavingLineGhost(linePlan);
+    element("place-button").disabled = linePlan ? !linePlan.ready.length : !candidate?.valid || !affordable;
     updateLightHeightControls();
+  }
+
+  function pavingLinePlan(target) {
+    const { lineStart, type, rotation } = placement;
+    const key = [lineStart.x, lineStart.z, target.x, target.z, type, rotation, layoutVersion, treasury.coins].join(":");
+    if (placement.linePreview?.key === key) return placement.linePreview.plan;
+    const plan = planPavingLine(lineStart, target, {
+      bounds: placementBounds(type, rotation, area),
+      canBuild: (x, z) => canBuildHouse(x, z, houses, roads, parcels, null, type, rotation, area),
+      unitPrice: economyProfile(type).price,
+      balance: treasury.coins,
+    });
+    const heights = new Map();
+    for (const cell of plan.ready) {
+      cell.y = placementHeight(cell.x, cell.z, type, rotation);
+      heights.set(tileKey(cell.x, cell.z), cell.y);
+    }
+    for (const cell of plan.cells) cell.y = heights.get(tileKey(cell.x, cell.z)) ?? terrainAt(cell.x, cell.z);
+    placement.linePreview = { key, plan };
+    return plan;
+  }
+
+  function fillPavingLine(target) {
+    const plan = pavingLinePlan(target);
+    if (!plan.ready.length) {
+      setStatus(plan.unaffordable ? "Saldo insuficiente para preencher esta linha." : "Nenhum bloco livre nesta linha. Escolha outro ponto final.");
+      return;
+    }
+    if (!charge(plan.cost)) return;
+    const { type, rotation } = placement;
+    const pavingBatch = plan.ready.map(({ x, z }) => addHouse({ x, z, type, rotation }));
+    undoHistory.push({ pavingBatch, paid: plan.cost });
+    placement.lineStart = placement.linePreview = null;
+    aim = null;
+    placement.lastSite = { ...target };
+    placement.target = null;
+    placement.followView = walker.active;
+    syncParcels();
+    saveWorld();
+    updateActions();
+    canvas.focus({ preventScroll: true });
+    const skipped = plan.blocked + plan.unaffordable;
+    setStatus(`${pavingBatch.length} blocos de calçada colocados${skipped ? `; ${skipped} pulados` : ""}. Ctrl+Z desfaz a linha. Shift+clique inicia outra.`);
   }
 
   function lightHeightValue() {
@@ -802,7 +887,7 @@ async function startGame(renderer) {
     element("road-button").setAttribute("aria-pressed", Boolean(placement?.road));
     element("place-button").textContent = placement?.erasing
       ? "Retirar trecho"
-      : "Confirmar";
+      : placement?.lineStart ? "Preencher linha" : "Confirmar";
     element("place-button").hidden = !editing;
     expansionPanel.hidden = !expanding;
     expansionButton.setAttribute("aria-expanded", expanding);
@@ -824,7 +909,7 @@ async function startGame(renderer) {
       element("action-mode").textContent = placement
         ? placement.moving
           ? "Novo local"
-          : isPaving(target.type) ? "Montar calçada"
+          : isPaving(target.type) ? placement.lineStart ? "Calçada em linha" : "Montar calçada"
             : isDecoration(target.type) ? "Decorar a vila" : "Nova construção"
         : `${noun} selecionad${ending}`;
     }
@@ -888,6 +973,12 @@ async function startGame(renderer) {
   }
 
   function cancelAction() {
+    if (placement?.lineStart) {
+      placement.lineStart = placement.linePreview = null;
+      updateActions();
+      setStatus("Linha cancelada. Shift+clique marca um novo início; Esc encerra a calçada.");
+      return;
+    }
     if (walker.active && (placement || selection || choosingHouse)) {
       clearAction();
       canvas.focus({ preventScroll: true });
@@ -924,6 +1015,8 @@ async function startGame(renderer) {
     setStatus(
       isFreeLight(type)
         ? "Clique em uma superfície ou ajuste a Altura. Page Up/Down sobe e desce a luz; Esc termina."
+        : isPaving(type) && !moving
+        ? "Clique para assentar um bloco. Shift+clique marca o início de uma linha; depois clique no final. Esc cancela."
         : walker.active
         ? "Mire no chão e clique para construir; Enter também confirma. Arraste para olhar. Esc cancela."
         : moving
@@ -1033,9 +1126,19 @@ async function startGame(renderer) {
     }
   }
 
-  function placeConstruction() {
+  function placeConstruction(options = {}) {
     if (!placement) return;
     refreshPreview();
+    if (isPaving(placement.type) && !placement.moving && (options.shiftKey || placement.lineStart)) {
+      if (!candidate) { setStatus("Escolha um ponto no terreno para a linha de calçada."); return; }
+      if (placement.lineStart) fillPavingLine(candidate);
+      else {
+        placement.lineStart = { x: candidate.x, z: candidate.z };
+        updateActions();
+        setStatus("Início marcado. Clique no final: trechos vermelhos serão pulados. Esc cancela a linha.");
+      }
+      return;
+    }
     if (
       !candidate ||
       !insideBuildArea(candidate.x, candidate.z, placement.type, placement.rotation, area)
@@ -1097,7 +1200,7 @@ async function startGame(renderer) {
       setStatus(isFreeLight(type)
         ? "Luz colocada. Escolha outro ponto ou ajuste a altura. Esc termina."
         : isPaving(type)
-        ? "Bloco assentado. Escolha o próximo local. Esc ou × para terminar."
+        ? "Bloco assentado. Shift+clique inicia uma linha; outro clique preenche. Esc ou × termina."
         : isDecoration(type)
         ? "Decoração colocada. Escolha o próximo local. Esc ou × para terminar."
         : "Poste instalado. Escolha o próximo local. Esc ou × para terminar.");
@@ -1168,6 +1271,7 @@ async function startGame(renderer) {
   }
 
   function undoConstruction() {
+    if (placement?.lineStart) { cancelAction(); return; }
     if (!houses.length && !roads.size && !undoHistory.length) return;
     clearAction();
     let change = undoHistory.pop();
@@ -1201,6 +1305,9 @@ async function startGame(renderer) {
           ? "Trecho restaurado."
           : "O último trecho foi retirado.",
       );
+    } else if (change.pavingBatch) {
+      for (const house of change.pavingBatch) removeHouse(house);
+      setStatus("Linha de calçada desfeita.");
     } else if (change.removedIndex !== undefined) {
       const { house, removedIndex } = change;
       houses.splice(removedIndex, 0, house);
@@ -1477,7 +1584,7 @@ async function startGame(renderer) {
     aim = null;
     placement.followView = false;
     placement.target = pointLot(event.clientX, event.clientY);
-    if (event.pointerType === "touch") {
+    if (event.pointerType === "touch" && !placement.lineStart && !event.shiftKey) {
       refreshPreview();
       const price = placementPrice();
       setStatus(candidate?.valid
@@ -1486,7 +1593,7 @@ async function startGame(renderer) {
         : placement.erasing ? "Escolha um trecho de rua existente."
           : "Escolha um espaço livre dentro da grade e longe dos seus pés.");
       invalidate();
-    } else placeConstruction();
+    } else placeConstruction({ shiftKey: event.shiftKey });
   }
   for (const type of ["touchstart", "touchmove"]) {
     canvas.addEventListener(type, (event) => {
@@ -1687,7 +1794,7 @@ async function startGame(renderer) {
       invalidate();
       return;
     }
-    if (walker.flying && (key === "space" || key === "shift")) {
+    if (walker.flying && (key === "space" || (key === "shift" && !(isPaving(placement?.type) && !placement.moving)))) {
       event.preventDefault();
       movementKeys.add(key);
       invalidate();
@@ -1751,7 +1858,7 @@ async function startGame(renderer) {
       !(event.target instanceof HTMLButtonElement)
     ) {
       event.preventDefault();
-      placeConstruction();
+      placeConstruction({ shiftKey: event.shiftKey });
     }
   });
   window.addEventListener("keyup", (event) =>
