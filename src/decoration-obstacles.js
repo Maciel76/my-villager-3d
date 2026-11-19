@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { isDecoration, isLamp, setDecorationObstacles } from "./placement.js";
+import { isDecoration, isLamp, isPaving, setDecorationObstacles, setPavingObstacles } from "./placement.js";
 
 const CELL = .25;
 const HEIGHTS = [.45013, 1.00013, 1.75013];
@@ -8,7 +8,7 @@ const gardenSurfaces = new Map();
 // Slice the actual solids instead of reserving their entire rectangular lot.
 // Scanline filling also works after CAD parts have been merged by material:
 // separate wings, courtyards and gaps remain separate occupied regions.
-export function groundObstacles(model) {
+export function groundObstacles(model, heights = HEIGHTS) {
   model.updateMatrixWorld(true);
   const occupied = new Map();
   model.traverse(part => {
@@ -16,14 +16,14 @@ export function groundObstacles(model) {
     const geometry = part.geometry, source = geometry.getAttribute("position");
     if (!source) return;
     const bounds = new THREE.Box3().setFromObject(part);
-    if (bounds.max.y < .36 || bounds.min.y > HEIGHTS.at(-1)) return;
+    if (bounds.max.y < heights[0] || bounds.min.y > heights.at(-1)) return;
     const vertices = new Float32Array(source.count * 3), vector = new THREE.Vector3();
     for (let i = 0; i < source.count; i++) {
       vector.fromBufferAttribute(source, i).applyMatrix4(part.matrixWorld);
       vertices.set([vector.x, vector.y, vector.z], i * 3);
     }
     const indices = geometry.index, count = indices?.count ?? source.count;
-    for (const height of HEIGHTS) {
+    for (const height of heights) {
       if (bounds.min.y > height || bounds.max.y < height) continue;
       const crossings = new Map();
       for (let i = 0; i < count; i += 3) {
@@ -77,8 +77,9 @@ export function groundObstacles(model) {
 
 export function registerDecorationObstacles(templates) {
   for (const [type, model] of Object.entries(templates)) {
-    if (isDecoration(type) || isLamp(type)) continue;
+    if (isDecoration(type) || isLamp(type) || isPaving(type)) continue;
     setDecorationObstacles(type, groundObstacles(model));
+    setPavingObstacles(type, groundObstacles(model, [.10013, .26013]));
     const surfaces = [], a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3();
     model.traverse(part => {
       if (!part.isMesh || !part.visible) return;
@@ -96,7 +97,7 @@ export function registerDecorationObstacles(templates) {
         surfaces.push([a.x, a.z, a.y, b.x, b.z, b.y, c.x, c.z, c.y]);
       }
     });
-    gardenSurfaces.set(type, surfaces);
+    gardenSurfaces.set(type, { surfaces, bounds: new THREE.Box3().setFromObject(model) });
   }
 }
 
@@ -105,11 +106,14 @@ export function registerDecorationObstacles(templates) {
 export function decorationSurfaceHeight(x, z, houses) {
   let height = 0;
   for (const house of houses) {
-    const surfaces = gardenSurfaces.get(house.type);
-    if (!surfaces) continue;
+    const garden = gardenSurfaces.get(house.type);
+    if (!garden) continue;
+    const { surfaces, bounds } = garden;
     const rotation = ((house.rotation ?? 0) % 4 + 4) % 4;
     const cos = [1, 0, -1, 0][rotation], sin = [0, 1, 0, -1][rotation];
     const dx = x - house.x, dz = z - house.z, lx = dx * cos - dz * sin, lz = dx * sin + dz * cos;
+    if (lx < bounds.min.x || lx > bounds.max.x || lz < bounds.min.z || lz > bounds.max.z) continue;
+    const base = house.model?.position.y ?? 0;
     for (const [ax, az, ay, bx, bz, by, cx, cz, cy] of surfaces) {
       if (lx < Math.min(ax, bx, cx) || lx > Math.max(ax, bx, cx) ||
         lz < Math.min(az, bz, cz) || lz > Math.max(az, bz, cz)) continue;
@@ -117,7 +121,7 @@ export function decorationSurfaceHeight(x, z, houses) {
       const u = ((bz - cz) * (lx - cx) + (cx - bx) * (lz - cz)) / denominator;
       const v = ((cz - az) * (lx - cx) + (ax - cx) * (lz - cz)) / denominator;
       if (u >= -1e-6 && v >= -1e-6 && u + v <= 1 + 1e-6)
-        height = Math.max(height, u * ay + v * by + (1 - u - v) * cy);
+        height = Math.max(height, base + u * ay + v * by + (1 - u - v) * cy);
     }
   }
   return height;

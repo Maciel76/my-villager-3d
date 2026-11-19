@@ -6,11 +6,12 @@ import { isVillageWorld } from "../src/village-data.js";
 import { readSave } from "../src/placement.js";
 import { readRoads } from "../src/road-layout.js";
 import { createGardenCityPlan, gardenCitySummary } from "../src/garden-city-plan.js";
+import { buildArea } from "../src/village-area.js";
 
 const garden = process.argv.includes("--garden");
 const world = garden ? createGardenCityPlan() : createCityPlan();
 if (!isVillageWorld(world) || readSave(world).length !== world.houses.length ||
-    readRoads(world.roads, world.houses, 0).size !== world.roads.length)
+    readRoads(world.roads, world.houses, 0, buildArea(world.expansion)).size !== world.roads.length)
   throw new Error("O plano não passou na validação do jogo.");
 
 console.log(JSON.stringify(garden ? gardenCitySummary(world) : cityPlanSummary(world), null, 2));

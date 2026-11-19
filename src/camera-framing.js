@@ -1,12 +1,15 @@
 import * as THREE from "three";
 import { footprint } from "./placement.js";
+import { BUILDING_TYPES } from "./house-types.js";
 
 export function villageOverview(houses, roads, aspect) {
   const bounds = new THREE.Box3();
   for (const house of houses) {
     const [width, depth] = footprint(house.type, house.rotation);
     bounds.expandByPoint(new THREE.Vector3(house.x - width / 2, 0, house.z - depth / 2));
-    bounds.expandByPoint(new THREE.Vector3(house.x + width / 2, 28, house.z + depth / 2));
+    bounds.expandByPoint(new THREE.Vector3(
+      house.x + width / 2, BUILDING_TYPES[house.type]?.height ?? 28, house.z + depth / 2,
+    ));
   }
   for (const road of roads) {
     bounds.expandByPoint(new THREE.Vector3(road.x - 6, 0, road.z - 6));

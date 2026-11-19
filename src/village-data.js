@@ -1,4 +1,5 @@
-import { BUILD_LIMIT } from "./placement.js";
+import { buildArea, containsPoint, isExpansion } from "./village-area.js";
+import { ECONOMY_CYCLE_MS, MAX_BALANCE } from "./economy.js";
 
 const hourOptions = new Set(["7.5", "12", "18", "23"]);
 export const isVillageHour = (value) => hourOptions.has(value);
@@ -12,20 +13,26 @@ function record(value, keys) {
   );
 }
 
-const coordinate = (value) =>
-  Number.isFinite(value) && Math.abs(value) <= BUILD_LIMIT;
 const order = (value) => Number.isSafeInteger(value) && value >= 0;
 
+function isTreasury(value) {
+  return record(value, ["coins", "progressMs"]) &&
+    order(value.coins) && value.coins <= MAX_BALANCE &&
+    order(value.progressMs) && value.progressMs < ECONOMY_CYCLE_MS;
+}
+
 export function isVillageWorld(world) {
+  if (!record(world, ["version", "houses", "houseOrder", "roads", "expansion", "economy"]) ||
+      world.version !== 1 ||
+      (world.economy !== undefined && !isTreasury(world.economy)) ||
+      (world.expansion !== undefined && !isExpansion(world.expansion))) return false;
+  const area = buildArea(world.expansion);
   return (
-    record(world, ["version", "houses", "houseOrder", "roads"]) &&
-    world.version === 1 &&
     Array.isArray(world.houses) &&
     world.houses.every(
       (house) =>
         record(house, ["x", "z", "rotation", "type"]) &&
-        coordinate(house.x) &&
-        coordinate(house.z) &&
+        containsPoint(area, house.x, house.z) &&
         Number.isInteger(house.rotation) &&
         house.rotation >= 0 &&
         house.rotation < 4 &&
@@ -39,8 +46,7 @@ export function isVillageWorld(world) {
         world.roads.every(
           (road) =>
             record(road, ["x", "z", "order"]) &&
-            coordinate(road.x) &&
-            coordinate(road.z) &&
+            containsPoint(area, road.x, road.z) &&
             (road.order === undefined || order(road.order)),
         )))
   );

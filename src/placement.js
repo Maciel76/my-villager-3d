@@ -1,7 +1,8 @@
 import { DEFAULT_HOUSE, BUILDING_TYPES } from "./house-types.js";
+import { BASE_AREA, LOT_SIZE, buildArea, containsPoint } from "./village-area.js";
+import { PAVING_SIZE, snapPaving } from "./paving-types.js";
 
-export const BUILD_LIMIT = 87;
-export const LOT_SIZE = 12;
+export { BUILD_LIMIT, LOT_SIZE } from "./village-area.js";
 export const LAMP_FOOTPRINT = 2;
 export const LAMP_BASE_RADIUS = 0.33;
 export const DECORATION_STEP = .25;
@@ -10,12 +11,20 @@ export const DECORATION_STEP = .25;
 // offline save reader has no meshes and must never discard garden decorations
 // merely because they share a building's reserved lot.
 const decorationObstacles = new Map();
+const pavingObstacles = new Map();
 export function setDecorationObstacles(type, rectangles) {
   if (rectangles === null) decorationObstacles.delete(type);
   else decorationObstacles.set(type, rectangles);
 }
 
+export function setPavingObstacles(type, rectangles) {
+  pavingObstacles.set(type, rectangles);
+}
+
 export const isLamp = (type) => BUILDING_TYPES[type]?.category === "lighting";
+const buildingCategories = new Set(["residential", "apartments", "landmarks", "commercial"]);
+export const isBuilding = (type) => buildingCategories.has(BUILDING_TYPES[type]?.category);
+export const isPaving = (type) => BUILDING_TYPES[type]?.category === "paving";
 export const isDecoration = (type) => BUILDING_TYPES[type]?.category === "decoration";
 export const isTree = (type) => BUILDING_TYPES[type]?.family === "trees";
 export const isPlantingBed = (type) => Boolean(BUILDING_TYPES[type]?.plantingBed);
@@ -25,6 +34,7 @@ export function snap(value) {
 }
 
 export function footprint(type, rotation = 0) {
+  if (isPaving(type)) return [PAVING_SIZE, PAVING_SIZE];
   if (isLamp(type)) return [LAMP_FOOTPRINT, LAMP_FOOTPRINT];
   if (isDecoration(type)) {
     const [width, depth] = BUILDING_TYPES[type].placementSize ?? BUILDING_TYPES[type].size;
@@ -45,17 +55,15 @@ export function snapFootprint(value, size) {
   return Math.round((value - offset) / LOT_SIZE) * LOT_SIZE + offset;
 }
 
-export const buildLimit = (size) =>
-  BUILD_LIMIT - Math.max(0, size - LOT_SIZE) / 2;
-
-export function insideBuildArea(x, z, type, rotation) {
+export function placementBounds(type, rotation, area = BASE_AREA) {
   const [width, depth] = footprint(type, rotation);
-  return (
-    Number.isFinite(x) &&
-    Number.isFinite(z) &&
-    Math.abs(x) <= buildLimit(width) &&
-    Math.abs(z) <= buildLimit(depth)
-  );
+  const x = isPaving(type) ? width / 2 : Math.max(0, width - LOT_SIZE) / 2;
+  const z = isPaving(type) ? depth / 2 : Math.max(0, depth - LOT_SIZE) / 2;
+  return { minX: area.minX + x, maxX: area.maxX - x, minZ: area.minZ + z, maxZ: area.maxZ - z };
+}
+
+export function insideBuildArea(x, z, type, rotation, area) {
+  return containsPoint(placementBounds(type, rotation, area), x, z);
 }
 
 export function overlapsLot(x, z, [width, depth], other) {
@@ -66,36 +74,51 @@ export function overlapsLot(x, z, [width, depth], other) {
   );
 }
 
-export function canPlace(x, z, houses, ignored = null, type, rotation) {
-  const area = footprint(type, rotation);
-  const [width, depth] = area;
-  if (!insideBuildArea(x, z, type, rotation)) return false;
+export function canPlace(x, z, houses, ignored = null, type, rotation, area, order) {
+  const [width, depth] = footprint(type, rotation);
+  if (!insideBuildArea(x, z, type, rotation, area)) return false;
+  if (isPaving(type) && (snapPaving(x) !== x || snapPaving(z) !== z)) return false;
   if (isLamp(type) && (!Number.isInteger(x) || !Number.isInteger(z))) return false;
   if (
     isLargeFootprint(type) &&
     (snapFootprint(x, width) !== x || snapFootprint(z, depth) !== z)
   )
     return false;
-  return houses.every(
-    (house) => house === ignored || !overlapsPlacement({ x, z, type, rotation }, house),
-  );
+  const placementOrder = order ?? (ignored?.x === x && ignored.z === z ? ignored.order : Infinity);
+  const candidate = { x, z, type, rotation, order: placementOrder ?? Infinity };
+  return houses.every(house => house === ignored || !overlapsPlacement(candidate, house));
 }
 
-function decorationHitsBuilding(decoration, building) {
-  const rectangles = decorationObstacles.get(building.type);
-  if (!rectangles) return false;
+export function decorationHitsBuilding(decoration, building) {
   const rotation = ((building.rotation ?? 0) % 4 + 4) % 4;
   const cos = [1, 0, -1, 0][rotation], sin = [0, 1, 0, -1][rotation];
   const dx = decoration.x - building.x, dz = decoration.z - building.z;
   const x = dx * cos - dz * sin, z = dx * sin + dz * cos;
   const [width, depth] = footprint(decoration.type, (decoration.rotation ?? 0) - rotation);
   const margin = .035;
-  return rectangles.some(([x0, z0, x1, z1]) =>
+  const hits = ([x0, z0, x1, z1]) =>
     x + width / 2 > x0 + margin && x - width / 2 < x1 - margin &&
-    z + depth / 2 > z0 + margin && z - depth / 2 < z1 - margin);
+    z + depth / 2 > z0 + margin && z - depth / 2 < z1 - margin;
+  return Boolean(decorationObstacles.get(building.type)?.some(hits) ||
+    (isPaving(decoration.type) && pavingObstacles.get(building.type)?.some(hits)));
+}
+
+export function pavingUnderBuilding(paving, building) {
+  if (!overlapsLot(paving.x, paving.z, footprint(paving.type), building)) return false;
+  return paving.order < building.order || decorationHitsBuilding(paving, building);
 }
 
 export function overlapsPlacement(first, second) {
+  if (isPaving(first.type) || isPaving(second.type)) {
+    const paving = isPaving(first.type) ? first : second;
+    const other = paving === first ? second : first;
+    if (isPaving(other.type))
+      return overlapsLot(paving.x, paving.z, footprint(paving.type), other);
+    if (!isBuilding(other.type)) return false;
+    const firstOrder = first.order ?? Infinity, secondOrder = second.order ?? -1;
+    const pavingFirst = paving === first ? firstOrder < secondOrder : secondOrder < firstOrder;
+    return !pavingFirst && decorationHitsBuilding(paving, other);
+  }
   if (isTree(first.type) && isPlantingBed(second.type) && treeFitsPlantingBed(first, second)) return false;
   if (isTree(second.type) && isPlantingBed(first.type) && treeFitsPlantingBed(second, first)) return false;
   const firstDecoration = isDecoration(first.type), secondDecoration = isDecoration(second.type);
@@ -133,7 +156,7 @@ export function plantingBedUnder(tree, houses) {
   return houses.find(bed => treeFitsPlantingBed(tree, bed)) ?? null;
 }
 
-export function readSave(save) {
+export function readSave(save, area = buildArea(save?.expansion)) {
   if (save.version !== 1 || !Array.isArray(save.houses))
     throw new Error("Save inválido");
   const houses = [];
@@ -144,7 +167,8 @@ export function readSave(save) {
       Number.isInteger(h.rotation) &&
       h.rotation >= 0 &&
       h.rotation < 4 &&
-      canPlace(h.x, h.z, houses, null, type, h.rotation)
+      // Previously saved blocks under a wall still belong to the lower layer.
+      canPlace(h.x, h.z, houses, null, type, h.rotation, area, isPaving(type) ? -Infinity : Infinity)
     ) {
       const storedOrder = save.houseOrder?.[index];
       const order =

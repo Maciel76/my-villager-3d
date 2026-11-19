@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { markNightLight } from "./daylight.js";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import { BUILD_LIMIT, LOT_SIZE } from "./placement.js";
+import { BASE_AREA, LOT_SIZE } from "./village-area.js";
 import { projectTexture } from "./assets.js";
 
 const mat = (color) =>
@@ -72,7 +72,7 @@ export function createHouse(materials) {
 }
 
 const CHUNK_SIZE = 120;
-const CLEARING_EDGE = BUILD_LIMIT + LOT_SIZE / 2 + 1;
+const CLEARING_MARGIN = LOT_SIZE / 2 + 1;
 const TREE_SPACING = 12;
 const TREE_ROWS = CHUNK_SIZE / TREE_SPACING;
 
@@ -88,22 +88,22 @@ function seededRandom(seed) {
   };
 }
 
-function distanceFromClearing(x, z) {
+function distanceFromClearing(x, z, area) {
   return Math.hypot(
-    Math.max(0, Math.abs(x) - CLEARING_EDGE),
-    Math.max(0, Math.abs(z) - CLEARING_EDGE),
+    Math.max(0, area.minX - x - CLEARING_MARGIN, x - area.maxX - CLEARING_MARGIN),
+    Math.max(0, area.minZ - z - CLEARING_MARGIN, z - area.maxZ - CLEARING_MARGIN),
   );
 }
 
-export function terrainHeight(x, z) {
+export function terrainHeight(x, z, area = BASE_AREA) {
   const hills =
     3.8 +
     2.5 * Math.sin(x * 0.043) * Math.cos(z * 0.036) +
     1.7 * Math.sin(x * 0.022 + z * 0.031);
-  return hills * THREE.MathUtils.smoothstep(distanceFromClearing(x, z), 0, 38);
+  return hills * THREE.MathUtils.smoothstep(distanceFromClearing(x, z, area), 0, 38);
 }
 
-function createGround(originX, originZ, material) {
+function createGround(originX, originZ, material, area) {
   const geometry = new THREE.PlaneGeometry(CHUNK_SIZE, CHUNK_SIZE, 30, 30);
   geometry.rotateX(-Math.PI / 2);
   geometry.translate(CHUNK_SIZE / 2, 0, CHUNK_SIZE / 2);
@@ -113,7 +113,7 @@ function createGround(originX, originZ, material) {
   for (let i = 0; i < position.count; i++) {
     const x = originX + position.getX(i);
     const z = originZ + position.getZ(i);
-    position.setY(i, terrainHeight(x, z));
+    position.setY(i, terrainHeight(x, z, area));
     uv.setXY(i, position.getX(i), CHUNK_SIZE - position.getZ(i));
 
     // Border vertices use the same height and color in both chunks.
@@ -121,7 +121,7 @@ function createGround(originX, originZ, material) {
     const meadow =
       0.04 * Math.sin(x * 0.049 + z * 0.032) * Math.cos(z * 0.054 - x * 0.028);
     const forest = THREE.MathUtils.smoothstep(
-      distanceFromClearing(x, z),
+      distanceFromClearing(x, z, area),
       5,
       55,
     );
@@ -165,7 +165,7 @@ function createForestGenerator() {
   );
   const dummy = new THREE.Object3D();
 
-  return (originX, originZ) => {
+  return (originX, originZ, area) => {
     const random = seededRandom(coordinateSeed(originX, originZ) ^ 751);
     const trees = [];
     for (let row = 0; row < TREE_ROWS; row++) {
@@ -176,16 +176,18 @@ function createForestGenerator() {
         const worldZ = originZ + z;
         const margin = 8 + 5 * Math.sin(worldX * 0.12 + worldZ * 0.09);
         const density = 0.82 + 0.13 * Math.sin(worldX * 0.018 - worldZ * 0.024);
-        if (distanceFromClearing(worldX, worldZ) < margin || random() > density)
+        if (distanceFromClearing(worldX, worldZ, BASE_AREA) < margin || random() > density)
           continue;
-        trees.push({
+        const tree = {
           x,
-          y: terrainHeight(worldX, worldZ),
+          y: terrainHeight(worldX, worldZ, area),
           z,
           scale: 0.65 + random() * 0.95,
           angle: random() * Math.PI * 2,
           color: foliage[Math.floor(random() * foliage.length)],
-        });
+        };
+        // Consume the same random values even when this tree is cleared.
+        if (distanceFromClearing(worldX, worldZ, area) >= margin) trees.push(tree);
       }
     }
     if (!trees.length) return [];
@@ -210,7 +212,8 @@ function createForestGenerator() {
   };
 }
 
-export function createWorld(scene, materials) {
+export function createWorld(scene, materials, initialArea = BASE_AREA) {
+  let area = initialArea;
   const ground = new THREE.Group();
   const groundMaterial = new THREE.MeshStandardMaterial({
     map: materials.grass,
@@ -249,24 +252,16 @@ export function createWorld(scene, materials) {
         CHUNK_SIZE <=
       range;
 
-    for (const [key, chunk] of chunks) {
-      if (inRange(chunk.x, chunk.z)) continue;
-      chunk.surface.removeFromParent();
-      chunk.surface.geometry.dispose();
-      for (const trees of chunk.forest) {
-        trees.removeFromParent();
-        trees.dispose();
-      }
-      chunks.delete(key);
-    }
+    for (const [key, chunk] of chunks)
+      if (!inRange(chunk.x, chunk.z)) removeChunk(key, chunk);
     for (let z = centerZ - radius; z <= centerZ + radius; z++) {
       for (let x = centerX - radius; x <= centerX + radius; x++) {
         const key = `${x},${z}`;
         if (chunks.has(key) || !inRange(x, z)) continue;
         const originX = x * CHUNK_SIZE;
         const originZ = z * CHUNK_SIZE;
-        const surface = createGround(originX, originZ, groundMaterial);
-        const forest = createForest(originX, originZ);
+        const surface = createGround(originX, originZ, groundMaterial, area);
+        const forest = createForest(originX, originZ, area);
         ground.add(surface);
         surface.updateMatrixWorld();
         for (const trees of forest) scene.add(trees);
@@ -274,6 +269,33 @@ export function createWorld(scene, materials) {
       }
     }
     return true;
+  }
+
+  function removeChunk(key, chunk) {
+    chunk.surface.removeFromParent();
+    chunk.surface.geometry.dispose();
+    for (const trees of chunk.forest) {
+      trees.removeFromParent();
+      trees.dispose();
+    }
+    chunks.delete(key);
+  }
+
+  function setArea(next) {
+    // Only chunks within reach of the clearing's color and height transition need rebuilding.
+    const reach = CLEARING_MARGIN + 55;
+    for (const [key, chunk] of chunks) {
+      const x = chunk.x * CHUNK_SIZE;
+      const z = chunk.z * CHUNK_SIZE;
+      if (x <= Math.max(area.maxX, next.maxX) + reach &&
+          x + CHUNK_SIZE >= Math.min(area.minX, next.minX) - reach &&
+          z <= Math.max(area.maxZ, next.maxZ) + reach &&
+          z + CHUNK_SIZE >= Math.min(area.minZ, next.minZ) - reach)
+        removeChunk(key, chunk);
+    }
+    area = next;
+    lastX = undefined;
+    updateGrids();
   }
 
   // Sparse meadow details share one draw call.
@@ -299,12 +321,33 @@ export function createWorld(scene, materials) {
   }
   scene.add(grass);
 
-  const grid = new THREE.GridHelper(180, 90, "#cce3ae", "#cce3ae");
-  grid.position.y = 0.035;
-  grid.material.transparent = true;
-  grid.material.opacity = 0.22;
-  grid.visible = false;
-  scene.add(grid);
+  function makeGrid(color, opacity, y) {
+    const result = new THREE.LineSegments(new THREE.BufferGeometry(),
+      new THREE.LineBasicMaterial({ color, transparent: true, opacity }));
+    result.position.y = y;
+    result.visible = false;
+    scene.add(result);
+    return result;
+  }
+
+  const grid = makeGrid("#cce3ae", 0.22, 0.035);
+  const roadGrid = makeGrid("#efe5b0", 0.42, 0.036);
+  function updateGrids() {
+    const x0 = Math.ceil(area.minX / LOT_SIZE) * LOT_SIZE - LOT_SIZE / 2;
+    const x1 = Math.floor(area.maxX / LOT_SIZE) * LOT_SIZE + LOT_SIZE / 2;
+    const z0 = Math.ceil(area.minZ / LOT_SIZE) * LOT_SIZE - LOT_SIZE / 2;
+    const z1 = Math.floor(area.maxZ / LOT_SIZE) * LOT_SIZE + LOT_SIZE / 2;
+    for (const [lines, step] of [[grid, 2], [roadGrid, LOT_SIZE]]) {
+      const points = [];
+      for (let x = x0; x <= x1; x += step)
+        points.push(new THREE.Vector3(x, 0, z0), new THREE.Vector3(x, 0, z1));
+      for (let z = z0; z <= z1; z += step)
+        points.push(new THREE.Vector3(x0, 0, z), new THREE.Vector3(x1, 0, z));
+      lines.geometry.dispose();
+      lines.geometry = new THREE.BufferGeometry().setFromPoints(points);
+    }
+  }
+  updateGrids();
   function updatePaving(isPaved) {
     let count = 0;
     for (const { x, z, matrix } of grassPlacements) {
@@ -315,5 +358,5 @@ export function createWorld(scene, materials) {
     grass.instanceMatrix.needsUpdate = true;
   }
 
-  return { ground, grid, update, updatePaving };
+  return { ground, grid, roadGrid, setArea, update, updatePaving };
 }

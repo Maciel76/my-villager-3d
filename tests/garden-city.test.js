@@ -2,26 +2,30 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { BUILDING_TYPES } from "../src/house-types.js";
 import { createGardenCityPlan, gardenCitySummary } from "../src/garden-city-plan.js";
-import { footprint, isDecoration, isLamp, readSave } from "../src/placement.js";
+import { footprint, isDecoration, isLamp, isPaving, readSave } from "../src/placement.js";
 import { canBuildHouse, readRoads, roadLots, tileKey } from "../src/road-layout.js";
 import { isVillageWorld } from "../src/village-data.js";
+import { BASE_AREA, buildArea, containsPoint } from "../src/village-area.js";
 
 test("the landscaped city includes the complete catalogue and survives normal save loading", () => {
   const world=createGardenCityPlan();
+  const area=buildArea(world.expansion);
   assert.equal(isVillageWorld(world),true);
   assert.equal(readSave(world).length,world.houses.length);
   assert.deepEqual(new Set(world.houses.map(h=>h.type)),new Set(Object.keys(BUILDING_TYPES)));
-  assert.equal(readRoads(world.roads,world.houses,0).size,world.roads.length);
-  const roads=new Map(world.roads.map(r=>[tileKey(r.x,r.z),r])),lots=roadLots(roads);
+  assert.equal(readRoads(world.roads,world.houses,0,area).size,world.roads.length);
+  const roads=new Map(world.roads.map(r=>[tileKey(r.x,r.z),r])),lots=roadLots(roads,area);
   for(const h of world.houses)
-    assert.ok(canBuildHouse(h.x,h.z,world.houses,roads,lots,h,h.type,h.rotation),`${h.type}: ${h.x},${h.z}`);
+    assert.ok(canBuildHouse(h.x,h.z,world.houses,roads,lots,h,h.type,h.rotation,area),`${h.type}: ${h.x},${h.z}`);
 });
 
 test("the city reserves forty garden plots while all architecture fronts connected streets",()=>{
   const world=createGardenCityPlan();
-  const buildings=world.houses.filter(h=>!isDecoration(h.type)&&!isLamp(h.type));
-  const occupied=buildings.reduce((n,h)=>n+footprint(h.type,h.rotation).reduce((a,b)=>a*b)/144,0);
-  assert.equal(225-world.roads.length-occupied,40);
+  const buildings=world.houses.filter(h=>!isDecoration(h.type)&&!isLamp(h.type)&&!isPaving(h.type));
+  const occupied=buildings.filter(h=>containsPoint(BASE_AREA,h.x,h.z))
+    .reduce((n,h)=>n+footprint(h.type,h.rotation).reduce((a,b)=>a*b)/144,0);
+  const roadsInsideRing=world.roads.filter(r=>containsPoint(BASE_AREA,r.x,r.z)).length;
+  assert.equal(225-roadsInsideRing-occupied,40);
   for(const h of buildings){
     const [w,d]=footprint(h.type,h.rotation);
     const [dx,dz]=[[0,1],[1,0],[0,-1],[-1,0]][h.rotation];

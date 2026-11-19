@@ -32,6 +32,12 @@
         ?
       </button>
     </header>
+    <div class="city-economy" id="city-economy" role="group" aria-label="Economia da cidade" hidden>
+      <div><span>Caixa</span><strong id="city-coins">0</strong></div>
+      <div><span>Moradores</span><strong id="city-population">0</strong></div>
+      <div><span>Receita / 30 s</span><strong id="city-income">0</strong></div>
+      <progress id="city-revenue-progress" max="30" value="0" aria-label="Progresso da próxima arrecadação"></progress>
+    </div>
     <div id="walk-reticle" class="walk-reticle" aria-hidden="true" hidden></div>
 
     <label class="hour-picker" for="village-hour">
@@ -45,6 +51,12 @@
     </label>
 
     <div class="camera-tools" role="group" aria-label="Câmera">
+      <button type="button" class="hud-button flight-toggle" id="flight-toggle"
+        aria-keyshortcuts="F" title="Alternar voo (F)" hidden>Voar</button>
+      <button type="button" class="hud-button flight-touch" data-walk="space"
+        aria-label="Subir durante o voo" hidden>↑</button>
+      <button type="button" class="hud-button flight-touch" data-walk="shift"
+        aria-label="Descer durante o voo" hidden>↓</button>
       <button
         class="hud-button"
         id="zoom-in"
@@ -80,6 +92,7 @@
         <div class="action-copy">
           <span id="action-mode"></span>
           <strong id="action-title"></strong>
+          <span id="action-cost" hidden></span>
         </div>
         <div class="action-buttons">
           <button id="move-selected" class="gold-button" hidden>Mover</button>
@@ -130,6 +143,18 @@
           </button>
         </div>
       </div>
+      <div class="action-tray expansion-panel" id="expansion-panel" role="group" aria-labelledby="expansion-title" hidden>
+        <div class="action-copy">
+          <strong id="expansion-title">Expandir terreno</strong>
+          <span id="expansion-cost">+3 lotes no lado escolhido</span>
+        </div>
+        <div class="expansion-options">
+          <button type="button" class="hud-button" data-expand="north"><span aria-hidden="true">↑</span> Norte</button>
+          <button type="button" class="hud-button" data-expand="west"><span aria-hidden="true">←</span> Oeste</button>
+          <button type="button" class="hud-button" data-expand="east"><span aria-hidden="true">→</span> Leste</button>
+          <button type="button" class="hud-button" data-expand="south"><span aria-hidden="true">↓</span> Sul</button>
+        </div>
+      </div>
       <div class="walk-pad" id="walk-pad" role="group" aria-label="Direção da caminhada" hidden>
         <button type="button" class="hud-button" data-walk="w" aria-label="Andar para frente">↑</button>
         <button type="button" class="hud-button" data-walk="a" aria-label="Andar para a esquerda">←</button>
@@ -141,13 +166,16 @@
       </div>
       <nav class="toolbar" aria-label="Ferramentas da vila">
         <button
-          id="explore-button"
-          class="slot active"
-          aria-pressed="true"
+          id="expand-button"
+          class="slot"
+          aria-controls="expansion-panel"
+          aria-expanded="false"
+          aria-label="Expandir"
+          aria-keyshortcuts="1"
           disabled
         >
-          <span class="slot-icon" aria-hidden="true">➤</span
-          ><span>Explorar</span><kbd>1</kbd>
+          <span class="slot-icon" aria-hidden="true">⤢</span
+          ><span>Expandir</span><kbd>1</kbd>
         </button>
         <button
           id="shop-button"
@@ -254,6 +282,9 @@
             >
               Decorações
             </button>
+            <button type="button" class="category-button" data-category="paving" aria-pressed="false">
+              Calçadas
+            </button>
           </div>
           <p id="catalog-count" aria-live="polite"></p>
         </div>
@@ -283,30 +314,49 @@
       </button>
       <h2 id="help-title">Como jogar</h2>
       <dl>
+        <dt>Economia da cidade</dt>
+        <dd>
+          Casas e prédios trazem moradores. Lojas e serviços geram receita
+          quando há moradores para preencher as vagas. O caixa recebe a receita
+          a cada 30 segundos com o jogo em primeiro plano. Construções, ruas,
+          calçadas, decorações e expansões custam moedas.
+        </dd>
         <dt>Explorar</dt>
         <dd>
           Arraste para girar. Mova com o botão direito, WASD ou dois dedos. Use
           a roda do mouse ou a pinça para dar zoom.
         </dd>
+        <dt>Expandir a vila</dt>
+        <dd>
+          Abra Expandir (1) e escolha Norte, Sul, Leste ou Oeste. Cada expansão
+          libera três lotes de profundidade para ruas e construções.
+        </dd>
         <dt>Caminhar</dt>
         <dd>
           Escolha Caminhar (4) para ver a vila em primeira pessoa. Use WASD ou as
           setas, ou segure as setas na tela de toque. Arraste para olhar ao
-          redor. A Loja permite construir sem sair do passeio. Escolha Explorar
-          para voltar à vista aérea; Esc cancela a construção antes de sair.
+          redor. A Loja permite construir sem sair do passeio. Toque em
+          Caminhar novamente para voltar à vista aérea. Esc cancela a construção antes de sair.
+        </dd>
+        <dt>Voar</dt>
+        <dd>
+          Durante a caminhada, pressione F ou toque em Voar. Use Espaço para
+          subir, Shift para descer e WASD ou as setas para se mover. No celular,
+          use os botões de altura ao lado da tela. Arraste para olhar para o céu
+          ou para a vila. Pressione F novamente para pousar.
         </dd>
         <dt>Construir</dt>
         <dd>
           Abra a Loja, escolha uma construção e clique em um lote livre. No
           celular, toque no terreno e confirme. Em primeira pessoa, mire no chão
           e clique ou pressione Enter; arrastar continua girando a visão. Ao instalar postes, continue
-          colocando o mesmo modelo sem reabrir a Loja. Esc ou Explorar encerra.
+          colocando o mesmo modelo sem reabrir a Loja. Use Esc ou × para encerrar.
         </dd>
         <dt>Traçar ruas e definir lotes</dt>
         <dd>
           Escolha Ruas e coloque os blocos lado a lado. A calçada acompanha os
-          trechos e os lotes ao redor ficam demarcados. Para editar, volte a
-          Explorar e selecione um bloco de rua: use Mover ou Excluir. Em Ruas,
+          trechos e os lotes ao redor ficam demarcados. Para editar, encerre o
+          modo de construção e selecione um trecho. Use Mover ou Excluir. Em Ruas,
           Remover permite retirar vários trechos seguidos.
         </dd>
         <dt>Editar uma construção</dt>

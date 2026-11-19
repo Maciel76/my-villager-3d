@@ -1,5 +1,4 @@
 import {
-  BUILD_LIMIT,
   LAMP_BASE_RADIUS,
   LOT_SIZE,
   DECORATION_STEP,
@@ -7,11 +6,14 @@ import {
   footprint,
   isLamp,
   isDecoration,
+  isPaving,
   isLargeFootprint,
   overlapsLot,
   snap,
   snapFootprint,
 } from "./placement.js";
+import { BASE_AREA, containsPoint } from "./village-area.js";
+import { PAVING_SIZE, snapPaving } from "./paving-types.js";
 
 export const DIRECTIONS = [
   { bit: 1, x: 0, z: -1 },
@@ -20,16 +22,13 @@ export const DIRECTIONS = [
   { bit: 8, x: -1, z: 0 },
 ];
 
-const tilesPerSide = 2 * Math.floor(BUILD_LIMIT / LOT_SIZE) + 1;
 export const LANE_EDGE = 3.5;
+export const ASPHALT_Y = 0.045;
 export const WALK_EDGE = 5.15;
 export const WALK_Y = 0.13;
 
 export const snapTile = (value) => Math.round(value / LOT_SIZE) * LOT_SIZE || 0;
 export const tileKey = (x, z) => `${x},${z}`;
-
-const inBounds = (x, z) =>
-  Math.abs(x) <= BUILD_LIMIT && Math.abs(z) <= BUILD_LIMIT;
 
 export function roadMask(x, z, roads) {
   return DIRECTIONS.reduce((mask, direction) => {
@@ -63,32 +62,46 @@ function streetSurfaceAt(x, z, roads) {
   return roadZone(x - cx, z - cz, WALK_EDGE, mask) ? WALK_Y : 0;
 }
 
-export function lampSiteHeight(x, z, roads) {
-  // All four corners of the widest pedestal must rest on the same surface.
-  const height = streetSurfaceAt(x, z, roads);
-  if (height === null) return null;
+function lampSurfaces(x, z, roads) {
+  const heights = [streetSurfaceAt(x, z, roads)];
   for (const dx of [-LAMP_BASE_RADIUS, LAMP_BASE_RADIUS]) {
-    for (const dz of [-LAMP_BASE_RADIUS, LAMP_BASE_RADIUS]) {
-      if (streetSurfaceAt(x + dx, z + dz, roads) !== height) return null;
-    }
+    for (const dz of [-LAMP_BASE_RADIUS, LAMP_BASE_RADIUS])
+      heights.push(streetSurfaceAt(x + dx, z + dz, roads));
   }
-  return height;
+  return heights;
 }
 
-export function roadLots(roads) {
+export function lampSiteHeight(x, z, roads) {
+  // All four corners of the widest pedestal must rest on the same surface.
+  const heights = lampSurfaces(x, z, roads);
+  return heights.every((height) => height === heights[0]) ? heights[0] : null;
+}
+
+export function lampRestHeight(x, z, roads) {
+  return Math.max(0, ...lampSurfaces(x, z, roads).map((height) => height ?? 0));
+}
+
+function preservesLamp({ x, z }, roads, next) {
+  if (lampSiteHeight(x, z, next) !== null) return true;
+  const old = lampSurfaces(x, z, roads);
+  return lampSurfaces(x, z, next).every((height, index) => height === old[index]);
+}
+
+export function roadLots(roads, area = BASE_AREA) {
   const lots = new Map();
   for (const road of roads.values()) {
     for (const direction of DIRECTIONS) {
       const x = road.x + direction.x * LOT_SIZE;
       const z = road.z + direction.z * LOT_SIZE;
       const key = tileKey(x, z);
-      if (inBounds(x, z) && !roads.has(key)) lots.set(key, { x, z });
+      if (containsPoint(area, x, z) && !roads.has(key)) lots.set(key, { x, z });
     }
   }
   return lots;
 }
 
 export function houseSite(x, z, lots, type, rotation) {
+  if (isPaving(type)) return { x: snapPaving(x), z: snapPaving(z) };
   if (isDecoration(type)) return {
     x: Math.round(x / DECORATION_STEP) * DECORATION_STEP || 0,
     z: Math.round(z / DECORATION_STEP) * DECORATION_STEP || 0,
@@ -103,8 +116,9 @@ export function houseSite(x, z, lots, type, rotation) {
   );
 }
 
-export function canBuildHouse(x, z, houses, roads, lots, ignored, type, rotation) {
-  if (!canPlace(x, z, houses, ignored, type, rotation)) return false;
+export function canBuildHouse(x, z, houses, roads, lots, ignored, type, rotation, bounds) {
+  if (!canPlace(x, z, houses, ignored, type, rotation, bounds)) return false;
+  if (isPaving(type)) return pavingFitsRoads(x, z, roads);
   if (isDecoration(type)) return true;
   if (isLamp(type)) return lampSiteHeight(x, z, roads) !== null;
   const area = footprint(type, rotation);
@@ -121,55 +135,81 @@ export function canBuildHouse(x, z, houses, roads, lots, ignored, type, rotation
   return true;
 }
 
-function preservesLampSites(x, z, houses, roads, remove) {
-  const reach = LOT_SIZE * 1.5 + LAMP_BASE_RADIUS;
+function pavingFitsRoads(x, z, roads) {
+  const half = PAVING_SIZE / 2;
+  const edge = LOT_SIZE / 2;
+  for (let cx = snapTile(x - half); cx <= snapTile(x + half); cx += LOT_SIZE) {
+    for (let cz = snapTile(z - half); cz <= snapTile(z + half); cz += LOT_SIZE) {
+      if (!roads.has(tileKey(cx, cz))) continue;
+      const left = x - cx - half, right = x - cx + half;
+      const front = z - cz - half, back = z - cz + half;
+      const hits = (x0, z0, x1, z1) =>
+        left < x1 && right > x0 && front < z1 && back > z0;
+      if (hits(-LANE_EDGE, -LANE_EDGE, LANE_EDGE, LANE_EDGE)) return false;
+      const mask = roadMask(cx, cz, roads);
+      if (((mask & 1) && hits(-LANE_EDGE, -edge, LANE_EDGE, 0)) ||
+          ((mask & 2) && hits(0, -LANE_EDGE, edge, LANE_EDGE)) ||
+          ((mask & 4) && hits(-LANE_EDGE, 0, LANE_EDGE, edge)) ||
+          ((mask & 8) && hits(-edge, -LANE_EDGE, 0, LANE_EDGE))) return false;
+    }
+  }
+  return true;
+}
+
+function preservesStreetFixture(house, roads, next) {
+  if (isLamp(house.type)) return preservesLamp(house, roads, next);
+  return !isPaving(house.type) || pavingFitsRoads(house.x, house.z, next);
+}
+
+function preservesStreetFixtures(x, z, houses, roads) {
+  const reach = LOT_SIZE * 1.5 + PAVING_SIZE / 2;
   const nearby = houses.filter((house) =>
-    isLamp(house.type) &&
+    (isLamp(house.type) || isPaving(house.type)) &&
     Math.abs(house.x - x) <= reach &&
     Math.abs(house.z - z) <= reach
   );
   if (!nearby.length) return true;
   const next = new Map(roads);
   const key = tileKey(x, z);
-  if (remove) next.delete(key);
-  else next.set(key, { x, z });
-  return nearby.every((lamp) => lampSiteHeight(lamp.x, lamp.z, next) !== null);
+  next.set(key, { x, z });
+  return nearby.every((house) => preservesStreetFixture(house, roads, next));
 }
 
-export function canBuildRoad(x, z, houses, roads) {
+const roadBuilding = ({ type }) => !isLamp(type) && !isDecoration(type) && !isPaving(type);
+
+export function canBuildRoad(x, z, houses, roads, area) {
   return (
     x === snapTile(x) &&
     z === snapTile(z) &&
     !roads.has(tileKey(x, z)) &&
-    canPlace(x, z, houses.filter(({ type }) => !isLamp(type) && !isDecoration(type))) &&
-    preservesLampSites(x, z, houses, roads, false)
+    canPlace(x, z, houses.filter(roadBuilding), null, undefined, 0, area) &&
+    preservesStreetFixtures(x, z, houses, roads)
   );
 }
 
-export function canRemoveRoad(x, z, houses, roads) {
-  return roads.has(tileKey(x, z)) && preservesLampSites(x, z, houses, roads, true);
-}
-
-export function canMoveRoad(x, z, source, houses, roads) {
+export function canMoveRoad(x, z, source, houses, roads, area) {
   if (!roads.has(tileKey(source.x, source.z))) return false;
   if (x === source.x && z === source.z) return true;
   const next = new Map(roads);
   next.delete(tileKey(source.x, source.z));
-  const buildings = houses.filter(({ type }) => !isLamp(type));
-  if (!canBuildRoad(x, z, buildings, next)) return false;
+  const buildings = houses.filter(roadBuilding);
+  if (!canBuildRoad(x, z, buildings, next, area)) return false;
   next.set(tileKey(x, z), { ...source, x, z });
   // Validate both ends of the move together, including the changed connections.
-  return houses.every((house) =>
-    !isLamp(house.type) || lampSiteHeight(house.x, house.z, next) !== null
-  );
+  return houses.every(house => preservesStreetFixture(house, roads, next));
 }
 
-export function readRoads(records, houses, nextOrder) {
+export function canRemoveRoad(x, z, _houses, roads) {
+  // Removing a connection only shrinks the paved traffic lane.
+  return roads.has(tileKey(x, z));
+}
+
+export function readRoads(records, houses, nextOrder, area) {
   const roads = new Map();
   if (!Array.isArray(records)) return roads;
-  const buildings = houses.filter(({ type }) => !isLamp(type));
-  for (const record of records.slice(0, tilesPerSide ** 2)) {
-    if (record && canBuildRoad(record.x, record.z, buildings, roads)) {
+  const buildings = houses.filter(roadBuilding);
+  for (const record of records) {
+    if (record && canBuildRoad(record.x, record.z, buildings, roads, area)) {
       const order =
         Number.isSafeInteger(record.order) && record.order >= 0
           ? record.order

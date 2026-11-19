@@ -1,10 +1,30 @@
 import { BUILDING_TYPES } from "./house-types.js";
-import { LOT_SIZE, footprint, isLamp } from "./placement.js";
+import { LOT_SIZE, footprint, isDecoration, isLamp, isPaving } from "./placement.js";
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
+import { buildArea } from "./village-area.js";
 
 // Four continuous streets in each direction form a ring and nine districts.
 // The outside row faces the ring, so the whole clearing has street access.
 export const CITY_STREETS = [-72, -24, 24, 72];
+export const CITY_EXPANSION = { north: 2, east: 2 };
+export const MIRANTE_AVENUE = -120;
+
+export function extendNorthernAvenue(roads) {
+  for (const z of [-96, -108]) {
+    roads.set(tileKey(24, z), { x: 24, z, order: roads.size });
+  }
+  for (let x = 24; x >= -36; x -= LOT_SIZE) {
+    const z = MIRANTE_AVENUE;
+    roads.set(tileKey(x, z), { x, z, order: roads.size });
+  }
+}
+
+export function extendEasternAvenue(roads) {
+  const z = -72;
+  for (let x = 96; x <= 156; x += LOT_SIZE) {
+    roads.set(tileKey(x, z), { x, z, order: roads.size });
+  }
+}
 
 export function createCityPlan() {
   const roads = new Map();
@@ -14,10 +34,13 @@ export function createCityPlan() {
         roads.set(tileKey(x, z), { x, z, order: roads.size });
     }
   }
-  const lots = roadLots(roads);
+  extendNorthernAvenue(roads);
+  extendEasternAvenue(roads);
+  const area = buildArea(CITY_EXPANSION);
+  const lots = roadLots(roads, area);
   const houses = [];
   function add(type, x, z, rotation = 0) {
-    if (!canBuildHouse(x, z, houses, roads, lots, null, type, rotation))
+    if (!canBuildHouse(x, z, houses, roads, lots, null, type, rotation, area))
       throw new Error(`Lote inválido: ${type} em ${x},${z}`);
     houses.push({ type, x, z, rotation });
   }
@@ -25,6 +48,10 @@ export function createCityPlan() {
   // The palace's gateway faces the southern avenue. Its north side is a
   // shopping frontage; its 36 x 24 m parcel stays entirely clear of asphalt.
   add("palace", 0, 6);
+  add("miranteOriental", 6, -102, 2);
+  add("edificioOrion", -18, -144);
+  add("convergencia", 126, -114);
+  add("rodaGigante", 120, -54, 2);
   for (const [index, type] of ["bakery", "market", "pharmacy"].entries())
     add(type, -12 + index * 12, -12, 2);
 
@@ -76,8 +103,8 @@ export function createCityPlan() {
   // at four-way junctions; directional LED arms point inward over the lane.
   for (const { x, z } of roads.values()) {
     const vertical = CITY_STREETS.includes(x);
-    const horizontal = CITY_STREETS.includes(z);
-    const alternating = Math.abs((vertical ? z : x) / 12) % 2 ? 1 : -1;
+    const horizontal = CITY_STREETS.includes(z) || z === MIRANTE_AVENUE;
+    const alternating = z === MIRANTE_AVENUE || Math.abs((vertical ? z : x) / 12) % 2 ? 1 : -1;
     if (vertical && horizontal) {
       add("lampDouble", x + 4, z + 4, 0);
     } else if (vertical) {
@@ -95,11 +122,11 @@ export function createCityPlan() {
     houses,
     houseOrder: houses.map((_, i) => roads.size + i),
     roads: [...roads.values()],
+    expansion: { ...CITY_EXPANSION },
   };
-  // Decorations are optional small garden pieces; the architectural plan
-  // reserves its existing parcels for buildings and street lighting.
+  // The architectural plan uses its parcels for buildings and street lighting.
   const missing = Object.keys(BUILDING_TYPES).filter((type) =>
-    BUILDING_TYPES[type].category !== "decoration" && !houses.some((h) => h.type === type));
+    !isDecoration(type) && !isPaving(type) && !houses.some((h) => h.type === type));
   if (missing.length) throw new Error(`Modelos ausentes: ${missing.join(", ")}`);
   return world;
 }

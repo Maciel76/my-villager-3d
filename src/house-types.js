@@ -1,6 +1,7 @@
 import { DECORATION_TYPES } from "./decoration-types.js";
 import { TREE_TYPES } from "./tree-types.js";
 import { PLANTING_BED_TYPES } from "./planting-bed-types.js";
+import { PAVING_TYPES } from "./paving-types.js";
 
 export const DEFAULT_HOUSE = "cottage";
 
@@ -32,11 +33,15 @@ export const COMMERCIAL_TYPES = {
 const APARTMENTS = {
   varandas: { label: "Residencial Varandas" },
   mirante: { label: "Torre Mirante" },
+  miranteOriental: { label: "Torre Mirante Oriental", lotSpan: 2, height: 40 },
+  edificioOrion: { label: "Edifício Orion", lotSpan: [4, 3], height: 56 },
   aurora: { label: "Residencial Aurora", lotSpan: 2 },
 };
 
 const LANDMARKS = {
   rotunda: { label: "Pavilhão Rotunda" },
+  convergencia: { label: "A Convergência", lotSpan: 6, height: 41 },
+  rodaGigante: { label: "Roda-Gigante Estrela da Vila", lotSpan: [3, 2], height: 35.2 },
   church: {
     label: "Igreja das Cúpulas",
     lotSpan: 2,
@@ -60,6 +65,7 @@ export const BUILDING_TYPES = Object.fromEntries(
     commercial: COMMERCIAL_TYPES,
     landmarks: LANDMARKS,
     lighting: LIGHTING,
+    paving: PAVING_TYPES,
     decoration: { ...DECORATION_TYPES, ...TREE_TYPES, ...PLANTING_BED_TYPES },
   }).flatMap(([category, models]) =>
     Object.entries(models).map(([type, details]) => [

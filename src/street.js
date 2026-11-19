@@ -1,11 +1,10 @@
 import * as THREE from "three";
 import { LOT_SIZE } from "./placement.js";
 import {
-  DIRECTIONS, LANE_EDGE, WALK_EDGE, WALK_Y, roadMask, roadZone, snapTile, tileKey,
+  ASPHALT_Y, DIRECTIONS, LANE_EDGE, WALK_EDGE, WALK_Y, roadMask, roadZone, snapTile, tileKey,
 } from "./road-layout.js";
 
 const HALF = LOT_SIZE / 2;
-const ASPHALT_Y = 0.045;
 const PAINT_Y = ASPHALT_Y + 0.012;
 const SLICE = [-HALF, -WALK_EDGE, -LANE_EDGE, LANE_EDGE, WALK_EDGE, HALF];
 

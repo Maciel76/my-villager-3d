@@ -1,21 +1,25 @@
 import { BUILDING_TYPES } from "./house-types.js";
-import { footprint, isDecoration, isLamp, overlapsLot } from "./placement.js";
+import { footprint, isDecoration, isLamp, isPaving, overlapsLot } from "./placement.js";
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
-import { CITY_STREETS } from "./city-plan.js";
+import { CITY_STREETS, CITY_EXPANSION, MIRANTE_AVENUE, extendNorthernAvenue, extendEasternAvenue } from "./city-plan.js";
+import { buildArea } from "./village-area.js";
 
 export function createGardenCityPlan() {
   const houses = [], roads = new Map();
   for (let x = -84; x <= 84; x += 12) for (let z = -84; z <= 84; z += 12)
     if (CITY_STREETS.includes(x) || CITY_STREETS.includes(z))
       roads.set(tileKey(x, z), { x, z, order: roads.size });
-  const lots = roadLots(roads);
+  extendNorthernAvenue(roads);
+  extendEasternAvenue(roads);
+  const area = buildArea(CITY_EXPANSION);
+  const lots = roadLots(roads, area);
   function add(type, x, z, rotation = 0) {
     if (!BUILDING_TYPES[type]) throw new Error(`Modelo ausente: ${type}`);
-    if (!canBuildHouse(x, z, houses, roads, lots, null, type, rotation))
+    if (!canBuildHouse(x, z, houses, roads, lots, null, type, rotation, area))
       throw new Error(`Local inválido: ${type} em ${x},${z}`);
     // Garden layouts reserve genuinely open ground rather than depending on
     // offline readers accepting decorations inside a building's parcel.
-    if (isDecoration(type) && houses.some(h => !isDecoration(h.type) && !isLamp(h.type) &&
+    if (isDecoration(type) && houses.some(h => !isDecoration(h.type) && !isLamp(h.type) && !isPaving(h.type) &&
       overlapsLot(x, z, footprint(type, rotation), h)))
       throw new Error(`Jardim invade lote: ${type} em ${x},${z}`);
     houses.push({ type, x, z, rotation });
@@ -28,6 +32,10 @@ export function createGardenCityPlan() {
   // and a shopping block. Entire frontage strips remain public green spaces.
   const buildings = [
     ["palace",0,6,0],
+    ["miranteOriental",6,-102,2],
+    ["edificioOrion",-18,-144,0],
+    ["convergencia",126,-114,0],
+    ["rodaGigante",120,-54,2],
     ["oriental",-54,-54,2],["cottage",-36,-60,1],["chalet",-36,-48,1],["cafe",-60,-36,0],
     ["aurora",-6,-54,2],["mirante",12,-60,1],["varandas",12,-48,1],["market",0,-36,0],
     ["sakura",54,-54,2],["courtyard",36,-60,3],["townhouse",36,-48,3],["terrace",60,-36,0],
@@ -54,6 +62,13 @@ export function createGardenCityPlan() {
     add("decorBench",sign*6,-8,2);
     add("decorPlanter",sign*6,-16);
     add("lampColonial",sign*17,-12);
+  }
+  for (const z of [-16, -14, -12, -10, -8]) {
+    add("pavingMosaic", 0, z);
+    for (const sign of [-1, 1]) {
+      add("pavingConcrete", sign * 2, z);
+      add(z === -8 ? "pavingSlate" : "pavingBrick", sign * 4, z);
+    }
   }
   // Tea garden and a floral pavilion in the north-west district.
   add("decorGazebo",-46,-36);
@@ -110,7 +125,7 @@ export function createGardenCityPlan() {
   const gardens = [];
   for (let x=-84;x<=84;x+=12) for(let z=-84;z<=84;z+=12) {
     if(Math.abs(x)!==84 && Math.abs(z)!==84)continue;
-    if(roads.has(tileKey(x,z)) || houses.some(h=>!isDecoration(h.type)&&!isLamp(h.type)&&overlapsLot(x,z,[12,12],h)))continue;
+    if(roads.has(tileKey(x,z)) || houses.some(h=>!isDecoration(h.type)&&!isLamp(h.type)&&!isPaving(h.type)&&overlapsLot(x,z,[12,12],h)))continue;
     gardens.push({x:Math.abs(x)===84?Math.sign(x)*83:x,z:Math.abs(z)===84?Math.sign(z)*83:z});
   }
   gardens.forEach(({x,z},i)=>{
@@ -147,15 +162,15 @@ export function createGardenCityPlan() {
   });
   // Lighting of every street module, separate from park and garden lighting.
   for(const {x,z} of roads.values()){
-    const v=CITY_STREETS.includes(x),h=CITY_STREETS.includes(z);
-    const side=Math.abs((v?z:x)/12)%2?1:-1;
+    const v=CITY_STREETS.includes(x),h=CITY_STREETS.includes(z)||z===MIRANTE_AVENUE;
+    const side=z===MIRANTE_AVENUE||Math.abs((v?z:x)/12)%2?1:-1;
     if(v&&h)add("lampDouble",x+4,z+4);
     else if(v)add(x<0?"lampUrban":"lampSolar",x+side*4,z,side>0?2:0);
     else add(z< -24?"lampColonial":"lampUrban",x,z+side*4,side>0?1:3);
   }
   const missing=Object.keys(BUILDING_TYPES).filter(type=>!houses.some(h=>h.type===type));
   if(missing.length)throw new Error(`Catálogo sem lugar no plano: ${missing.join(", ")}`);
-  return {version:1,houses,houseOrder:houses.map((_,i)=>roads.size+i),roads:[...roads.values()]};
+  return {version:1,houses,houseOrder:houses.map((_,i)=>roads.size+i),roads:[...roads.values()],expansion:{...CITY_EXPANSION}};
 }
 
 export function gardenCitySummary(world) {

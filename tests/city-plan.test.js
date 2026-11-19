@@ -2,31 +2,33 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createCityPlan, cityPlanSummary } from "../src/city-plan.js";
 import { BUILDING_TYPES } from "../src/house-types.js";
-import { footprint, isLamp, readSave } from "../src/placement.js";
+import { footprint, isDecoration, isLamp, isPaving, readSave } from "../src/placement.js";
 import { canBuildHouse, lampSiteHeight, readRoads, roadLots, tileKey } from "../src/road-layout.js";
 import { isVillageWorld } from "../src/village-data.js";
+import { buildArea } from "../src/village-area.js";
 
 test("the complete city survives the game's save loader with every building and lighting model", () => {
   const world = createCityPlan();
   assert.equal(isVillageWorld(world), true);
   assert.equal(readSave(world).length, world.houses.length);
-  assert.equal(readRoads(world.roads, world.houses, 0).size, world.roads.length);
+  assert.equal(readRoads(world.roads, world.houses, 0, buildArea(world.expansion)).size, world.roads.length);
   assert.deepEqual(new Set(world.houses.map(h => h.type)), new Set(Object.keys(BUILDING_TYPES)
-    .filter(type => BUILDING_TYPES[type].category !== "decoration")));
+    .filter(type => !isDecoration(type) && !isPaving(type))));
   const orders = [...world.houseOrder, ...world.roads.map(r => r.order)];
   assert.equal(new Set(orders).size, orders.length);
 });
 
 test("every parcel fits without overlapping a neighbour, street, or map boundary", () => {
   const world = createCityPlan();
+  const area = buildArea(world.expansion);
   const roads = new Map(world.roads.map(r => [tileKey(r.x, r.z), r]));
-  const lots = roadLots(roads);
+  const lots = roadLots(roads, area);
   for (const house of world.houses) {
-    assert.equal(canBuildHouse(house.x, house.z, world.houses, roads, lots, house, house.type, house.rotation), true,
+    assert.equal(canBuildHouse(house.x, house.z, world.houses, roads, lots, house, house.type, house.rotation, area), true,
       `${house.type} at ${house.x},${house.z}`);
     if (isLamp(house.type)) assert.notEqual(lampSiteHeight(house.x, house.z, roads), null);
   }
-  assert.equal(cityPlanSummary(world).occupiedParcels + world.roads.length, 225);
+  assert.equal(cityPlanSummary(world).occupiedParcels + world.roads.length, 297);
 });
 
 test("every road connects to one network and all buildings face a street", () => {

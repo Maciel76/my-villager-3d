@@ -42,3 +42,48 @@ test("live collision updates preserve the walking camera and include newly built
   assert.ok(walker.camera.position.z < -12);
   assert.equal(walker.active, true);
 });
+
+test("flight clears roofs, blocks descent through them, and lands in open ground", () => {
+  const { walker, templates } = fixture();
+  const model = templates.cottage.clone();
+  model.position.z = -12;
+  const house = { type: "cottage", x: 0, z: -12, rotation: 0, model };
+  const idle = new THREE.Vector3();
+  const forward = new THREE.Vector3(0, 0, -1);
+  walker.updateObstacles([house], templates);
+  walker.toggleFlight();
+  assert.equal(walker.flying, true);
+  for (let frame = 0; frame < 60; frame++) walker.advance(idle, .04);
+  assert.equal(walker.camera.position.y, 26);
+  assert.equal(walker.inTransition, false);
+  for (let frame = 0; frame < 13; frame++) walker.advance(forward, .04);
+  assert.ok(walker.camera.position.z < -11);
+  for (let frame = 0; frame < 60; frame++) walker.advance(idle, .04, -1);
+  assert.ok(walker.camera.position.y >= 6.98);
+  const height = walker.camera.position.y;
+  walker.updateObstacles([house], templates);
+  assert.equal(walker.camera.position.y, height);
+  walker.toggleFlight();
+  assert.equal(walker.landing, true);
+  for (let frame = 0; frame < 60; frame++) walker.advance(idle, .04);
+  assert.equal(walker.flying, false);
+  assert.equal(walker.active, true);
+  assert.equal(walker.camera.position.y, 1.68);
+  assert.ok(Math.abs(walker.camera.position.x) >= 4.8 ||
+    Math.abs(walker.camera.position.z + 12) >= 4.8);
+});
+
+test("vertical input is bounded and leaving the view resets flight", () => {
+  const { walker, templates } = fixture();
+  const idle = new THREE.Vector3();
+  walker.toggleFlight();
+  for (let frame = 0; frame < 250; frame++) walker.advance(idle, .04, 1);
+  assert.equal(walker.camera.position.y, 140);
+  walker.look(0, 1000);
+  assert.ok(walker.camera.rotation.x < -Math.PI / 2 + .03);
+  walker.leave();
+  walker.toggleFlight();
+  assert.equal(walker.flying, false);
+  walker.enter(idle, new THREE.Vector3(0, 0, -1), [], templates, []);
+  assert.equal(walker.camera.position.y, 1.68);
+});

@@ -12,7 +12,7 @@ test("the full city stays within the overview on desktop and portrait screens", 
     camera.position.copy(overview.position);
     camera.lookAt(overview.target);
     camera.updateMatrixWorld();
-    for (const x of [-90, 90]) for (const z of [-90, 90]) for (const y of [0, 28]) {
+    for (const x of [-90, 162]) for (const z of [-162, 90]) for (const y of [0, 56]) {
       const projected = new THREE.Vector3(x, y, z).project(camera);
       assert.ok(Math.abs(projected.x) <= 0.841);
       assert.ok(Math.abs(projected.y) <= 0.761);

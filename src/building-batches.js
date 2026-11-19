@@ -7,6 +7,7 @@ const transparent = material => (Array.isArray(material) ? material : [material]
 // construction phases, material finishes, ground covers, and shadow flags.
 export function optimizeBuildingTemplates(templates) {
   for (const template of Object.values(templates)) {
+    if (template.userData.hasMovingParts) continue;
     template.updateMatrixWorld(true);
     const bounds = new THREE.Box3().setFromObject(template);
     const height = bounds.max.y - bounds.min.y;
@@ -70,6 +71,7 @@ export function createBuildingBatches(scene, templates) {
   function sync(houses, animations) {
     const groups = new Map();
     for (const house of houses) {
+      if (house.model.userData.hasMovingParts) continue;
       const animated = animations.has(house.model);
       const layer = animated ? 0 : 1;
       if (house.model.userData.renderLayer !== layer) {

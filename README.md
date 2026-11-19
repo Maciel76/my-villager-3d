@@ -28,10 +28,18 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
 - Arraste com o botão esquerdo para girar a câmera. Use o botão direito ou
   WASD para explorar a floresta e a roda do mouse para ajustar o zoom.
   Pressione **Home** para voltar à clareira.
+- Use **Expandir** (**1**) e escolha um lado para liberar uma faixa de 36 m
+  (três lotes de profundidade). Você pode ampliar cada lado até oito vezes.
+  A área liberada fica plana e pode receber ruas, construções e decorações.
+  As expansões são salvas no MongoDB. **Ctrl+Z** desfaz a última ação.
 - Escolha **Caminhar** (tecla **4**) para passear em primeira pessoa. Use **WASD**
   ou as setas, e arraste para olhar ao redor. No celular, segure as setas na
   tela. A **Loja** também funciona durante o passeio e mantém a posição e a
-  direção da câmera. Escolha **Explorar** para voltar à vista aérea.
+  direção da câmera. Toque em **Caminhar** novamente para voltar à vista aérea.
+- Durante a caminhada, pressione **F** ou toque em **Voar** para decolar.
+  Use **Espaço** para subir, **Shift** para descer e **WASD** ou as setas para
+  se mover. No celular, use os botões de altura. Arraste para ver o céu ou
+  olhar para a vila. Pressione **F** de novo ou toque em **Pousar** para voltar ao chão.
 - Abra a **Loja** para escolher construções. Clique num lote livre para construir.
   Em uma tela de toque, escolha o lote e toque em **Confirmar**.
 - Em primeira pessoa, mire no chão e clique para construir ou use **Enter**
@@ -41,7 +49,15 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   depois de construir, mover, excluir ou desfazer.
 - Em **Loja → Iluminação**, escolha um dos seis postes e instale-o na calçada
   ou num espaço livre. Continue instalando o mesmo modelo sem reabrir a Loja;
-  **Esc** ou **Explorar** encerra. Os postes usam uma grade de 1 m.
+  **Esc** ou **×** encerra. Os postes usam uma grade de 1 m.
+- Em **Loja → Calçadas**, escolha concreto, pedra portuguesa, tijolinho
+  terracota ou lajota grafite. Encaixe blocos de **2 × 2 m** em áreas verdes
+  para criar caminhos ou praças. Postes, bancos, floreiras e outras decorações
+  ficam apoiados na calçada, e dá para passar por ela no modo **Caminhar**.
+  Casas, prédios, monumentos e comércios podem ser assentados sobre os blocos.
+  Calçadas colocadas antes ficam sob o lote e preservam seu gramado. Para
+  pavimentar o jardim, coloque os blocos depois da construção, nos espaços
+  livres. Mudar um bloco ou construção de lugar conta como nova colocação.
 - Clique ou toque em uma construção para **Mover**, girar em passos de 90°
   com **↺** e **↻**, ou **Excluir**.
 - Em **Loja → Decorações**, escolha as 20 peças de jardim, praça, lazer e
@@ -71,10 +87,25 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
 - O **Palácio Oriental**, em **Loja → Monumentos**, tem cerca de **21 m de altura**
   e ocupa seis lotes livres em uma área de **36 × 24 m**. Para girar um palácio
   já construído, confirme a nova posição da área girada.
+- **A Convergência**, em **Loja → Monumentos**, reserva **72 × 72 m**. Uma esfera
+  de plasma fica suspensa entre três anéis que giram e um feixe sobe até
+  **640 m** no jogo, passando pela coroa a **40,5 m**. A praça tem três acessos,
+  jardins e cascatas animadas. A opção de movimento reduzido fixa os efeitos
+  em uma pose.
+- A **Roda-Gigante Estrela da Vila**, em **Loja → Monumentos**, ocupa **36 × 24 m**
+  e tem cerca de **35 m** de altura. As 16 cabines se mantêm na vertical
+  durante a volta de 58 segundos. A praça tem bilheteria, fila e iluminação
+  noturna.
 - O **Residencial Aurora**, em **Loja → Prédios**, ocupa quatro lotes de
   **24 × 24 m**. O edifício tem térreo, seis pavimentos residenciais, varandas,
   terraço com pergolado e cobertura com abertura circular. As proporções foram
   aproximadas a partir das imagens de referência; a altura é de cerca de 24 m.
+- A **Torre Mirante Oriental**, em **Loja → Prédios**, ocupa **24 × 24 m** e tem
+  cerca de **40 m** de altura. Tem dez pavimentos de varandas, fachada com faixa
+  em S e lótus iluminados, terraço oval, cerejeiras e duas cascatas no térreo.
+- O **Edifício Orion**, em **Loja → Prédios**, tem **56 m** de altura e um
+  terreno modelado de **40 × 30 m**. Reserva **48 × 36 m** na grade da vila
+  para o térreo comercial, doze pavimentos, terraços e piscina na cobertura.
 - A **Casa Cubo Verde**, em **Loja → Casas**, ocupa **24 × 24 m**. Tem três
   níveis, fachadas envidraçadas, terraços, revestimento de madeira e um jardim
   sobre a ala de dois pavimentos. A reprodução usa proporções aproximadas da
@@ -93,12 +124,11 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   Tem doze colunas caneladas e afuniladas, capitéis com volutas, três degraus,
   piso com medalhão, cornija denticulada e uma cúpula oca com painéis internos.
   Luzes discretas iluminam as colunas à noite.
-- Em **Explorar**, selecione um bloco de rua e use **Mover** ou **Excluir**.
+- Fora do modo de construção, selecione um trecho de rua e use **Mover** ou **Excluir**.
   **Esc** cancela a mudança e **Ctrl+Z** restaura o bloco no local anterior.
   Em **Ruas**, use **Remover** para retirar vários trechos seguidos.
-  Um poste sobre a calçada pode
-  precisar ser movido antes de alterar o cruzamento. **Ctrl+Z** desfaz a última
-  ação. As ruas ficam salvas no MongoDB local.
+  Ao excluir uma rua, os postes permanecem e se ajustam à superfície restante.
+  As ruas ficam salvas no MongoDB local.
 
 ## Horário da vila
 
@@ -106,6 +136,20 @@ Use o menu **Horário** para escolher manhã, meio-dia, fim de tarde ou noite.
 A luz e a direção das sombras ficam fixas no horário escolhido. À noite, as
 janelas acendem e os postes e lanternas iluminam as superfícies próximas.
 O MongoDB guarda o último horário selecionado.
+
+## Economia e trânsito
+
+Casas e prédios abrigam moradores de acordo com a capacidade do modelo.
+Comércios e serviços oferecem vagas. A arrecadação combina moradores e vagas preenchidas.
+O caixa recebe receita a cada 30 segundos com o jogo em primeiro plano.
+A vila existente ganha um saldo inicial proporcional à população, com um
+mínimo de 2.500 moedas. O saldo fica salvo junto com a cidade no MongoDB.
+
+A Loja mostra os preços antes de construir. Um trecho de rua custa 75 moedas
+e uma faixa de expansão custa 1.250. Mover e girar peças já compradas é gratuito.
+Excluir não devolve moedas. **Ctrl+Z** devolve o custo ao desfazer uma compra da
+sessão atual. Com ruas conectadas e moradores, carros circulam pelas pistas e
+pedestres usam as calçadas. Aproxime a câmera ou use **Caminhar** para vê-los.
 
 ## Cidade planejada
 
@@ -170,10 +214,21 @@ simulados e não modificam a vila do MongoDB.
   `src/oriental-garden.js` acrescenta os detalhes do jardim e dos telhados no jogo.
 - `models/palacio-oriental.sc` contém a arquitetura e os lagos editáveis do
   palácio. O modelo do jogo inclui as telhas, as ornamentações e a vegetação.
+- `models/convergencia.sc` contém a praça, os arcos e os anéis editáveis do
+  monumento. `src/convergencia-efeitos.js` anima o mini-sol, as órbitas, a
+  coroa, o feixe e a água durante o jogo.
+- `models/roda-gigante.sc` contém a roda, as cabines e a praça editáveis no
+  SolidCraft. `src/roda-gigante.js` monta e anima a roda no jogo.
 - `models/residencial-aurora.sc` guarda o prédio editável no SolidCraft, com
   os parâmetros Largura, Profundidade, Pavimento e Andares.
   `src/residencial-aurora.js` prepara os acabamentos, a iluminação das janelas
   e agrupa a geometria exportada para reduzir as chamadas de desenho.
+- `models/torre-mirante-oriental.sc` contém a arquitetura editável da torre,
+  incluindo o lótus e a faixa em S. `src/mirante-oriental.js` modela a versão
+  usada no jogo, com vidro, paisagismo e luzes ligadas ao horário da vila.
+- `models/edificio-orion.sc` contém a arquitetura editável do Orion, incluindo
+  as faixas orbitais, o coroamento inclinado e o letreiro. A versão em
+  `src/edificio-orion.js` acrescenta os acabamentos, os jardins e a iluminação.
 - `models/casa-cubo-verde.sc` contém a casa moderna editável no SolidCraft.
   `src/casa-cubo-verde.js` prepara o vidro, a madeira e a iluminação noturna;
   o GLB do jogo usa versões leves das copas e arbustos do modelo CAD.

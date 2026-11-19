@@ -1,6 +1,8 @@
 import * as THREE from "three";
+import { createConvergenceEffects } from "./convergencia-efeitos.js";
 import { BUILDING_TYPES } from "./house-types.js";
-import { footprint, isLamp, isDecoration, LOT_SIZE } from "./placement.js";
+import { footprint, isLamp, isDecoration, isPaving, LOT_SIZE } from "./placement.js";
+import { economyProfile, formatCoins, formatNumber } from "./economy.js";
 
 function capturePreviews(renderer, templates, cityLights) {
   const lighting = Object.keys(templates).every(isLamp);
@@ -46,14 +48,37 @@ function capturePreviews(renderer, templates, cityLights) {
           .setFromObject(model)
           .getBoundingSphere(new THREE.Sphere());
         const palace = type === "palace";
+        const convergence = type === "convergencia";
+        const wheel = type === "rodaGigante";
+        const tower = type === "miranteOriental" || type === "edificioOrion";
+        const angle = wheel ? [.31, .18, 1] : convergence ? [.29, .29, 1] : tower
+          ? [0.36, 0.21, 0.91]
+          : isPaving(type) ? [0.46, 1.35, 0.89]
+            : [palace ? 0.37 : 0.59, palace ? 0.42 : type === "lampSolar" ? 0.77 : 0.52, 0.91];
+        const framing = wheel ? 2.72 : convergence ? 2.68 : tower ? 2.9 : palace ? 2.68 : lighting ? 3.62 : 3.35;
         camera.position
-          .set(palace ? 0.37 : 0.59, palace ? 0.42 : type === "lampSolar" ? 0.77 : 0.52, 0.91)
-          .setLength(sphere.radius * (palace ? 2.68 : lighting ? 3.62 : 3.35))
+          .set(...angle)
+          .setLength(sphere.radius * framing)
           .add(sphere.center);
         camera.lookAt(sphere.center);
-        renderer.render(stage, camera);
-        context.drawImage(renderer.domElement, 0, 0, copy.width, copy.height);
-        stage.remove(model);
+        camera.far = Math.max(150, sphere.radius * (framing + 1.2));
+        camera.updateProjectionMatrix();
+        const background = stage.background;
+        const effect = convergence ? createConvergenceEffects({ beamHeight: 59 }) : null;
+        try {
+          if (effect) {
+            stage.background = new THREE.Color("#28354e");
+            stage.add(effect.root);
+            effect.update(1.7, camera);
+          }
+          renderer.render(stage, camera);
+          context.drawImage(renderer.domElement, 0, 0, copy.width, copy.height);
+        } finally {
+          effect?.dispose();
+          stage.background = background;
+          stage.remove(model);
+          model.traverse(part => { if (part.isInstancedMesh) part.dispose(); });
+        }
         return [type, copy.toDataURL("image/webp", 0.86)];
       }),
     );
@@ -108,7 +133,9 @@ export function createShop(renderer, templates, onChoose, onRenderPreview, cityL
     decorationMenu.hidden = activeCategory !== "decoration";
     for (const button of familyButtons)
       button.setAttribute("aria-pressed", button.dataset.decorationFamily === activeFamily);
-    countLabel.textContent = `${count} ${activeCategory === "decoration" ? count === 1 ? "decoração" : "decorações" : count === 1 ? "modelo" : "modelos"}`;
+    const [single, plural] = activeCategory === "decoration" ? ["decoração", "decorações"]
+      : activeCategory === "paving" ? ["bloco", "blocos"] : ["modelo", "modelos"];
+    countLabel.textContent = `${count} ${count === 1 ? single : plural}`;
   }
 
   for (const button of familyButtons) {
@@ -130,7 +157,8 @@ export function createShop(renderer, templates, onChoose, onRenderPreview, cityL
     button.type = "button";
     button.className = "house-choice";
     button.dataset.house = type;
-    button.setAttribute("aria-label", `${isDecoration(type) ? "Decorar" : "Construir"}: ${details.label}`);
+    const action = isPaving(type) ? "Assentar" : isDecoration(type) ? "Decorar" : "Construir";
+    button.setAttribute("aria-label", `${action}: ${details.label}`);
     const image = document.createElement("img");
     images.set(type, image);
     image.alt = "";
@@ -139,15 +167,24 @@ export function createShop(renderer, templates, onChoose, onRenderPreview, cityL
     label.textContent = details.label;
     const command = document.createElement("span");
     command.className = "house-command";
+    const { price, residents, jobs } = economyProfile(type);
+    const priceLabel = document.createElement("strong");
+    priceLabel.className = "shop-price";
+    priceLabel.textContent = formatCoins(price);
+    const capacity = residents ? ` · ${formatNumber(residents)} moradores`
+      : jobs ? ` · ${formatNumber(jobs)} vagas de trabalho` : "";
     const [width, depth] = footprint(type);
     const formatSize = value => value.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
-    command.textContent = isDecoration(type)
+    command.textContent = isPaving(type)
+      ? `${width} × ${depth} m`
+      : isDecoration(type)
       ? `${details.family === "trees" ? "Plantio " : ""}${formatSize(width)} × ${formatSize(depth)} m · ${details.plantingBed ? "Recebe árvores" : "Posicionar"}`
       : details.lotSpan
       ? `${(width * depth) / LOT_SIZE ** 2} lotes · ${width} × ${depth} m`
       : "Posicionar";
-    if (details.lotSpan)
-      button.setAttribute("aria-description", command.textContent);
+    command.textContent += capacity;
+    command.append(priceLabel);
+    button.setAttribute("aria-description", `${formatCoins(price)}${capacity}`);
     button.append(image, label);
     if (isDecoration(type)) {
       const description = document.createElement("span");
