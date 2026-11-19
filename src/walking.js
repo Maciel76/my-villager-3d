@@ -1,7 +1,6 @@
 import * as THREE from "three";
-<<<<<<< HEAD
-import { LAMP_BASE_RADIUS, LOT_SIZE, footprint, isLamp, isPaving } from "./placement.js";
-import { BASE_AREA, containsPoint } from "./village-area.js";
+import { LAMP_BASE_RADIUS, LOT_SIZE, footprint, isLamp, isPaving, isFreeLight } from "./placement.js";
+import { buildArea, containsPoint } from "./village-area.js";
 
 const PLAYER_RADIUS = 0.3;
 const WALK_SPEED = 8.4;
@@ -9,12 +8,6 @@ const FLIGHT_SPEED = 23;
 const VERTICAL_SPEED = 18;
 const TAKEOFF_HEIGHT = 26;
 const FLIGHT_LIMIT = 140;
-=======
-import { BUILD_LIMIT, LAMP_BASE_RADIUS, LOT_SIZE, footprint, isLamp, isFreeLight } from "./placement.js";
-
-const PLAYER_RADIUS = 0.3;
-const WALK_SPEED = 5.2;
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
 
 const EYE_HEIGHT = 1.68;
 const LOOK_SENSITIVITY = 0.004;
@@ -43,7 +36,7 @@ export function createWalker(getHeight, viewDistance) {
   let flying = false;
   let takeoffHeight = null;
   let landing = null;
-  let area = BASE_AREA;
+  let area = buildArea();
 
   function isFree(x, z, eye) {
     return obstacles.every(bounds => eye === undefined
@@ -71,11 +64,7 @@ export function createWalker(getHeight, viewDistance) {
         if (isFree(px, pz)) return { x: px, z: pz };
       }
     }
-<<<<<<< HEAD
     return { x: area.maxX + LOT_SIZE / 2 + 1, z };
-=======
-    return { x: (Math.sign(x) || 1) * (BUILD_LIMIT + LOT_SIZE / 2 + 1), z };
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
   }
 
   function obstacleBounds(type, x, z, rotation, matrix, templates) {
@@ -93,11 +82,7 @@ export function createWalker(getHeight, viewDistance) {
   }
 
   function updateObstacles(houses, templates) {
-<<<<<<< HEAD
-    obstacles = houses.filter(({ type }) => !isPaving(type)).map(({ type, model, x, z, rotation }) => {
-=======
-    obstacles = houses.filter(house => !isFreeLight(house.type)).map(({ type, model, x, z, rotation }) => {
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+    obstacles = houses.filter(({ type }) => !isPaving(type) && !isFreeLight(type)).map(({ type, model, x, z, rotation }) => {
       model.updateWorldMatrix(true, false);
       // Keep the space beyond the lot, including the sidewalk, open to walking.
       return obstacleBounds(type, x, z, rotation, model.matrixWorld, templates);
@@ -106,13 +91,8 @@ export function createWalker(getHeight, viewDistance) {
     if (active && !flying) position.y = getHeight(position.x, position.z) + EYE_HEIGHT;
   }
 
-<<<<<<< HEAD
   function canBuildAt(type, x, z, rotation, templates, height = 0) {
-    if (isPaving(type)) return true;
-=======
-  function canBuildAt(type, x, z, rotation, templates) {
-    if (isFreeLight(type)) return true;
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+    if (isPaving(type) || isFreeLight(type)) return true;
     const matrix = new THREE.Matrix4().makeRotationY(rotation * Math.PI / 2);
     matrix.setPosition(x, height, z);
     const bounds = obstacleBounds(type, x, z, rotation, matrix, templates);
@@ -120,19 +100,13 @@ export function createWalker(getHeight, viewDistance) {
       : outsideColumn(position.x, position.z, bounds);
   }
 
-  function enter(focus, direction, houses, templates, roads, bounds = BASE_AREA) {
+  function enter(focus, direction, houses, templates, roads, bounds = buildArea()) {
     area = bounds;
     flying = false;
     takeoffHeight = landing = null;
     updateObstacles(houses, templates);
-<<<<<<< HEAD
     const insideCity = containsPoint(area, focus.x, focus.z, LOT_SIZE / 2);
     const { x, z } = spawnNear(insideCity ? focus.x : 0, insideCity ? focus.z : 0, roads, area);
-=======
-    const cityEdge = BUILD_LIMIT + LOT_SIZE / 2;
-    const insideCity = Math.max(Math.abs(focus.x), Math.abs(focus.z)) <= cityEdge;
-    const { x, z } = spawnNear(insideCity ? focus.x : 0, insideCity ? focus.z : 0, roads);
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
     position.set(x, getHeight(x, z) + EYE_HEIGHT, z);
     camera.rotation.set(-0.07, Math.atan2(-direction.x, -direction.z), 0);
     active = true;

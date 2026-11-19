@@ -13,12 +13,8 @@ import {
   snap,
   snapFootprint,
 } from "./placement.js";
-<<<<<<< HEAD
-import { BASE_AREA, containsPoint } from "./village-area.js";
+import { buildArea, containsPoint } from "./village-area.js";
 import { PAVING_SIZE, snapPaving } from "./paving-types.js";
-=======
-import { getBuildAreaSize, areaBuildLimit } from "./build-area.js";
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
 
 export const DIRECTIONS = [
   { bit: 1, x: 0, z: -1 },
@@ -92,7 +88,7 @@ function preservesLamp({ x, z }, roads, next) {
   return lampSurfaces(x, z, next).every((height, index) => height === old[index]);
 }
 
-export function roadLots(roads, area = BASE_AREA) {
+export function roadLots(roads, area = buildArea()) {
   const lots = new Map();
   for (const road of roads.values()) {
     for (const direction of DIRECTIONS) {
@@ -106,12 +102,8 @@ export function roadLots(roads, area = BASE_AREA) {
 }
 
 export function houseSite(x, z, lots, type, rotation) {
-<<<<<<< HEAD
   if (isPaving(type)) return { x: snapPaving(x), z: snapPaving(z) };
-  if (isDecoration(type)) return {
-=======
   if (isDecoration(type) || isFreeLight(type)) return {
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
     x: Math.round(x / DECORATION_STEP) * DECORATION_STEP || 0,
     z: Math.round(z / DECORATION_STEP) * DECORATION_STEP || 0,
   };
@@ -125,15 +117,10 @@ export function houseSite(x, z, lots, type, rotation) {
   );
 }
 
-<<<<<<< HEAD
 export function canBuildHouse(x, z, houses, roads, lots, ignored, type, rotation, bounds) {
   if (!canPlace(x, z, houses, ignored, type, rotation, bounds)) return false;
   if (isPaving(type)) return pavingFitsRoads(x, z, roads);
-=======
-export function canBuildHouse(x, z, houses, roads, lots, ignored, type, rotation) {
-  if (!canPlace(x, z, houses, ignored, type, rotation)) return false;
   if (isFreeLight(type)) return true;
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
   if (isDecoration(type)) return true;
   if (isLamp(type)) return lampSiteHeight(x, z, roads) !== null;
   const area = footprint(type, rotation);
@@ -172,6 +159,7 @@ function pavingFitsRoads(x, z, roads) {
 }
 
 function preservesStreetFixture(house, roads, next) {
+  if (isFreeLight(house.type)) return true;
   if (isLamp(house.type)) return preservesLamp(house, roads, next);
   return !isPaving(house.type) || pavingFitsRoads(house.x, house.z, next);
 }
@@ -179,11 +167,7 @@ function preservesStreetFixture(house, roads, next) {
 function preservesStreetFixtures(x, z, houses, roads) {
   const reach = LOT_SIZE * 1.5 + PAVING_SIZE / 2;
   const nearby = houses.filter((house) =>
-<<<<<<< HEAD
-    (isLamp(house.type) || isPaving(house.type)) &&
-=======
-    isLamp(house.type) && !isFreeLight(house.type) &&
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+    ((isLamp(house.type) && !isFreeLight(house.type)) || isPaving(house.type)) &&
     Math.abs(house.x - x) <= reach &&
     Math.abs(house.z - z) <= reach
   );
@@ -194,24 +178,15 @@ function preservesStreetFixtures(x, z, houses, roads) {
   return nearby.every((house) => preservesStreetFixture(house, roads, next));
 }
 
-<<<<<<< HEAD
 const roadBuilding = ({ type }) => !isLamp(type) && !isDecoration(type) && !isPaving(type);
 
 export function canBuildRoad(x, z, houses, roads, area) {
-=======
-export function canBuildRoad(x, z, houses, roads, limit = BUILD_LIMIT) {
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
   return (
     x === snapTile(x) &&
     z === snapTile(z) &&
     !roads.has(tileKey(x, z)) &&
-<<<<<<< HEAD
     canPlace(x, z, houses.filter(roadBuilding), null, undefined, 0, area) &&
     preservesStreetFixtures(x, z, houses, roads)
-=======
-    canPlace(x, z, houses.filter(({ type }) => !isLamp(type) && !isDecoration(type)), null, undefined, undefined, limit) &&
-    preservesLampSites(x, z, houses, roads, false)
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
   );
 }
 
@@ -224,7 +199,6 @@ export function canMoveRoad(x, z, source, houses, roads, area) {
   if (!canBuildRoad(x, z, buildings, next, area)) return false;
   next.set(tileKey(x, z), { ...source, x, z });
   // Validate both ends of the move together, including the changed connections.
-<<<<<<< HEAD
   return houses.every(house => preservesStreetFixture(house, roads, next));
 }
 
@@ -234,26 +208,12 @@ export function canRemoveRoad(x, z, _houses, roads) {
 }
 
 export function readRoads(records, houses, nextOrder, area) {
+  if (typeof area === "number") area = buildArea({}, area);
   const roads = new Map();
   if (!Array.isArray(records)) return roads;
   const buildings = houses.filter(roadBuilding);
   for (const record of records) {
     if (record && canBuildRoad(record.x, record.z, buildings, roads, area)) {
-=======
-  return houses.every((house) =>
-    !isLamp(house.type) || isFreeLight(house.type) || lampSiteHeight(house.x, house.z, next) !== null
-  );
-}
-
-export function readRoads(records, houses, nextOrder, areaSize = getBuildAreaSize()) {
-  const roads = new Map();
-  if (!Array.isArray(records)) return roads;
-  const limit = areaBuildLimit(areaSize);
-  const tilesPerSide = 2 * Math.floor(limit / LOT_SIZE) + 1;
-  const buildings = houses.filter(({ type }) => !isLamp(type));
-  for (const record of records.slice(0, tilesPerSide ** 2)) {
-    if (record && canBuildRoad(record.x, record.z, buildings, roads, limit)) {
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
       const order =
         Number.isSafeInteger(record.order) && record.order >= 0
           ? record.order

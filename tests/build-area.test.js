@@ -6,6 +6,23 @@ import { canPlace, readSave } from "../src/placement.js";
 import { canBuildRoad, readRoads, roadLots } from "../src/road-layout.js";
 import { isVillageWorld } from "../src/village-data.js";
 import { createWalker } from "../src/walking.js";
+import { buildArea } from "../src/village-area.js";
+
+test("directional expansion, the enlarged base, paving, free light heights and treasury share one save", () => {
+  const world = { version: 1, areaSize: 360, expansion: { east: 2, north: 1 },
+    economy: { coins: 12345, progressMs: 12000 }, houses: [
+      { type: "pavingConcrete", x: 240, z: 0, rotation: 0 },
+      { type: "lightBlock", x: 240.25, y: 18, z: 0, rotation: 0 },
+    ], roads: [{ x: 240, z: 24, order: 2 }] };
+  const bounds = buildArea(world.expansion, world.areaSize);
+  assert.deepEqual(bounds, { minX: -177, maxX: 249, minZ: -213, maxZ: 177 });
+  assert.equal(isVillageWorld(world), true);
+  assert.equal(readSave(world).length, 2);
+  assert.equal(readSave(world)[1].y, 18);
+  assert.equal(readRoads(world.roads, readSave(world), 3, bounds).size, 1);
+  assert.equal(isVillageWorld({ ...world, expansion: { east: 9 } }), false);
+  assert.equal(isVillageWorld({ ...world, economy: { coins: -1, progressMs: 0 } }), false);
+});
 
 test("the doubled terrain can grow repeatedly and all placement boundaries update live", () => {
   try {

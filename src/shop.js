@@ -1,12 +1,8 @@
 import * as THREE from "three";
 import { createConvergenceEffects } from "./convergencia-efeitos.js";
 import { BUILDING_TYPES } from "./house-types.js";
-<<<<<<< HEAD
-import { footprint, isLamp, isDecoration, isPaving, LOT_SIZE } from "./placement.js";
+import { footprint, isLamp, isDecoration, isPaving, isFreeLight, LOT_SIZE } from "./placement.js";
 import { economyProfile, formatCoins, formatNumber } from "./economy.js";
-=======
-import { footprint, isLamp, isDecoration, isFreeLight, LOT_SIZE } from "./placement.js";
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
 
 function capturePreviews(renderer, templates, cityLights) {
   const lighting = Object.keys(templates).every(isLamp);
@@ -179,12 +175,9 @@ export function createShop(renderer, templates, onChoose, onRenderPreview, cityL
       : jobs ? ` · ${formatNumber(jobs)} vagas de trabalho` : "";
     const [width, depth] = footprint(type);
     const formatSize = value => value.toLocaleString("pt-BR", { maximumFractionDigits: 2 });
-<<<<<<< HEAD
-    command.textContent = isPaving(type)
-      ? `${width} × ${depth} m`
-=======
     command.textContent = isFreeLight(type) ? "Luz sem luminária · altura livre"
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+    : isPaving(type)
+      ? `${width} × ${depth} m`
       : isDecoration(type)
       ? `${details.family === "trees" ? "Plantio " : ""}${formatSize(width)} × ${formatSize(depth)} m · ${details.plantingBed ? "Recebe árvores" : "Posicionar"}`
       : details.lotSpan

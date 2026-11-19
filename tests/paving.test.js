@@ -16,7 +16,7 @@ test("modular paving snaps to adjacent cells, while benches and lamps can share 
   assert.ok(canPlace(2, 0, [brick], null, lamp.type, 0));
   assert.ok(!canPlace(0, 0, [concrete], null, brick.type, 1));
   assert.ok(!canPlace(1, 0, [concrete], null, brick.type, 1));
-  assert.ok(!canPlace(88, 0, [], null, brick.type, 1));
+  assert.ok(!canPlace(178, 0, [], null, brick.type, 1));
 
   const houses = [bench, concrete, brick, lamp];
   const saved = { version: 1, houses };

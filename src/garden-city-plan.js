@@ -1,11 +1,8 @@
 import { BUILDING_TYPES } from "./house-types.js";
-<<<<<<< HEAD
-import { footprint, isDecoration, isLamp, isPaving, overlapsLot } from "./placement.js";
-=======
-import { footprint, isDecoration, isLamp, isFreeLight, overlapsLot } from "./placement.js";
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+import { footprint, isDecoration, isLamp, isFreeLight, isPaving, overlapsLot } from "./placement.js";
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
 import { CITY_STREETS, CITY_EXPANSION, MIRANTE_AVENUE, extendNorthernAvenue, extendEasternAvenue } from "./city-plan.js";
+import { LEGACY_AREA_SIZE } from "./build-area.js";
 import { buildArea } from "./village-area.js";
 
 export function createGardenCityPlan() {
@@ -15,7 +12,7 @@ export function createGardenCityPlan() {
       roads.set(tileKey(x, z), { x, z, order: roads.size });
   extendNorthernAvenue(roads);
   extendEasternAvenue(roads);
-  const area = buildArea(CITY_EXPANSION);
+  const area = buildArea(CITY_EXPANSION, LEGACY_AREA_SIZE);
   const lots = roadLots(roads, area);
   function add(type, x, z, rotation = 0) {
     if (!BUILDING_TYPES[type]) throw new Error(`Modelo ausente: ${type}`);

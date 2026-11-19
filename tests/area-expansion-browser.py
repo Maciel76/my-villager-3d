@@ -24,7 +24,8 @@ with sync_playwright() as p:
             saved = {"revision": 1, "hour": "7.5", "world": {"version": 1,
                 "houses": [{"type": "cottage", "x": 0, "z": 0, "rotation": 0},
                            {"type": "lightBlock", "x": 5.25, "y": 12, "z": 2, "rotation": 0}],
-                "houseOrder": [0, 2], "roads": [{"x": 0, "z": 12, "order": 1}]}}
+                "houseOrder": [0, 2], "roads": [{"x": 0, "z": 12, "order": 1}],
+                "economy": {"coins": 50000, "progressMs": 0}}}
             if not touch:
                 saved["world"]["areaSize"] = 180
 
@@ -41,12 +42,12 @@ with sync_playwright() as p:
                 assert marker in source
                 source = source.replace(marker, """
                   globalThis.__area = {camera, controls, walker, scene, ground, grid, roadGrid, invalidate,
-                    terrainHeight, getBuildAreaSize, setBuildAreaSize,
-                    state: () => ({size:getBuildAreaSize(),limit:BUILD_LIMIT,active:walker.active,
+                    terrainHeight, heightAt:terrainAt, getBuildAreaSize, setBuildAreaSize,
+                    state: () => ({size:getBuildAreaSize(),limit:area.maxX,active:walker.active,
                       pose:walker.camera.position.toArray(),rotation:walker.camera.quaternion.toArray(),
                       houses:houses.map(({x,y,z,type,rotation})=>({x,y,z,type,rotation})),
                       roads:[...roads.values()],candidate,placement:placement&&{type:placement.type,road:placement.road},
-                      chunks:ground.children.length,gridWidth:Math.max(...grid.geometry.attributes.position.array.filter((_,i)=>i%3===0))*2}),
+                      chunks:ground.children.length,gridWidth:Math.max(...grid.geometry.attributes.position.array.filter((_,i)=>i%3===0))-Math.min(...grid.geometry.attributes.position.array.filter((_,i)=>i%3===0))}),
                     view:(x,z)=>{controls.enableDamping=false;controls.target.set(x,0,z);
                       camera.position.set(x+40,65,z+55);controls.update();invalidate();},
                     forestInArea:()=>{let occupied=0; const edge=getBuildAreaSize()/2;
@@ -80,6 +81,7 @@ with sync_playwright() as p:
         page.click("#expand-area")
         page.wait_for_function("document.querySelector('#save-state').textContent.includes('✓')")
         assert state()["size"] == saved["world"]["areaSize"] == 360
+        assert saved["world"]["economy"]["coins"] == 48750
         for key in ["houses", "houseOrder", "roads"]:
             assert saved["world"][key] == original[key], key
         assert page.evaluate("__area.terrainHeight(160,0)") == 0
@@ -135,7 +137,37 @@ with sync_playwright() as p:
             assert page.evaluate("__area.forestInArea()") == 0
         page.click("#extend-button")
         page.screenshot(path=str(OUT / "area-expansion-desktop.png"))
+        coins = saved["world"]["economy"]["coins"]
+        page.click('[data-expand="east"]')
+        page.wait_for_function("document.querySelector('#save-state').textContent.includes('✓')")
+        assert saved["world"]["areaSize"] == 720
+        assert saved["world"]["expansion"] == {"east": 1}
+        assert saved["world"]["economy"]["coins"] == coins - 1250
+        assert page.locator("#current-area").inner_text() == "756 × 720 m"
+        assert (state()["pose"], state()["rotation"]) == pose
+        assert page.evaluate("__area.heightAt(384,0)") == 0
         page.keyboard.press("Escape")
+        page.click("#walk-button")
+        page.evaluate("__area.view(384,0)")
+        page.click("#road-button")
+        aim(384, 0)
+        assert state()["candidate"]["valid"] is True
+        page.click("#place-button")
+        page.keyboard.press("Escape")
+        page.click("#shop-button")
+        page.click('[data-category="residential"]')
+        page.click('[data-house="cottage"]')
+        aim(384, 12)
+        assert state()["candidate"]["valid"] is True
+        page.click("#place-button")
+        page.keyboard.press("Escape")
+        page.wait_for_function("document.querySelector('#save-state').textContent.includes('✓')")
+        page.reload(wait_until="networkidle")
+        page.wait_for_function("globalThis.__area && !document.querySelector('#extend-button').disabled")
+        assert state()["size"] == 720
+        assert any(h["x"] == 384 for h in state()["houses"])
+        assert any(r["x"] == 384 for r in state()["roads"])
+        checks.append("Directional and uniform expansion share terrain bounds, charge the treasury, retain the walking pose and reload buildings beyond both previous limits")
         checks.append("Repeated expansion keeps first-person position, direction and the selected item; modal input does not move the walker")
         before = state()["chunks"]
         page.evaluate("__area.setBuildAreaSize(18000);__area.invalidate()")

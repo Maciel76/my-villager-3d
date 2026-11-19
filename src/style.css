@@ -319,7 +319,6 @@ h1 {
   background: #804c38;
   border-color: #e1a27d;
 }
-<<<<<<< HEAD
 .expansion-options {
   display: grid;
   grid-template-columns: repeat(4, max-content);
@@ -350,11 +349,10 @@ h1 {
   .expansion-options .hud-button {
     padding-inline: 5px;
   }
-=======
+}
 #extend-button .slot-icon {
   color: var(--gold);
   font-size: 30px;
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
 }
 .tool-slot {
   min-width: 69px;
@@ -543,6 +541,15 @@ dialog dd {
 #expand-area {
   width: 100%;
   margin-top: 8px;
+}
+#extend-dialog .expansion-panel {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--edge);
+}
+#extend-dialog .expansion-options {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 10px;
 }
 .shop-header {
   position: sticky;

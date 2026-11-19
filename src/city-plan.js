@@ -1,10 +1,7 @@
 import { BUILDING_TYPES } from "./house-types.js";
-<<<<<<< HEAD
-import { LOT_SIZE, footprint, isDecoration, isLamp, isPaving } from "./placement.js";
-=======
-import { LOT_SIZE, footprint, isLamp, isFreeLight } from "./placement.js";
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+import { LOT_SIZE, footprint, isDecoration, isLamp, isFreeLight, isPaving } from "./placement.js";
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
+import { LEGACY_AREA_SIZE } from "./build-area.js";
 import { buildArea } from "./village-area.js";
 
 // Four continuous streets in each direction form a ring and nine districts.
@@ -40,7 +37,7 @@ export function createCityPlan() {
   }
   extendNorthernAvenue(roads);
   extendEasternAvenue(roads);
-  const area = buildArea(CITY_EXPANSION);
+  const area = buildArea(CITY_EXPANSION, LEGACY_AREA_SIZE);
   const lots = roadLots(roads, area);
   const houses = [];
   function add(type, x, z, rotation = 0) {
@@ -130,11 +127,7 @@ export function createCityPlan() {
   };
   // The architectural plan uses its parcels for buildings and street lighting.
   const missing = Object.keys(BUILDING_TYPES).filter((type) =>
-<<<<<<< HEAD
-    !isDecoration(type) && !isPaving(type) && !houses.some((h) => h.type === type));
-=======
-    BUILDING_TYPES[type].category !== "decoration" && !isFreeLight(type) && !houses.some((h) => h.type === type));
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+    !isDecoration(type) && !isPaving(type) && !isFreeLight(type) && !houses.some((h) => h.type === type));
   if (missing.length) throw new Error(`Modelos ausentes: ${missing.join(", ")}`);
   return world;
 }

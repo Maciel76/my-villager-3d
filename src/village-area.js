@@ -1,5 +1,6 @@
+import { LEGACY_AREA_SIZE, areaBuildLimit, getBuildAreaSize } from "./build-area.js";
+export { BUILD_LIMIT } from "./build-area.js";
 export const LOT_SIZE = 12;
-export const BUILD_LIMIT = 87;
 export const EXPANSION_SIZE = 3 * LOT_SIZE;
 export const EXPANSION_LIMIT = 8;
 export const expansionSides = ["north", "west", "east", "south"];
@@ -10,16 +11,17 @@ export function isExpansion(value) {
       Number.isInteger(steps) && steps >= 0 && steps <= EXPANSION_LIMIT);
 }
 
-export function buildArea(expansion = {}) {
+export function buildArea(expansion = {}, size = getBuildAreaSize()) {
+  const limit = areaBuildLimit(size);
   return {
-    minX: -BUILD_LIMIT - (expansion.west ?? 0) * EXPANSION_SIZE,
-    maxX: BUILD_LIMIT + (expansion.east ?? 0) * EXPANSION_SIZE,
-    minZ: -BUILD_LIMIT - (expansion.north ?? 0) * EXPANSION_SIZE,
-    maxZ: BUILD_LIMIT + (expansion.south ?? 0) * EXPANSION_SIZE,
+    minX: -limit - (expansion.west ?? 0) * EXPANSION_SIZE,
+    maxX: limit + (expansion.east ?? 0) * EXPANSION_SIZE,
+    minZ: -limit - (expansion.north ?? 0) * EXPANSION_SIZE,
+    maxZ: limit + (expansion.south ?? 0) * EXPANSION_SIZE,
   };
 }
 
-export const BASE_AREA = buildArea();
+export const BASE_AREA = buildArea({}, LEGACY_AREA_SIZE);
 
 export function containsPoint(area, x, z, margin = 0) {
   return Number.isFinite(x) && Number.isFinite(z) &&

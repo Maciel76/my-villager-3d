@@ -2,11 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { BUILDING_TYPES } from "../src/house-types.js";
 import { createGardenCityPlan, gardenCitySummary } from "../src/garden-city-plan.js";
-<<<<<<< HEAD
-import { footprint, isDecoration, isLamp, isPaving, readSave } from "../src/placement.js";
-=======
-import { footprint, isDecoration, isLamp, isFreeLight, readSave } from "../src/placement.js";
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
+import { footprint, isDecoration, isLamp, isFreeLight, isPaving, readSave } from "../src/placement.js";
 import { canBuildHouse, readRoads, roadLots, tileKey } from "../src/road-layout.js";
 import { isVillageWorld } from "../src/village-data.js";
 import { BASE_AREA, buildArea, containsPoint } from "../src/village-area.js";
@@ -16,15 +12,9 @@ test("the landscaped city includes the complete catalogue and survives normal sa
   const area=buildArea(world.expansion);
   assert.equal(isVillageWorld(world),true);
   assert.equal(readSave(world).length,world.houses.length);
-<<<<<<< HEAD
-  assert.deepEqual(new Set(world.houses.map(h=>h.type)),new Set(Object.keys(BUILDING_TYPES)));
+  assert.deepEqual(new Set(world.houses.map(h=>h.type)),new Set(Object.keys(BUILDING_TYPES).filter(type=>!isFreeLight(type))));
   assert.equal(readRoads(world.roads,world.houses,0,area).size,world.roads.length);
   const roads=new Map(world.roads.map(r=>[tileKey(r.x,r.z),r])),lots=roadLots(roads,area);
-=======
-  assert.deepEqual(new Set(world.houses.map(h=>h.type)),new Set(Object.keys(BUILDING_TYPES).filter(type=>!isFreeLight(type))));
-  assert.equal(readRoads(world.roads,world.houses,0).size,world.roads.length);
-  const roads=new Map(world.roads.map(r=>[tileKey(r.x,r.z),r])),lots=roadLots(roads);
->>>>>>> 9c3bcfe (ajustando jogabilidade2)
   for(const h of world.houses)
     assert.ok(canBuildHouse(h.x,h.z,world.houses,roads,lots,h,h.type,h.rotation,area),`${h.type}: ${h.x},${h.z}`);
 });
