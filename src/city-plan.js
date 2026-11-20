@@ -7,7 +7,7 @@ import { buildArea } from "./village-area.js";
 // Four continuous streets in each direction form a ring and nine districts.
 // The outside row faces the ring, so the whole clearing has street access.
 export const CITY_STREETS = [-72, -24, 24, 72];
-export const CITY_EXPANSION = { north: 2, east: 2 };
+export const CITY_EXPANSION = { north: 2, east: 2, south: 2 };
 export const MIRANTE_AVENUE = -120;
 
 export function extendNorthernAvenue(roads) {
@@ -33,6 +33,11 @@ export function extendLexCorpAvenue(roads) {
     roads.set(tileKey(x, -108), { x, z: -108, order: roads.size });
 }
 
+export function extendPoliceAvenue(roads) {
+  for(let x=12;x<=72;x+=LOT_SIZE)
+    roads.set(tileKey(x,96),{x,z:96,order:roads.size});
+}
+
 export function createCityPlan() {
   const roads = new Map();
   for (let x = -84; x <= 84; x += LOT_SIZE) {
@@ -44,6 +49,7 @@ export function createCityPlan() {
   extendNorthernAvenue(roads);
   extendEasternAvenue(roads);
   extendLexCorpAvenue(roads);
+  extendPoliceAvenue(roads);
   const area = buildArea(CITY_EXPANSION, LEGACY_AREA_SIZE);
   const lots = roadLots(roads, area);
   const houses = [];
@@ -61,6 +67,7 @@ export function createCityPlan() {
   add("convergencia", 126, -114);
   add("rodaGigante", 120, -54, 2);
   add("lexCorp", -66, -138);
+  add("policeStation",42,132,2);
   for (const [index, type] of ["bakery", "market", "pharmacy"].entries())
     add(type, -12 + index * 12, -12, 2);
 
@@ -112,7 +119,7 @@ export function createCityPlan() {
   // at four-way junctions; directional LED arms point inward over the lane.
   for (const { x, z } of roads.values()) {
     const vertical = CITY_STREETS.includes(x);
-    const horizontal = CITY_STREETS.includes(z) || z === MIRANTE_AVENUE || (z === -108 && x <= -48);
+    const horizontal = CITY_STREETS.includes(z) || z === 96 || z === MIRANTE_AVENUE || (z === -108 && x <= -48);
     const alternating = z === MIRANTE_AVENUE || Math.abs((vertical ? z : x) / 12) % 2 ? 1 : -1;
     if (vertical && horizontal) {
       add("lampDouble", x + 4, z + 4, 0);

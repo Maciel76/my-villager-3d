@@ -185,14 +185,15 @@ export function poseLexCorp(model, seconds, plan, gridAvailable = true) {
 
 export function createLexCorpAnimation(scene, options={}) {
   const towers = new Map(), projection = new THREE.Matrix4(), frustum = new THREE.Frustum();
+  const helicopterName=options.helicopterName??"LexCorp helicopter", poseModel=options.pose??poseLexCorp;
   let city = [], surfaces=[], revision = 0;
   function setCity(buildings) {
     city = buildings;revision++;
-    surfaces=buildings.map(building=>building.model?.getObjectByName("LexCorp architecture")??building.model).filter(Boolean);
+    surfaces=buildings.map(building=>building.model?.getObjectByName("LexCorp architecture")??building.model?.getObjectByName("Police architecture")??building.model).filter(Boolean);
   }
   function add(model) {
     if (!towers.has(model)) towers.set(model,{seconds:0,lastTime:null,plan:null,pose:null,revision:-1,
-      searchlight:scene?createLexCorpSearchlight(scene,model.getObjectByName("LexCorp helicopter"),options):null});
+      searchlight:scene?createLexCorpSearchlight(scene,model.getObjectByName(helicopterName),options):null});
   }
   function remove(model) {towers.get(model)?.searchlight?.dispose();towers.delete(model);}
   function update(camera, time, construction, animate, nightPower = 1, gridAvailable = true, supplyAt = () => 1) {
@@ -215,15 +216,15 @@ export function createLexCorpAnimation(scene, options={}) {
       const moved = state.plan && !state.plan.ownerMatrix.equals(model.matrixWorld);
       const canRefresh = state.revision !== revision && state.pose?.phase === "parked";
       if (!state.plan || moved || (state.revision !== revision && canRefresh)) {
-        state.plan = createLexCorpFlightPlan(model,city);state.revision=revision;state.seconds=0;state.lastTime=null;
-        state.pose=poseLexCorp(model,0,state.plan,gridAvailable);
+        state.plan = createLexCorpFlightPlan(model,city,options.flightSpecification);state.revision=revision;state.seconds=0;state.lastTime=null;
+        state.pose=poseModel(model,0,state.plan,gridAvailable);
         state.returning = false;
       }
       const supplied = gridAvailable && supplyAt(model.position.x, model.position.z) > .5;
       const visible = frustum.intersectsBox(state.plan.flightBounds);
       if (!supplied && state.pose.phase === "startup") {
         state.seconds = Math.floor(state.seconds / state.plan.duration) * state.plan.duration + .000001;
-        state.pose = poseLexCorp(model, state.seconds, state.plan, gridAvailable);
+        state.pose = poseModel(model, state.seconds, state.plan, gridAvailable);
       }
       if (!supplied && state.pose.phase !== "parked") state.returning = true;
       const flying = animate && (state.returning || (supplied && visible));
@@ -238,7 +239,7 @@ export function createLexCorpAnimation(scene, options={}) {
           const landing = (Math.floor(state.seconds / state.plan.duration) + 1) * state.plan.duration + .000001;
           state.seconds = state.returning ? Math.min(next, landing) : next;
           state.lastTime = time;
-          state.pose = poseLexCorp(model, state.seconds, state.plan, gridAvailable);
+          state.pose = poseModel(model, state.seconds, state.plan, gridAvailable);
           if (state.pose.phase === "parked") state.returning = false;
         }
       } else {

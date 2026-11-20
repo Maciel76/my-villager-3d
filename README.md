@@ -193,6 +193,18 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   estacionamento, carrinhos, totem e uma área de serviço nos fundos.
   A fachada verde e o letreiro foram modelados a partir das referências,
   com dimensões aproximadas.
+- O **Complexo Policial**, em **Loja → Monumentos**, reserva **72 × 60 m**
+  (30 lotes). Inclui sede de quatro pavimentos com recepção e escritórios,
+  garagem com cinco baias, dez viaturas, duas torres de vigilância com câmeras,
+  guarita, portão deslizante, cancela, estacionamento, jardins, torre de rádio,
+  claraboias e heliponto circular elevado. Uma viatura circula pelo pátio;
+  os giroflex piscam e o acesso abre quando ela se aproxima. O helicóptero
+  decola, patrulha os bairros em baixa altitude com refletor de busca e volta
+  ao heliponto. O complexo oferece 80 empregos e aparece também nos dois
+  planos de cidade, em uma expansão ao sul com rua de acesso.
+  O arquivo editável está em `models/posto-policial.sc`, o modelo portátil
+  em `src/assets/models/posto-policial.glb` e a preparação/animação em
+  `src/posto-policial.js`. As proporções são aproximadas à referência.
 - O **Pavilhão Rotunda**, em **Loja → Monumentos**, ocupa um lote. A base
   circular tem 11,4 m de diâmetro e a altura é de aproximadamente 10,12 m.
   Tem doze colunas caneladas e afuniladas, capitéis com volutas, três degraus,

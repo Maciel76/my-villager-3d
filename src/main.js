@@ -43,6 +43,7 @@ import { NEBULA_CYCLE_SECONDS } from "./ceu-nebuloso.js";
 import { createMeteorShower } from "./chuva-de-meteoros.js";
 import { createFerrisWheel, createFerrisWheelAnimation } from "./roda-gigante.js";
 import { createLexCorpAnimation } from "./torre-lexcorp.js";
+import { createPoliceStationAnimation } from "./posto-policial.js";
 import { DEFAULT_AREA_SIZE, getBuildAreaSize, nextAreaSize, setBuildAreaSize } from "./build-area.js";
 import {
   BUILDING_TYPES,
@@ -234,6 +235,7 @@ async function startGame(renderer) {
   let stellarWasRunning = false;
   const ferrisWheelAnimation = createFerrisWheelAnimation();
   const lexCorpAnimation = createLexCorpAnimation(scene,{groundHeight:terrainAt});
+  const policeAnimation = createPoliceStationAnimation(scene,{groundHeight:terrainAt});
 
   const {
     ground,
@@ -520,6 +522,7 @@ async function startGame(renderer) {
     }
     if (house.type === "rodaGigante") ferrisWheelAnimation.add(house.model);
     if (house.type === "lexCorp") lexCorpAnimation.add(house.model);
+    if (house.type === "policeStation") policeAnimation.add(house.model);
     syncModel(house);
   }
 
@@ -553,6 +556,7 @@ async function startGame(renderer) {
     convergenceAnimation.remove(house.model);
     ferrisWheelAnimation.remove(house.model);
     lexCorpAnimation.remove(house.model);
+    policeAnimation.remove(house.model);
     scene.remove(house.model);
     renderer.shadowMap.needsUpdate = true;
     return index;
@@ -568,6 +572,7 @@ async function startGame(renderer) {
       metrics = cityEconomy(houses);
       traffic.setDemand(metrics.residents, metrics.employed);
       lexCorpAnimation.setCity(houses);
+      policeAnimation.setCity(houses);
       if (walker.active) walker.updateObstacles(houses, buildingTemplates);
     }
     showEconomy();
@@ -1793,13 +1798,15 @@ async function startGame(renderer) {
     const wheelMoving = ferrisWheelAnimation.update(view, time, animations, !reduceMotion.matches, !blackout, nightLights.supplyAt);
     const lexCorpMoving = lexCorpAnimation.update(view, time, animations, !reduceMotion.matches,
       daylight.lampPower, !blackout, nightLights.supplyAt);
+    const policeMoving = policeAnimation.update(view, time, animations, !reduceMotion.matches,
+      daylight.lampPower, !blackout, nightLights.supplyAt);
     const trafficFocus = walker.active ? view.position : controls.target;
     const trafficZoom = walker.active
       ? Math.max(0, view.position.y - terrainAt(view.position.x, view.position.z)) * 2
       : view.position.distanceTo(controls.target);
     const trafficMoving = traffic.update(trafficFocus, trafficZoom, delta, !reduceMotion.matches, !blackout,
       gridTransition ? nightLights.supplyAt : undefined);
-    const effectsAnimated = skyForming || running || nebulaMoving || convergenceMoving || wheelMoving || lexCorpMoving || trafficMoving;
+    const effectsAnimated = skyForming || running || nebulaMoving || convergenceMoving || wheelMoving || lexCorpMoving || policeMoving || trafficMoving;
     const effectFrame = effectsAnimated && time - lastRenderedFrame >= 1000 / 30 - 2;
     if (sceneChanged || effectFrame || (skyChanged && !skyForming)) {
       renderer.render(scene, view);
@@ -2105,6 +2112,7 @@ async function startGame(renderer) {
   window.addEventListener("blur", clearMovement);
   window.addEventListener("resize", resize);
   lexCorpAnimation.setCity(houses);
+  policeAnimation.setCity(houses);
   resetCamera();
   resize();
   setStatus("Preparando a cidade…");

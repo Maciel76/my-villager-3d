@@ -76,16 +76,17 @@ class PatrolCurve extends THREE.Curve {
   getPoint(t,target=new THREE.Vector3()) {this.horizontal.getPointAt(t,target);target.y=this.heightAt(target);return target;}
 }
 
-export function createLexCorpFlightPlan(owner, city = []) {
+export function createLexCorpFlightPlan(owner, city = [], specification = {}) {
   owner.updateWorldMatrix(true, false);
   const ownerMatrix = owner.matrixWorld.clone(), inverse = ownerMatrix.clone().invert();
   const rotation = owner.getWorldQuaternion(new THREE.Quaternion());
-  const dock = new THREE.Vector3(...LEXCORP_DOCK).applyMatrix4(ownerMatrix);
+  const dock = new THREE.Vector3(...(specification.dock ?? LEXCORP_DOCK)).applyMatrix4(ownerMatrix);
   const tower = owner.getWorldPosition(new THREE.Vector3());
+  const [width,depth] = specification.footprint ?? [48,48], height = specification.height ?? 180;
   const bounds = new THREE.Box3(
-    new THREE.Vector3(tower.x - 24, tower.y, tower.z - 24),
-    new THREE.Vector3(tower.x + 24, tower.y + 180, tower.z + 24),
-  );
+    new THREE.Vector3(-width/2,0,-depth/2),new THREE.Vector3(width/2,height,depth/2),
+  ).applyMatrix4(ownerMatrix);
+  const ownBounds=bounds.clone();
   let maxRoof = bounds.max.y;
   const rooftops=[];
   for (const building of city) {
@@ -102,10 +103,10 @@ export function createLexCorpFlightPlan(owner, city = []) {
     maxRoof = Math.max(maxRoof, top);
     rooftops.push({minX:position.x-width/2,maxX:position.x+width/2,minZ:position.z-depth/2,maxZ:position.z+depth/2,top});
   }
-  if(!rooftops.some(roof=>tower.x>=roof.minX&&tower.x<=roof.maxX&&tower.z>=roof.minZ&&tower.z<=roof.maxZ&&roof.top>=tower.y+180))
-    rooftops.push({minX:tower.x-24,maxX:tower.x+24,minZ:tower.z-24,maxZ:tower.z+24,top:tower.y+180});
+  if(!rooftops.some(roof=>tower.x>=roof.minX&&tower.x<=roof.maxX&&tower.z>=roof.minZ&&tower.z<=roof.maxZ&&roof.top>=ownBounds.max.y))
+    rooftops.push({minX:ownBounds.min.x,maxX:ownBounds.max.x,minZ:ownBounds.min.z,maxZ:ownBounds.max.z,top:ownBounds.max.y});
   const noFly=rooftops.filter(roof=>roof.top>tower.y+80).map(roof=>({...roof,minX:roof.minX-11,maxX:roof.maxX+11,minZ:roof.minZ-11,maxZ:roof.maxZ+11}));
-  const cruise = tower.y+LEXCORP_PATROL_HEIGHT;
+  const cruise = tower.y+(specification.patrolHeight ?? LEXCORP_PATROL_HEIGHT);
   function heightAt(point) {
     let height=cruise;
     for(const roof of rooftops) {
@@ -160,6 +161,7 @@ export function createLexCorpFlightPlan(owner, city = []) {
   const forward = new THREE.Vector3(0,0,1).applyQuaternion(rotation);
   return {
     ownerMatrix,inverse,rotation,dock,lift,aboveDock,staging,entry,route,stages,duration,flightBounds,climbTime,
+    rotorNames: specification.rotorNames ?? ["LexCorp main rotor","LexCorp tail rotor"],
     maxRoof,cruise,transferHeight,rooftops,noFly,heightAt,parkYaw:heading(forward),
     startYaw:heading(route.getTangentAt(0)),endYaw:heading(route.getTangentAt(1)),
   };
@@ -224,7 +226,7 @@ export function applyLexCorpFlight(helicopter, plan, seconds) {
   helicopter.position.copy(pose.position).applyMatrix4(plan.inverse);
   const worldRotation = new THREE.Quaternion().setFromEuler(new THREE.Euler(pose.pitch,pose.yaw,pose.bank,"YXZ"));
   helicopter.quaternion.copy(plan.rotation).invert().multiply(worldRotation);
-  helicopter.getObjectByName("LexCorp main rotor").rotation.y = pose.rotorAngle % TAU;
-  helicopter.getObjectByName("LexCorp tail rotor").rotation.x = (pose.rotorAngle*59/31) % TAU;
+  helicopter.getObjectByName(plan.rotorNames[0]).rotation.y = pose.rotorAngle % TAU;
+  helicopter.getObjectByName(plan.rotorNames[1]).rotation.x = (pose.rotorAngle*59/31) % TAU;
   return pose;
 }

@@ -1,7 +1,7 @@
 import { BUILDING_TYPES } from "./house-types.js";
 import { footprint, isDecoration, isLamp, isFreeLight, isPaving, overlapsLot } from "./placement.js";
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
-import { CITY_STREETS, CITY_EXPANSION, MIRANTE_AVENUE, extendNorthernAvenue, extendEasternAvenue, extendLexCorpAvenue } from "./city-plan.js";
+import { CITY_STREETS, CITY_EXPANSION, MIRANTE_AVENUE, extendNorthernAvenue, extendEasternAvenue, extendLexCorpAvenue, extendPoliceAvenue } from "./city-plan.js";
 import { LEGACY_AREA_SIZE } from "./build-area.js";
 import { buildArea } from "./village-area.js";
 
@@ -13,6 +13,7 @@ export function createGardenCityPlan() {
   extendNorthernAvenue(roads);
   extendEasternAvenue(roads);
   extendLexCorpAvenue(roads);
+  extendPoliceAvenue(roads);
   const area = buildArea(CITY_EXPANSION, LEGACY_AREA_SIZE);
   const lots = roadLots(roads, area);
   function add(type, x, z, rotation = 0) {
@@ -39,6 +40,7 @@ export function createGardenCityPlan() {
     ["convergencia",126,-114,0],
     ["rodaGigante",120,-54,2],
     ["lexCorp",-66,-138,0],
+    ["policeStation",42,132,2],
     ["oriental",-54,-54,2],["cottage",-36,-60,1],["chalet",-36,-48,1],["cafe",-60,-36,0],
     ["aurora",-6,-54,2],["mirante",12,-60,1],["varandas",12,-48,1],["market",0,-36,0],
     ["sakura",54,-54,2],["courtyard",36,-60,3],["townhouse",36,-48,3],["terrace",60,-36,0],
@@ -165,7 +167,7 @@ export function createGardenCityPlan() {
   });
   // Lighting of every street module, separate from park and garden lighting.
   for(const {x,z} of roads.values()){
-    const v=CITY_STREETS.includes(x),h=CITY_STREETS.includes(z)||z===MIRANTE_AVENUE||(z===-108&&x<=-48);
+    const v=CITY_STREETS.includes(x),h=CITY_STREETS.includes(z)||z===96||z===MIRANTE_AVENUE||(z===-108&&x<=-48);
     const side=z===MIRANTE_AVENUE||Math.abs((v?z:x)/12)%2?1:-1;
     if(v&&h)add("lampDouble",x+4,z+4);
     else if(v)add(x<0?"lampUrban":"lampSolar",x+side*4,z,side>0?2:0);

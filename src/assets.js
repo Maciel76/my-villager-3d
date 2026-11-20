@@ -33,6 +33,8 @@ import rotundaUrl from "./assets/models/optimized/pavilhao-rotunda.glb?url";
 import { prepareRotundaModel } from "./pavilhao-rotunda.js";
 import lexCorpUrl from "./assets/models/optimized/torre-lexcorp.glb?url";
 import { prepareLexCorpModel } from "./torre-lexcorp.js";
+import policeStationUrl from "./assets/models/optimized/posto-policial.glb?url";
+import { preparePoliceStationModel } from "./posto-policial.js";
 import grassUrl from "./assets/textures/grass.webp";
 import brickUrl from "./assets/textures/brick.webp";
 import brickNormalUrl from "./assets/textures/brick-normal.webp";
@@ -204,6 +206,7 @@ export async function loadBuildingModels(materials) {
     supermarket: supermarketUrl,
     rotunda: rotundaUrl,
     lexCorp: lexCorpUrl,
+    policeStation: policeStationUrl,
   };
   const models = await Promise.all(
     Object.entries(sources).map(async ([type, url]) => {
@@ -214,6 +217,7 @@ export async function loadBuildingModels(materials) {
       if (type === "supermarket") return [type, prepareSupermarketModel(scene, materials, projectTexture)];
       if (type === "rotunda") return [type, prepareRotundaModel(scene, materials, projectTexture)];
       if (type === "lexCorp") return [type, prepareLexCorpModel(scene, materials, projectTexture)];
+      if (type === "policeStation") return [type, preparePoliceStationModel(scene, materials, projectTexture)];
       scene.updateMatrixWorld(true);
       const bounds = new THREE.Box3().setFromObject(scene);
       const origin = bounds.getCenter(new THREE.Vector3());

@@ -40,6 +40,7 @@ const APARTMENTS = {
 };
 
 const LANDMARKS = {
+  policeStation: { label: "Complexo Policial", lotSpan: [6,5], height: 28.18, workplaces: 80 },
   rotunda: { label: "Pavilhão Rotunda" },
   convergencia: { label: "A Convergência", lotSpan: 6, height: 41 },
   rodaGigante: { label: "Roda-Gigante Estrela da Vila", lotSpan: [3, 2], height: 35.2 },
