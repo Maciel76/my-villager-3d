@@ -50,6 +50,15 @@ test("the rotating wheel keeps all cabins level and attached to their own hinges
   windows.getMatrixAt(0, matrix);
   assert.deepEqual(matrix.elements, still.elements);
 
+  const beforeOutage = wheel.rotation.z;
+  assert.equal(animation.update(camera, 75010, construction, true, true, () => 0), false);
+  assert.equal(animation.update(camera, 75020, construction, true, false), false);
+  assert.equal(wheel.rotation.z, beforeOutage);
+  assert.equal(animation.update(camera, 75030, construction, true), true);
+  assert.equal(wheel.rotation.z, beforeOutage);
+  animation.update(camera, 75090, construction, true);
+  assert.notEqual(wheel.rotation.z, beforeOutage);
+
   model.visible = false;
   assert.equal(animation.update(camera, 75100, construction, true), false);
   model.visible = true;

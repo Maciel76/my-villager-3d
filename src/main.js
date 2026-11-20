@@ -30,8 +30,17 @@ import { buildArea, EXPANSION_LIMIT, EXPANSION_SIZE } from "./village-area.js";
 import { loadBuildingModels, loadMaterials } from "./assets.js";
 import { createMiranteOriental } from "./mirante-oriental.js";
 import { createEdificioOrion } from "./edificio-orion.js";
-import { createConvergencia } from "./convergencia.js";
+import { createConvergencia, createUnlitConvergence } from "./convergencia.js";
 import { createConvergenceAnimation } from "./convergencia-efeitos.js";
+import {
+  STELLAR_ALTITUDE, STELLAR_DRAIN_DURATION, STELLAR_EVENT_DURATION, STELLAR_GRID_RESTORE_DURATION,
+  STELLAR_REACTIVATION_DURATION, STELLAR_REACTIVATION_PRICE, STELLAR_REACTIVATION_TOTAL, STELLAR_SHUTDOWN,
+  isStellarNight, stellarBusy, stellarElapsed, stellarShowElapsed,
+} from "./stellar-event.js";
+import { createStellarTimeline } from "./stellar-timeline.js";
+import { createStellarAudio } from "./stellar-audio.js";
+import { NEBULA_CYCLE_SECONDS } from "./ceu-nebuloso.js";
+import { createMeteorShower } from "./chuva-de-meteoros.js";
 import { createFerrisWheel, createFerrisWheelAnimation } from "./roda-gigante.js";
 import { createLexCorpAnimation } from "./torre-lexcorp.js";
 import { DEFAULT_AREA_SIZE, getBuildAreaSize, nextAreaSize, setBuildAreaSize } from "./build-area.js";
@@ -204,10 +213,25 @@ async function startGame(renderer) {
   renderer.toneMappingExposure = 1.15;
 
   const daylight = createDaylight(scene, renderer, buildingTemplates);
+  const meteorShower = createMeteorShower(daylight.sky);
   const nightLights = createNightLights(scene, { clustered: true });
   Object.values(buildingTemplates).forEach(model => nightLights.bind(model));
+  const unlitConvergence = createUnlitConvergence(buildingTemplates.convergencia);
+  nightLights.bind(unlitConvergence.model);
   const buildingBatches = createBuildingBatches(scene, buildingTemplates);
-  const convergenceAnimation = createConvergenceAnimation(scene);
+  const stellarTimeline = createStellarTimeline();
+  const stellarAudio = createStellarAudio();
+  const convergenceAnimation = createConvergenceAnimation(scene, stellarTimeline, unlitConvergence.materials);
+  const nebulaDirection = new THREE.Vector3(0, 1, 0);
+  const nebulaViewDirection = new THREE.Vector3();
+  let nebulaSeconds = 0;
+  let drainLayout = -1;
+  let drainSource = null;
+  let drainExtent = 0;
+  let stellarSkyAt = saved.world?.stellarSkyAt;
+  let convergenceReserve = saved.world?.convergenceReserve;
+  let stellarMonument = null;
+  let stellarWasRunning = false;
   const ferrisWheelAnimation = createFerrisWheelAnimation();
   const lexCorpAnimation = createLexCorpAnimation(scene,{groundHeight:terrainAt});
 
@@ -368,6 +392,8 @@ async function startGame(renderer) {
   let framePending = false;
   let lastFrame = 0;
   let lastRenderedFrame = 0;
+  const hasConvergence = () => houses.some(({ type }) => type === "convergencia");
+  const convergenceLimit = "Limite de uma Convergência por vila.";
 
   const shop = createShop(
     renderer,
@@ -375,12 +401,32 @@ async function startGame(renderer) {
     beginPlacement,
     invalidate,
     nightLights,
+    type => type === "convergencia" && hasConvergence() ? convergenceLimit : "",
   );
   const hourPicker = element("village-hour");
+  const nightOption = hourPicker.querySelector('option[value="23"]');
+  const stellarAction = element("stellar-action");
+  const stellarStart = element("stellar-start");
+  const stellarHint = element("stellar-hint");
+  const soundToggle = element("sound-toggle");
+  soundToggle.addEventListener("click", () => {
+    const muted = soundToggle.getAttribute("aria-pressed") === "true";
+    soundToggle.setAttribute("aria-pressed", String(!muted));
+    stellarAudio.setMuted(muted);
+    if (!muted) stellarAudio.unlock();
+    invalidate();
+  });
+  function unlockCurrentStellarAudio() {
+    if (stellarBusy(stellarMonument, Date.now())) stellarAudio.unlock();
+  }
+  window.addEventListener("pointerdown", unlockCurrentStellarAudio, { passive: true });
+  window.addEventListener("keydown", unlockCurrentStellarAudio);
+  window.addEventListener("pagehide", stellarAudio.stop);
   if (saved.hour) hourPicker.value = saved.hour;
   daylight.setHour(Number(hourPicker.value));
   hourPicker.addEventListener("change", () => {
     daylight.setHour(Number(hourPicker.value));
+    updateStellarAction();
     invalidate();
     store({ hour: hourPicker.value });
   });
@@ -461,7 +507,17 @@ async function startGame(renderer) {
 
   function attachHouse(house) {
     scene.add(house.model);
-    if (house.type === "convergencia") convergenceAnimation.add(house.model);
+    if (house.type === "convergencia") {
+      if (convergenceReserve) {
+        delete house.stellarAt;
+        delete house.stellarReactivatedAt;
+        Object.assign(house, convergenceReserve);
+        convergenceReserve = undefined;
+      }
+      convergenceAnimation.add(house.model, house.stellarAt, house.stellarReactivatedAt);
+      const timestamp = house.stellarAt ?? house.stellarReactivatedAt ?? 0;
+      if (timestamp > (stellarMonument?.stellarAt ?? stellarMonument?.stellarReactivatedAt ?? 0)) stellarMonument = house;
+    }
     if (house.type === "rodaGigante") ferrisWheelAnimation.add(house.model);
     if (house.type === "lexCorp") lexCorpAnimation.add(house.model);
     syncModel(house);
@@ -489,6 +545,10 @@ async function startGame(renderer) {
   function removeHouse(house) {
     const index = houses.indexOf(house);
     houses.splice(index, 1);
+    if (house.type === "convergencia" && !hasConvergence()) convergenceReserve = stellarSnapshot(house);
+    if (house === stellarMonument) {
+      stellarMonument = houses.find(entry => entry.stellarAt || entry.stellarReactivatedAt) ?? null;
+    }
     finishHouseAnimation(house);
     convergenceAnimation.remove(house.model);
     ferrisWheelAnimation.remove(house.model);
@@ -498,7 +558,12 @@ async function startGame(renderer) {
     return index;
   }
 
-  function saveWorld(layoutChanged = true) {
+  function stellarSnapshot({ stellarAt, stellarReactivatedAt }) {
+    if (stellarAt) return { stellarAt };
+    return stellarReactivatedAt ? { stellarReactivatedAt } : {};
+  }
+
+  function saveWorld(layoutChanged = true, hour) {
     if (layoutChanged) {
       metrics = cityEconomy(houses);
       traffic.setDemand(metrics.residents, metrics.employed);
@@ -506,19 +571,29 @@ async function startGame(renderer) {
       if (walker.active) walker.updateObstacles(houses, buildingTemplates);
     }
     showEconomy();
-    store({ world: {
+    store({ ...(hour ? { hour } : {}), world: {
       version: 1,
       areaSize: getBuildAreaSize(),
-      houses: houses.map(({ x, y, z, rotation, type }) => ({ x, z, rotation, type,
-        ...(isFreeLight(type) ? { y } : {}) })),
+      houses: houses.map(house => {
+        const { x, y, z, rotation, type } = house;
+        return { x, z, rotation, type, ...(isFreeLight(type) ? { y } : {}), ...stellarSnapshot(house) };
+      }),
       houseOrder: houses.map((house) => house.order),
       roads: [...roads.values()],
       economy: { ...treasury },
+      ...(stellarSkyAt !== undefined ? { stellarSkyAt } : {}),
+      ...(convergenceReserve ? { convergenceReserve } : {}),
       ...(Object.keys(expansion).length ? { expansion } : {}),
     } });
   }
 
   const initial = saved.world ? readSave(saved.world, area) : STARTER_HOUSES;
+  // Older saves recorded a launch only on its monument.
+  if (stellarSkyAt === undefined) stellarSkyAt = initial.reduce((first, { stellarAt }) =>
+    stellarAt && (!first || stellarAt < first) ? stellarAt : first, convergenceReserve?.stellarAt);
+  if (!convergenceReserve && stellarSkyAt && !initial.some(({ type }) => type === "convergencia")) {
+    convergenceReserve = { stellarAt: stellarSkyAt };
+  }
   let metrics = cityEconomy(initial);
   const treasury = {
     coins: saved.world?.economy?.coins ?? startingBalance(metrics.residents),
@@ -546,6 +621,7 @@ async function startGame(renderer) {
     for (const button of expansionOptions) {
       button.disabled = !canAffordExpansion || (expansion[button.dataset.expand] ?? 0) >= EXPANSION_LIMIT;
     }
+    updateStellarAction();
   }
 
   function placementPrice() {
@@ -560,6 +636,57 @@ async function startGame(renderer) {
     }
     treasury.coins -= price;
     return true;
+  }
+
+  const viewCamera = () => walker.active ? walker.camera : camera;
+
+  function updateStellarAction() {
+    const monument = selection?.type === "convergencia" ? selection : null;
+    stellarAction.hidden = !monument;
+    if (!monument) return;
+    const now = Date.now();
+    const spent = Boolean(monument.stellarAt);
+    const night = isStellarNight(hourPicker.value);
+    const running = stellarBusy(stellarMonument, now);
+    const inProgress = running && stellarMonument === monument;
+    const action = inProgress ? "Em andamento" : spent ? "Reativar Convergência" : "Explosão Estelar";
+    if (stellarStart.dataset.action !== action) {
+      stellarStart.dataset.action = action;
+      stellarStart.lastChild.textContent = ` ${action}`;
+    }
+    stellarStart.disabled = running || animations.has(monument.model) ||
+      (spent ? treasury.coins < STELLAR_REACTIVATION_PRICE : !night);
+    stellarHint.textContent = inProgress ? "" : spent
+      ? `${priceLabel(STELLAR_REACTIVATION_PRICE)} · restaura a energia da vila`
+      : night ? `Grátis · ${STELLAR_EVENT_DURATION} s` : "Grátis · disponível à noite";
+  }
+
+  function activateStellarShow() {
+    const monument = selection;
+    if (monument?.type !== "convergencia") return;
+    const now = Date.now();
+    if (stellarBusy(stellarMonument, now) || animations.has(monument.model)) return;
+    const reactivating = Boolean(monument.stellarAt);
+    if (reactivating) {
+      if (!charge(STELLAR_REACTIVATION_PRICE)) return;
+      delete monument.stellarAt;
+      monument.stellarReactivatedAt = now;
+      stellarSkyAt = null;
+      hourPicker.value = "23";
+      daylight.setHour(23);
+    } else {
+      if (!isStellarNight(hourPicker.value)) return;
+      delete monument.stellarReactivatedAt;
+      monument.stellarAt = now;
+      stellarSkyAt ??= now;
+    }
+    stellarMonument = monument;
+    convergenceAnimation.setEvent(monument.model, monument.stellarAt, monument.stellarReactivatedAt);
+    stellarAudio.unlock();
+    saveWorld(false, hourPicker.value);
+    updateActions();
+    setStatus(reactivating ? "Reativando a Convergência." : "A Convergência está recolhendo a energia da vila.");
+    invalidate();
   }
 
   initial.forEach((house) => addHouse(house));
@@ -652,7 +779,7 @@ async function startGame(renderer) {
       ((x - bounds.left) / bounds.width) * 2 - 1,
       1 - ((y - bounds.top) / bounds.height) * 2,
     );
-    const view = walker.active ? walker.camera : camera;
+    const view = viewCamera();
     view.updateMatrixWorld();
     raycaster.setFromCamera(pointer, view);
   }
@@ -882,6 +1009,10 @@ async function startGame(renderer) {
     element("action-tray").hidden = !target;
     element("move-selected").hidden = !selection;
     element("delete-selected").hidden = !selection;
+    const monumentLocked = stellarBusy(selection, Date.now());
+    for (const id of ["move-selected", "delete-selected", "rotate-left", "rotate-button"]) {
+      element(id).disabled = monumentLocked;
+    }
     element("rotate-left").hidden = element("rotate-button").hidden =
       !target || roadMode || isFreeLight(target.type);
     element("road-erase").hidden = !placement?.road || Boolean(placement.movingRoad);
@@ -919,6 +1050,7 @@ async function startGame(renderer) {
         : `${noun} selecionad${ending}`;
     }
     canvas.style.cursor = editing || choosingHouse ? "crosshair" : "grab";
+    updateStellarAction();
     grid.visible = !walker.active && !roadMode && (showGrid || editing);
     roadGrid.visible = roadMode;
     streets.plotsLayer.visible = !walker.active && (editing || showGrid);
@@ -992,6 +1124,14 @@ async function startGame(renderer) {
   }
 
   function beginPlacement(type, moving = null) {
+    if (type === "convergencia" && !moving && hasConvergence()) {
+      setStatus(convergenceLimit);
+      return;
+    }
+    if (stellarBusy(moving, Date.now())) {
+      setStatus("Aguarde a sequência da Convergência terminar para mover o monumento.");
+      return;
+    }
     clearAction();
     if (moving) {
       finishHouseAnimation(moving);
@@ -1104,10 +1244,10 @@ async function startGame(renderer) {
     castRay(x, y);
     const lightHandle = raycaster.intersectObjects(houses.filter(h => isFreeLight(h.type)).map(h => h.model), true)[0];
     const hit = lightHandle ?? raycaster.intersectObjects(
-      [...houses.map(({ model }) => model), streets.roadsLayer],
+      [...houses.map(({ model }) => model), ...convergenceAnimation.pickable(), streets.roadsLayer],
       true,
     )[0];
-    let model = hit?.object;
+    let model = convergenceAnimation.ownerOf(hit?.object) ?? hit?.object;
     while (model && model.parent !== scene) model = model.parent;
     selection = houses.find((house) => house.model === model) ?? null;
     if (model === streets.roadsLayer) {
@@ -1123,7 +1263,9 @@ async function startGame(renderer) {
         selection
           ? selection.road
             ? "Use Mover ou Excluir para editar este trecho de rua."
-            : "Use os botões para mover, girar ou excluir."
+            : selection.type === "convergencia"
+              ? selection.stellarAt ? "Reative a Convergência para preparar outra Explosão Estelar." : "Selecione Explosão Estelar à noite."
+              : "Use os botões para mover, girar ou excluir."
           : choosingHouse
             ? "Escolha a construção ou o trecho de rua que você quer mover."
             : "Selecione uma construção ou trecho de rua, ou abra a Loja.",
@@ -1133,6 +1275,10 @@ async function startGame(renderer) {
 
   function placeConstruction(options = {}) {
     if (!placement) return;
+    if (placement.type === "convergencia" && !placement.moving && hasConvergence()) {
+      setStatus(convergenceLimit);
+      return;
+    }
     refreshPreview();
     if (isPaving(placement.type) && !placement.moving && (options.shiftKey || placement.lineStart)) {
       if (!candidate) { setStatus("Escolha um ponto no terreno para a linha de calçada."); return; }
@@ -1253,6 +1399,7 @@ async function startGame(renderer) {
 
   function deleteSelection() {
     if (!selection) return;
+    if (stellarBusy(selection, Date.now())) return;
     if (selection.road) {
       const { x, z } = selection;
       const key = tileKey(x, z);
@@ -1279,7 +1426,7 @@ async function startGame(renderer) {
     if (placement?.lineStart) { cancelAction(); return; }
     if (!houses.length && !roads.size && !undoHistory.length) return;
     clearAction();
-    let change = undoHistory.pop();
+    let change = undoHistory.at(-1);
     if (!change) {
       let latestRoad = null;
       for (const road of roads.values()) {
@@ -1291,6 +1438,15 @@ async function startGame(renderer) {
           ? { roadKey: tileKey(latestRoad.x, latestRoad.z) }
           : { house: lastHouse };
     }
+    if (change.removedIndex !== undefined && change.house.type === "convergencia" && hasConvergence()) {
+      setStatus(convergenceLimit);
+      return;
+    }
+    if (stellarBusy(change.house, Date.now())) {
+      setStatus("Aguarde a sequência da Convergência terminar para desfazer esta ação.");
+      return;
+    }
+    if (undoHistory.length) undoHistory.pop();
     if (change.expansion) {
       if (change.areaSize !== undefined) setBuildAreaSize(change.areaSize);
       setExpansion(change.expansion);
@@ -1338,6 +1494,7 @@ async function startGame(renderer) {
   }
 
   function rotateHouse(turn) {
+    if (stellarBusy(selection, Date.now())) return;
     if (isFreeLight((placement || selection)?.type)) return;
     if (placement?.road || selection?.road) return;
     let house = placement ?? selection;
@@ -1525,12 +1682,81 @@ async function startGame(renderer) {
         if (reduceMotion.matches || updateConstruction(sequence, time)) {
           finishConstruction(sequence);
           animations.delete(model);
+          if (selection?.model === model) updateStellarAction();
           renderer.shadowMap.needsUpdate = true;
         }
       }
       dirty = true;
     }
-    const view = walker.active ? walker.camera : camera;
+    const now = Date.now();
+    if (convergenceAnimation.syncPower(now)) dirty = true;
+    const night = isStellarNight(hourPicker.value);
+    const elapsed = stellarMonument?.stellarAt ? stellarShowElapsed(stellarMonument.stellarAt, now) : 0;
+    const reactivationAt = stellarMonument?.stellarReactivatedAt;
+    const reactivation = reactivationAt ? stellarElapsed(reactivationAt, now) : undefined;
+    const reactivating = reactivation < STELLAR_REACTIVATION_DURATION;
+    const restoringGrid = reactivation >= STELLAR_REACTIVATION_DURATION && reactivation < STELLAR_REACTIVATION_TOTAL;
+    const running = stellarBusy(stellarMonument, now);
+    const runningChanged = running !== stellarWasRunning;
+    stellarAudio.sync(running && !document.hidden ? stellarMonument : null, now);
+    if (runningChanged) {
+      stellarWasRunning = running;
+      dirty = true;
+      hourPicker.disabled = preparing || running;
+      if (!running) setStatus(reactivationAt ? "A energia voltou a toda a vila. A Convergência está pronta."
+        : "A vila está sem energia. Reative a Convergência para reacender as luzes.");
+      updateActions();
+    }
+    const skyElapsed = stellarSkyAt ? stellarShowElapsed(stellarSkyAt, now) : 0;
+    const skyForming = night && Boolean(stellarSkyAt) && skyElapsed >= 0 && skyElapsed < STELLAR_SHUTDOWN;
+    const skyReady = skyElapsed >= STELLAR_SHUTDOWN || reactivating;
+    const nightLabel = skyReady ? "Céu nebuloso · 23:00" : "Noite · 23:00";
+    if (nightOption.textContent !== nightLabel) nightOption.textContent = nightLabel;
+    const nebula = night && reactivating ? 1 - THREE.MathUtils.smoothstep(reactivation, 13, STELLAR_REACTIVATION_DURATION)
+      : skyReady && night ? 1 : skyForming ? stellarTimeline.sample(skyElapsed).nebula : 0;
+    const stellarState = stellarMonument?.stellarAt && running && elapsed >= 0 ? stellarTimeline.sample(elapsed) : null;
+    const draining = stellarMonument?.stellarAt && elapsed < 0;
+    const gridTransition = draining || restoringGrid;
+    const drain = nightLights.uniforms.cityDrain.value;
+    if (gridTransition) {
+      const { x, z } = stellarMonument;
+      if (drainSource !== stellarMonument || drainLayout !== layoutVersion) {
+        drainLayout = layoutVersion;
+        drainSource = stellarMonument;
+        drainExtent = 40;
+        for (const house of houses) {
+          const [width, depth] = footprint(house.type, house.rotation);
+          drainExtent = Math.max(drainExtent, Math.hypot(house.x - x, house.z - z) + Math.hypot(width, depth) / 2);
+        }
+        for (const road of roads.values()) drainExtent = Math.max(drainExtent, Math.hypot(road.x - x, road.z - z) + LOT_SIZE);
+      }
+      const feather = 1.65;
+      const progress = restoringGrid ? (reactivation - STELLAR_REACTIVATION_DURATION) / STELLAR_GRID_RESTORE_DURATION
+        : -elapsed / STELLAR_DRAIN_DURATION;
+      const radius = THREE.MathUtils.lerp(-feather, drainExtent + feather, progress);
+      drain.set(x, z, radius, feather);
+    } else drain.w = 0;
+    const blackout = reactivating || (Boolean(stellarSkyAt) && skyElapsed >= 0);
+    const darkness = night ? stellarState?.darkness ?? 0 : 0;
+    const flash = night ? (stellarState?.dayFlash ?? 0) * (reduceMotion.matches ? .25 : 1) : 0;
+    const gridChanged = daylight.setStellarLighting(blackout, darkness, flash, stellarMonument?.model.position);
+    if (gridChanged) dirty = true;
+    if (gridChanged && running && stellarState && blackout) setStatus("A Explosão Estelar começou.");
+    if (restoringGrid && (gridChanged || runningChanged))
+      setStatus("A energia está voltando das ruas próximas até os bairros mais distantes.");
+    const view = viewCamera();
+    if (skyForming && stellarMonument?.stellarAt === stellarSkyAt) {
+      nebulaDirection.copy(stellarMonument.model.position);
+      nebulaDirection.y += STELLAR_ALTITUDE;
+      nebulaDirection.sub(view.position).normalize();
+    }
+    const horizonAngle = THREE.MathUtils.degToRad(view.fov / 2 + 5);
+    const nebulaMoving = nebula > 0 && !reduceMotion.matches && !document.hidden &&
+      view.getWorldDirection(nebulaViewDirection).y > -Math.sin(horizonAngle);
+    if (nebulaMoving) nebulaSeconds = (nebulaSeconds + delta) % NEBULA_CYCLE_SECONDS;
+    meteorShower.update(night && skyReady && nebula > .75 && !reduceMotion.matches, nebulaMoving ? delta : 0);
+    const skyChanged = daylight.setNebula(nebula, nebulaDirection, nebulaSeconds / NEBULA_CYCLE_SECONDS * Math.PI * 2);
+    daylight.setStellarWaves(night ? stellarState?.waves : undefined, reduceMotion.matches ? .40 : 1);
     const sceneChanged = dirty || cameraChanged;
     if (sceneChanged) {
       const target = walker.active ? view.position : controls.target;
@@ -1544,13 +1770,16 @@ async function startGame(renderer) {
       const overviewDistance = walker.flying
         ? Math.max(0, view.position.y - terrainAt(target.x, target.z)) * 2
         : walker.active ? 0 : view.position.distanceTo(target);
-      const far = Math.max(viewDistance, overviewDistance + 190);
+      const worldFar = Math.max(viewDistance, overviewDistance + 190);
+      const skyFar = night && stellarMonument?.stellarAt && elapsed >= 0 && elapsed < STELLAR_SHUTDOWN ? Math.hypot(view.position.x - stellarMonument.x,
+        view.position.y - stellarMonument.model.position.y - STELLAR_ALTITUDE, view.position.z - stellarMonument.z) + 255 : 0;
+      const far = Math.max(worldFar, skyFar);
       if (view.far !== far) {
         view.far = far;
         view.updateProjectionMatrix();
       }
       scene.fog.near = Math.max(165, overviewDistance + 10);
-      scene.fog.far = far;
+      scene.fog.far = worldFar;
       if (updateWorld(view, target)) {
         renderer.shadowMap.needsUpdate = true;
         nightLights.bind(scene);
@@ -1560,17 +1789,19 @@ async function startGame(renderer) {
       nightLights.update(houses, view, daylight.lampPower);
       dirty = false;
     }
-    const convergenceMoving = convergenceAnimation.update(view, time, animations, !reduceMotion.matches);
-    const wheelMoving = ferrisWheelAnimation.update(view, time, animations, !reduceMotion.matches);
-    const lexCorpMoving = lexCorpAnimation.update(view, time, animations, !reduceMotion.matches,daylight.lampPower);
+    const convergenceMoving = convergenceAnimation.update(view, time, animations, !reduceMotion.matches, now, night, blackout);
+    const wheelMoving = ferrisWheelAnimation.update(view, time, animations, !reduceMotion.matches, !blackout, nightLights.supplyAt);
+    const lexCorpMoving = lexCorpAnimation.update(view, time, animations, !reduceMotion.matches,
+      daylight.lampPower, !blackout, nightLights.supplyAt);
     const trafficFocus = walker.active ? view.position : controls.target;
     const trafficZoom = walker.active
       ? Math.max(0, view.position.y - terrainAt(view.position.x, view.position.z)) * 2
       : view.position.distanceTo(controls.target);
-    const trafficMoving = traffic.update(trafficFocus, trafficZoom, delta, !reduceMotion.matches);
-    const effectsAnimated = convergenceMoving || wheelMoving || lexCorpMoving || trafficMoving;
+    const trafficMoving = traffic.update(trafficFocus, trafficZoom, delta, !reduceMotion.matches, !blackout,
+      gridTransition ? nightLights.supplyAt : undefined);
+    const effectsAnimated = skyForming || running || nebulaMoving || convergenceMoving || wheelMoving || lexCorpMoving || trafficMoving;
     const effectFrame = effectsAnimated && time - lastRenderedFrame >= 1000 / 30 - 2;
-    if (sceneChanged || effectFrame) {
+    if (sceneChanged || effectFrame || (skyChanged && !skyForming)) {
       renderer.render(scene, view);
       lastRenderedFrame = time;
     }
@@ -1750,6 +1981,7 @@ async function startGame(renderer) {
   element("rotate-left").onclick = () => rotateHouse(1);
   element("rotate-button").onclick = () => rotateHouse(-1);
   element("delete-selected").onclick = deleteSelection;
+  stellarStart.onclick = activateStellarShow;
   element("place-button").onclick = placeConstruction;
   element("light-height").onchange = event => setLightHeight(event.target.valueAsNumber);
   element("light-lower").onclick = () => stepLightHeight(-.25);
@@ -1879,6 +2111,7 @@ async function startGame(renderer) {
   camera.far = Math.max(viewDistance, camera.position.distanceTo(controls.target) + 190);
   camera.updateProjectionMatrix();
   updateWorld(camera, controls.target);
+  convergenceAnimation.syncPower(Date.now());
   buildingBatches.sync(houses, animations, camera);
   convergenceAnimation.update(camera, 0, animations, false);
   nightLights.bind(scene);
@@ -1897,12 +2130,13 @@ async function startGame(renderer) {
   nightLights.update(houses, camera, daylight.lampPower);
   preparing = false;
   readyButtons.forEach(id => { element(id).disabled = false; });
-  hourPicker.disabled = false;
-  element("city-economy").hidden = false;
+  soundToggle.disabled = !stellarAudio.supported;
+  hourPicker.disabled = stellarBusy(stellarMonument, Date.now());
   let lastEconomyTick = Math.floor(performance.now());
   document.addEventListener("visibilitychange", () => {
     lastEconomyTick = Math.floor(performance.now());
-    if (!document.hidden) invalidate();
+    if (document.hidden) stellarAudio.stop();
+    else invalidate();
   });
   setInterval(() => {
     const now = Math.floor(performance.now());

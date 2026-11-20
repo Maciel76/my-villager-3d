@@ -129,6 +129,14 @@ test("clustered lighting preserves all emitters and reuses GPU textures when onl
   assert.equal(night.stats.rebuilds, rebuilds);
   assert.equal(night.uniforms.cityLights.value, texture);
   assert.equal(night.uniforms.cityPower.value, .5);
+  const drain = night.uniforms.cityDrain.value;
+  drain.set(5, 1, 40, 1.5);
+  assert.deepEqual([night.supplyAt(5, 1), night.supplyAt(45, 1), night.supplyAt(85, 1)], [1, .5, 0]);
+  drain.z = 20;
+  assert.deepEqual([night.supplyAt(5, 1), night.supplyAt(45, 1)], [1, 0]);
+  assert.equal(night.uniforms.cityLights.value, texture);
+  drain.w = 0;
+  assert.equal(night.supplyAt(85, 1), 1);
   assert.equal(scene.children.filter(p => p.isPointLight || p.isSpotLight).length, 0);
   let disposed = false;
   texture.addEventListener("dispose", () => { disposed = true; });

@@ -27,11 +27,20 @@ function dataTexture(data, width, height) {
   return texture;
 }
 
+const drainShader = `
+uniform vec4 cityDrain;
+float citySupply(vec2 position) {
+  if (cityDrain.w <= 0.0) return 1.0;
+  return 1.0 - smoothstep(cityDrain.z - cityDrain.w, cityDrain.z + cityDrain.w, distance(position, cityDrain.xy));
+}
+`;
+
 const declarations = `
 varying vec3 vCityPosition;
 uniform sampler2D cityLights, cityCells;
 uniform vec4 cityGrid;
 uniform float cityPower;
+${drainShader}
 `;
 const lighting = `
 #if defined(RE_Direct)
@@ -44,6 +53,8 @@ if (cityPower > 0.015) {
     for (int cityIndex = 0; cityIndex < cityCount; cityIndex++) {
       int cityID = int(texelFetch(cityCells, ivec2(cityIndex + 1, cityRow), 0).r);
       vec4 citySource = texelFetch(cityLights, ivec2(0, cityID), 0);
+      float supply = citySupply(citySource.xz);
+      if (supply <= 0.0) continue;
       vec3 cityDelta = citySource.xyz - vCityPosition;
       float cityDistance = length(cityDelta);
       if (cityDistance >= citySource.w) continue;
@@ -56,7 +67,7 @@ if (cityPower > 0.015) {
       }
       IncidentLight cityDirect;
       cityDirect.direction = normalize(mat3(viewMatrix) * cityDelta);
-      cityDirect.color = cityColor.rgb * cityPower * citySpot * getDistanceAttenuation(cityDistance, citySource.w, 2.0);
+      cityDirect.color = cityColor.rgb * cityPower * supply * citySpot * getDistanceAttenuation(cityDistance, citySource.w, 2.0);
       cityDirect.visible = true;
       RE_Direct(cityDirect, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight);
     }
@@ -71,6 +82,7 @@ export function createClusteredLights(scene, haloMap) {
     cityCells: { value: dataTexture(new Float32Array(4), 1, 1) },
     cityGrid: { value: new THREE.Vector4(0, 0, 1, 1) },
     cityPower: { value: 0 },
+    cityDrain: { value: new THREE.Vector4() },
   };
   const bound = new WeakSet();
   const cache = new Map();
@@ -78,14 +90,18 @@ export function createClusteredLights(scene, haloMap) {
   let capacity = 0;
   let stats = { emitters: 0, maxLightsPerCell: 0, rebuilds: 0 };
   const haloMaterial = new THREE.ShaderMaterial({
-    uniforms: { ...THREE.UniformsUtils.clone(THREE.UniformsLib.fog), haloMap: { value: haloMap }, power: uniforms.cityPower },
+    uniforms: { ...THREE.UniformsUtils.clone(THREE.UniformsLib.fog), haloMap: { value: haloMap },
+      power: uniforms.cityPower, cityDrain: uniforms.cityDrain },
     vertexShader: `
+      ${drainShader}
       varying vec3 haloColor;
       varying vec2 haloUv;
+      varying float haloSupply;
       #include <fog_pars_vertex>
       void main() {
         haloColor = instanceColor;
         haloUv = uv;
+        haloSupply = citySupply(instanceMatrix[3].xz);
         vec4 mvPosition = modelViewMatrix * instanceMatrix * vec4(0., 0., 0., 1.);
         mvPosition.xyz *= .997;
         mvPosition.xy += position.xy * length(instanceMatrix[0].xyz);
@@ -97,10 +113,11 @@ export function createClusteredLights(scene, haloMap) {
       uniform float power;
       varying vec3 haloColor;
       varying vec2 haloUv;
+      varying float haloSupply;
       #include <fog_pars_fragment>
       void main() {
         vec4 halo = texture2D(haloMap, haloUv);
-        gl_FragColor = vec4(haloColor, halo.a * power * .7);
+        gl_FragColor = vec4(haloColor, halo.a * power * haloSupply * .7);
         #include <fog_fragment>
         #include <colorspace_fragment>
       }`,
@@ -116,6 +133,7 @@ export function createClusteredLights(scene, haloMap) {
         if (!mat?.isMeshStandardMaterial || bound.has(mat)) continue;
         bound.add(mat);
         const previous = mat.onBeforeCompile;
+        const key = mat.customProgramCacheKey();
         mat.onBeforeCompile = function(shader, renderer) {
           previous.call(this, shader, renderer);
           Object.assign(shader.uniforms, uniforms);
@@ -130,9 +148,10 @@ export function createClusteredLights(scene, haloMap) {
             #endif
             vCityPosition = (modelMatrix * cityWorld).xyz;`);
           shader.fragmentShader = declarations + shader.fragmentShader;
-          shader.fragmentShader = shader.fragmentShader.replace('#include <lights_fragment_begin>', '#include <lights_fragment_begin>\n' + lighting);
+          shader.fragmentShader = shader.fragmentShader.replace('#include <lights_fragment_begin>',
+            '#include <lights_fragment_begin>\ntotalEmissiveRadiance *= citySupply(vCityPosition.xz);\n' + lighting);
         };
-        mat.customProgramCacheKey = () => "village-clustered-v1";
+        mat.customProgramCacheKey = () => `village-clustered-v2:${key}`;
         mat.needsUpdate = true;
       }
     });
@@ -203,5 +222,12 @@ export function createClusteredLights(scene, haloMap) {
     if (changed || !haloMesh) rebuild([...cache.values()].flatMap(v => v.lights));
     haloMesh.visible = power > .015 && haloMesh.count > 0;
   }
-  return { update, bind, uniforms, get stats() { return stats; } };
+  function supplyAt(x, z) {
+    const drain = uniforms.cityDrain.value;
+    if (!drain.w) return 1;
+    const distance = Math.hypot(x - drain.x, z - drain.y);
+    return 1 - THREE.MathUtils.smoothstep(distance, drain.z - drain.w, drain.z + drain.w);
+  }
+
+  return { update, bind, uniforms, supplyAt, get stats() { return stats; } };
 }

@@ -28,8 +28,11 @@ function capturePreviews(renderer, templates, cityLights) {
   const context = copy.getContext("2d");
   const lampStates = new Map();
   const cityPower = cityLights?.uniforms.cityPower;
+  const cityDrain = cityLights?.uniforms.cityDrain.value;
   const previousPower = cityPower?.value;
+  const previousFeather = cityDrain?.w;
   if (cityPower) cityPower.value = 0;
+  if (cityDrain) cityDrain.w = 0;
   for (const model of Object.values(templates)) {
     model.traverse(({ material }) => {
       if (!material?.userData.nightGlow || lampStates.has(material)) return;
@@ -84,6 +87,7 @@ function capturePreviews(renderer, templates, cityLights) {
     );
   } finally {
     if (cityPower) cityPower.value = previousPower;
+    if (cityDrain) cityDrain.w = previousFeather;
     for (const [material, intensity] of lampStates)
       material.emissiveIntensity = intensity;
     renderer.setSize(size.x, size.y, false);
@@ -91,7 +95,7 @@ function capturePreviews(renderer, templates, cityLights) {
   }
 }
 
-export function createShop(renderer, templates, onChoose, onRenderPreview, cityLights) {
+export function createShop(renderer, templates, onChoose, onRenderPreview, cityLights, unavailable = () => "") {
   const dialog = document.getElementById("shop-dialog");
   const catalog = document.getElementById("house-catalog");
   const countLabel = document.getElementById("catalog-count");
@@ -114,6 +118,11 @@ export function createShop(renderer, templates, onChoose, onRenderPreview, cityL
         (activeCategory !== "decoration" || activeFamily === "all" || details.family === activeFamily);
       button.hidden = !matches;
       if (!matches) continue;
+      const reason = unavailable(type);
+      button.disabled = Boolean(reason);
+      button.querySelector(".shop-price").textContent = reason || formatCoins(economyProfile(type).price);
+      button.title = reason;
+      button.setAttribute("aria-description", reason || button.dataset.description);
       count++;
       if (!images.get(type).hasAttribute("src"))
         previewsNeeded[type] = templates[type];
@@ -185,7 +194,8 @@ export function createShop(renderer, templates, onChoose, onRenderPreview, cityL
       : "Posicionar";
     command.textContent += capacity;
     command.append(priceLabel);
-    button.setAttribute("aria-description", `${formatCoins(price)}${capacity}`);
+    button.dataset.description = `${formatCoins(price)}${capacity}`;
+    button.setAttribute("aria-description", button.dataset.description);
     button.append(image, label);
     if (isDecoration(type)) {
       const description = document.createElement("span");

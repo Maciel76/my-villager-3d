@@ -53,7 +53,7 @@ export function createLexCorpSearchlight(scene, helicopter, {groundHeight=()=>0}
   const source=new THREE.Vector3(),target=new THREE.Vector3(),direction=new THREE.Vector3();
   const down=new THREE.Vector3(0,-1,0),parentRotation=new THREE.Quaternion(),headRotation=new THREE.Quaternion(),ray=new THREE.Raycaster();
   const status={source:new THREE.Vector3(),target:new THREE.Vector3(),intensity:0,distance:0,hit:null};
-  function hide() {light.intensity=0;beam.visible=false;glare.material.opacity=0;lens.material.color.set("#788993");status.intensity=0;}
+  function hide() {light.intensity=0;beam.visible=false;glare.material.opacity=0;lens.material.color.set("#000000");status.intensity=0;}
   function update(pose,seconds,nightPower=1,surfaces=[]) {
     if(!pose||pose.landed||pose.rotorSpeed<.1){hide();return;}
     mount.updateWorldMatrix(true,false);

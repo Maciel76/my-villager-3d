@@ -64,7 +64,7 @@ export function createCommercialBuildings(materials) {
       map.colorSpace = THREE.SRGBColorSpace;
       const label = mesh(
         new THREE.PlaneGeometry(width, 1.0),
-        new THREE.MeshBasicMaterial({ map, toneMapped: false }),
+        new THREE.MeshStandardMaterial({ map, emissiveMap: map, emissive: "#ffffff", emissiveIntensity: .82, roughness: .83 }),
         x,
         y,
         front + 0.19,

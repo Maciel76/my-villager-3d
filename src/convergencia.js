@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { markNightLight } from "./daylight.js";
 import { addLampEmitter } from "./night-lights.js";
+import { STELLAR_ALTITUDE } from "./stellar-event.js";
 
 const TAU = Math.PI * 2;
 export const convergence = {
@@ -10,7 +11,7 @@ export const convergence = {
   sunRadius: 4.08,
   crownY: 40.5,
   crownRadius: 12.55,
-  beamHeight: 640,
+  beamHeight: STELLAR_ALTITUDE,
   ringRadii: [10.32, 8.05, 6.06],
 };
 
@@ -425,6 +426,7 @@ function plaza(builder, m, light) {
 export function createConvergencia() {
   const model = new THREE.Group();
   model.name = "A Convergência";
+  model.userData.hasMovingParts = true;
   const m = palette();
   const builder = build(model);
   const light = (position, intensity, range, color = "#ffd19e", halo = 0, direction) => {
@@ -432,8 +434,43 @@ export function createConvergencia() {
   };
   plaza(builder, m, light);
   rotunda(builder, m, light);
-  for (const rib of convergenceRibs()) drawRib(builder, m, rib);
+  for (const rib of convergenceRibs()) {
+    if (rib.type === "entry") {
+      drawRib(builder, m, rib);
+      continue;
+    }
+    const arm = new THREE.Group();
+    arm.name = rib.type === "outer" ? "Braço externo" : "Braço interno";
+    arm.position.copy(rib.path.getPoint(0));
+    arm.userData.hinge = { axis: [Math.sin(rib.angle), 0, -Math.cos(rib.angle)],
+      travel: rib.type === "inner" ? .29 : .18 };
+    const panels = new THREE.Group();
+    panels.position.copy(arm.position).negate();
+    const hinged = build(panels);
+    drawRib(hinged, m, rib);
+    hinged.finish();
+    arm.add(panels);
+    model.add(arm);
+  }
   landscaping(builder, m, light);
   builder.finish();
   return model;
+}
+
+export function createUnlitConvergence(template) {
+  const model = template.clone();
+  delete model.userData.lampEmitters;
+  const materials = new Map();
+  model.traverse(part => {
+    const lit = part.material;
+    if (!lit?.userData.nightGlow) return;
+    if (!materials.has(lit)) {
+      const unlit = lit.clone();
+      delete unlit.userData.nightGlow;
+      unlit.emissiveIntensity = 0;
+      materials.set(lit, unlit);
+    }
+    part.material = materials.get(lit);
+  });
+  return { model, materials };
 }

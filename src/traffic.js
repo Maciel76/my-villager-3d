@@ -103,7 +103,7 @@ function meshes(root, limit, specs) {
   const localMatrix = new THREE.Matrix4();
   const result = new THREE.Matrix4();
   const color = new THREE.Color();
-  const parts = specs.map(({ geometry, finish, offsets, colorKey, step }) => {
+  const parts = specs.map(({ geometry, finish, offsets, colorKey, step, electric }) => {
     const material = finish instanceof THREE.Material ? finish
       : new THREE.MeshStandardMaterial({ color: finish, flatShading: true, roughness: 0.8 });
     const mesh = new THREE.InstancedMesh(geometry, material, limit * offsets.length);
@@ -112,14 +112,15 @@ function meshes(root, limit, specs) {
     mesh.frustumCulled = false;
     mesh.receiveShadow = true;
     root.add(mesh);
-    return { mesh, offsets, colorKey, step };
+    return { mesh, offsets, colorKey, step, electric };
   });
-  return (agents, animate) => {
+  return (agents, animate, supplyAt) => {
     for (const part of parts) {
-      const { mesh, offsets, colorKey, step } = part;
+      const { mesh, offsets, colorKey, step, electric } = part;
       for (const [i, agent] of agents.entries()) {
         worldMatrix.makeRotationY(agent.yaw);
         worldMatrix.setPosition(agent.position);
+        if (electric) color.setScalar(supplyAt?.(agent.position.x, agent.position.z) ?? 1);
         for (const [j, offset] of offsets.entries()) {
           if (step && animate) {
             const swing = Math.sin(agent.stride) * (j ? -0.45 : 0.45);
@@ -132,6 +133,7 @@ function meshes(root, limit, specs) {
           const index = i * offsets.length + j;
           mesh.setMatrixAt(index, result.multiplyMatrices(worldMatrix, localMatrix));
           if (colorKey) mesh.setColorAt(index, color.set(agent[colorKey]));
+          else if (electric) mesh.setColorAt(index, color);
         }
       }
       mesh.count = agents.length * offsets.length;
@@ -148,15 +150,17 @@ export function createTraffic(scene, heightAt) {
   root.name = "Tráfego da cidade";
   root.visible = false;
   scene.add(root);
+  const headlights = new THREE.MeshBasicMaterial({ color: "#f8e4a3" });
+  const taillights = new THREE.MeshBasicMaterial({ color: "#d94a37" });
   const paintCars = meshes(root, CAR_LIMIT, [
     { geometry: box(1.64, .57, 3.45), finish: "#ffffff", colorKey: "color", offsets: [[0,.59,0]] },
     { geometry: box(1.36, .42, 1.62), finish: "#26394b", offsets: [[0,1.06,-.15]] },
     { geometry: box(1.41, .12, 1.33), finish: "#ffffff", colorKey: "color", offsets: [[0,1.32,-.15]] },
     { geometry: new THREE.CylinderGeometry(.33,.33,.25,10).rotateZ(Math.PI/2), finish: "#282c2b",
       offsets: [[-.77,.34,-1.09],[.77,.34,-1.09],[-.77,.34,1.08],[.77,.34,1.08]] },
-    { geometry: box(.27,.13,.035), finish: new THREE.MeshBasicMaterial({color:"#f8e4a3"}),
+    { geometry: box(.27,.13,.035), finish: headlights, electric: true,
       offsets: [[-.59,.62,1.735],[.59,.62,1.735]] },
-    { geometry: box(.26,.13,.035), finish: new THREE.MeshBasicMaterial({color:"#d94a37"}),
+    { geometry: box(.26,.13,.035), finish: taillights, electric: true,
       offsets: [[-.59,.6,-1.735],[.59,.6,-1.735]] },
   ]);
   const paintPeople = meshes(root, WALKER_LIMIT, [
@@ -178,6 +182,7 @@ export function createTraffic(scene, heightAt) {
   let anchor = null;
   let activeRadius = 0;
   let lastAnimated;
+  let lastSupply;
 
   function populate(focus, radius) {
     const distance = (item) => Math.hypot(item.x - focus.x, item.z - focus.z);
@@ -243,7 +248,8 @@ export function createTraffic(scene, heightAt) {
         anchor = null;
       }
     },
-    update(focus, zoom, dt, animate) {
+    update(focus, zoom, dt, animate, gridAvailable = true, supplyAt) {
+      headlights.visible = taillights.visible = gridAvailable;
       root.visible = tiles.length > 0 && zoom < 430 && demand.residents > 0;
       if (!root.visible) return false;
       const radius = THREE.MathUtils.clamp(77 + zoom * .48, 77, 215);
@@ -268,11 +274,12 @@ export function createTraffic(scene, heightAt) {
           walkPose(person, heightAt);
         }
       }
-      if (animate || repopulate || lastAnimated !== animate) {
-        paintCars(cars, animate);
+      if (animate || repopulate || lastAnimated !== animate)
         paintPeople(people, animate);
-      }
+      if (animate || repopulate || lastAnimated !== animate || supplyAt || lastSupply)
+        paintCars(cars, animate, supplyAt);
       lastAnimated = animate;
+      lastSupply = supplyAt;
       return animate && (cars.length > 0 || people.length > 0);
     },
   };

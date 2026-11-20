@@ -190,6 +190,8 @@ export function readSave(save, area = buildArea(save?.expansion, save?.areaSize 
           ? storedOrder
           : index;
       houses.push({ x: h.x, z: h.z, rotation: h.rotation, type, order,
+        ...(type === "convergencia" && Object.hasOwn(h, "stellarAt") ? { stellarAt: h.stellarAt } : {}),
+        ...(type === "convergencia" && Object.hasOwn(h, "stellarReactivatedAt") ? { stellarReactivatedAt: h.stellarReactivatedAt } : {}),
         ...(isFreeLight(type) ? { y: lightY } : {}) });
     }
   }

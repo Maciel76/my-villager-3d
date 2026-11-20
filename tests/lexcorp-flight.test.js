@@ -116,3 +116,38 @@ test("moving a tower resets the trip onto its relocated pad and layout changes r
   controller.update(camera,40200,new Set(),true);
   assert.ok(owner.getObjectByName("LexCorp helicopter").position.distanceTo(new THREE.Vector3(...LEXCORP_DOCK))<1e-8);
 });
+
+test("an outage holds the helicopter on the pad or lets its current patrol land", () => {
+  const owner = aircraft();
+  const ship = owner.getObjectByName("LexCorp helicopter");
+  const rotor = ship.getObjectByName("LexCorp main rotor");
+  const dock = new THREE.Vector3(...LEXCORP_DOCK);
+  const animation = createLexCorpAnimation();
+  const camera = new THREE.PerspectiveCamera(60, 1, .1, 1200);
+  camera.position.set(80, 220, 400);
+  camera.lookAt(0, 90, 0);
+  const construction = new Set();
+  animation.add(owner);
+  assert.equal(animation.update(camera, 0, construction, true, 0, false), false);
+  assert.equal(animation.update(camera, 15000, construction, true, 0, false), false);
+  assert(ship.position.equals(dock));
+  assert.equal(rotor.rotation.y, 0);
+
+  let time = 15000;
+  for (; time <= 45000; time += 100) animation.update(camera, time, construction, true);
+  const flying = ship.position.clone();
+  assert(flying.distanceTo(dock) > 15);
+  camera.lookAt(1000, 800, 1000);
+  const cutPower = () => 0;
+  assert.equal(animation.update(camera, time, construction, true, 1, true, cutPower), true);
+  assert(ship.position.distanceTo(flying) < 5);
+  const limit = time + Math.ceil(createLexCorpFlightPlan(owner).duration * 1000);
+  for (; time < limit; time += 100) {
+    if (!animation.update(camera, time, construction, true, 0, false)) break;
+  }
+  assert(time < limit);
+  assert(ship.position.distanceTo(dock) < 1e-8);
+  const resting = rotor.rotation.y;
+  assert.equal(animation.update(camera, time + 15000, construction, true, 0, false), false);
+  assert.equal(rotor.rotation.y, resting);
+});

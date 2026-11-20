@@ -121,7 +121,38 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   de plasma fica suspensa entre três anéis que giram e um feixe sobe até
   **640 m** no jogo, passando pela coroa a **40,5 m**. A praça tem três acessos,
   jardins e cascatas animadas. A opção de movimento reduzido fixa os efeitos
-  em uma pose.
+  ambientes em uma pose. À noite, selecione o monumento e use **Explosão Estelar**
+  para lançar o globo de graça. Por **12 segundos**, as luzes se apagam das mais
+  distantes até a praça. A roda-gigante para e o helicóptero conclui o voo antes
+  de pousar. O espetáculo dura mais **109 segundos**. Os seis braços se abrem e
+  os 17 anéis se formam um a um, da coroa até a ponta do feixe, a **640 m**.
+  Antes de o mini-sol subir, as três argolas se alinham e continuam girando
+  na horizontal. Elas se separam em três alturas e sobem juntas para impulsionar
+  o mini-sol. A menor percorre a maior distância, seguida pela média e pela
+  maior. As três voltam lentamente à posição original. O céu escurece até o
+  disparo e a luz que ilumina a praça e as construções próximas acompanha o
+  mini-sol em sua subida.
+  Você mantém o controle da câmera durante o evento. Cada lançamento espalha
+  poeira estelar por todo o céu. Depois do primeiro evento, **Céu nebuloso**
+  passa a ser o horário noturno da vila. O apagão continua sob a aurora.
+  Aos 90 segundos do espetáculo, o monumento apaga as próprias luzes.
+  As três argolas descem até a base, seguidas pela coroa. O céu, o
+  lançamento e o saldo ficam no MongoDB. **Reativar Convergência** custa
+  **100.000 moedas**, dura 22 segundos e restaura o mini-sol e a noite normal.
+  Em seguida, ao longo de mais 12 segundos, as luzes voltam das mais próximas
+  da praça até as mais distantes.
+  Os braços voltam a se abrir durante a reativação. O mini-sol
+  cresce à medida que os três anéis sobem, do menor ao maior. Os anéis seguem
+  girando enquanto a coroa reacende e o feixe se restabelece. Na Explosão Estelar,
+  o mini-sol sobe até **6,5 m** acima da coroa
+  antes de disparar até a ponta do feixe em menos de um segundo. Três ondas
+  atravessam o céu antes de a nebulosa se formar. A primeira clareia a vila como
+  de dia por instantes, seguida por dois reflexos mais suaves. Cada vila pode
+  comprar um exemplar. Se excluir e depois recomprar, o monumento volta com o
+  mesmo estado de energia.
+  A sequência tem efeitos sonoros sincronizados com o apagão, a subida das
+  argolas, o disparo, as ondas no céu e a reativação. Use **Som** no canto
+  superior para silenciar.
 - A **Roda-Gigante Estrela da Vila**, em **Loja → Monumentos**, ocupa **36 × 24 m**
   e tem cerca de **35 m** de altura. As 16 cabines se mantêm na vertical
   durante a volta de 58 segundos. A praça tem bilheteria, fila e iluminação
@@ -188,7 +219,8 @@ O caixa recebe receita a cada 30 segundos com o jogo em primeiro plano.
 A vila existente ganha um saldo inicial proporcional à população, com um
 mínimo de 2.500 moedas. O saldo fica salvo junto com a cidade no MongoDB.
 
-A Loja mostra os preços antes de construir. Um trecho de rua custa 75 moedas
+A Loja mostra os preços antes de construir. No cabeçalho, você pode ver o
+caixa, a população e a próxima arrecadação. Um trecho de rua custa 75 moedas
 e uma faixa de expansão custa 1.250. Mover e girar peças já compradas é gratuito.
 Excluir não devolve moedas. **Ctrl+Z** devolve o custo ao desfazer uma compra da
 sessão atual. Com ruas conectadas e moradores, carros circulam pelas pistas e

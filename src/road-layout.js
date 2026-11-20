@@ -118,6 +118,7 @@ export function houseSite(x, z, lots, type, rotation) {
 }
 
 export function canBuildHouse(x, z, houses, roads, lots, ignored, type, rotation, bounds) {
+  if (type === "convergencia" && !ignored && houses.some(house => house.type === type)) return false;
   if (!canPlace(x, z, houses, ignored, type, rotation, bounds)) return false;
   if (isPaving(type)) return pavingFitsRoads(x, z, roads);
   if (isFreeLight(type)) return true;

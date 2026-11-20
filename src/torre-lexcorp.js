@@ -2,11 +2,12 @@ import * as THREE from "three";
 import { mergeGeometries, mergeVertices } from "three/addons/utils/BufferGeometryUtils.js";
 import { markNightLight } from "./daylight.js";
 import { addLampEmitter } from "./night-lights.js";
-import { LEXCORP_DOCK, createLexCorpFlightPlan, sampleLexCorpFlight, applyLexCorpFlight } from "./lexcorp-flight.js";
+import { LEXCORP_DOCK, createLexCorpFlightPlan, applyLexCorpFlight } from "./lexcorp-flight.js";
 import { addLexCorpSearchlightFixture, createLexCorpSearchlight } from "./lexcorp-searchlight.js";
 
 export const lexCorp = Object.freeze({ height: 180, footprint: [48, 48], helicopter: [17.4, 89.5, 0], landing: LEXCORP_DOCK });
 const scanTime = { value: 0 };
+const scanPower = { value: 1 };
 const previewFlights = new WeakMap();
 const towerRadii = { glass: 12, glassMid: 9, glassTop: 4.7 };
 
@@ -70,12 +71,14 @@ function reflections() {
 function addScan(material) {
   material.onBeforeCompile = shader => {
     shader.uniforms.lexTime = scanTime;
+    shader.uniforms.lexGridPower = scanPower;
     shader.vertexShader = shader.vertexShader.replace("#include <common>", "#include <common>\nvarying float lexHeight;")
       .replace("#include <begin_vertex>", "#include <begin_vertex>\nlexHeight = position.y;");
-    shader.fragmentShader = shader.fragmentShader.replace("#include <common>", "#include <common>\nvarying float lexHeight; uniform float lexTime;")
+    shader.fragmentShader = shader.fragmentShader.replace("#include <common>",
+      "#include <common>\nvarying float lexHeight; uniform float lexTime, lexGridPower;")
       .replace("#include <emissivemap_fragment>", `#include <emissivemap_fragment>
         float lexBand = pow(max(0.0, 1.0 - abs(lexHeight - mod(lexTime * 7.0, 183.0)) / 1.7), 2.0);
-        totalEmissiveRadiance += vec3(.012, .17, .105) * lexBand;`);
+        totalEmissiveRadiance += vec3(.012, .17, .105) * lexBand * lexGridPower;`);
   };
   material.customProgramCacheKey = () => "lexcorp-facade-scan-v1";
 }
@@ -158,7 +161,14 @@ export function prepareLexCorpModel(scene, materials, projectTexture) {
   return model;
 }
 
-export function poseLexCorp(model, seconds, plan) {
+function setBeaconPower(model, seconds, gridAvailable) {
+  const intensity = gridAvailable ? (Math.sin(seconds * 5.8) > .76 ? 2.6 : .16) : 0;
+  model.traverse(part => {
+    if (part.material && part.name === "lex-beacon") part.material.emissiveIntensity = intensity;
+  });
+}
+
+export function poseLexCorp(model, seconds, plan, gridAvailable = true) {
   const helicopter = model.getObjectByName("LexCorp helicopter");
   if (!helicopter) return;
   if (!plan) {
@@ -169,9 +179,7 @@ export function poseLexCorp(model, seconds, plan) {
   }
   const pose = applyLexCorpFlight(helicopter,plan,seconds);
   scanTime.value = seconds;
-  model.traverse(part => {
-    if (part.material && part.name === "lex-beacon") part.material.emissiveIntensity = Math.sin(seconds * 5.8) > .76 ? 2.6 : .16;
-  });
+  setBeaconPower(model, seconds, gridAvailable);
   return pose;
 }
 
@@ -187,31 +195,61 @@ export function createLexCorpAnimation(scene, options={}) {
       searchlight:scene?createLexCorpSearchlight(scene,model.getObjectByName("LexCorp helicopter"),options):null});
   }
   function remove(model) {towers.get(model)?.searchlight?.dispose();towers.delete(model);}
-  function update(camera, time, construction, animate, nightPower=1) {
+  function update(camera, time, construction, animate, nightPower = 1, gridAvailable = true, supplyAt = () => 1) {
+    scanPower.value = Number(gridAvailable);
     if (!towers.size) return false;
     camera.updateMatrixWorld();frustum.setFromProjectionMatrix(projection.multiplyMatrices(camera.projectionMatrix,camera.matrixWorldInverse));
     let moving = false;
     for (const [model,state] of towers) {
-      if (!model.visible || construction.has(model)) {state.lastTime=null;state.searchlight?.hide();continue;}
+      if (state.gridAvailable !== gridAvailable) {
+        setBeaconPower(model, state.seconds, gridAvailable);
+        state.gridAvailable = gridAvailable;
+      }
+      if (!model.visible || construction.has(model)) {
+        state.lastTime = null;
+        state.supplied = false;
+        state.searchlight?.hide();
+        continue;
+      }
       model.updateWorldMatrix(true,false);
       const moved = state.plan && !state.plan.ownerMatrix.equals(model.matrixWorld);
-      const canRefresh = state.plan && state.revision !== revision && sampleLexCorpFlight(state.plan,state.seconds).phase === "parked";
+      const canRefresh = state.revision !== revision && state.pose?.phase === "parked";
       if (!state.plan || moved || (state.revision !== revision && canRefresh)) {
         state.plan = createLexCorpFlightPlan(model,city);state.revision=revision;state.seconds=0;state.lastTime=null;
-        state.pose=poseLexCorp(model,0,state.plan);
+        state.pose=poseLexCorp(model,0,state.plan,gridAvailable);
+        state.returning = false;
       }
-      if (!frustum.intersectsBox(state.plan.flightBounds)) {state.lastTime=null;state.searchlight?.hide();continue;}
-      if (!animate) {state.lastTime=null;state.searchlight?.update(state.pose,state.seconds,nightPower,surfaces);continue;}
-      moving = true;
-      if (state.lastTime === null) state.lastTime = time;
-      const elapsed = time-state.lastTime;
-      const frameReady = elapsed >= 1000/30-2;
-      if (frameReady) {
-        state.seconds += Math.min(elapsed,150)*.001;state.lastTime=time;state.pose=poseLexCorp(model,state.seconds,state.plan);
+      const supplied = gridAvailable && supplyAt(model.position.x, model.position.z) > .5;
+      const visible = frustum.intersectsBox(state.plan.flightBounds);
+      if (!supplied && state.pose.phase === "startup") {
+        state.seconds = Math.floor(state.seconds / state.plan.duration) * state.plan.duration + .000001;
+        state.pose = poseLexCorp(model, state.seconds, state.plan, gridAvailable);
       }
-      if(frameReady || state.lastPower!==nightPower) {
-        state.searchlight?.update(state.pose,state.seconds,nightPower,surfaces);state.lastPower=nightPower;
+      if (!supplied && state.pose.phase !== "parked") state.returning = true;
+      const flying = animate && (state.returning || (supplied && visible));
+      let frameReady = false;
+      if (flying) {
+        moving = true;
+        state.lastTime ??= time;
+        const elapsed = time - state.lastTime;
+        frameReady = elapsed >= 1000 / 30 - 2;
+        if (frameReady) {
+          const next = state.seconds + Math.min(elapsed, 150) / 1000;
+          const landing = (Math.floor(state.seconds / state.plan.duration) + 1) * state.plan.duration + .000001;
+          state.seconds = state.returning ? Math.min(next, landing) : next;
+          state.lastTime = time;
+          state.pose = poseLexCorp(model, state.seconds, state.plan, gridAvailable);
+          if (state.pose.phase === "parked") state.returning = false;
+        }
+      } else {
+        state.lastTime = null;
       }
+      if (!supplied || !visible) state.searchlight?.hide();
+      else if (frameReady || state.lastPower !== nightPower || !state.supplied) {
+        state.searchlight?.update(state.pose, state.seconds, nightPower, surfaces);
+      }
+      state.lastPower = nightPower;
+      state.supplied = supplied && visible;
     }
     return moving;
   }

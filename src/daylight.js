@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import { createNebulaNoise, nebulaGLSL } from "./ceu-nebuloso.js";
+import { STELLAR_ALTITUDE, STELLAR_WAVES } from "./stellar-event.js";
 
 export function markNightLight(material, strength = 1.35) {
   const base = material.emissive.getHex() ? material.emissiveIntensity : 0;
@@ -38,12 +40,45 @@ const skyVertex = `
 const skyFragment = `
   uniform vec3 zenith, horizon, sunDirection, moonDirection;
   uniform float sunVisibility, moonVisibility, night, cloudPhase;
+  uniform float stellarFlash, skyExposure;
+  uniform vec2 stellarWaves[${STELLAR_WAVES.length}];
   varying vec3 skyRay;
 
   float hash(vec2 cell) {
     vec3 value = fract(vec3(cell.xyx) * .1031);
     value += dot(value, value.yzx + 33.33);
     return fract((value.x + value.y) * value.z);
+  }
+
+  ${nebulaGLSL}
+
+  float bell(float distance, float width) {
+    float spread = distance / width;
+    return exp(-spread * spread);
+  }
+
+  vec3 reflectedWave(vec3 ray, float angle, vec2 wave, vec3 tint, float width) {
+    if (wave.y <= 0.0) return vec3(0.0);
+    float behind = wave.x - angle;
+    float glint = .82 + .18 * sin(ray.x * 17.0 + ray.z * 13.0);
+    float crest = bell(behind, width);
+    float reflection = bell(behind - .11, .21);
+    return tint * wave.y * (.85 * crest * glint + .25 * reflection);
+  }
+
+  vec3 illuminateSky(vec3 ray, vec3 color) {
+    color *= skyExposure;
+    if (stellarFlash <= 0.0 && stellarWaves[0].y + stellarWaves[1].y + stellarWaves[2].y <= 0.0) return color;
+    float alignment = clamp(dot(ray, nebulaOrigin), -1.0, 1.0);
+    float angle = acos(alignment);
+    float altitude = pow(max(0.0, ray.y), .42);
+    vec3 flashSky = mix(vec3(.88,.81,.69), vec3(.36,.58,.88), altitude);
+    flashSky = mix(flashSky, vec3(1.0,.97,.89), .58 * exp(-(1.0 - alignment) * 6.0));
+    color = mix(color, flashSky, stellarFlash * .95);
+    color += reflectedWave(ray, angle, stellarWaves[0], vec3(1.0,.90,.75), .061);
+    color += reflectedWave(ray, angle, stellarWaves[1], vec3(.65,.84,1.0), .084);
+    color += reflectedWave(ray, angle, stellarWaves[2], vec3(.72,.57,.98), .11);
+    return color;
   }
 
   float noise(vec2 point) {
@@ -56,6 +91,11 @@ const skyFragment = `
 
   void main() {
     vec3 ray = normalize(skyRay);
+    if (nebulaAmount >= 1.0) {
+      gl_FragColor = vec4(illuminateSky(ray, nebulaSkyColor(ray)), 1.0);
+      #include <colorspace_fragment>
+      return;
+    }
     float altitude = max(ray.y, 0.0);
     vec3 color = mix(horizon, zenith, pow(clamp(altitude, 0.0, 1.0), .46));
 
@@ -98,7 +138,11 @@ const skyFragment = `
       color = mix(color, tint, cloud * .52 * (1.0 - sunDisc) * (1.0 - moonDisc));
     }
 
-    gl_FragColor = vec4(color, 1.0);
+    if (nebulaAmount > 0.0) {
+      float reveal = nebulaReveal(ray);
+      if (reveal > 0.0) color = mix(color, nebulaSkyColor(ray), reveal);
+    }
+    gl_FragColor = vec4(illuminateSky(ray, color), 1.0);
     #include <colorspace_fragment>
   }
 `;
@@ -116,8 +160,10 @@ export function createDaylight(scene, renderer, buildings) {
   });
   sun.shadow.normalBias = 0.55;
   const moon = new THREE.DirectionalLight("#9cb6ff", 0.0);
+  const blast = new THREE.DirectionalLight("#fff4df", 0);
+  blast.name = "Clarão da Explosão Estelar";
   const ambient = new THREE.HemisphereLight("#eef8ff", "#a38a55", 1.9);
-  scene.add(sun, sun.target, moon, moon.target, ambient);
+  scene.add(sun, sun.target, moon, moon.target, blast, blast.target, ambient);
 
   const sunDirection = new THREE.Vector3();
   const moonDirection = new THREE.Vector3();
@@ -132,6 +178,13 @@ export function createDaylight(scene, renderer, buildings) {
     moonVisibility: { value: 0 },
     night: { value: 0 },
     cloudPhase: { value: 0 },
+    nebulaAmount: { value: 0 },
+    nebulaOrigin: { value: new THREE.Vector3(0, 1, 0) },
+    nebulaNoise: { value: createNebulaNoise() },
+    nebulaPhase: { value: 0 },
+    stellarFlash: { value: 0 },
+    stellarWaves: { value: STELLAR_WAVES.map(() => new THREE.Vector2()) },
+    skyExposure: { value: 1 },
   };
   const sky = new THREE.Mesh(
     new THREE.SphereGeometry(100, 32, 20),
@@ -149,10 +202,14 @@ export function createDaylight(scene, renderer, buildings) {
   sky.frustumCulled = false;
   scene.add(sky);
 
-  const luminous = new Set();
+  const luminous = new Map();
+  const reflections = new Map();
   for (const template of Object.values(buildings)) {
     template.traverse((part) => {
-      if (part.material?.userData.nightGlow) luminous.add(part.material);
+      for (const material of Array.isArray(part.material) ? part.material : [part.material]) {
+        if (material?.emissive?.getHex()) luminous.set(material, material.emissiveIntensity);
+        if (material?.envMap) reflections.set(material, material.envMapIntensity);
+      }
     });
   }
   const daySky = new THREE.Color("#ebf7ff");
@@ -161,8 +218,62 @@ export function createDaylight(scene, renderer, buildings) {
   const nightGround = new THREE.Color("#556278");
   const warmSun = new THREE.Color("#ffb470");
   const whiteSun = new THREE.Color("#fff3db");
+  const fogBase = new THREE.Color();
+  const ambientSkyBase = new THREE.Color();
+  const nebulaFog = new THREE.Color("#372035");
+  const nebulaAmbient = new THREE.Color("#d58aa8");
+  const flashFog = new THREE.Color("#dbe6ee");
+  const ambientGroundBase = new THREE.Color();
   let lightingChanged = true;
-  let lampPower = 0;
+  let hourLampPower = 0;
+  let gridAvailable = true;
+  let ambientBase = 0;
+
+  function tintAtmosphere() {
+    const amount = uniforms.nebulaAmount.value;
+    const flash = uniforms.stellarFlash.value;
+    scene.fog.color.copy(fogBase).lerp(nebulaFog, amount)
+      .multiplyScalar(THREE.MathUtils.lerp(.15, 1, uniforms.skyExposure.value))
+      .lerp(flashFog, flash * .82);
+    ambient.color.copy(ambientSkyBase).lerp(nebulaAmbient, amount * .48).lerp(daySky, flash * .87);
+    ambient.groundColor.copy(ambientGroundBase).lerp(dayGround, flash * .88);
+  }
+
+  function powerFixtures() {
+    for (const [material, intensity] of luminous) {
+      const glow = material.userData.nightGlow;
+      material.emissiveIntensity = gridAvailable ? (glow ? glow.base + glow.strength * hourLampPower : intensity) : 0;
+    }
+  }
+
+  function setStellarLighting(blackout, darkness, flash, source) {
+    const gridChanged = gridAvailable === blackout;
+    if (gridChanged) {
+      gridAvailable = !blackout;
+      powerFixtures();
+    }
+    const night = uniforms.night.value;
+    // A blackout removes electric light even by day, without dimming the sun.
+    const exposure = 1 - darkness * .985;
+    if (uniforms.skyExposure.value !== exposure || uniforms.stellarFlash.value !== flash) {
+      uniforms.skyExposure.value = exposure;
+      uniforms.stellarFlash.value = flash;
+      tintAtmosphere();
+    }
+    if (gridChanged || lightingChanged) for (const [material, intensity] of reflections) {
+      material.envMapIntensity = intensity * (blackout ? 1 - .94 * night : 1);
+    }
+    const nightAttenuation = 1 - (1 - darkness) ** 2;
+    ambient.intensity = ambientBase * (1 - .92 * night * nightAttenuation) + flash * 1.45;
+    moon.intensity = .35 * night * (1 - .985 * nightAttenuation);
+    blast.intensity = 2.6 * flash;
+    if (flash && source) {
+      blast.position.copy(source);
+      blast.position.y += STELLAR_ALTITUDE;
+      blast.target.position.copy(source);
+    }
+    return gridChanged;
+  }
 
   function setHour(hour) {
     lightingChanged = true;
@@ -194,21 +305,19 @@ export function createDaylight(scene, renderer, buildings) {
     uniforms.night.value = night;
     uniforms.cloudPhase.value = angle;
 
-    scene.fog.color.copy(horizon);
-    scene.fog.color.multiplyScalar(THREE.MathUtils.lerp(0.72, 0.91, daylight));
-    ambient.color.copy(nightSky).lerp(daySky, daylight);
-    ambient.groundColor.copy(nightGround).lerp(dayGround, daylight);
-    ambient.intensity = THREE.MathUtils.lerp(0.57, 1.95, daylight);
+    fogBase.copy(horizon).multiplyScalar(THREE.MathUtils.lerp(0.72, 0.91, daylight));
+    ambientSkyBase.copy(nightSky).lerp(daySky, daylight);
+    ambientGroundBase.copy(nightGround).lerp(dayGround, daylight);
+    tintAtmosphere();
+    ambientBase = THREE.MathUtils.lerp(0.57, 1.95, daylight);
+    ambient.intensity = ambientBase;
     sun.color.copy(warmSun).lerp(whiteSun, direct);
     sun.intensity = 2.45 * direct;
     sun.castShadow = sun.intensity > 0;
     moon.intensity = 0.35 * night;
 
-    lampPower = 1 - THREE.MathUtils.smoothstep(height, -0.28, 0.075);
-    for (const material of luminous) {
-      const { strength, base } = material.userData.nightGlow;
-      material.emissiveIntensity = base + strength * lampPower;
-    }
+    hourLampPower = 1 - THREE.MathUtils.smoothstep(height, -0.28, 0.075);
+    powerFixtures();
   }
 
   function positionLights(target) {
@@ -232,5 +341,23 @@ export function createDaylight(scene, renderer, buildings) {
     lightingChanged = false;
   }
 
-  return { setHour, positionLights, sky, get lampPower() { return lampPower; } };
+  return {
+    setHour, positionLights, sky,
+    setStellarLighting,
+    setStellarWaves(waves, multiplier) {
+      for (const [index, uniform] of uniforms.stellarWaves.value.entries()) {
+        const wave = waves?.[index];
+        uniform.set(wave?.radius ?? 0, (wave?.power ?? 0) * multiplier);
+      }
+    },
+    setNebula(amount, origin, phase) {
+      uniforms.nebulaOrigin.value.copy(origin);
+      uniforms.nebulaPhase.value = phase;
+      if (uniforms.nebulaAmount.value === amount) return false;
+      uniforms.nebulaAmount.value = amount;
+      tintAtmosphere();
+      return true;
+    },
+    get lampPower() { return gridAvailable ? hourLampPower : 0; },
+  };
 }

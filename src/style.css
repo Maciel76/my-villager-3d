@@ -71,7 +71,9 @@ p {
   gap: 8px;
   pointer-events: none;
 }
-.topbar > button {
+.topbar-actions {
+  display: flex;
+  gap: 8px;
   pointer-events: auto;
   margin-left: auto;
 }
@@ -112,17 +114,14 @@ h1 {
   letter-spacing: -0.035em;
 }
 .city-economy {
-  position: fixed;
-  top: var(--inset);
-  left: 50%;
-  transform: translateX(-50%);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 5px 10px;
-  width: min(390px, calc(100vw - 2 * var(--inset)));
+  width: 100%;
+  max-width: 390px;
+  min-width: 0;
   padding: 7px 10px 6px;
   border-radius: 9px;
-  pointer-events: none;
 }
 .city-economy > div { display: grid; gap: 2px; }
 .city-economy span { color: #d9ccad; font-size: 10px; }
@@ -142,13 +141,6 @@ h1 {
 }
 .city-economy progress::-webkit-progress-bar { background: #142a20; }
 .city-economy progress::-webkit-progress-value { background: var(--gold); }
-@media (max-width: 830px) {
-  .city-economy {
-    top: calc(var(--inset) + 116px);
-    left: var(--inset);
-    transform: none;
-  }
-}
 .walk-reticle {
   position: fixed;
   left: 50%;
@@ -169,6 +161,17 @@ h1 {
   padding: 0 8px;
   border-radius: 7px;
   font: 700 22px/1 var(--heading);
+}
+.sound-toggle {
+  min-width: 51px;
+  font-size: 13px;
+}
+.sound-toggle[aria-pressed="true"] {
+  color: var(--gold);
+}
+.sound-toggle[aria-pressed="false"] {
+  color: #d7cbb0;
+  text-decoration: line-through;
 }
 .hud-button:hover:not(:disabled),
 .slot:hover:not(:disabled) {
@@ -421,6 +424,19 @@ h1 {
   display: grid;
   gap: 2px;
 }
+.action-tray:has(.stellar-action:not([hidden])) { flex-wrap: wrap; }
+.stellar-action {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  gap: 7px 12px;
+  flex-wrap: wrap;
+  padding-top: 7px;
+  border-top: 1px solid var(--edge);
+}
+.stellar-action button { min-height: 32px; }
+.stellar-action button span { margin-right: 3px; }
+#stellar-hint { color: #f1dec0; font-size: 11px; min-width: 0; }
 .light-height-controls { display: grid; gap: 3px; flex-shrink: 0; }
 .light-height-controls label { color: #d9ccad; font-size: 11px; }
 .light-height-controls > div { display: flex; align-items: center; gap: 4px; }
@@ -555,14 +571,18 @@ dialog dd {
   position: sticky;
   top: 0;
   z-index: 2;
-  display: flex;
+  display: grid;
+  grid-template-columns: 43px max-content minmax(0, 1fr);
   gap: 15px;
   align-items: center;
   background: var(--forest);
   color: var(--sand);
   min-height: 78px;
-  padding: 13px 60px 13px 22px;
+  padding: 13px 68px 13px 22px;
   border-bottom: 3px solid #c29356;
+}
+.shop-header .city-economy {
+  justify-self: end;
 }
 .awning {
   width: 43px;
@@ -726,7 +746,7 @@ dialog dd {
     height: 33px;
     font-size: 28px;
   }
-  .help-button {
+  .topbar-actions .hud-button {
     min-width: 38px;
     min-height: 38px;
   }
@@ -767,8 +787,17 @@ dialog dd {
     bottom: calc(211px + env(safe-area-inset-bottom));
   }
   .shop-header {
+    grid-template-columns: 43px minmax(0, 1fr);
+    gap: 10px;
     min-height: 65px;
-    padding-left: 14px;
+    padding-inline: 14px;
+  }
+  .shop-header h2 {
+    padding-right: 45px;
+  }
+  .shop-header .city-economy {
+    grid-column: 1 / -1;
+    max-width: none;
   }
   .shop-content {
     padding: 15px 12px 18px;
@@ -895,6 +924,5 @@ dialog dd {
   .hour-picker {
     top: calc(var(--inset) + 54px);
   }
-  .city-economy { top: calc(var(--inset) + 105px); }
   .save-state[data-error] { top: calc(var(--inset) + 161px); }
 }

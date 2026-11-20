@@ -13,6 +13,7 @@ const state = (doc) => ({
   hour: doc?.hour ?? null,
   revision: doc?.revision ?? 0,
 });
+const convergenceCount = (world) => world?.houses.filter(house => house.type === "convergencia").length ?? 0;
 
 function send(response, status, data) {
   response.writeHead(status, {
@@ -85,6 +86,13 @@ async function saveChanges(collection, { world, hour, revision, writeId }) {
     !/^[a-f0-9-]{36}$/i.test(writeId)
   )
     throw new RequestError(400, "Revisão inválida.");
+
+  const count = convergenceCount(world);
+  if (count > 1) {
+    // Older saves may already have duplicates. Permit edits that keep or reduce their count.
+    const existing = await collection.findOne(ID, returnedFields);
+    if (count > convergenceCount(existing?.world)) throw new RequestError(400, "Limite de uma Convergência por vila.");
+  }
 
   const base = revision === 0 ? { $exists: false } : revision;
   const updated = await collection

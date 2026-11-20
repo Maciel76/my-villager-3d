@@ -22,22 +22,12 @@
         <span class="crest" aria-hidden="true">⌂</span>
         <h1>Vila Verde</h1>
       </div>
-      <button
-        class="hud-button help-button"
-        id="help-button"
-        aria-label="Como jogar"
-        title="Como jogar"
-        disabled
-      >
-        ?
-      </button>
+      <div class="topbar-actions">
+        <button type="button" class="hud-button sound-toggle" id="sound-toggle"
+          aria-label="Som da Convergência" title="Alternar som da Convergência" aria-pressed="true" disabled>Som</button>
+        <button class="hud-button help-button" id="help-button" aria-label="Como jogar" title="Como jogar" disabled>?</button>
+      </div>
     </header>
-    <div class="city-economy" id="city-economy" role="group" aria-label="Economia da cidade" hidden>
-      <div><span>Caixa</span><strong id="city-coins">0</strong></div>
-      <div><span>Moradores</span><strong id="city-population">0</strong></div>
-      <div><span>Receita / 30 s</span><strong id="city-income">0</strong></div>
-      <progress id="city-revenue-progress" max="30" value="0" aria-label="Progresso da próxima arrecadação"></progress>
-    </div>
     <div id="walk-reticle" class="walk-reticle" aria-hidden="true" hidden></div>
 
     <label class="hour-picker" for="village-hour">
@@ -150,6 +140,12 @@
             ×
           </button>
         </div>
+        <div id="stellar-action" class="stellar-action" hidden>
+          <button id="stellar-start" type="button" class="gold-button" aria-describedby="stellar-hint">
+            <span aria-hidden="true">✦</span> Explosão Estelar
+          </button>
+          <span id="stellar-hint"></span>
+        </div>
       </div>
       <div class="walk-pad" id="walk-pad" role="group" aria-label="Direção da caminhada" hidden>
         <button type="button" class="hud-button" data-walk="w" aria-label="Andar para frente">↑</button>
@@ -241,6 +237,12 @@
       <header class="shop-header">
         <div class="awning" aria-hidden="true"></div>
         <h2 id="shop-title">Loja da vila</h2>
+        <div class="city-economy" id="city-economy" role="group" aria-label="Economia da cidade">
+          <div><span>Caixa</span><strong id="city-coins">0</strong></div>
+          <div><span>Moradores</span><strong id="city-population">0</strong></div>
+          <div><span>Receita / 30 s</span><strong id="city-income">0</strong></div>
+          <progress id="city-revenue-progress" max="30" value="0" aria-label="Progresso da próxima arrecadação"></progress>
+        </div>
         <button
           id="close-shop"
           class="hud-button dialog-close"
@@ -332,6 +334,12 @@
       </button>
       <h2 id="help-title">Como jogar</h2>
       <dl>
+        <dt>Explosão Estelar</dt>
+        <dd>À noite, selecione a Convergência pronta e clique em Explosão Estelar. O evento é grátis e começa quando as luzes se apagam das mais distantes até a praça.
+          A poeira estelar cobre todo o céu, e a opção Noite passa a se chamar Céu nebuloso.
+          As três argolas se alinham, sobem juntas para impulsionar o mini-sol e voltam devagar. No fim do evento, elas descem até a base, seguidas pela coroa.
+          Reativar a Convergência custa 100.000 moedas. Quando a reativação termina, as luzes voltam da praça até os bairros mais distantes.
+          Cada vila pode ter uma Convergência. Ao recomprá-la, ela retorna no estado em que foi excluída.</dd>
         <dt>Economia da cidade</dt>
         <dd>
           Casas e prédios trazem moradores. Lojas e serviços geram receita

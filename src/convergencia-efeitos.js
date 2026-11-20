@@ -1,9 +1,28 @@
 import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import { convergence, convergenceFalls, radial } from "./convergencia.js";
+import { convergence, convergenceFalls, createUnlitConvergence, radial } from "./convergencia.js";
+import { createStellarEffects } from "./explosao-estelar.js";
+import { STELLAR_ARRIVAL, STELLAR_BEAM_RETURN, STELLAR_BURST, STELLAR_DURATION, STELLAR_LAUNCH, STELLAR_LIFT_HEIGHT,
+  STELLAR_REACTIVATION_DURATION, STELLAR_RELIGHT, STELLAR_SHUTDOWN, stellarElapsed, stellarShowElapsed } from "./stellar-event.js";
 
 const TAU = Math.PI * 2;
 const SNAPSHOT_TIME = 1.7;
+const { lerp, smoothstep } = THREE.MathUtils;
+const beltDocks = [
+  { radius: 7.65, y: 4.48 }, { radius: 6.65, y: 4.38 }, { radius: 4.94, y: 4.96 },
+];
+const beltLiftOffsets = [3.2, -2.8, -6.2];
+const beltThrustHeights = [13, 22, 30];
+const crownDock = { radius: 8.62, y: 4.23 };
+
+function lowerRing(ring, home, dock, descent, radiusScale, opensBelow) {
+  const y = lerp(home.y, dock.y, descent);
+  // Open again below the narrow tips of the three entry ribs.
+  const opening = 1 - smoothstep(y, dock.y, opensBelow);
+  const radius = lerp(radiusScale, dock.radius / home.radius, opening);
+  ring.position.y = y;
+  ring.scale.set(radius, 1, radius);
+}
 
 const planeVertex = `
 varying vec2 vUv;
@@ -23,7 +42,7 @@ void main() {
 }`;
 
 const starFragment = `
-uniform float uTime;
+uniform float uTime, uCharge, uLuminosity;
 varying vec3 vPosition, vNormal, vEye;
 float hash(vec3 v) { return fract(sin(dot(v,vec3(127.1,311.7,74.7))) * 43758.5453); }
 float clouds(vec3 p) {
@@ -44,14 +63,16 @@ void main() {
   float limb=pow(1.0-abs(dot(normalize(vNormal),normalize(vEye))),2.35);
   vec3 orange=mix(vec3(1.0,.19,.014),vec3(2.0,1.07,.16),smoothstep(.27,.85,plasma));
   vec3 color=orange+vec3(2.1,1.15,.25)*(filaments*.43 + limb*.52 + grains*.16);
-  gl_FragColor=vec4(color,1.0);
+  vec3 fusion=mix(vec3(.64,.43,2.0),vec3(2.7,3.4,4.8),plasma*.65+filaments*.25);
+  color=mix(color,fusion*(1.05+.6*limb),uCharge*.91);
+  gl_FragColor=vec4(color*uLuminosity,1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>
 }`;
 
 const auraFragment = `
 varying vec2 vUv;
-uniform float uTime;
+uniform float uTime, uCharge, uLuminosity;
 void main(){
   vec2 v=(vUv-.5)*2.0;
   float r=length(v);
@@ -60,27 +81,28 @@ void main(){
   float atmosphere=(1.0-smoothstep(.34,1.0,r))*smoothstep(.24,.43,r);
   float flares=.13*max(0.0,loops)*exp(-abs(r-.49)*8.5);
   vec3 light=mix(vec3(1.0,.33,.065),vec3(1.0,.69,.24),1.0-r);
-  gl_FragColor=vec4(light,atmosphere*.29+flares);
+  light=mix(light,mix(vec3(.47,.31,1.0),vec3(.62,.91,1.0),1.0-r),uCharge);
+  gl_FragColor=vec4(light,(atmosphere*.29+flares)*(1.0+uCharge*1.3)*uLuminosity);
   #include <colorspace_fragment>
 }`;
 
 const beamFragment = `
 varying vec2 vUv;
-uniform float uTime;
-uniform float uHeight;
+uniform float uTime, uHeight, uCharge, uBeamPower, uReach;
 void main(){
-  float width=abs(vUv.x-.5);
+  float width=abs(vUv.x-.5)/(1.0+uCharge*.56);
   float y=vUv.y*uHeight;
   float halo=exp(-width*width*39.0)*(1.0-smoothstep(.14,.5,width));
   float sheath=exp(-width*width*395.0);
   float core=exp(-width*width*2900.0);
   float filament=exp(-pow((vUv.x-.5+.009*sin(y*2.4-uTime*3.0))/.016,2.0));
   float upwards=.84+.16*sin(y*.85-uTime*4.4+width*9.0);
-  float entrance=smoothstep(0.0,2.5,y)*(1.0-smoothstep(.93,1.0,vUv.y));
+  float entrance=smoothstep(0.0,2.5,y)*(1.0-smoothstep(uReach-.006,uReach,vUv.y));
   float warmth=smoothstep(28.0,55.0,y);
   vec3 aura=mix(vec3(.28,.6,1.0),vec3(1.0,.40,.096),warmth);
-  vec3 color=mix(aura,vec3(1.0,.91,.71),.64*core);
-  float opacity=(.13*halo+.38*sheath+.42*core+.21*filament)*upwards*entrance;
+  aura=mix(aura,mix(vec3(.48,.20,1.0),vec3(.20,.81,1.0),warmth),uCharge);
+  vec3 color=mix(aura,mix(vec3(1.0,.91,.71),vec3(.87,.96,1.0),uCharge),.64*core);
+  float opacity=(.13*halo+.38*sheath+.42*core+.21*filament)*upwards*entrance*uBeamPower;
   gl_FragColor=vec4(color,opacity);
   #include <colorspace_fragment>
 }`;
@@ -199,6 +221,10 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
   const root = new THREE.Group();
   root.name = "Luz da Convergência";
   const timeUniform = { value: SNAPSHOT_TIME };
+  const charge = { value: 0 };
+  const luminosity = { value: 1 };
+  const beamPower = { value: 1 };
+  const beamReach = { value: 1 };
   const m = {
     gold: new THREE.MeshBasicMaterial({ color: "#b87b37", side: THREE.DoubleSide }),
     bronze: new THREE.MeshBasicMaterial({ color: "#754315", side: THREE.DoubleSide }),
@@ -219,7 +245,7 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
   sunGroup.position.y = convergence.sunY;
   const sun = new THREE.Mesh(new THREE.SphereGeometry(convergence.sunRadius, 56, 32),
     new THREE.ShaderMaterial({
-      uniforms: { uTime: timeUniform }, vertexShader: starVertex, fragmentShader: starFragment,
+      uniforms: { uTime: timeUniform, uCharge: charge, uLuminosity: luminosity }, vertexShader: starVertex, fragmentShader: starFragment,
     }));
   for (let i = 0; i < 4; i++) {
     const prominence = torus(convergence.sunRadius + .075, .026, m.led, 92);
@@ -230,7 +256,7 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
   root.add(sunGroup);
 
   const aura = new THREE.Mesh(new THREE.PlaneGeometry(19.4, 19.4), additive({
-    uTime: timeUniform,
+    uTime: timeUniform, uCharge: charge, uLuminosity: luminosity,
   }, auraFragment));
   aura.position.y = convergence.sunY;
   aura.renderOrder = 6;
@@ -239,20 +265,38 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
   const crown = new THREE.Group();
   crown.position.y = convergence.crownY;
   crown.name = "Coroa de luz";
-  crown.add(torus(convergence.crownRadius, .098, m.led),
-    torus(convergence.crownRadius + .28, .035, m.inscription),
-    sparks(convergence.crownRadius, .27, 85, timeUniform));
+  const crownLights = [
+    torus(convergence.crownRadius, .098, m.led.clone()),
+    torus(convergence.crownRadius + .28, .035, m.inscription.clone()),
+    sparks(convergence.crownRadius, .27, 85, timeUniform),
+  ];
+  const crownRest = new THREE.MeshStandardMaterial({ color: "#816342", metalness: .28, roughness: .64 });
+  const crownCore = torus(convergence.crownRadius, .085, crownRest);
+  crown.add(crownCore, ...crownLights);
   root.add(crown);
+
+  const pulses = new THREE.Group();
+  pulses.name = "Pulsos de reativação";
+  pulses.visible = false;
+  for (const color of ["#ffc57d", "#bc9dff", "#83d8ff"]) {
+    pulses.add(torus(1, .012, new THREE.MeshBasicMaterial({
+      color, transparent: true, depthWrite: false, toneMapped: false, blending: THREE.AdditiveBlending,
+    }), 76));
+  }
+  root.add(pulses);
 
   const beamStart = 1.22;
   const beam = new THREE.Mesh(new THREE.PlaneGeometry(12.5, beamHeight - beamStart), additive({
-    uTime: timeUniform, uHeight: { value: beamHeight },
+    uTime: timeUniform, uHeight: { value: beamHeight }, uCharge: charge, uBeamPower: beamPower, uReach: beamReach,
   }, beamFragment));
   beam.position.y = (beamHeight + beamStart) * .5;
   beam.renderOrder = 7;
   beam.name = "Feixe até o céu";
   root.add(beam);
 
+  const illuminatedWater = new THREE.Group();
+  illuminatedWater.name = "Cascatas iluminadas";
+  root.add(illuminatedWater);
   convergenceFalls().forEach(({ angle, r, width, top, bottom }, index) => {
     const [x, z] = radial(r + .28, angle);
     const water = new THREE.Mesh(new THREE.PlaneGeometry(width, top - bottom + .09), additive({
@@ -261,24 +305,115 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     water.position.set(x, (top + bottom) * .5, z);
     water.rotation.y = Math.PI / 2 - angle;
     water.renderOrder = 4;
-    root.add(water);
+    illuminatedWater.add(water);
   });
 
   const cameraPosition = new THREE.Vector3();
   const origin = new THREE.Vector3();
   const cameraDelta = new THREE.Vector3();
-  function update(seconds, camera) {
-    timeUniform.value = seconds;
-    sunGroup.rotation.y = seconds * .297;
-    sunGroup.scale.setScalar(1 + .021 * Math.sin(seconds * 1.68));
-    crown.rotation.y = -seconds * .115;
-    ringAxes[0].rotation.set(.11 + Math.sin(seconds * .34) * .115, seconds * .27, -.12);
-    ringAxes[1].rotation.set(.60 + Math.sin(seconds * .27 + 1) * .23, -seconds * .33, .28);
-    ringAxes[2].rotation.set(-.85 + Math.cos(seconds * .40) * .17, seconds * .48, -.39);
+  let stellarEffects;
+  function update(seconds, camera, { elapsed, reactivation, state, rearm, animate = true, night = true, blackout = false } = {}) {
+    const triggered = elapsed !== undefined;
+    const restoring = rearm && reactivation < STELLAR_REACTIVATION_DURATION;
+    const burnt = (triggered && elapsed >= STELLAR_SHUTDOWN) || (restoring && reactivation < STELLAR_RELIGHT);
+    const spinning = triggered && (animate || burnt);
+    const showSeconds = Math.min(elapsed ?? 0, STELLAR_SHUTDOWN);
+    const brake = Math.max(0, showSeconds - (STELLAR_SHUTDOWN - 4));
+    const speedTime = Math.min(Math.max((elapsed ?? 0) - 10, 0), 45);
+    const resetSpin = STELLAR_SHUTDOWN - 2 + 45 ** 2 * .070;
+    const spin = spinning ? showSeconds - brake ** 2 / 8 + speedTime ** 2 * .070
+      : rearm ? resetSpin + (animate ? reactivation : 0) : seconds;
+    const liftHeight = lerp(convergence.sunY, STELLAR_LIFT_HEIGHT, state?.lift ?? 0);
+    const sunHeight = triggered && elapsed >= STELLAR_ARRIVAL ? beamHeight : lerp(liftHeight, beamHeight, state?.launch ?? 0);
+    const arrived = triggered && elapsed >= STELLAR_BURST;
+    const motion = (progress) => animate ? progress : Math.floor(progress);
+    const crownDescent = rearm ? 1 - motion(rearm.crownLift) : motion(state?.crownDescent ?? 0);
+    const crownRetraction = rearm ? 1 - motion(rearm.crownOpen) : motion(state?.crownRetraction ?? 0);
+    const core = rearm?.core ?? 1;
+    const rearmGlow = rearm ? 1 - smoothstep(reactivation, STELLAR_BEAM_RETURN, STELLAR_REACTIVATION_DURATION) : 0;
+    const solarFocus = triggered && !arrived ? lerp(.65, 1, smoothstep(elapsed, 0, 6))
+      : core ** 1.65 * rearmGlow;
+    luminosity.value = 1 + solarFocus * (animate ? .88 : .34);
+    charge.value = (state?.charge ?? (restoring ? .43 * core * (1 - rearm.crownLight) : 0)) * (animate ? 1 : .7);
+    beamReach.value = rearm?.beam ?? 1;
+    beamPower.value = restoring ? smoothstep(reactivation, STELLAR_BEAM_RETURN, 20.4)
+      : burnt ? 0 : arrived ? charge.value * .33 : 1 + 1.15 * charge.value;
+    timeUniform.value = seconds + (spinning ? speedTime * .8 : 0);
+    sunGroup.visible = aura.visible = !arrived && core > .005;
+    sunGroup.position.y = aura.position.y = sunHeight;
+    sunGroup.rotation.y = spin * .297;
+    const breath = animate ? lerp(.021, .004, rearmGlow) * Math.sin(seconds * 1.68) : 0;
+    sunGroup.scale.setScalar(core * (1 + (triggered ? charge.value * .21 : 0) + breath));
+    aura.scale.setScalar(core * (1 + charge.value * .68 + solarFocus * .31));
+    beam.visible = beamPower.value > .003;
+    illuminatedWater.visible = !burnt && !blackout;
+    const crownSpin = rearm && animate ? resetSpin + Math.max(0, reactivation - rearm.crownLiftStartsAt) : spin;
+    crown.rotation.y = -crownSpin * .115;
+    lowerRing(crown, { y: convergence.crownY, radius: convergence.crownRadius }, crownDock,
+      crownDescent, lerp(1, .085, crownRetraction), 9.6);
+    const crownLight = rearm?.crownLight ?? Number(!burnt);
+    crownCore.visible = crownLight < .85;
+    const crownGlow = state?.crown ?? 0;
+    crownLights[0].visible = crownLight > .02;
+    crownLights[1].visible = crownLight > .32;
+    crownLights[2].visible = crownLight > .58;
+    crownLights[0].material.color.setRGB(2.9 + crownGlow, 1.04 + crownGlow * .5, .21 + crownGlow * 2.3)
+      .multiplyScalar(crownLight);
+    m.gold.color.setHex(burnt && !restoring ? 0x4b3825 : 0xb87b37).multiplyScalar(restoring ? lerp(.34, 1, core) : 1);
+    m.bronze.color.setHex(burnt ? 0x2d241b : 0x754315);
+    const ringGlow = restoring ? .62 * core + .38 * crownLight : Number(!burnt);
+    const discharge = (state?.ringDischarge ?? 0) * (animate ? 1 : .25);
+    m.led.color.setRGB(2.9 + .45 * discharge, 1.04 + 1.55 * discharge, .21 + 2 * discharge)
+      .multiplyScalar(ringGlow);
+    m.inscription.color.setHex(burnt ? 0x3a3025 : 0xffc877);
+    // Keep the normal rotation running underneath the temporary acceleration.
+    const [outerSpin, middleSpin, innerSpin] = rearm && animate
+      ? rearm.orbits.map(orbit => resetSpin + Math.max(0, reactivation - orbit.liftStartsAt))
+      : [spin, spin, spin];
+    const angles = [
+      [.11 + Math.sin(outerSpin * .34) * .115, outerSpin * .27, -.12],
+      [.60 + Math.sin(middleSpin * .27 + 1) * .23, -middleSpin * .33, .28],
+      [-.85 + Math.cos(innerSpin * .40) * .17, innerSpin * .48, -.39],
+    ];
+    const spacing = animate ? state?.ringSpacing ?? 0 : 0;
+    const thrust = animate ? state?.ringThrust ?? 0 : 0;
+    for (const [index, ring] of ringAxes.entries()) {
+      const orbit = rearm?.orbits[index];
+      const tilt = orbit ? motion(orbit.tilt) : 1 - motion(state?.ringAlignment ?? 0);
+      const descent = orbit ? 1 - motion(orbit.lift) : motion(state?.ringDescent ?? 0);
+      const turn = orbit && animate ? orbit.turn * (index === 1 ? -1 : 1) : 0;
+      const [x, y, z] = angles[index];
+      ring.rotation.set((x + .17 * Math.sin(turn * .73)) * tilt, y + turn, (z + .15 * Math.sin(turn * 1.1)) * tilt);
+      const height = convergence.sunY + beltLiftOffsets[index] * spacing + beltThrustHeights[index] * thrust;
+      lowerRing(ring, { y: height, radius: convergence.ringRadii[index] }, beltDocks[index], descent,
+        lerp(1, .105, smoothstep(descent, .04, .38)), 10.5);
+    }
+    pulses.visible = restoring && animate && reactivation >= 15;
+    if (pulses.visible) for (const [index, pulse] of pulses.children.entries()) {
+      const age = (reactivation - 15 - index * 1.4) / 3.4;
+      pulse.visible = age > 0 && age < 1;
+      if (!pulse.visible) continue;
+      pulse.position.y = lerp(5.7, convergence.crownY, age);
+      pulse.scale.setScalar(lerp(2, 12.7, Math.sin(age * Math.PI / 2)));
+      pulse.material.opacity = Math.sin(age * Math.PI) * .7;
+    }
     camera.getWorldPosition(cameraPosition);
     aura.lookAt(cameraPosition);
     cameraDelta.copy(cameraPosition).sub(root.getWorldPosition(origin));
     beam.rotation.y = Math.atan2(cameraDelta.x, cameraDelta.z) - root.rotation.y;
+    if (triggered && !burnt && night) {
+      if (!stellarEffects) {
+        stellarEffects = createStellarEffects();
+        root.add(stellarEffects.root);
+      }
+      stellarEffects.root.visible = true;
+      stellarEffects.update(elapsed, state, cameraPosition, sunHeight, animate);
+    } else if (stellarEffects) stellarEffects.root.visible = false;
+    root.updateMatrixWorld(true);
+    const flight = state?.launch ?? 0;
+    // The beam's source rises, widening its pool of light before it fades in the sky.
+    const projection = (1 + 16 * flight) * (1 - smoothstep(flight, .18, 1));
+    return night ? solarFocus * lerp(8000, 22600, charge.value) * projection : 0;
   }
 
   function dispose() {
@@ -291,19 +426,40 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     root.removeFromParent();
   }
 
-  return { root, update, dispose };
+  return { root, sun, update, dispose };
 }
 
-export function createConvergenceAnimation(scene) {
+export function createConvergenceAnimation(scene, timeline, unlitMaterials) {
   const effects = new Map();
+  const owners = new WeakMap();
+  const installation = new WeakMap();
+  const warmCore = new THREE.Color("#ffd691");
+  const hotCore = new THREE.Color("#a7d8ff");
+  const siteLight = new THREE.PointLight(warmCore, 0, 185, 2);
+  siteLight.name = "Luz do mini-sol";
+  scene.add(siteLight);
   const bounds = new THREE.Box3();
   const frustum = new THREE.Frustum();
   const viewProjection = new THREE.Matrix4();
 
-  function add(model) {
+  function add(model, startedAt, reactivatedAt) {
     const effect = createConvergenceEffects();
     effect.root.visible = false;
+    effect.startedAt = startedAt;
+    effect.reactivatedAt = reactivatedAt;
+    if (!installation.has(model)) {
+      unlitMaterials ??= createUnlitConvergence(model).materials;
+      const fixtures = [];
+      model.traverse(part => {
+        if (unlitMaterials.has(part.material)) fixtures.push({ part, lit: part.material, unlit: unlitMaterials.get(part.material) });
+      });
+      const arms = model.children.filter(part => part.userData.hinge).map(part => ({
+        part, axis: new THREE.Vector3(...part.userData.hinge.axis), travel: part.userData.hinge.travel,
+      }));
+      installation.set(model, { fixtures, arms, emitters: model.userData.lampEmitters, opening: 0, unlit: false });
+    }
     effects.set(model, effect);
+    owners.set(effect.sun, model);
     scene.add(effect.root);
   }
 
@@ -312,26 +468,72 @@ export function createConvergenceAnimation(scene) {
     effects.delete(model);
   }
 
-  function update(camera, time, construction, animate) {
+  function syncPower(now) {
+    let changed = false;
+    for (const [model, { startedAt, reactivatedAt }] of effects) {
+      const unlit = (Boolean(startedAt) && stellarShowElapsed(startedAt, now) >= STELLAR_SHUTDOWN) ||
+        (Boolean(reactivatedAt) && stellarElapsed(reactivatedAt, now) < STELLAR_RELIGHT);
+      const installed = installation.get(model);
+      if (unlit === installed.unlit) continue;
+      installed.unlit = unlit;
+      if (unlit) delete model.userData.lampEmitters;
+      else model.userData.lampEmitters = installed.emitters;
+      for (const fixture of installed.fixtures) fixture.part.material = unlit ? fixture.unlit : fixture.lit;
+      changed = true;
+    }
+    return changed;
+  }
+
+  function update(camera, time, construction, animate, now = Date.now(), night = true, blackout = false) {
+    siteLight.intensity = 0;
     if (!effects.size) return false;
     camera.updateMatrixWorld();
     frustum.setFromProjectionMatrix(viewProjection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
-    let visible = false;
+    let moving = false;
     for (const [model, effect] of effects) {
       const { x, y, z } = model.position;
-      const r = convergence.radius;
+      const showTime = effect.startedAt ? stellarShowElapsed(effect.startedAt, now) : undefined;
+      const elapsed = showTime >= 0 ? showTime : undefined;
+      const reactivation = effect.reactivatedAt ? stellarElapsed(effect.reactivatedAt, now) : undefined;
+      const spent = elapsed >= STELLAR_SHUTDOWN;
+      const inShow = elapsed !== undefined && !spent && night;
+      const restoring = reactivation < STELLAR_REACTIVATION_DURATION;
+      const launching = night && elapsed >= STELLAR_LAUNCH && elapsed < STELLAR_ARRIVAL;
+      const r = launching ? 835 : inShow ? 280 : restoring ? 185 : convergence.radius;
       bounds.min.set(x - r, y, z - r);
-      bounds.max.set(x + r, y + convergence.beamHeight, z + r);
+      bounds.max.set(x + r, y + (spent ? convergence.crownY + 1 : convergence.beamHeight + (inShow ? 230 : 0)), z + r);
       const active = model.visible && !construction.has(model) && frustum.intersectsBox(bounds);
       effect.root.visible = active;
       if (!active) continue;
       effect.root.position.copy(model.position);
       effect.root.rotation.copy(model.rotation);
-      effect.update(animate ? time * .001 : SNAPSHOT_TIME, camera);
-      visible = true;
+      const state = elapsed !== undefined ? timeline.sample(elapsed) : undefined;
+      const rearm = reactivation !== undefined ? timeline.reactivationPose(reactivation) : undefined;
+      const installed = installation.get(model);
+      const opening = animate ? state?.arms ?? rearm?.arms ?? 0 : 0;
+      if (opening !== installed.opening) {
+        for (const { part, axis, travel } of installed.arms) part.quaternion.setFromAxisAngle(axis, travel * opening);
+        installed.opening = opening;
+      }
+      const intensity = effect.update(animate ? time * .001 : SNAPSHOT_TIME, camera,
+        { elapsed, reactivation, state, rearm, animate, night, blackout });
+      if (intensity > siteLight.intensity) {
+        effect.sun.getWorldPosition(siteLight.position);
+        siteLight.color.copy(warmCore).lerp(hotCore, (state?.charge ?? 0) * .74);
+        siteLight.distance = lerp(185, 835, state?.launch ?? 0);
+        siteLight.intensity = intensity;
+      }
+      moving ||= elapsed === undefined ? animate : elapsed < STELLAR_DURATION;
     }
-    return visible && animate;
+    return moving;
   }
 
-  return { add, remove, update };
+  return {
+    add, remove, update, syncPower,
+    setEvent(model, startedAt, reactivatedAt) {
+      Object.assign(effects.get(model), { startedAt, reactivatedAt });
+    },
+    pickable: () => [...effects.values()].filter(({ root, sun }) => root.visible && sun.parent.visible).map(({ sun }) => sun),
+    ownerOf: (object) => owners.get(object),
+  };
 }

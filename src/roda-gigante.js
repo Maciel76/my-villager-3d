@@ -373,7 +373,7 @@ export function createFerrisWheelAnimation() {
     rides.set(model, { rotor, cabins, angle: -rotor.rotation.z, lastTime: null });
   }
 
-  function update(camera, time, construction, animate) {
+  function update(camera, time, construction, animate, gridAvailable = true, supplyAt = () => 1) {
     if (!rides.size) return false;
     camera.updateMatrixWorld();
     frustum.setFromProjectionMatrix(viewProjection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
@@ -383,7 +383,8 @@ export function createFerrisWheelAnimation() {
       const extent = ferrisWheel.footprint[0] / 2;
       bounds.min.set(x-extent, y, z-extent);
       bounds.max.set(x+extent, y+ferrisWheel.height, z+extent);
-      if (!animate || !model.visible || construction.has(model) || !frustum.intersectsBox(bounds)) {
+      if (!animate || !gridAvailable || supplyAt(x, z) <= .5 || !model.visible ||
+          construction.has(model) || !frustum.intersectsBox(bounds)) {
         ride.lastTime = null;
         continue;
       }
