@@ -34,7 +34,7 @@ export function extendLexCorpAvenue(roads) {
 }
 
 export function extendPoliceAvenue(roads) {
-  for(let x=12;x<=72;x+=LOT_SIZE)
+  for(let x=12;x<=156;x+=LOT_SIZE)
     roads.set(tileKey(x,96),{x,z:96,order:roads.size});
 }
 
@@ -68,6 +68,8 @@ export function createCityPlan() {
   add("rodaGigante", 120, -54, 2);
   add("lexCorp", -66, -138);
   add("policeStation",42,132,2);
+  add("monumentoBombeiros",-30,-108,2);
+  add("starship",126,132,2);
   for (const [index, type] of ["bakery", "market", "pharmacy"].entries())
     add(type, -12 + index * 12, -12, 2);
 

@@ -1,0 +1,536 @@
+[
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "L",
+      "expression": "72000 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "W",
+      "expression": "60000 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "D",
+      "expression": "9000 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "BoosterH",
+      "expression": "65000 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "ShipH",
+      "expression": "50000 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "MountH",
+      "expression": "8500 mm"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_Foundation",
+      "body_name": "STATIC_Foundation",
+      "operation": "new",
+      "center": [
+        0,
+        0,
+        400
+      ],
+      "length": "L",
+      "width": "W",
+      "height": 800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_Apron",
+      "body_name": "STATIC_Apron",
+      "operation": "new",
+      "center": [
+        0,
+        0,
+        870
+      ],
+      "length": "L - 1200",
+      "width": "W - 1200",
+      "height": 140
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_ServiceRoad",
+      "body_name": "STATIC_ServiceRoad",
+      "operation": "new",
+      "center": [
+        0,
+        -25100,
+        980
+      ],
+      "length": "L - 2400",
+      "width": 6000,
+      "height": 100
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_LandingPad",
+      "body_name": "STATIC_LandingPad",
+      "operation": "new",
+      "base": [
+        21000,
+        -6500,
+        1040
+      ],
+      "radius": 11200,
+      "height": 220,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "STATIC_LandingRing",
+      "body_name": "STATIC_LandingRing",
+      "operation": "new",
+      "center": [
+        21000,
+        -6500,
+        1270
+      ],
+      "major": 10200,
+      "minor": 100
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_MountLeg_0",
+      "body_name": "STATIC_MountLeg_0",
+      "operation": "new",
+      "base": [
+        1500.0,
+        0.0,
+        940
+      ],
+      "radius": 620,
+      "height": 6500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_MountLeg_1",
+      "body_name": "STATIC_MountLeg_1",
+      "operation": "new",
+      "base": [
+        -1749.999999999999,
+        5629.1651245988505,
+        940
+      ],
+      "radius": 620,
+      "height": 6500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_MountLeg_2",
+      "body_name": "STATIC_MountLeg_2",
+      "operation": "new",
+      "base": [
+        -8249.999999999998,
+        5629.165124598851,
+        940
+      ],
+      "radius": 620,
+      "height": 6500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_MountLeg_3",
+      "body_name": "STATIC_MountLeg_3",
+      "operation": "new",
+      "base": [
+        -11500.0,
+        7.960204194457796e-13,
+        940
+      ],
+      "radius": 620,
+      "height": 6500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_MountLeg_4",
+      "body_name": "STATIC_MountLeg_4",
+      "operation": "new",
+      "base": [
+        -8250.000000000004,
+        -5629.1651245988505,
+        940
+      ],
+      "radius": 620,
+      "height": 6500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_MountLeg_5",
+      "body_name": "STATIC_MountLeg_5",
+      "operation": "new",
+      "base": [
+        -1749.999999999999,
+        -5629.1651245988505,
+        940
+      ],
+      "radius": 620,
+      "height": 6500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_LaunchTable",
+      "body_name": "STATIC_LaunchTable",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        7440
+      ],
+      "radius": 7900,
+      "height": 1060,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "radius": "D/2 + 300",
+      "height": 1400,
+      "base": [
+        -5000,
+        0,
+        7300
+      ],
+      "operation": "cut",
+      "targets": [
+        "STATIC_LaunchTable"
+      ],
+      "name": "Flame aperture"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_Control",
+      "body_name": "STATIC_Control",
+      "operation": "new",
+      "center": [
+        -23000,
+        -17000,
+        3400
+      ],
+      "length": 16000,
+      "width": 9000,
+      "height": 4900
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_ControlRoof",
+      "body_name": "STATIC_ControlRoof",
+      "operation": "new",
+      "center": [
+        -23000,
+        -17000,
+        6000
+      ],
+      "length": 17000,
+      "width": 10000,
+      "height": 340
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_ControlGlass",
+      "body_name": "STATIC_ControlGlass",
+      "operation": "new",
+      "center": [
+        -23000,
+        -21550,
+        4100
+      ],
+      "length": 14200,
+      "width": 120,
+      "height": 1700
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_Cryotank_15000",
+      "body_name": "STATIC_Cryotank_15000",
+      "operation": "new",
+      "base": [
+        15000,
+        20000,
+        1040
+      ],
+      "radius": 2700,
+      "height": 14500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "STATIC_CryoDome_15000",
+      "body_name": "STATIC_CryoDome_15000",
+      "operation": "new",
+      "base": [
+        15000,
+        20000,
+        15540
+      ],
+      "radius": 2700,
+      "top_radius": 700,
+      "height": 1700
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_CryoVent_15000",
+      "body_name": "STATIC_CryoVent_15000",
+      "operation": "new",
+      "base": [
+        15000,
+        20000,
+        17240
+      ],
+      "radius": 240,
+      "height": 2000,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_Cryopipe_15000",
+      "body_name": "STATIC_Cryopipe_15000",
+      "operation": "new",
+      "base": [
+        15000,
+        16800,
+        2000
+      ],
+      "radius": 210,
+      "height": 6300.0,
+      "axis": [
+        0,
+        -6300,
+        0
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_Cryotank_23500",
+      "body_name": "STATIC_Cryotank_23500",
+      "operation": "new",
+      "base": [
+        23500,
+        20000,
+        1040
+      ],
+      "radius": 2700,
+      "height": 14500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "STATIC_CryoDome_23500",
+      "body_name": "STATIC_CryoDome_23500",
+      "operation": "new",
+      "base": [
+        23500,
+        20000,
+        15540
+      ],
+      "radius": 2700,
+      "top_radius": 700,
+      "height": 1700
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_CryoVent_23500",
+      "body_name": "STATIC_CryoVent_23500",
+      "operation": "new",
+      "base": [
+        23500,
+        20000,
+        17240
+      ],
+      "radius": 240,
+      "height": 2000,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_Cryopipe_23500",
+      "body_name": "STATIC_Cryopipe_23500",
+      "operation": "new",
+      "base": [
+        23500,
+        16800,
+        2000
+      ],
+      "radius": 210,
+      "height": 6300.0,
+      "axis": [
+        0,
+        -6300,
+        0
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_Cryotank_30000",
+      "body_name": "STATIC_Cryotank_30000",
+      "operation": "new",
+      "base": [
+        30000,
+        20000,
+        1040
+      ],
+      "radius": 2700,
+      "height": 14500,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "STATIC_CryoDome_30000",
+      "body_name": "STATIC_CryoDome_30000",
+      "operation": "new",
+      "base": [
+        30000,
+        20000,
+        15540
+      ],
+      "radius": 2700,
+      "top_radius": 700,
+      "height": 1700
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_CryoVent_30000",
+      "body_name": "STATIC_CryoVent_30000",
+      "operation": "new",
+      "base": [
+        30000,
+        20000,
+        17240
+      ],
+      "radius": 240,
+      "height": 2000,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_Cryopipe_30000",
+      "body_name": "STATIC_Cryopipe_30000",
+      "operation": "new",
+      "base": [
+        30000,
+        16800,
+        2000
+      ],
+      "radius": 210,
+      "height": 6300.0,
+      "axis": [
+        0,
+        -6300,
+        0
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_FlameDeflector",
+      "body_name": "STATIC_FlameDeflector",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        1740
+      ],
+      "length": 12000,
+      "width": 14000,
+      "height": 1600
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_WaterReservoir",
+      "body_name": "STATIC_WaterReservoir",
+      "operation": "new",
+      "center": [
+        -25000,
+        21500,
+        3000
+      ],
+      "length": 14000,
+      "width": 10000,
+      "height": 4200
+    }
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "arquivo": "C:\\Users\\Maciel Ribeiro\\Desktop\\villager 3d\\my-villager-3d\\models\\monumento-bombeiros\\Monumento_Corpo_de_Bombeiros.blend",
+  "cena": "MONUMENTO • CORPO DE BOMBEIROS",
+  "camera": "Camera • perspectiva principal",
+  "esculturas": {
+    "ESCULTURA_LIDER": 195,
+    "ESCULTURA_OPERADOR": 198,
+    "ESCULTURA_BOMBEIRA_CRIANCA": 212
+  },
+  "renders": [
+    "Bombeira_Crianca_Detalhe.png",
+    "Esculturas_Detalhe.png",
+    "Lider_Rosto_Equipamentos.png",
+    "Monumento_Perspectiva.png"
+  ],
+  "referencias_embutidas": 2
+}

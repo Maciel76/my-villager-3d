@@ -4,6 +4,7 @@ import { PAVING_SIZE, snapPaving } from "./paving-types.js";
 
 export { BUILD_LIMIT, LOT_SIZE } from "./village-area.js";
 import { BUILD_LIMIT, LEGACY_AREA_SIZE, isAreaSize } from "./build-area.js";
+import { isLaunchTimestamp } from "./starship-mission.js";
 export const LAMP_FOOTPRINT = 2;
 export const LAMP_BASE_RADIUS = 0.33;
 export const DECORATION_STEP = .25;
@@ -190,6 +191,7 @@ export function readSave(save, area = buildArea(save?.expansion, save?.areaSize 
           ? storedOrder
           : index;
       houses.push({ x: h.x, z: h.z, rotation: h.rotation, type, order,
+        ...(type === "starship" && isLaunchTimestamp(h.launchAt) ? { launchAt: h.launchAt } : {}),
         ...(type === "convergencia" && Object.hasOwn(h, "stellarAt") ? { stellarAt: h.stellarAt } : {}),
         ...(type === "convergencia" && Object.hasOwn(h, "stellarReactivatedAt") ? { stellarReactivatedAt: h.stellarReactivatedAt } : {}),
         ...(isFreeLight(type) ? { y: lightY } : {}) });

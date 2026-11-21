@@ -4,7 +4,7 @@ import {
   STELLAR_ARRIVAL, STELLAR_BEAM_RETURN, STELLAR_BURST, STELLAR_CROWN_LIFT_START, STELLAR_CROWN_RETRACTED,
   STELLAR_DURATION, STELLAR_LAUNCH, STELLAR_LIFT_START, STELLAR_ORBIT_RISES, STELLAR_ORBITS_DESCENT_START,
   STELLAR_ORBITS_DOCKED, STELLAR_REACTIVATION_DURATION, STELLAR_RELIGHT, STELLAR_SHUTDOWN,
-  STELLAR_THRUST_START, STELLAR_WAVE_END, STELLAR_WAVES,
+  STELLAR_RINGS_ALIGNED, STELLAR_THRUST_START, STELLAR_WAVE_END, STELLAR_WAVES,
 } from "./stellar-event.js";
 
 function tracks(state) {
@@ -39,9 +39,9 @@ export function createStellarTimeline() {
   const ringReturnStart = STELLAR_LAUNCH + .12;
   const ringReturnEnd = STELLAR_LAUNCH + 7.6;
   track("reflector", [[9.6, 1, "linear"], [STELLAR_LAUNCH, 1], [81, 0]]);
-  track("charge", [[10, 0], [40, .81], [54, 1], [STELLAR_LAUNCH, 1], [61, .51], [78, 0]]);
-  track("crown", [[19, 0], [51, 1], [64, .86], [87, 0]]);
-  track("ringAlignment", [[STELLAR_LIFT_START - 6, 0], [STELLAR_LIFT_START - 1, 1]]);
+  track("charge", [[10, 0], [40, .81], [STELLAR_LAUNCH - 1, 1], [STELLAR_LAUNCH, 1], [STELLAR_LAUNCH + 6, .51], [78, 0]]);
+  track("crown", [[19, 0], [51, 1], [STELLAR_LAUNCH + 9, .86], [87, 0]]);
+  track("ringAlignment", [[STELLAR_LIFT_START - 6, 0], [STELLAR_RINGS_ALIGNED, 1]]);
   track("ringSpacing", [[STELLAR_LIFT_START + .4, 0], [STELLAR_LIFT_START + 5.6, 1],
     [ringReturnStart, 1], [ringReturnEnd, 0]]);
   track("ringThrust", [[STELLAR_THRUST_START, 0], [STELLAR_LAUNCH - .035, 1, "inOutCubic"],
@@ -50,7 +50,7 @@ export function createStellarTimeline() {
     [STELLAR_LAUNCH + .055, 1], [STELLAR_LAUNCH + .65, 0, "outQuad"]]);
   track("lift", [[STELLAR_LIFT_START, 0], [STELLAR_LAUNCH, 1]]);
   track("launch", [[STELLAR_LAUNCH, 0], [STELLAR_ARRIVAL, 1, "inQuad"]]);
-  track("doors", [[38, 0], [53, 1], [65, 1], [86, 0]]);
+  track("doors", [[38, 0], [STELLAR_LAUNCH - 2, 1], [STELLAR_LAUNCH + 10, 1], [86, 0]]);
   track("flare", [[STELLAR_BURST, 0], [STELLAR_BURST + .17, 1], [STELLAR_BURST + 3.9, 0, "outExpo"]]);
   track("dayFlash", [[STELLAR_BURST, 0], [STELLAR_BURST + .26, 1, "outCubic"], [STELLAR_BURST + 1.95, .93],
     [STELLAR_BURST + 3.55, 0]]);
@@ -60,7 +60,7 @@ export function createStellarTimeline() {
     show.add(wave, "radius", [[start, 0], [end, Math.PI + .36, "linear"]]);
     show.add(wave, "power", [[start, 0], [start + .14, peak], [end - .23, peak * .79], [end, 0]]);
   }
-  track("nebula", [[STELLAR_WAVE_END, 0], [67, .16], [80, .78], [STELLAR_SHUTDOWN, 1]]);
+  track("nebula", [[STELLAR_WAVE_END, 0], [STELLAR_WAVE_END + 2.5, .16], [80, .78], [STELLAR_SHUTDOWN, 1]]);
   track("darkness", [[.7, .88], [STELLAR_LAUNCH - 6, .936], [STELLAR_LAUNCH, .985], [STELLAR_ARRIVAL + .35, 0, "outCubic"]]);
   track("arms", [[2, .11], [15, .36], [40, .36], [STELLAR_LAUNCH - .4, 1],
     [STELLAR_BURST + 1.5, 1], [76, .18], [92, .36], [STELLAR_DURATION, 0]]);

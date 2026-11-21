@@ -197,14 +197,24 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
   (30 lotes). Inclui sede de quatro pavimentos com recepção e escritórios,
   garagem com cinco baias, dez viaturas, duas torres de vigilância com câmeras,
   guarita, portão deslizante, cancela, estacionamento, jardins, torre de rádio,
-  claraboias e heliponto circular elevado. Uma viatura circula pelo pátio;
-  os giroflex piscam e o acesso abre quando ela se aproxima. O helicóptero
+  claraboias e heliponto circular elevado. As dez viaturas saem da garagem e
+  do estacionamento em horários diferentes, passam pelo portão e patrulham
+  as ruas com rotas e velocidades próprias. O acesso precisa de uma rua
+  conectada à frente do posto. O portão e a cancela abrem automaticamente;
+  os giroflex acompanham as viaturas. O helicóptero
   decola, patrulha os bairros em baixa altitude com refletor de busca e volta
   ao heliponto. O complexo oferece 80 empregos e aparece também nos dois
   planos de cidade, em uma expansão ao sul com rua de acesso.
   O arquivo editável está em `models/posto-policial.sc`, o modelo portátil
   em `src/assets/models/posto-policial.glb` e a preparação/animação em
   `src/posto-policial.js`. As proporções são aproximadas à referência.
+- O trânsito de `src/traffic-driving.js` é compartilhado pelos carros comuns
+  e pelas viaturas (`src/police-fleet.js`). Considera toda a carroceria,
+  preserva distância de segurança e reserva cruzamentos antes da passagem.
+  Um carro só entra quando há espaço para sair e pode escolher outro caminho
+  se a saída estiver congestionada. A simulação usa passos curtos para
+  impedir colisões em quadros lentos. Expandir as ruas preserva os percursos;
+  remover ruas ou mover o posto reorganiza a frota com segurança.
 - O **Pavilhão Rotunda**, em **Loja → Monumentos**, ocupa um lote. A base
   circular tem 11,4 m de diâmetro e a altura é de aproximadamente 10,12 m.
   Tem doze colunas caneladas e afuniladas, capitéis com volutas, três degraus,

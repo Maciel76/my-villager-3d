@@ -134,6 +134,7 @@ export function createClusteredLights(scene, haloMap) {
         bound.add(mat);
         const previous = mat.onBeforeCompile;
         const key = mat.customProgramCacheKey();
+        const emissionGate = mat.userData.storedEnergy ? '' : 'totalEmissiveRadiance *= citySupply(vCityPosition.xz);';
         mat.onBeforeCompile = function(shader, renderer) {
           previous.call(this, shader, renderer);
           Object.assign(shader.uniforms, uniforms);
@@ -149,9 +150,9 @@ export function createClusteredLights(scene, haloMap) {
             vCityPosition = (modelMatrix * cityWorld).xyz;`);
           shader.fragmentShader = declarations + shader.fragmentShader;
           shader.fragmentShader = shader.fragmentShader.replace('#include <lights_fragment_begin>',
-            '#include <lights_fragment_begin>\ntotalEmissiveRadiance *= citySupply(vCityPosition.xz);\n' + lighting);
+            '#include <lights_fragment_begin>\n' + emissionGate + '\n' + lighting);
         };
-        mat.customProgramCacheKey = () => `village-clustered-v2:${key}`;
+        mat.customProgramCacheKey = () => `village-clustered-v3:${mat.userData.storedEnergy ? 'stored' : 'grid'}:${key}`;
         mat.needsUpdate = true;
       }
     });

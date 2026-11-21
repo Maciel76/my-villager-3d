@@ -2,6 +2,9 @@ import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { convergence, convergenceFalls, createUnlitConvergence, radial } from "./convergencia.js";
 import { createStellarEffects } from "./explosao-estelar.js";
+import { cloneConvergenceHardware, powerConvergenceHardware } from "./convergencia-hardware.js";
+import { sampleContainmentInjection, createContainmentInjection, createExpandingCrown } from "./convergencia-injecao.js";
+import { stellarOrbitSpin } from "./convergencia-orbitas.js";
 import { STELLAR_ARRIVAL, STELLAR_BEAM_RETURN, STELLAR_BURST, STELLAR_DURATION, STELLAR_LAUNCH, STELLAR_LIFT_HEIGHT,
   STELLAR_REACTIVATION_DURATION, STELLAR_RELIGHT, STELLAR_SHUTDOWN, stellarElapsed, stellarShowElapsed } from "./stellar-event.js";
 
@@ -13,7 +16,7 @@ const beltDocks = [
 ];
 const beltLiftOffsets = [3.2, -2.8, -6.2];
 const beltThrustHeights = [13, 22, 30];
-const crownDock = { radius: 8.62, y: 4.23 };
+const crownDock = { radius: 34.7, y: 1.75 };
 
 function lowerRing(ring, home, dock, descent, radiusScale, opensBelow) {
   const y = lerp(home.y, dock.y, descent);
@@ -232,8 +235,11 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     inscription: new THREE.MeshBasicMaterial({ color: "#ffc877", toneMapped: false }),
   };
 
+  const containmentOrbits = [];
   const ringAxes = convergence.ringRadii.map((radius, index) => {
-    const ring = makeRing(radius, index ? .48 : .63, index ? .38 : .58, m);
+    const component = cloneConvergenceHardware(`ORBIT_${index + 1}`);
+    containmentOrbits.push(component);
+    const ring = component?.model ?? makeRing(radius, index ? .48 : .63, index ? .38 : .58, m);
     ring.name = `Órbita ${index + 1}`;
     ring.position.y = convergence.sunY;
     root.add(ring);
@@ -273,6 +279,9 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
   const crownRest = new THREE.MeshStandardMaterial({ color: "#816342", metalness: .28, roughness: .64 });
   const crownCore = torus(convergence.crownRadius, .085, crownRest);
   crown.add(crownCore, ...crownLights);
+  const containmentCrown = cloneConvergenceHardware("CROWN");
+  if (containmentCrown) crown.add(containmentCrown.model);
+  const expandCrown = createExpandingCrown(crown, convergence.crownRadius, crownDock.radius);
   root.add(crown);
 
   const pulses = new THREE.Group();
@@ -312,7 +321,7 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
   const origin = new THREE.Vector3();
   const cameraDelta = new THREE.Vector3();
   let stellarEffects;
-  function update(seconds, camera, { elapsed, reactivation, state, rearm, animate = true, night = true, blackout = false } = {}) {
+  function update(seconds, camera, { elapsed, reactivation, state, rearm, injection, animate = true, night = true, blackout = false } = {}) {
     const triggered = elapsed !== undefined;
     const restoring = rearm && reactivation < STELLAR_REACTIVATION_DURATION;
     const burnt = (triggered && elapsed >= STELLAR_SHUTDOWN) || (restoring && reactivation < STELLAR_RELIGHT);
@@ -323,13 +332,17 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     const resetSpin = STELLAR_SHUTDOWN - 2 + 45 ** 2 * .070;
     const spin = spinning ? showSeconds - brake ** 2 / 8 + speedTime ** 2 * .070
       : rearm ? resetSpin + (animate ? reactivation : 0) : seconds;
+    const orbitResetSpin = stellarOrbitSpin(STELLAR_SHUTDOWN);
+    const orbitSpin = spinning ? stellarOrbitSpin(showSeconds)
+      : rearm ? orbitResetSpin + (animate ? reactivation : 0) : seconds;
     const liftHeight = lerp(convergence.sunY, STELLAR_LIFT_HEIGHT, state?.lift ?? 0);
     const sunHeight = triggered && elapsed >= STELLAR_ARRIVAL ? beamHeight : lerp(liftHeight, beamHeight, state?.launch ?? 0);
     const arrived = triggered && elapsed >= STELLAR_BURST;
     const motion = (progress) => animate ? progress : Math.floor(progress);
     const crownDescent = rearm ? 1 - motion(rearm.crownLift) : motion(state?.crownDescent ?? 0);
     const crownRetraction = rearm ? 1 - motion(rearm.crownOpen) : motion(state?.crownRetraction ?? 0);
-    const core = rearm?.core ?? 1;
+    const ignition = injection?.ignition ?? 1;
+    const core = (rearm?.core ?? 1) * ignition;
     const rearmGlow = rearm ? 1 - smoothstep(reactivation, STELLAR_BEAM_RETURN, STELLAR_REACTIVATION_DURATION) : 0;
     const solarFocus = triggered && !arrived ? lerp(.65, 1, smoothstep(elapsed, 0, 6))
       : core ** 1.65 * rearmGlow;
@@ -338,6 +351,7 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     beamReach.value = rearm?.beam ?? 1;
     beamPower.value = restoring ? smoothstep(reactivation, STELLAR_BEAM_RETURN, 20.4)
       : burnt ? 0 : arrived ? charge.value * .33 : 1 + 1.15 * charge.value;
+    beamPower.value *= ignition;
     timeUniform.value = seconds + (spinning ? speedTime * .8 : 0);
     sunGroup.visible = aura.visible = !arrived && core > .005;
     sunGroup.position.y = aura.position.y = sunHeight;
@@ -349,8 +363,9 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     illuminatedWater.visible = !burnt && !blackout;
     const crownSpin = rearm && animate ? resetSpin + Math.max(0, reactivation - rearm.crownLiftStartsAt) : spin;
     crown.rotation.y = -crownSpin * .115;
-    lowerRing(crown, { y: convergence.crownY, radius: convergence.crownRadius }, crownDock,
-      crownDescent, lerp(1, .085, crownRetraction), 9.6);
+    expandCrown(crownRetraction);
+    crown.position.y = lerp(convergence.crownY, crownDock.y, crownDescent);
+    crown.scale.setScalar(1);
     const crownLight = rearm?.crownLight ?? Number(!burnt);
     crownCore.visible = crownLight < .85;
     const crownGlow = state?.crown ?? 0;
@@ -362,14 +377,16 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     m.gold.color.setHex(burnt && !restoring ? 0x4b3825 : 0xb87b37).multiplyScalar(restoring ? lerp(.34, 1, core) : 1);
     m.bronze.color.setHex(burnt ? 0x2d241b : 0x754315);
     const ringGlow = restoring ? .62 * core + .38 * crownLight : Number(!burnt);
+    containmentOrbits.forEach(component => powerConvergenceHardware(component, ringGlow));
+    powerConvergenceHardware(containmentCrown, crownLight);
     const discharge = (state?.ringDischarge ?? 0) * (animate ? 1 : .25);
     m.led.color.setRGB(2.9 + .45 * discharge, 1.04 + 1.55 * discharge, .21 + 2 * discharge)
       .multiplyScalar(ringGlow);
     m.inscription.color.setHex(burnt ? 0x3a3025 : 0xffc877);
     // Keep the normal rotation running underneath the temporary acceleration.
     const [outerSpin, middleSpin, innerSpin] = rearm && animate
-      ? rearm.orbits.map(orbit => resetSpin + Math.max(0, reactivation - orbit.liftStartsAt))
-      : [spin, spin, spin];
+      ? rearm.orbits.map(orbit => orbitResetSpin + Math.max(0, reactivation - orbit.liftStartsAt))
+      : [orbitSpin, orbitSpin, orbitSpin];
     const angles = [
       [.11 + Math.sin(outerSpin * .34) * .115, outerSpin * .27, -.12],
       [.60 + Math.sin(middleSpin * .27 + 1) * .23, -middleSpin * .33, .28],
@@ -413,7 +430,7 @@ export function createConvergenceEffects({ beamHeight = convergence.beamHeight }
     const flight = state?.launch ?? 0;
     // The beam's source rises, widening its pool of light before it fades in the sky.
     const projection = (1 + 16 * flight) * (1 - smoothstep(flight, .18, 1));
-    return night ? solarFocus * lerp(8000, 22600, charge.value) * projection : 0;
+    return night ? ignition * solarFocus * lerp(8000, 22600, charge.value) * projection : 0;
   }
 
   function dispose() {
@@ -447,10 +464,13 @@ export function createConvergenceAnimation(scene, timeline, unlitMaterials) {
     effect.root.visible = false;
     effect.startedAt = startedAt;
     effect.reactivatedAt = reactivatedAt;
+    effect.injection = createContainmentInjection(model);
+    effect.root.add(effect.injection.root);
     if (!installation.has(model)) {
       unlitMaterials ??= createUnlitConvergence(model).materials;
       const fixtures = [];
       model.traverse(part => {
+        for (let parent = part; parent; parent = parent.parent) if (parent.userData.energyPod) return;
         if (unlitMaterials.has(part.material)) fixtures.push({ part, lit: part.material, unlit: unlitMaterials.get(part.material) });
       });
       const arms = model.children.filter(part => part.userData.hinge).map(part => ({
@@ -464,6 +484,7 @@ export function createConvergenceAnimation(scene, timeline, unlitMaterials) {
   }
 
   function remove(model) {
+    effects.get(model)?.injection?.dispose();
     effects.get(model)?.dispose();
     effects.delete(model);
   }
@@ -495,6 +516,7 @@ export function createConvergenceAnimation(scene, timeline, unlitMaterials) {
       const showTime = effect.startedAt ? stellarShowElapsed(effect.startedAt, now) : undefined;
       const elapsed = showTime >= 0 ? showTime : undefined;
       const reactivation = effect.reactivatedAt ? stellarElapsed(effect.reactivatedAt, now) : undefined;
+      const injection = sampleContainmentInjection(effect.startedAt ? showTime : undefined, reactivation);
       const spent = elapsed >= STELLAR_SHUTDOWN;
       const inShow = elapsed !== undefined && !spent && night;
       const restoring = reactivation < STELLAR_REACTIVATION_DURATION;
@@ -505,6 +527,7 @@ export function createConvergenceAnimation(scene, timeline, unlitMaterials) {
       const active = model.visible && !construction.has(model) && frustum.intersectsBox(bounds);
       effect.root.visible = active;
       if (!active) continue;
+      effect.injection.update(injection, animate);
       effect.root.position.copy(model.position);
       effect.root.rotation.copy(model.rotation);
       const state = elapsed !== undefined ? timeline.sample(elapsed) : undefined;
@@ -516,7 +539,7 @@ export function createConvergenceAnimation(scene, timeline, unlitMaterials) {
         installed.opening = opening;
       }
       const intensity = effect.update(animate ? time * .001 : SNAPSHOT_TIME, camera,
-        { elapsed, reactivation, state, rearm, animate, night, blackout });
+        { elapsed, reactivation, state, rearm, injection, animate, night, blackout });
       if (intensity > siteLight.intensity) {
         effect.sun.getWorldPosition(siteLight.position);
         siteLight.color.copy(warmCore).lerp(hotCore, (state?.charge ?? 0) * .74);

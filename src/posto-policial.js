@@ -11,7 +11,8 @@ export const policeStation = Object.freeze({
   rotorNames:["Police main rotor","Police tail rotor"],
 });
 const previews=new WeakMap(), signals=new WeakMap();
-const carPositions={};
+export const policeCarPositions={};
+const carPositions=policeCarPositions;
 for(let i=0;i<4;i++)carPositions[`car-parked${i}`]=[5.2+i*5.3,.1,17.5];
 for(let i=0;i<5;i++)carPositions[`car-garage${i}`]=[19.2+i*3.06,.1,-1.8];
 carPositions['car-patrol']=[-15.5,.1,12];
@@ -102,12 +103,18 @@ export function samplePolicePatrol(seconds){
 }
 export function posePoliceStation(model,seconds,plan){
   if(!plan){model.updateWorldMatrix(true,false);if(!previews.has(model)||!previews.get(model).ownerMatrix.equals(model.matrixWorld))previews.set(model,createLexCorpFlightPlan(model,[],policeStation));plan=previews.get(model);}
-  const pose=applyLexCorpFlight(model.getObjectByName("Police helicopter"),plan,seconds),car=samplePolicePatrol(seconds);
-  const patrol=model.getObjectByName("car-patrol");patrol.position.copy(car.position);patrol.rotation.y=car.yaw;
-  // Open before the patrol reaches the gate area, with a smooth mechanical motion.
-  const openness=THREE.MathUtils.smoothstep(car.position.z,14,19);
-  model.getObjectByName("Police gate").position.x=-20.1-10.3*openness;
-  model.getObjectByName("Police barrier").rotation.z=-Math.PI*.46*openness;
+  const pose=applyLexCorpFlight(model.getObjectByName("Police helicopter"),plan,seconds);
+  if(!model.userData.policeFleetActive){
+    const car=samplePolicePatrol(seconds),patrol=model.getObjectByName("car-patrol");patrol.position.copy(car.position);patrol.rotation.y=car.yaw;
+    // Open before the patrol reaches the gate area, with a smooth mechanical motion.
+    const openness=THREE.MathUtils.smoothstep(car.position.z,14,19);
+    model.getObjectByName("Police gate").position.x=-20.1-10.3*openness;
+    model.getObjectByName("Police barrier").rotation.z=-Math.PI*.46*openness;
+  }
+  updatePoliceSignals(model,seconds);
+  return pose;
+}
+export function updatePoliceSignals(model,seconds){
   if(!signals.has(model)){
     const list=[];model.traverse(part=>{if(part.isMesh&&["police-sirenRed","police-sirenBlue"].includes(part.name)){part.material=part.material.clone();list.push(part);}});signals.set(model,list);
   }
@@ -115,7 +122,6 @@ export function posePoliceStation(model,seconds,plan){
     const phase=seconds*3.7+(part.name.endsWith("Blue")?.5:0),flash=phase%1<.16||phase%1>.24&&phase%1<.4;
     part.material.emissiveIntensity=flash?3.8:.12;
   }
-  return pose;
 }
 export function createPoliceStationAnimation(scene,options={}){
   return createLexCorpAnimation(scene,{...options,helicopterName:"Police helicopter",pose:posePoliceStation,flightSpecification:policeStation});

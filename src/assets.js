@@ -35,6 +35,12 @@ import lexCorpUrl from "./assets/models/optimized/torre-lexcorp.glb?url";
 import { prepareLexCorpModel } from "./torre-lexcorp.js";
 import policeStationUrl from "./assets/models/optimized/posto-policial.glb?url";
 import { preparePoliceStationModel } from "./posto-policial.js";
+import firefightersMonumentUrl from "./assets/models/optimized/monumento-bombeiros.glb?url";
+import { prepareFirefightersMonument } from "./monumento-bombeiros.js";
+import starshipUrl from "./assets/models/optimized/starship.glb?url";
+import { prepareStarshipModel } from "./starship.js";
+import refinedConvergenceUrl from "./assets/models/optimized/convergencia-refinada.glb?url";
+import { prepareRefinedConvergence } from "./convergencia-hardware.js";
 import grassUrl from "./assets/textures/grass.webp";
 import brickUrl from "./assets/textures/brick.webp";
 import brickNormalUrl from "./assets/textures/brick-normal.webp";
@@ -207,10 +213,16 @@ export async function loadBuildingModels(materials) {
     rotunda: rotundaUrl,
     lexCorp: lexCorpUrl,
     policeStation: policeStationUrl,
+    monumentoBombeiros: firefightersMonumentUrl,
+    starship: starshipUrl,
+    convergencia: refinedConvergenceUrl,
   };
   const models = await Promise.all(
     Object.entries(sources).map(async ([type, url]) => {
-      const { scene } = await loader.loadAsync(url);
+      const gltf = await loader.loadAsync(url);
+      const { scene } = gltf;
+      if (type === "starship") return [type, prepareStarshipModel(gltf, projectTexture)];
+      if (type === "convergencia") return [type, prepareRefinedConvergence(gltf, projectTexture)];
       if (type === "aurora") return [type, prepareAuroraModel(scene, materials, projectTexture)];
       if (type === "cuboVerde") return [type, prepareCuboVerdeModel(scene, materials, projectTexture)];
       if (type === "belleEpoque") return [type, prepareBelleEpoqueModel(scene, materials, projectTexture)];
@@ -218,6 +230,7 @@ export async function loadBuildingModels(materials) {
       if (type === "rotunda") return [type, prepareRotundaModel(scene, materials, projectTexture)];
       if (type === "lexCorp") return [type, prepareLexCorpModel(scene, materials, projectTexture)];
       if (type === "policeStation") return [type, preparePoliceStationModel(scene, materials, projectTexture)];
+      if (type === "monumentoBombeiros") return [type, prepareFirefightersMonument(scene, projectTexture)];
       scene.updateMatrixWorld(true);
       const bounds = new THREE.Box3().setFromObject(scene);
       const origin = bounds.getCenter(new THREE.Vector3());

@@ -1,0 +1,11 @@
+{
+  "bytesBefore": 7588728,
+  "bytesAfter": 5026520,
+  "animations": [
+    {
+      "name": "StarshipMission",
+      "channels": 13
+    }
+  ],
+  "meshes": 427
+}

@@ -1,0 +1,2082 @@
+[
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerColumn_-24500_4000",
+      "body_name": "STATIC_TowerColumn_-24500_4000",
+      "operation": "new",
+      "center": [
+        -24500,
+        4000,
+        69700
+      ],
+      "length": 950,
+      "width": 950,
+      "height": 137000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerColumn_-24500_13000",
+      "body_name": "STATIC_TowerColumn_-24500_13000",
+      "operation": "new",
+      "center": [
+        -24500,
+        13000,
+        69700
+      ],
+      "length": 950,
+      "width": 950,
+      "height": 137000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerColumn_-15500_4000",
+      "body_name": "STATIC_TowerColumn_-15500_4000",
+      "operation": "new",
+      "center": [
+        -15500,
+        4000,
+        69700
+      ],
+      "length": 950,
+      "width": 950,
+      "height": 137000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerColumn_-15500_13000",
+      "body_name": "STATIC_TowerColumn_-15500_13000",
+      "operation": "new",
+      "center": [
+        -15500,
+        13000,
+        69700
+      ],
+      "length": 950,
+      "width": 950,
+      "height": 137000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_0_4000",
+      "body_name": "STATIC_TowerBeamX_0_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        3500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_0_13000",
+      "body_name": "STATIC_TowerBeamX_0_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        3500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_0_-24500",
+      "body_name": "STATIC_TowerBeamY_0_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        3500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_0_-15500",
+      "body_name": "STATIC_TowerBeamY_0_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        3500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_0_4000",
+      "body_name": "STATIC_TowerBraceX_0_4000",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        3500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_0_13000",
+      "body_name": "STATIC_TowerBraceX_0_13000",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        3500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_0_-24500",
+      "body_name": "STATIC_TowerBraceY_0_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        3500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_0_-15500",
+      "body_name": "STATIC_TowerBraceY_0_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        3500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_1_4000",
+      "body_name": "STATIC_TowerBeamX_1_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        15000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_1_13000",
+      "body_name": "STATIC_TowerBeamX_1_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        15000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_1_-24500",
+      "body_name": "STATIC_TowerBeamY_1_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        15000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_1_-15500",
+      "body_name": "STATIC_TowerBeamY_1_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        15000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_1_4000",
+      "body_name": "STATIC_TowerBraceX_1_4000",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        15000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_1_13000",
+      "body_name": "STATIC_TowerBraceX_1_13000",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        15000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_1_-24500",
+      "body_name": "STATIC_TowerBraceY_1_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        15000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_1_-15500",
+      "body_name": "STATIC_TowerBraceY_1_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        15000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_2_4000",
+      "body_name": "STATIC_TowerBeamX_2_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        26500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_2_13000",
+      "body_name": "STATIC_TowerBeamX_2_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        26500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_2_-24500",
+      "body_name": "STATIC_TowerBeamY_2_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        26500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_2_-15500",
+      "body_name": "STATIC_TowerBeamY_2_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        26500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_2_4000",
+      "body_name": "STATIC_TowerBraceX_2_4000",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        26500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_2_13000",
+      "body_name": "STATIC_TowerBraceX_2_13000",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        26500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_2_-24500",
+      "body_name": "STATIC_TowerBraceY_2_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        26500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_2_-15500",
+      "body_name": "STATIC_TowerBraceY_2_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        26500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_3_4000",
+      "body_name": "STATIC_TowerBeamX_3_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        38000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_3_13000",
+      "body_name": "STATIC_TowerBeamX_3_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        38000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_3_-24500",
+      "body_name": "STATIC_TowerBeamY_3_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        38000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_3_-15500",
+      "body_name": "STATIC_TowerBeamY_3_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        38000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_3_4000",
+      "body_name": "STATIC_TowerBraceX_3_4000",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        38000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_3_13000",
+      "body_name": "STATIC_TowerBraceX_3_13000",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        38000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_3_-24500",
+      "body_name": "STATIC_TowerBraceY_3_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        38000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_3_-15500",
+      "body_name": "STATIC_TowerBraceY_3_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        38000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_4_4000",
+      "body_name": "STATIC_TowerBeamX_4_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        49500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_4_13000",
+      "body_name": "STATIC_TowerBeamX_4_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        49500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_4_-24500",
+      "body_name": "STATIC_TowerBeamY_4_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        49500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_4_-15500",
+      "body_name": "STATIC_TowerBeamY_4_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        49500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_4_4000",
+      "body_name": "STATIC_TowerBraceX_4_4000",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        49500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_4_13000",
+      "body_name": "STATIC_TowerBraceX_4_13000",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        49500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_4_-24500",
+      "body_name": "STATIC_TowerBraceY_4_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        49500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_4_-15500",
+      "body_name": "STATIC_TowerBraceY_4_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        49500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_5_4000",
+      "body_name": "STATIC_TowerBeamX_5_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        61000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_5_13000",
+      "body_name": "STATIC_TowerBeamX_5_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        61000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_5_-24500",
+      "body_name": "STATIC_TowerBeamY_5_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        61000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_5_-15500",
+      "body_name": "STATIC_TowerBeamY_5_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        61000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_5_4000",
+      "body_name": "STATIC_TowerBraceX_5_4000",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        61000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_5_13000",
+      "body_name": "STATIC_TowerBraceX_5_13000",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        61000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_5_-24500",
+      "body_name": "STATIC_TowerBraceY_5_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        61000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_5_-15500",
+      "body_name": "STATIC_TowerBraceY_5_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        61000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_6_4000",
+      "body_name": "STATIC_TowerBeamX_6_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        72500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_6_13000",
+      "body_name": "STATIC_TowerBeamX_6_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        72500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_6_-24500",
+      "body_name": "STATIC_TowerBeamY_6_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        72500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_6_-15500",
+      "body_name": "STATIC_TowerBeamY_6_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        72500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_6_4000",
+      "body_name": "STATIC_TowerBraceX_6_4000",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        72500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_6_13000",
+      "body_name": "STATIC_TowerBraceX_6_13000",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        72500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_6_-24500",
+      "body_name": "STATIC_TowerBraceY_6_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        72500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_6_-15500",
+      "body_name": "STATIC_TowerBraceY_6_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        72500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_7_4000",
+      "body_name": "STATIC_TowerBeamX_7_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        84000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_7_13000",
+      "body_name": "STATIC_TowerBeamX_7_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        84000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_7_-24500",
+      "body_name": "STATIC_TowerBeamY_7_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        84000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_7_-15500",
+      "body_name": "STATIC_TowerBeamY_7_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        84000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_7_4000",
+      "body_name": "STATIC_TowerBraceX_7_4000",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        84000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_7_13000",
+      "body_name": "STATIC_TowerBraceX_7_13000",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        84000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_7_-24500",
+      "body_name": "STATIC_TowerBraceY_7_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        84000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_7_-15500",
+      "body_name": "STATIC_TowerBraceY_7_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        84000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_8_4000",
+      "body_name": "STATIC_TowerBeamX_8_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        95500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_8_13000",
+      "body_name": "STATIC_TowerBeamX_8_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        95500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_8_-24500",
+      "body_name": "STATIC_TowerBeamY_8_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        95500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_8_-15500",
+      "body_name": "STATIC_TowerBeamY_8_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        95500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_8_4000",
+      "body_name": "STATIC_TowerBraceX_8_4000",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        95500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_8_13000",
+      "body_name": "STATIC_TowerBraceX_8_13000",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        95500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_8_-24500",
+      "body_name": "STATIC_TowerBraceY_8_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        95500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_8_-15500",
+      "body_name": "STATIC_TowerBraceY_8_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        95500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_9_4000",
+      "body_name": "STATIC_TowerBeamX_9_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        107000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_9_13000",
+      "body_name": "STATIC_TowerBeamX_9_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        107000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_9_-24500",
+      "body_name": "STATIC_TowerBeamY_9_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        107000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_9_-15500",
+      "body_name": "STATIC_TowerBeamY_9_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        107000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_9_4000",
+      "body_name": "STATIC_TowerBraceX_9_4000",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        107000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_9_13000",
+      "body_name": "STATIC_TowerBraceX_9_13000",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        107000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        -9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_9_-24500",
+      "body_name": "STATIC_TowerBraceY_9_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        107000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_9_-15500",
+      "body_name": "STATIC_TowerBraceY_9_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        13000,
+        107000
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        -9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_10_4000",
+      "body_name": "STATIC_TowerBeamX_10_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        118500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_10_13000",
+      "body_name": "STATIC_TowerBeamX_10_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        118500
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_10_-24500",
+      "body_name": "STATIC_TowerBeamY_10_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        118500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_10_-15500",
+      "body_name": "STATIC_TowerBeamY_10_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        118500
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_10_4000",
+      "body_name": "STATIC_TowerBraceX_10_4000",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        118500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceX_10_13000",
+      "body_name": "STATIC_TowerBraceX_10_13000",
+      "operation": "new",
+      "base": [
+        -24500,
+        13000,
+        118500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        9000,
+        0,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_10_-24500",
+      "body_name": "STATIC_TowerBraceY_10_-24500",
+      "operation": "new",
+      "base": [
+        -24500,
+        4000,
+        118500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "STATIC_TowerBraceY_10_-15500",
+      "body_name": "STATIC_TowerBraceY_10_-15500",
+      "operation": "new",
+      "base": [
+        -15500,
+        4000,
+        118500
+      ],
+      "radius": 180,
+      "height": 14603.081866510232,
+      "axis": [
+        0,
+        9000,
+        11500
+      ]
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_11_4000",
+      "body_name": "STATIC_TowerBeamX_11_4000",
+      "operation": "new",
+      "center": [
+        -20000,
+        4000,
+        130000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamX_11_13000",
+      "body_name": "STATIC_TowerBeamX_11_13000",
+      "operation": "new",
+      "center": [
+        -20000,
+        13000,
+        130000
+      ],
+      "length": 10000,
+      "width": 650,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_11_-24500",
+      "body_name": "STATIC_TowerBeamY_11_-24500",
+      "operation": "new",
+      "center": [
+        -24500,
+        8500,
+        130000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerBeamY_11_-15500",
+      "body_name": "STATIC_TowerBeamY_11_-15500",
+      "operation": "new",
+      "center": [
+        -15500,
+        8500,
+        130000
+      ],
+      "length": 650,
+      "width": 9000,
+      "height": 650
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_Elevator",
+      "body_name": "STATIC_Elevator",
+      "operation": "new",
+      "center": [
+        -25100,
+        8500,
+        69200
+      ],
+      "length": 1700,
+      "width": 2700,
+      "height": 136000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_TowerCrown",
+      "body_name": "STATIC_TowerCrown",
+      "operation": "new",
+      "center": [
+        -20000,
+        8500,
+        139000
+      ],
+      "length": 11300,
+      "width": 11300,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "STATIC_CatchRail",
+      "body_name": "STATIC_CatchRail",
+      "operation": "new",
+      "center": [
+        -15000,
+        8500,
+        70000
+      ],
+      "length": 500,
+      "width": 6000,
+      "height": 128000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Main",
+      "body_name": "ARM_L_Main",
+      "operation": "new",
+      "center": [
+        -11000,
+        -4000,
+        48000
+      ],
+      "length": 14000,
+      "width": 1300,
+      "height": 1700
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Upper",
+      "body_name": "ARM_L_Upper",
+      "operation": "new",
+      "center": [
+        -11000,
+        -4000,
+        49600
+      ],
+      "length": 14000,
+      "width": 400,
+      "height": 400
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Brace_0",
+      "body_name": "ARM_L_Brace_0",
+      "operation": "new",
+      "center": [
+        -16500,
+        -4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Brace_1",
+      "body_name": "ARM_L_Brace_1",
+      "operation": "new",
+      "center": [
+        -14300,
+        -4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Brace_2",
+      "body_name": "ARM_L_Brace_2",
+      "operation": "new",
+      "center": [
+        -12100,
+        -4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Brace_3",
+      "body_name": "ARM_L_Brace_3",
+      "operation": "new",
+      "center": [
+        -9900,
+        -4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Brace_4",
+      "body_name": "ARM_L_Brace_4",
+      "operation": "new",
+      "center": [
+        -7700,
+        -4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_L_Brace_5",
+      "body_name": "ARM_L_Brace_5",
+      "operation": "new",
+      "center": [
+        -5500,
+        -4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "ARM_L_Tip",
+      "body_name": "ARM_L_Tip",
+      "operation": "new",
+      "base": [
+        -4600,
+        -4000,
+        46700
+      ],
+      "radius": 850,
+      "height": 3100,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Main",
+      "body_name": "ARM_R_Main",
+      "operation": "new",
+      "center": [
+        -11000,
+        4000,
+        48000
+      ],
+      "length": 14000,
+      "width": 1300,
+      "height": 1700
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Upper",
+      "body_name": "ARM_R_Upper",
+      "operation": "new",
+      "center": [
+        -11000,
+        4000,
+        49600
+      ],
+      "length": 14000,
+      "width": 400,
+      "height": 400
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Brace_0",
+      "body_name": "ARM_R_Brace_0",
+      "operation": "new",
+      "center": [
+        -16500,
+        4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Brace_1",
+      "body_name": "ARM_R_Brace_1",
+      "operation": "new",
+      "center": [
+        -14300,
+        4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Brace_2",
+      "body_name": "ARM_R_Brace_2",
+      "operation": "new",
+      "center": [
+        -12100,
+        4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Brace_3",
+      "body_name": "ARM_R_Brace_3",
+      "operation": "new",
+      "center": [
+        -9900,
+        4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Brace_4",
+      "body_name": "ARM_R_Brace_4",
+      "operation": "new",
+      "center": [
+        -7700,
+        4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "ARM_R_Brace_5",
+      "body_name": "ARM_R_Brace_5",
+      "operation": "new",
+      "center": [
+        -5500,
+        4000,
+        48800
+      ],
+      "length": 300,
+      "width": 900,
+      "height": 1800
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "ARM_R_Tip",
+      "body_name": "ARM_R_Tip",
+      "operation": "new",
+      "base": [
+        -4600,
+        4000,
+        46700
+      ],
+      "radius": 850,
+      "height": 3100,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "QD_Main",
+      "body_name": "QD_Main",
+      "operation": "new",
+      "center": [
+        -11300,
+        0,
+        75500
+      ],
+      "length": 13000,
+      "width": 1800,
+      "height": 1300
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "QD_Hose",
+      "body_name": "QD_Hose",
+      "operation": "new",
+      "center": [
+        -7200,
+        -1000,
+        74500
+      ],
+      "length": 9000,
+      "width": 450,
+      "height": 500
+    }
+  }
+]

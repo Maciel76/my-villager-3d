@@ -1,0 +1,3733 @@
+[
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Hull",
+      "body_name": "BOOSTER_Hull",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH"
+      ],
+      "radius": "D/2",
+      "height": "BoosterH - 1800",
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_HotStage",
+      "body_name": "BOOSTER_HotStage",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH - 1800"
+      ],
+      "radius": "D/2",
+      "height": 1800,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_0",
+      "body_name": "BOOSTER_Weld_0",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 0 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_1",
+      "body_name": "BOOSTER_Weld_1",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 1 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_2",
+      "body_name": "BOOSTER_Weld_2",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 2 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_3",
+      "body_name": "BOOSTER_Weld_3",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 3 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_4",
+      "body_name": "BOOSTER_Weld_4",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 4 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_5",
+      "body_name": "BOOSTER_Weld_5",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 5 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_6",
+      "body_name": "BOOSTER_Weld_6",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 6 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_7",
+      "body_name": "BOOSTER_Weld_7",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 7 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_8",
+      "body_name": "BOOSTER_Weld_8",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 8 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_9",
+      "body_name": "BOOSTER_Weld_9",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 9 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_10",
+      "body_name": "BOOSTER_Weld_10",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 10 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_11",
+      "body_name": "BOOSTER_Weld_11",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 11 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_12",
+      "body_name": "BOOSTER_Weld_12",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 12 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_13",
+      "body_name": "BOOSTER_Weld_13",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 13 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_14",
+      "body_name": "BOOSTER_Weld_14",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 14 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_15",
+      "body_name": "BOOSTER_Weld_15",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 15 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_16",
+      "body_name": "BOOSTER_Weld_16",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 16 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_17",
+      "body_name": "BOOSTER_Weld_17",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 17 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_18",
+      "body_name": "BOOSTER_Weld_18",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 18 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_19",
+      "body_name": "BOOSTER_Weld_19",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 19 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_20",
+      "body_name": "BOOSTER_Weld_20",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 20 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_21",
+      "body_name": "BOOSTER_Weld_21",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 21 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_22",
+      "body_name": "BOOSTER_Weld_22",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 22 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_23",
+      "body_name": "BOOSTER_Weld_23",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 23 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_24",
+      "body_name": "BOOSTER_Weld_24",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 24 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_25",
+      "body_name": "BOOSTER_Weld_25",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 25 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_26",
+      "body_name": "BOOSTER_Weld_26",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 26 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_27",
+      "body_name": "BOOSTER_Weld_27",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 27 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_28",
+      "body_name": "BOOSTER_Weld_28",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 28 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_29",
+      "body_name": "BOOSTER_Weld_29",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 29 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_30",
+      "body_name": "BOOSTER_Weld_30",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 30 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_31",
+      "body_name": "BOOSTER_Weld_31",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 31 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_32",
+      "body_name": "BOOSTER_Weld_32",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 32 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_33",
+      "body_name": "BOOSTER_Weld_33",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 33 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "BOOSTER_Weld_34",
+      "body_name": "BOOSTER_Weld_34",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + 34 * 1800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 22
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_0",
+      "body_name": "BOOSTER_HotVent_0",
+      "operation": "new",
+      "center": [
+        -460.0,
+        0.0,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_1",
+      "body_name": "BOOSTER_HotVent_1",
+      "operation": "new",
+      "center": [
+        -1068.244666818648,
+        2269.9999999999995,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_2",
+      "body_name": "BOOSTER_HotVent_2",
+      "operation": "new",
+      "center": [
+        -2729.9999999999995,
+        3931.755333181351,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_3",
+      "body_name": "BOOSTER_HotVent_3",
+      "operation": "new",
+      "center": [
+        -5000.0,
+        4540.0,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_4",
+      "body_name": "BOOSTER_HotVent_4",
+      "operation": "new",
+      "center": [
+        -7269.999999999999,
+        3931.755333181352,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_5",
+      "body_name": "BOOSTER_HotVent_5",
+      "operation": "new",
+      "center": [
+        -8931.755333181352,
+        2269.9999999999995,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_6",
+      "body_name": "BOOSTER_HotVent_6",
+      "operation": "new",
+      "center": [
+        -9540.0,
+        5.559896468128984e-13,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_7",
+      "body_name": "BOOSTER_HotVent_7",
+      "operation": "new",
+      "center": [
+        -8931.755333181352,
+        -2269.9999999999986,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_8",
+      "body_name": "BOOSTER_HotVent_8",
+      "operation": "new",
+      "center": [
+        -7270.000000000002,
+        -3931.7553331813506,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_9",
+      "body_name": "BOOSTER_HotVent_9",
+      "operation": "new",
+      "center": [
+        -5000.000000000001,
+        -4540.0,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_10",
+      "body_name": "BOOSTER_HotVent_10",
+      "operation": "new",
+      "center": [
+        -2729.9999999999995,
+        -3931.755333181351,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_HotVent_11",
+      "body_name": "BOOSTER_HotVent_11",
+      "operation": "new",
+      "center": [
+        -1068.2446668186499,
+        -2270.000000000002,
+        72700
+      ],
+      "length": 400,
+      "width": 400,
+      "height": 1000
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_0",
+      "body_name": "BOOSTER_Engine_20_0",
+      "operation": "new",
+      "base": [
+        -1650.0,
+        0.0,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_0",
+      "body_name": "BOOSTER_Throat_20_0",
+      "operation": "new",
+      "base": [
+        -1650.0,
+        0.0,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_1",
+      "body_name": "BOOSTER_Engine_20_1",
+      "operation": "new",
+      "base": [
+        -1813.9606704112357,
+        1035.2069311560738,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_1",
+      "body_name": "BOOSTER_Throat_20_1",
+      "operation": "new",
+      "base": [
+        -1813.9606704112357,
+        1035.2069311560738,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_2",
+      "body_name": "BOOSTER_Engine_20_2",
+      "operation": "new",
+      "base": [
+        -2289.793068843926,
+        1969.080595179785,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_2",
+      "body_name": "BOOSTER_Throat_20_2",
+      "operation": "new",
+      "base": [
+        -2289.793068843926,
+        1969.080595179785,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_3",
+      "body_name": "BOOSTER_Engine_20_3",
+      "operation": "new",
+      "base": [
+        -3030.9194048202153,
+        2710.206931156074,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_3",
+      "body_name": "BOOSTER_Throat_20_3",
+      "operation": "new",
+      "base": [
+        -3030.9194048202153,
+        2710.206931156074,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_4",
+      "body_name": "BOOSTER_Engine_20_4",
+      "operation": "new",
+      "base": [
+        -3964.793068843926,
+        3186.0393295887643,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_4",
+      "body_name": "BOOSTER_Throat_20_4",
+      "operation": "new",
+      "base": [
+        -3964.793068843926,
+        3186.0393295887643,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_5",
+      "body_name": "BOOSTER_Engine_20_5",
+      "operation": "new",
+      "base": [
+        -5000.0,
+        3350.0,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_5",
+      "body_name": "BOOSTER_Throat_20_5",
+      "operation": "new",
+      "base": [
+        -5000.0,
+        3350.0,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_6",
+      "body_name": "BOOSTER_Engine_20_6",
+      "operation": "new",
+      "base": [
+        -6035.206931156074,
+        3186.0393295887648,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_6",
+      "body_name": "BOOSTER_Throat_20_6",
+      "operation": "new",
+      "base": [
+        -6035.206931156074,
+        3186.0393295887648,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_7",
+      "body_name": "BOOSTER_Engine_20_7",
+      "operation": "new",
+      "base": [
+        -6969.080595179785,
+        2710.206931156074,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_7",
+      "body_name": "BOOSTER_Throat_20_7",
+      "operation": "new",
+      "base": [
+        -6969.080595179785,
+        2710.206931156074,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_8",
+      "body_name": "BOOSTER_Engine_20_8",
+      "operation": "new",
+      "base": [
+        -7710.206931156074,
+        1969.0805951797854,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_8",
+      "body_name": "BOOSTER_Throat_20_8",
+      "operation": "new",
+      "base": [
+        -7710.206931156074,
+        1969.0805951797854,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_9",
+      "body_name": "BOOSTER_Engine_20_9",
+      "operation": "new",
+      "base": [
+        -8186.039329588764,
+        1035.2069311560742,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_9",
+      "body_name": "BOOSTER_Throat_20_9",
+      "operation": "new",
+      "base": [
+        -8186.039329588764,
+        1035.2069311560742,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_10",
+      "body_name": "BOOSTER_Engine_20_10",
+      "operation": "new",
+      "base": [
+        -8350.0,
+        4.102566777143633e-13,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_10",
+      "body_name": "BOOSTER_Throat_20_10",
+      "operation": "new",
+      "base": [
+        -8350.0,
+        4.102566777143633e-13,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_11",
+      "body_name": "BOOSTER_Engine_20_11",
+      "operation": "new",
+      "base": [
+        -8186.039329588765,
+        -1035.2069311560722,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_11",
+      "body_name": "BOOSTER_Throat_20_11",
+      "operation": "new",
+      "base": [
+        -8186.039329588765,
+        -1035.2069311560722,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_12",
+      "body_name": "BOOSTER_Engine_20_12",
+      "operation": "new",
+      "base": [
+        -7710.206931156074,
+        -1969.0805951797847,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_12",
+      "body_name": "BOOSTER_Throat_20_12",
+      "operation": "new",
+      "base": [
+        -7710.206931156074,
+        -1969.0805951797847,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_13",
+      "body_name": "BOOSTER_Engine_20_13",
+      "operation": "new",
+      "base": [
+        -6969.080595179786,
+        -2710.2069311560736,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_13",
+      "body_name": "BOOSTER_Throat_20_13",
+      "operation": "new",
+      "base": [
+        -6969.080595179786,
+        -2710.2069311560736,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_14",
+      "body_name": "BOOSTER_Engine_20_14",
+      "operation": "new",
+      "base": [
+        -6035.2069311560745,
+        -3186.0393295887643,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_14",
+      "body_name": "BOOSTER_Throat_20_14",
+      "operation": "new",
+      "base": [
+        -6035.2069311560745,
+        -3186.0393295887643,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_15",
+      "body_name": "BOOSTER_Engine_20_15",
+      "operation": "new",
+      "base": [
+        -5000.000000000001,
+        -3350.0,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_15",
+      "body_name": "BOOSTER_Throat_20_15",
+      "operation": "new",
+      "base": [
+        -5000.000000000001,
+        -3350.0,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_16",
+      "body_name": "BOOSTER_Engine_20_16",
+      "operation": "new",
+      "base": [
+        -3964.7930688439264,
+        -3186.0393295887648,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_16",
+      "body_name": "BOOSTER_Throat_20_16",
+      "operation": "new",
+      "base": [
+        -3964.7930688439264,
+        -3186.0393295887648,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_17",
+      "body_name": "BOOSTER_Engine_20_17",
+      "operation": "new",
+      "base": [
+        -3030.9194048202157,
+        -2710.2069311560745,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_17",
+      "body_name": "BOOSTER_Throat_20_17",
+      "operation": "new",
+      "base": [
+        -3030.9194048202157,
+        -2710.2069311560745,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_18",
+      "body_name": "BOOSTER_Engine_20_18",
+      "operation": "new",
+      "base": [
+        -2289.7930688439264,
+        -1969.0805951797859,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_18",
+      "body_name": "BOOSTER_Throat_20_18",
+      "operation": "new",
+      "base": [
+        -2289.7930688439264,
+        -1969.0805951797859,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_20_19",
+      "body_name": "BOOSTER_Engine_20_19",
+      "operation": "new",
+      "base": [
+        -1813.9606704112357,
+        -1035.2069311560747,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_20_19",
+      "body_name": "BOOSTER_Throat_20_19",
+      "operation": "new",
+      "base": [
+        -1813.9606704112357,
+        -1035.2069311560747,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_0",
+      "body_name": "BOOSTER_Engine_10_0",
+      "operation": "new",
+      "base": [
+        -2950.0,
+        0.0,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_0",
+      "body_name": "BOOSTER_Throat_10_0",
+      "operation": "new",
+      "base": [
+        -2950.0,
+        0.0,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_1",
+      "body_name": "BOOSTER_Engine_10_1",
+      "operation": "new",
+      "base": [
+        -3341.515161531358,
+        1204.95976719957,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_1",
+      "body_name": "BOOSTER_Throat_10_1",
+      "operation": "new",
+      "base": [
+        -3341.515161531358,
+        1204.95976719957,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_2",
+      "body_name": "BOOSTER_Engine_10_2",
+      "operation": "new",
+      "base": [
+        -4366.515161531358,
+        1949.6658584050647,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_2",
+      "body_name": "BOOSTER_Throat_10_2",
+      "operation": "new",
+      "base": [
+        -4366.515161531358,
+        1949.6658584050647,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_3",
+      "body_name": "BOOSTER_Engine_10_3",
+      "operation": "new",
+      "base": [
+        -5633.484838468642,
+        1949.665858405065,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_3",
+      "body_name": "BOOSTER_Throat_10_3",
+      "operation": "new",
+      "base": [
+        -5633.484838468642,
+        1949.665858405065,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_4",
+      "body_name": "BOOSTER_Engine_10_4",
+      "operation": "new",
+      "base": [
+        -6658.484838468642,
+        1204.9597671995703,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_4",
+      "body_name": "BOOSTER_Throat_10_4",
+      "operation": "new",
+      "base": [
+        -6658.484838468642,
+        1204.9597671995703,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_5",
+      "body_name": "BOOSTER_Engine_10_5",
+      "operation": "new",
+      "base": [
+        -7050.0,
+        2.510525938252074e-13,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_5",
+      "body_name": "BOOSTER_Throat_10_5",
+      "operation": "new",
+      "base": [
+        -7050.0,
+        2.510525938252074e-13,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_6",
+      "body_name": "BOOSTER_Engine_10_6",
+      "operation": "new",
+      "base": [
+        -6658.484838468642,
+        -1204.9597671995698,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_6",
+      "body_name": "BOOSTER_Throat_10_6",
+      "operation": "new",
+      "base": [
+        -6658.484838468642,
+        -1204.9597671995698,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_7",
+      "body_name": "BOOSTER_Engine_10_7",
+      "operation": "new",
+      "base": [
+        -5633.484838468643,
+        -1949.6658584050647,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_7",
+      "body_name": "BOOSTER_Throat_10_7",
+      "operation": "new",
+      "base": [
+        -5633.484838468643,
+        -1949.6658584050647,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_8",
+      "body_name": "BOOSTER_Engine_10_8",
+      "operation": "new",
+      "base": [
+        -4366.515161531358,
+        -1949.665858405065,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_8",
+      "body_name": "BOOSTER_Throat_10_8",
+      "operation": "new",
+      "base": [
+        -4366.515161531358,
+        -1949.665858405065,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_10_9",
+      "body_name": "BOOSTER_Engine_10_9",
+      "operation": "new",
+      "base": [
+        -3341.515161531358,
+        -1204.9597671995705,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_10_9",
+      "body_name": "BOOSTER_Throat_10_9",
+      "operation": "new",
+      "base": [
+        -3341.515161531358,
+        -1204.9597671995705,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_3_0",
+      "body_name": "BOOSTER_Engine_3_0",
+      "operation": "new",
+      "base": [
+        -4300.0,
+        0.0,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_3_0",
+      "body_name": "BOOSTER_Throat_3_0",
+      "operation": "new",
+      "base": [
+        -4300.0,
+        0.0,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_3_1",
+      "body_name": "BOOSTER_Engine_3_1",
+      "operation": "new",
+      "base": [
+        -5350.0,
+        606.2177826491071,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_3_1",
+      "body_name": "BOOSTER_Throat_3_1",
+      "operation": "new",
+      "base": [
+        -5350.0,
+        606.2177826491071,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "BOOSTER_Engine_3_2",
+      "body_name": "BOOSTER_Engine_3_2",
+      "operation": "new",
+      "base": [
+        -5350.0,
+        -606.217782649107,
+        7300
+      ],
+      "radius": 460,
+      "top_radius": 240,
+      "height": 1200
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "BOOSTER_Throat_3_2",
+      "body_name": "BOOSTER_Throat_3_2",
+      "operation": "new",
+      "base": [
+        -5350.0,
+        -606.217782649107,
+        8500
+      ],
+      "radius": 220,
+      "height": 320,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridFin_0",
+      "body_name": "BOOSTER_GridFin_0",
+      "operation": "new",
+      "center": [
+        -1747.308806541881,
+        3252.691193458119,
+        69000
+      ],
+      "length": 4100,
+      "width": 2700,
+      "height": 350
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_0_0",
+      "body_name": "BOOSTER_GridBar_0_0",
+      "operation": "new",
+      "center": [
+        -3597.308806541881,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_0_1",
+      "body_name": "BOOSTER_GridBar_0_1",
+      "operation": "new",
+      "center": [
+        -2877.308806541881,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_0_2",
+      "body_name": "BOOSTER_GridBar_0_2",
+      "operation": "new",
+      "center": [
+        -2157.308806541881,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_0_3",
+      "body_name": "BOOSTER_GridBar_0_3",
+      "operation": "new",
+      "center": [
+        -1437.308806541881,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_0_4",
+      "body_name": "BOOSTER_GridBar_0_4",
+      "operation": "new",
+      "center": [
+        -717.308806541881,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_0_5",
+      "body_name": "BOOSTER_GridBar_0_5",
+      "operation": "new",
+      "center": [
+        2.69119345811896,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridFin_1",
+      "body_name": "BOOSTER_GridFin_1",
+      "operation": "new",
+      "center": [
+        -8252.691193458119,
+        3252.691193458119,
+        69000
+      ],
+      "length": 4100,
+      "width": 2700,
+      "height": 350
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_1_0",
+      "body_name": "BOOSTER_GridBar_1_0",
+      "operation": "new",
+      "center": [
+        -10102.691193458119,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_1_1",
+      "body_name": "BOOSTER_GridBar_1_1",
+      "operation": "new",
+      "center": [
+        -9382.691193458119,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_1_2",
+      "body_name": "BOOSTER_GridBar_1_2",
+      "operation": "new",
+      "center": [
+        -8662.691193458119,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_1_3",
+      "body_name": "BOOSTER_GridBar_1_3",
+      "operation": "new",
+      "center": [
+        -7942.6911934581185,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_1_4",
+      "body_name": "BOOSTER_GridBar_1_4",
+      "operation": "new",
+      "center": [
+        -7222.6911934581185,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_1_5",
+      "body_name": "BOOSTER_GridBar_1_5",
+      "operation": "new",
+      "center": [
+        -6502.6911934581185,
+        3252.691193458119,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridFin_2",
+      "body_name": "BOOSTER_GridFin_2",
+      "operation": "new",
+      "center": [
+        -8252.691193458119,
+        -3252.6911934581185,
+        69000
+      ],
+      "length": 4100,
+      "width": 2700,
+      "height": 350
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_2_0",
+      "body_name": "BOOSTER_GridBar_2_0",
+      "operation": "new",
+      "center": [
+        -10102.691193458119,
+        -3252.6911934581185,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_2_1",
+      "body_name": "BOOSTER_GridBar_2_1",
+      "operation": "new",
+      "center": [
+        -9382.691193458119,
+        -3252.6911934581185,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_2_2",
+      "body_name": "BOOSTER_GridBar_2_2",
+      "operation": "new",
+      "center": [
+        -8662.691193458119,
+        -3252.6911934581185,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_2_3",
+      "body_name": "BOOSTER_GridBar_2_3",
+      "operation": "new",
+      "center": [
+        -7942.6911934581185,
+        -3252.6911934581185,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_2_4",
+      "body_name": "BOOSTER_GridBar_2_4",
+      "operation": "new",
+      "center": [
+        -7222.6911934581185,
+        -3252.6911934581185,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_2_5",
+      "body_name": "BOOSTER_GridBar_2_5",
+      "operation": "new",
+      "center": [
+        -6502.6911934581185,
+        -3252.6911934581185,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridFin_3",
+      "body_name": "BOOSTER_GridFin_3",
+      "operation": "new",
+      "center": [
+        -1747.3088065418824,
+        -3252.6911934581194,
+        69000
+      ],
+      "length": 4100,
+      "width": 2700,
+      "height": 350
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_3_0",
+      "body_name": "BOOSTER_GridBar_3_0",
+      "operation": "new",
+      "center": [
+        -3597.3088065418824,
+        -3252.6911934581194,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_3_1",
+      "body_name": "BOOSTER_GridBar_3_1",
+      "operation": "new",
+      "center": [
+        -2877.3088065418824,
+        -3252.6911934581194,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_3_2",
+      "body_name": "BOOSTER_GridBar_3_2",
+      "operation": "new",
+      "center": [
+        -2157.3088065418824,
+        -3252.6911934581194,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_3_3",
+      "body_name": "BOOSTER_GridBar_3_3",
+      "operation": "new",
+      "center": [
+        -1437.3088065418824,
+        -3252.6911934581194,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_3_4",
+      "body_name": "BOOSTER_GridBar_3_4",
+      "operation": "new",
+      "center": [
+        -717.3088065418824,
+        -3252.6911934581194,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "BOOSTER_GridBar_3_5",
+      "body_name": "BOOSTER_GridBar_3_5",
+      "operation": "new",
+      "center": [
+        2.6911934581175956,
+        -3252.6911934581194,
+        69240
+      ],
+      "length": 110,
+      "width": 2600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "SHIP_Hull",
+      "body_name": "SHIP_Hull",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH"
+      ],
+      "radius": "D/2",
+      "height": "ShipH - 12500",
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_0",
+      "body_name": "SHIP_Nose_0",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 0.0"
+      ],
+      "radius": 4500.0,
+      "top_radius": 4461.501876182147,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_1",
+      "body_name": "SHIP_Nose_1",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 1041.6666666666667"
+      ],
+      "radius": 4461.501876182147,
+      "top_radius": 4346.6662183008075,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_2",
+      "body_name": "SHIP_Nose_2",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 2083.3333333333335"
+      ],
+      "radius": 4346.6662183008075,
+      "top_radius": 4157.457896300791,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_3",
+      "body_name": "SHIP_Nose_3",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 3125.0"
+      ],
+      "radius": 4157.457896300791,
+      "top_radius": 3897.1143170299742,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_4",
+      "body_name": "SHIP_Nose_4",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 4166.666666666667"
+      ],
+      "radius": 3897.1143170299742,
+      "top_radius": 3570.090031310558,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_5",
+      "body_name": "SHIP_Nose_5",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 5208.333333333333"
+      ],
+      "radius": 3570.090031310558,
+      "top_radius": 3181.980515339464,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_6",
+      "body_name": "SHIP_Nose_6",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 6250.0"
+      ],
+      "radius": 3181.980515339464,
+      "top_radius": 2739.426430539243,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_7",
+      "body_name": "SHIP_Nose_7",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 7291.666666666667"
+      ],
+      "radius": 2739.426430539243,
+      "top_radius": 2250.0000000000005,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_8",
+      "body_name": "SHIP_Nose_8",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 8333.333333333334"
+      ],
+      "radius": 2250.0000000000005,
+      "top_radius": 1722.0754456429042,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_9",
+      "body_name": "SHIP_Nose_9",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 9375.0"
+      ],
+      "radius": 1722.0754456429042,
+      "top_radius": 1164.6857029613434,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_10",
+      "body_name": "SHIP_Nose_10",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 10416.666666666666"
+      ],
+      "radius": 1164.6857029613434,
+      "top_radius": 587.3678649902328,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Nose_11",
+      "body_name": "SHIP_Nose_11",
+      "operation": "new",
+      "base": [
+        -5000,
+        0,
+        "MountH + BoosterH + ShipH - 12500 + 11458.333333333334"
+      ],
+      "radius": 587.3678649902328,
+      "top_radius": 12,
+      "height": 1041.6666666666667
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_0",
+      "body_name": "SHIP_Weld_0",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 0 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_1",
+      "body_name": "SHIP_Weld_1",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 1650 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_2",
+      "body_name": "SHIP_Weld_2",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 3300 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_3",
+      "body_name": "SHIP_Weld_3",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 4950 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_4",
+      "body_name": "SHIP_Weld_4",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 6600 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_5",
+      "body_name": "SHIP_Weld_5",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 8250 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_6",
+      "body_name": "SHIP_Weld_6",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 9900 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_7",
+      "body_name": "SHIP_Weld_7",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 11550 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_8",
+      "body_name": "SHIP_Weld_8",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 13200 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_9",
+      "body_name": "SHIP_Weld_9",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 14850 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_10",
+      "body_name": "SHIP_Weld_10",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 16500 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_11",
+      "body_name": "SHIP_Weld_11",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 18150 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_12",
+      "body_name": "SHIP_Weld_12",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 19800 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_13",
+      "body_name": "SHIP_Weld_13",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 21450 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_14",
+      "body_name": "SHIP_Weld_14",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 23100 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_15",
+      "body_name": "SHIP_Weld_15",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 24750 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_16",
+      "body_name": "SHIP_Weld_16",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 26400 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_17",
+      "body_name": "SHIP_Weld_17",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 28050 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_18",
+      "body_name": "SHIP_Weld_18",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 29700 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_19",
+      "body_name": "SHIP_Weld_19",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 31350 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_20",
+      "body_name": "SHIP_Weld_20",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 33000 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.torus",
+    "params": {
+      "name": "SHIP_Weld_21",
+      "body_name": "SHIP_Weld_21",
+      "operation": "new",
+      "center": [
+        -5000,
+        0,
+        "MountH + BoosterH + 34650 + 500"
+      ],
+      "major": "D/2 + 10",
+      "minor": 20
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Engine_0",
+      "body_name": "SHIP_Engine_0",
+      "operation": "new",
+      "base": [
+        -2600.0,
+        0.0,
+        72000
+      ],
+      "radius": 850,
+      "top_radius": 320,
+      "height": 1500
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Engine_1",
+      "body_name": "SHIP_Engine_1",
+      "operation": "new",
+      "base": [
+        -4400.0,
+        1039.2304845413264,
+        72000
+      ],
+      "radius": 570,
+      "top_radius": 320,
+      "height": 1500
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Engine_2",
+      "body_name": "SHIP_Engine_2",
+      "operation": "new",
+      "base": [
+        -6200.0,
+        2078.460969082653,
+        72000
+      ],
+      "radius": 850,
+      "top_radius": 320,
+      "height": 1500
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Engine_3",
+      "body_name": "SHIP_Engine_3",
+      "operation": "new",
+      "base": [
+        -6200.0,
+        1.4695761589768238e-13,
+        72000
+      ],
+      "radius": 570,
+      "top_radius": 320,
+      "height": 1500
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Engine_4",
+      "body_name": "SHIP_Engine_4",
+      "operation": "new",
+      "base": [
+        -6200.000000000001,
+        -2078.4609690826524,
+        72000
+      ],
+      "radius": 850,
+      "top_radius": 320,
+      "height": 1500
+    }
+  },
+  {
+    "command": "solid.cone",
+    "params": {
+      "name": "SHIP_Engine_5",
+      "body_name": "SHIP_Engine_5",
+      "operation": "new",
+      "base": [
+        -4400.0,
+        -1039.2304845413264,
+        72000
+      ],
+      "radius": 570,
+      "top_radius": 320,
+      "height": 1500
+    }
+  },
+  {
+    "command": "sketch.create",
+    "params": {
+      "plane": {
+        "origin": [
+          -5000,
+          -280,
+          0
+        ],
+        "x_dir": [
+          1,
+          0,
+          0
+        ],
+        "y_dir": [
+          0,
+          0,
+          1
+        ]
+      },
+      "name": "SHIP_Flap_Aft_-1_profile"
+    }
+  },
+  {
+    "command": "sketch.line",
+    "params": {
+      "points": [
+        [
+          -4100,
+          77800
+        ],
+        [
+          -12600,
+          79000
+        ],
+        [
+          -10050.0,
+          84800
+        ],
+        [
+          -4100,
+          88300
+        ]
+      ],
+      "closed": true,
+      "infer": false
+    }
+  },
+  {
+    "command": "sketch.constraint.fix",
+    "params": {
+      "entities": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "fixed": true
+    }
+  },
+  {
+    "command": "sketch.solve",
+    "params": {}
+  },
+  {
+    "command": "sketch.finish",
+    "params": {}
+  },
+  {
+    "command": "solid.extrude",
+    "params": {
+      "distance": 560,
+      "direction": "symmetric",
+      "operation": "new",
+      "name": "SHIP_Flap_Aft_-1",
+      "body_name": "SHIP_Flap_Aft_-1"
+    }
+  },
+  {
+    "command": "sketch.create",
+    "params": {
+      "plane": {
+        "origin": [
+          -5000,
+          -280,
+          0
+        ],
+        "x_dir": [
+          1,
+          0,
+          0
+        ],
+        "y_dir": [
+          0,
+          0,
+          1
+        ]
+      },
+      "name": "SHIP_Flap_Forward_-1_profile"
+    }
+  },
+  {
+    "command": "sketch.line",
+    "params": {
+      "points": [
+        [
+          -4100,
+          110800
+        ],
+        [
+          -9200,
+          112000
+        ],
+        [
+          -7670.0,
+          117800
+        ],
+        [
+          -4100,
+          121300
+        ]
+      ],
+      "closed": true,
+      "infer": false
+    }
+  },
+  {
+    "command": "sketch.constraint.fix",
+    "params": {
+      "entities": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "fixed": true
+    }
+  },
+  {
+    "command": "sketch.solve",
+    "params": {}
+  },
+  {
+    "command": "sketch.finish",
+    "params": {}
+  },
+  {
+    "command": "solid.extrude",
+    "params": {
+      "distance": 560,
+      "direction": "symmetric",
+      "operation": "new",
+      "name": "SHIP_Flap_Forward_-1",
+      "body_name": "SHIP_Flap_Forward_-1"
+    }
+  },
+  {
+    "command": "sketch.create",
+    "params": {
+      "plane": {
+        "origin": [
+          -5000,
+          -280,
+          0
+        ],
+        "x_dir": [
+          1,
+          0,
+          0
+        ],
+        "y_dir": [
+          0,
+          0,
+          1
+        ]
+      },
+      "name": "SHIP_Flap_Aft_1_profile"
+    }
+  },
+  {
+    "command": "sketch.line",
+    "params": {
+      "points": [
+        [
+          4100,
+          77800
+        ],
+        [
+          12600,
+          79000
+        ],
+        [
+          10050.0,
+          84800
+        ],
+        [
+          4100,
+          88300
+        ]
+      ],
+      "closed": true,
+      "infer": false
+    }
+  },
+  {
+    "command": "sketch.constraint.fix",
+    "params": {
+      "entities": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "fixed": true
+    }
+  },
+  {
+    "command": "sketch.solve",
+    "params": {}
+  },
+  {
+    "command": "sketch.finish",
+    "params": {}
+  },
+  {
+    "command": "solid.extrude",
+    "params": {
+      "distance": 560,
+      "direction": "symmetric",
+      "operation": "new",
+      "name": "SHIP_Flap_Aft_1",
+      "body_name": "SHIP_Flap_Aft_1"
+    }
+  },
+  {
+    "command": "sketch.create",
+    "params": {
+      "plane": {
+        "origin": [
+          -5000,
+          -280,
+          0
+        ],
+        "x_dir": [
+          1,
+          0,
+          0
+        ],
+        "y_dir": [
+          0,
+          0,
+          1
+        ]
+      },
+      "name": "SHIP_Flap_Forward_1_profile"
+    }
+  },
+  {
+    "command": "sketch.line",
+    "params": {
+      "points": [
+        [
+          4100,
+          110800
+        ],
+        [
+          9200,
+          112000
+        ],
+        [
+          7670.0,
+          117800
+        ],
+        [
+          4100,
+          121300
+        ]
+      ],
+      "closed": true,
+      "infer": false
+    }
+  },
+  {
+    "command": "sketch.constraint.fix",
+    "params": {
+      "entities": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "fixed": true
+    }
+  },
+  {
+    "command": "sketch.solve",
+    "params": {}
+  },
+  {
+    "command": "sketch.finish",
+    "params": {}
+  },
+  {
+    "command": "solid.extrude",
+    "params": {
+      "distance": 560,
+      "direction": "symmetric",
+      "operation": "new",
+      "name": "SHIP_Flap_Forward_1",
+      "body_name": "SHIP_Flap_Forward_1"
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_Foundation",
+        "STATIC_Apron"
+      ],
+      "color": "#b7b7ae",
+      "name": "Concrete",
+      "pbr": {
+        "metallic": 0,
+        "roughness": 0.85,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_ServiceRoad"
+      ],
+      "color": "#29343c",
+      "name": "Asphalt",
+      "pbr": {
+        "metallic": 0,
+        "roughness": 0.94,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_LandingPad"
+      ],
+      "color": "#35444b",
+      "name": "Landing",
+      "pbr": {
+        "metallic": 0.1,
+        "roughness": 0.9,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_LandingRing",
+        "STATIC_CatchRail",
+        "ARM_L_Main",
+        "ARM_R_Main"
+      ],
+      "color": "#f3ae38",
+      "name": "Yellow",
+      "pbr": {
+        "metallic": 0.45,
+        "roughness": 0.36,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_MountLeg_0",
+        "STATIC_MountLeg_1",
+        "STATIC_MountLeg_2",
+        "STATIC_MountLeg_3",
+        "STATIC_MountLeg_4",
+        "STATIC_MountLeg_5",
+        "STATIC_LaunchTable",
+        "STATIC_ControlRoof",
+        "STATIC_FlameDeflector",
+        "STATIC_TowerColumn_-24500_4000",
+        "STATIC_TowerColumn_-24500_13000",
+        "STATIC_TowerColumn_-15500_4000",
+        "STATIC_TowerColumn_-15500_13000",
+        "ARM_L_Tip",
+        "ARM_R_Tip",
+        "BOOSTER_HotStage",
+        "BOOSTER_GridFin_0",
+        "BOOSTER_GridFin_1",
+        "BOOSTER_GridFin_2",
+        "BOOSTER_GridFin_3"
+      ],
+      "color": "#34454e",
+      "name": "SteelDark",
+      "pbr": {
+        "metallic": 0.7,
+        "roughness": 0.48,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_Control",
+        "STATIC_Elevator"
+      ],
+      "color": "#142c3f",
+      "name": "Navy",
+      "pbr": {
+        "metallic": 0.4,
+        "roughness": 0.48,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_ControlGlass"
+      ],
+      "color": "#48a7bd",
+      "name": "Glass",
+      "pbr": {
+        "metallic": 0.6,
+        "roughness": 0.22,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_Cryotank_15000",
+        "STATIC_CryoDome_15000",
+        "STATIC_Cryotank_23500",
+        "STATIC_CryoDome_23500",
+        "STATIC_Cryotank_30000",
+        "STATIC_CryoDome_30000",
+        "STATIC_TowerCrown"
+      ],
+      "color": "#e0e8eb",
+      "name": "White",
+      "pbr": {
+        "metallic": 0.3,
+        "roughness": 0.48,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_CryoVent_15000",
+        "STATIC_Cryopipe_15000",
+        "STATIC_CryoVent_23500",
+        "STATIC_Cryopipe_23500",
+        "STATIC_CryoVent_30000",
+        "STATIC_Cryopipe_30000",
+        "STATIC_TowerBeamX_0_4000",
+        "STATIC_TowerBeamX_0_13000",
+        "STATIC_TowerBeamY_0_-24500",
+        "STATIC_TowerBeamY_0_-15500",
+        "STATIC_TowerBraceX_0_4000",
+        "STATIC_TowerBraceX_0_13000",
+        "STATIC_TowerBraceY_0_-24500",
+        "STATIC_TowerBraceY_0_-15500",
+        "STATIC_TowerBeamX_1_4000",
+        "STATIC_TowerBeamX_1_13000",
+        "STATIC_TowerBeamY_1_-24500",
+        "STATIC_TowerBeamY_1_-15500",
+        "STATIC_TowerBraceX_1_4000",
+        "STATIC_TowerBraceX_1_13000",
+        "STATIC_TowerBraceY_1_-24500",
+        "STATIC_TowerBraceY_1_-15500",
+        "STATIC_TowerBeamX_2_4000",
+        "STATIC_TowerBeamX_2_13000",
+        "STATIC_TowerBeamY_2_-24500",
+        "STATIC_TowerBeamY_2_-15500",
+        "STATIC_TowerBraceX_2_4000",
+        "STATIC_TowerBraceX_2_13000",
+        "STATIC_TowerBraceY_2_-24500",
+        "STATIC_TowerBraceY_2_-15500",
+        "STATIC_TowerBeamX_3_4000",
+        "STATIC_TowerBeamX_3_13000",
+        "STATIC_TowerBeamY_3_-24500",
+        "STATIC_TowerBeamY_3_-15500",
+        "STATIC_TowerBraceX_3_4000",
+        "STATIC_TowerBraceX_3_13000",
+        "STATIC_TowerBraceY_3_-24500",
+        "STATIC_TowerBraceY_3_-15500",
+        "STATIC_TowerBeamX_4_4000",
+        "STATIC_TowerBeamX_4_13000",
+        "STATIC_TowerBeamY_4_-24500",
+        "STATIC_TowerBeamY_4_-15500",
+        "STATIC_TowerBraceX_4_4000",
+        "STATIC_TowerBraceX_4_13000",
+        "STATIC_TowerBraceY_4_-24500",
+        "STATIC_TowerBraceY_4_-15500",
+        "STATIC_TowerBeamX_5_4000",
+        "STATIC_TowerBeamX_5_13000",
+        "STATIC_TowerBeamY_5_-24500",
+        "STATIC_TowerBeamY_5_-15500",
+        "STATIC_TowerBraceX_5_4000",
+        "STATIC_TowerBraceX_5_13000",
+        "STATIC_TowerBraceY_5_-24500",
+        "STATIC_TowerBraceY_5_-15500",
+        "STATIC_TowerBeamX_6_4000",
+        "STATIC_TowerBeamX_6_13000",
+        "STATIC_TowerBeamY_6_-24500",
+        "STATIC_TowerBeamY_6_-15500",
+        "STATIC_TowerBraceX_6_4000",
+        "STATIC_TowerBraceX_6_13000",
+        "STATIC_TowerBraceY_6_-24500",
+        "STATIC_TowerBraceY_6_-15500",
+        "STATIC_TowerBeamX_7_4000",
+        "STATIC_TowerBeamX_7_13000",
+        "STATIC_TowerBeamY_7_-24500",
+        "STATIC_TowerBeamY_7_-15500",
+        "STATIC_TowerBraceX_7_4000",
+        "STATIC_TowerBraceX_7_13000",
+        "STATIC_TowerBraceY_7_-24500",
+        "STATIC_TowerBraceY_7_-15500",
+        "STATIC_TowerBeamX_8_4000",
+        "STATIC_TowerBeamX_8_13000",
+        "STATIC_TowerBeamY_8_-24500",
+        "STATIC_TowerBeamY_8_-15500",
+        "STATIC_TowerBraceX_8_4000",
+        "STATIC_TowerBraceX_8_13000",
+        "STATIC_TowerBraceY_8_-24500",
+        "STATIC_TowerBraceY_8_-15500",
+        "STATIC_TowerBeamX_9_4000",
+        "STATIC_TowerBeamX_9_13000",
+        "STATIC_TowerBeamY_9_-24500",
+        "STATIC_TowerBeamY_9_-15500",
+        "STATIC_TowerBraceX_9_4000",
+        "STATIC_TowerBraceX_9_13000",
+        "STATIC_TowerBraceY_9_-24500",
+        "STATIC_TowerBraceY_9_-15500",
+        "STATIC_TowerBeamX_10_4000",
+        "STATIC_TowerBeamX_10_13000",
+        "STATIC_TowerBeamY_10_-24500",
+        "STATIC_TowerBeamY_10_-15500",
+        "STATIC_TowerBraceX_10_4000",
+        "STATIC_TowerBraceX_10_13000",
+        "STATIC_TowerBraceY_10_-24500",
+        "STATIC_TowerBraceY_10_-15500",
+        "STATIC_TowerBeamX_11_4000",
+        "STATIC_TowerBeamX_11_13000",
+        "STATIC_TowerBeamY_11_-24500",
+        "STATIC_TowerBeamY_11_-15500",
+        "ARM_L_Upper",
+        "ARM_L_Brace_0",
+        "ARM_L_Brace_1",
+        "ARM_L_Brace_2",
+        "ARM_L_Brace_3",
+        "ARM_L_Brace_4",
+        "ARM_L_Brace_5",
+        "ARM_R_Upper",
+        "ARM_R_Brace_0",
+        "ARM_R_Brace_1",
+        "ARM_R_Brace_2",
+        "ARM_R_Brace_3",
+        "ARM_R_Brace_4",
+        "ARM_R_Brace_5",
+        "QD_Main",
+        "BOOSTER_Hull",
+        "BOOSTER_GridBar_0_0",
+        "BOOSTER_GridBar_0_1",
+        "BOOSTER_GridBar_0_2",
+        "BOOSTER_GridBar_0_3",
+        "BOOSTER_GridBar_0_4",
+        "BOOSTER_GridBar_0_5",
+        "BOOSTER_GridBar_1_0",
+        "BOOSTER_GridBar_1_1",
+        "BOOSTER_GridBar_1_2",
+        "BOOSTER_GridBar_1_3",
+        "BOOSTER_GridBar_1_4",
+        "BOOSTER_GridBar_1_5",
+        "BOOSTER_GridBar_2_0",
+        "BOOSTER_GridBar_2_1",
+        "BOOSTER_GridBar_2_2",
+        "BOOSTER_GridBar_2_3",
+        "BOOSTER_GridBar_2_4",
+        "BOOSTER_GridBar_2_5",
+        "BOOSTER_GridBar_3_0",
+        "BOOSTER_GridBar_3_1",
+        "BOOSTER_GridBar_3_2",
+        "BOOSTER_GridBar_3_3",
+        "BOOSTER_GridBar_3_4",
+        "BOOSTER_GridBar_3_5",
+        "SHIP_Hull",
+        "SHIP_Nose_0",
+        "SHIP_Nose_1",
+        "SHIP_Nose_2",
+        "SHIP_Nose_3",
+        "SHIP_Nose_4",
+        "SHIP_Nose_5",
+        "SHIP_Nose_6",
+        "SHIP_Nose_7",
+        "SHIP_Nose_8",
+        "SHIP_Nose_9",
+        "SHIP_Nose_10",
+        "SHIP_Nose_11"
+      ],
+      "color": "#bac7cf",
+      "name": "Steel",
+      "pbr": {
+        "metallic": 0.82,
+        "roughness": 0.32,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "STATIC_WaterReservoir",
+        "QD_Hose"
+      ],
+      "color": "#30798b",
+      "name": "Blue",
+      "pbr": {
+        "metallic": 0.4,
+        "roughness": 0.4,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "BOOSTER_Weld_0",
+        "BOOSTER_Weld_1",
+        "BOOSTER_Weld_2",
+        "BOOSTER_Weld_3",
+        "BOOSTER_Weld_4",
+        "BOOSTER_Weld_5",
+        "BOOSTER_Weld_6",
+        "BOOSTER_Weld_7",
+        "BOOSTER_Weld_8",
+        "BOOSTER_Weld_9",
+        "BOOSTER_Weld_10",
+        "BOOSTER_Weld_11",
+        "BOOSTER_Weld_12",
+        "BOOSTER_Weld_13",
+        "BOOSTER_Weld_14",
+        "BOOSTER_Weld_15",
+        "BOOSTER_Weld_16",
+        "BOOSTER_Weld_17",
+        "BOOSTER_Weld_18",
+        "BOOSTER_Weld_19",
+        "BOOSTER_Weld_20",
+        "BOOSTER_Weld_21",
+        "BOOSTER_Weld_22",
+        "BOOSTER_Weld_23",
+        "BOOSTER_Weld_24",
+        "BOOSTER_Weld_25",
+        "BOOSTER_Weld_26",
+        "BOOSTER_Weld_27",
+        "BOOSTER_Weld_28",
+        "BOOSTER_Weld_29",
+        "BOOSTER_Weld_30",
+        "BOOSTER_Weld_31",
+        "BOOSTER_Weld_32",
+        "BOOSTER_Weld_33",
+        "BOOSTER_Weld_34",
+        "SHIP_Weld_0",
+        "SHIP_Weld_1",
+        "SHIP_Weld_2",
+        "SHIP_Weld_3",
+        "SHIP_Weld_4",
+        "SHIP_Weld_5",
+        "SHIP_Weld_6",
+        "SHIP_Weld_7",
+        "SHIP_Weld_8",
+        "SHIP_Weld_9",
+        "SHIP_Weld_10",
+        "SHIP_Weld_11",
+        "SHIP_Weld_12",
+        "SHIP_Weld_13",
+        "SHIP_Weld_14",
+        "SHIP_Weld_15",
+        "SHIP_Weld_16",
+        "SHIP_Weld_17",
+        "SHIP_Weld_18",
+        "SHIP_Weld_19",
+        "SHIP_Weld_20",
+        "SHIP_Weld_21"
+      ],
+      "color": "#687a86",
+      "name": "Weld",
+      "pbr": {
+        "metallic": 0.85,
+        "roughness": 0.39,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "BOOSTER_HotVent_0",
+        "BOOSTER_HotVent_1",
+        "BOOSTER_HotVent_2",
+        "BOOSTER_HotVent_3",
+        "BOOSTER_HotVent_4",
+        "BOOSTER_HotVent_5",
+        "BOOSTER_HotVent_6",
+        "BOOSTER_HotVent_7",
+        "BOOSTER_HotVent_8",
+        "BOOSTER_HotVent_9",
+        "BOOSTER_HotVent_10",
+        "BOOSTER_HotVent_11",
+        "SHIP_Flap_Aft_-1",
+        "SHIP_Flap_Forward_-1",
+        "SHIP_Flap_Aft_1",
+        "SHIP_Flap_Forward_1"
+      ],
+      "color": "#151d24",
+      "name": "Black",
+      "pbr": {
+        "metallic": 0.25,
+        "roughness": 0.9,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "BOOSTER_Engine_20_0",
+        "BOOSTER_Engine_20_1",
+        "BOOSTER_Engine_20_2",
+        "BOOSTER_Engine_20_3",
+        "BOOSTER_Engine_20_4",
+        "BOOSTER_Engine_20_5",
+        "BOOSTER_Engine_20_6",
+        "BOOSTER_Engine_20_7",
+        "BOOSTER_Engine_20_8",
+        "BOOSTER_Engine_20_9",
+        "BOOSTER_Engine_20_10",
+        "BOOSTER_Engine_20_11",
+        "BOOSTER_Engine_20_12",
+        "BOOSTER_Engine_20_13",
+        "BOOSTER_Engine_20_14",
+        "BOOSTER_Engine_20_15",
+        "BOOSTER_Engine_20_16",
+        "BOOSTER_Engine_20_17",
+        "BOOSTER_Engine_20_18",
+        "BOOSTER_Engine_20_19",
+        "BOOSTER_Engine_10_0",
+        "BOOSTER_Engine_10_1",
+        "BOOSTER_Engine_10_2",
+        "BOOSTER_Engine_10_3",
+        "BOOSTER_Engine_10_4",
+        "BOOSTER_Engine_10_5",
+        "BOOSTER_Engine_10_6",
+        "BOOSTER_Engine_10_7",
+        "BOOSTER_Engine_10_8",
+        "BOOSTER_Engine_10_9",
+        "BOOSTER_Engine_3_0",
+        "BOOSTER_Engine_3_1",
+        "BOOSTER_Engine_3_2",
+        "SHIP_Engine_0",
+        "SHIP_Engine_1",
+        "SHIP_Engine_2",
+        "SHIP_Engine_3",
+        "SHIP_Engine_4",
+        "SHIP_Engine_5"
+      ],
+      "color": "#514b4c",
+      "name": "Engine",
+      "pbr": {
+        "metallic": 0.85,
+        "roughness": 0.55,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "BOOSTER_Throat_20_0",
+        "BOOSTER_Throat_20_1",
+        "BOOSTER_Throat_20_2",
+        "BOOSTER_Throat_20_3",
+        "BOOSTER_Throat_20_4",
+        "BOOSTER_Throat_20_5",
+        "BOOSTER_Throat_20_6",
+        "BOOSTER_Throat_20_7",
+        "BOOSTER_Throat_20_8",
+        "BOOSTER_Throat_20_9",
+        "BOOSTER_Throat_20_10",
+        "BOOSTER_Throat_20_11",
+        "BOOSTER_Throat_20_12",
+        "BOOSTER_Throat_20_13",
+        "BOOSTER_Throat_20_14",
+        "BOOSTER_Throat_20_15",
+        "BOOSTER_Throat_20_16",
+        "BOOSTER_Throat_20_17",
+        "BOOSTER_Throat_20_18",
+        "BOOSTER_Throat_20_19",
+        "BOOSTER_Throat_10_0",
+        "BOOSTER_Throat_10_1",
+        "BOOSTER_Throat_10_2",
+        "BOOSTER_Throat_10_3",
+        "BOOSTER_Throat_10_4",
+        "BOOSTER_Throat_10_5",
+        "BOOSTER_Throat_10_6",
+        "BOOSTER_Throat_10_7",
+        "BOOSTER_Throat_10_8",
+        "BOOSTER_Throat_10_9",
+        "BOOSTER_Throat_3_0",
+        "BOOSTER_Throat_3_1",
+        "BOOSTER_Throat_3_2"
+      ],
+      "color": "#ad8050",
+      "name": "Copper",
+      "pbr": {
+        "metallic": 0.8,
+        "roughness": 0.4,
+        "dielectric_ior": 1.45
+      }
+    }
+  }
+]

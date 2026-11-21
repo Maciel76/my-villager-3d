@@ -40,6 +40,16 @@ const APARTMENTS = {
 };
 
 const LANDMARKS = {
+  starship: {
+    label: "Base Starship — Porto Aurora", lotSpan: [6, 5], height: 139.9,
+    meadowClearance: [72, 60],
+    description: "Lançamento completo com separação, captura do propulsor e retorno da nave. Evento de 108 s.",
+  },
+  monumentoBombeiros: {
+    label: "Monumento Corpo de Bombeiros", lotSpan: [2, 1], height: 8.5,
+    meadowClearance: [14, 7],
+    description: "Esculturas em bronze, brasão, arcos de aço, fontes e jardins.",
+  },
   policeStation: { label: "Complexo Policial", lotSpan: [6,5], height: 28.18, workplaces: 80 },
   rotunda: { label: "Pavilhão Rotunda" },
   convergencia: { label: "A Convergência", lotSpan: 6, height: 41 },

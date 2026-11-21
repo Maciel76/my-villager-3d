@@ -926,3 +926,23 @@ dialog dd {
   }
   .save-state[data-error] { top: calc(var(--inset) + 161px); }
 }
+/* Mission telemetry stays readable while the user orbits the launch site. */
+.launch-hud {
+  position: fixed; z-index: 8; top: 100px; right: 32px; width: 300px;
+  display: flex; flex-direction: column; gap: 10px; padding: 17px;
+  color: #f5ead1; background: rgba(15, 36, 48, .94);
+  border: 1px solid #698c91; border-radius: 12px; box-shadow: 0 8px 25px #0b192c40;
+}
+.launch-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 11px; letter-spacing: .08em; color: #9fdbe9; }
+.launch-heading .hud-button { padding: 1px; width: 27px; min-height: 27px; font-size: 19px; }
+#launch-clock { font-size: 28px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+#launch-phase { font-weight: 700; font-size: 14px; color: #ffe0a2; }
+.launch-hud progress { width: 100%; height: 6px; accent-color: #70cce5; }
+.launch-hud small { font-size: 11px; color: #c6d4d3; }
+#launch-follow { width: 100%; font-size: 12px; }
+#launch-follow[aria-pressed="true"] { border-color: #74d9ed; color: #a2ecfa; }
+@media (max-width: 600px) {
+  .launch-hud { top: 158px; right: 14px; width: min(255px, calc(100vw - 28px)); gap: 7px; padding: 12px; }
+  #launch-clock { font-size: 22px; }
+  .launch-heading { font-size: 9px; }
+}

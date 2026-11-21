@@ -327,7 +327,7 @@ test("a spent Convergence parks the rings and stops emitting light while another
   assert.equal(gates.children.filter(part => part.visible).length, 1);
   fx.update(camera, 0, construction, true, nextShow + 26900);
   assert.equal(gates.children.filter(part => part.visible).length, 2);
-  fx.update(camera, 0, construction, true, nextShow + 36000);
+  fx.update(camera, 0, construction, true, nextShow + 38500);
   const half = gates.children.filter(part => part.visible);
   assert.equal(half.length, 8);
   assert.deepEqual(half, gates.children.slice(0, 8));

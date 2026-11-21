@@ -41,6 +41,8 @@ export function createGardenCityPlan() {
     ["rodaGigante",120,-54,2],
     ["lexCorp",-66,-138,0],
     ["policeStation",42,132,2],
+    ["monumentoBombeiros",-30,-108,2],
+    ["starship",126,132,2],
     ["oriental",-54,-54,2],["cottage",-36,-60,1],["chalet",-36,-48,1],["cafe",-60,-36,0],
     ["aurora",-6,-54,2],["mirante",12,-60,1],["varandas",12,-48,1],["market",0,-36,0],
     ["sakura",54,-54,2],["courtyard",36,-60,3],["townhouse",36,-48,3],["terrace",60,-36,0],

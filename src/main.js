@@ -30,7 +30,7 @@ import { buildArea, EXPANSION_LIMIT, EXPANSION_SIZE } from "./village-area.js";
 import { loadBuildingModels, loadMaterials } from "./assets.js";
 import { createMiranteOriental } from "./mirante-oriental.js";
 import { createEdificioOrion } from "./edificio-orion.js";
-import { createConvergencia, createUnlitConvergence } from "./convergencia.js";
+import { createUnlitConvergence } from "./convergencia.js";
 import { createConvergenceAnimation } from "./convergencia-efeitos.js";
 import {
   STELLAR_ALTITUDE, STELLAR_DRAIN_DURATION, STELLAR_EVENT_DURATION, STELLAR_GRID_RESTORE_DURATION,
@@ -44,6 +44,9 @@ import { createMeteorShower } from "./chuva-de-meteoros.js";
 import { createFerrisWheel, createFerrisWheelAnimation } from "./roda-gigante.js";
 import { createLexCorpAnimation } from "./torre-lexcorp.js";
 import { createPoliceStationAnimation } from "./posto-policial.js";
+import { createStarshipAnimation } from "./starship-effects.js";
+import { createStarshipAudio } from "./starship-audio.js";
+import { STARSHIP_DURATION, STARSHIP_LIFTOFF, starshipBusy, starshipElapsed, sampleStarshipMission } from "./starship-mission.js";
 import { DEFAULT_AREA_SIZE, getBuildAreaSize, nextAreaSize, setBuildAreaSize } from "./build-area.js";
 import {
   BUILDING_TYPES,
@@ -180,7 +183,6 @@ async function startGame(renderer) {
     ...(await loadBuildingModels(materials)),
     miranteOriental: createMiranteOriental(),
     edificioOrion: createEdificioOrion(),
-    convergencia: createConvergencia(),
     rodaGigante: createFerrisWheel(),
     ...createCommercialBuildings(materials),
     ...createLampModels(),
@@ -222,6 +224,11 @@ async function startGame(renderer) {
   const buildingBatches = createBuildingBatches(scene, buildingTemplates);
   const stellarTimeline = createStellarTimeline();
   const stellarAudio = createStellarAudio();
+  const starshipAudio = createStarshipAudio();
+  const starshipAnimation = createStarshipAnimation(scene);
+  let followingStarship = null, dismissedLaunch = 0, lastLaunchRunning = false;
+  const cinematicOffset = new THREE.Vector3(150, 95, 180);
+  const missionLocked = (house, now) => stellarBusy(house, now) || starshipBusy(house, now);
   const convergenceAnimation = createConvergenceAnimation(scene, stellarTimeline, unlitConvergence.materials);
   const nebulaDirection = new THREE.Vector3(0, 1, 0);
   const nebulaViewDirection = new THREE.Vector3();
@@ -415,15 +422,19 @@ async function startGame(renderer) {
     const muted = soundToggle.getAttribute("aria-pressed") === "true";
     soundToggle.setAttribute("aria-pressed", String(!muted));
     stellarAudio.setMuted(muted);
+    starshipAudio.setMuted(muted);
     if (!muted) stellarAudio.unlock();
+    if (!muted) starshipAudio.unlock();
     invalidate();
   });
   function unlockCurrentStellarAudio() {
     if (stellarBusy(stellarMonument, Date.now())) stellarAudio.unlock();
+    if (houses.some(house => starshipBusy(house, Date.now()))) starshipAudio.unlock();
   }
   window.addEventListener("pointerdown", unlockCurrentStellarAudio, { passive: true });
   window.addEventListener("keydown", unlockCurrentStellarAudio);
   window.addEventListener("pagehide", stellarAudio.stop);
+  window.addEventListener("pagehide", starshipAudio.stop);
   if (saved.hour) hourPicker.value = saved.hour;
   daylight.setHour(Number(hourPicker.value));
   hourPicker.addEventListener("change", () => {
@@ -521,8 +532,12 @@ async function startGame(renderer) {
       if (timestamp > (stellarMonument?.stellarAt ?? stellarMonument?.stellarReactivatedAt ?? 0)) stellarMonument = house;
     }
     if (house.type === "rodaGigante") ferrisWheelAnimation.add(house.model);
+    if (house.type === "starship") starshipAnimation.add(house.model, house.launchAt);
     if (house.type === "lexCorp") lexCorpAnimation.add(house.model);
-    if (house.type === "policeStation") policeAnimation.add(house.model);
+    if (house.type === "policeStation") {
+      policeAnimation.add(house.model);
+      traffic.addPoliceStation(house.model);
+    }
     syncModel(house);
   }
 
@@ -557,6 +572,9 @@ async function startGame(renderer) {
     ferrisWheelAnimation.remove(house.model);
     lexCorpAnimation.remove(house.model);
     policeAnimation.remove(house.model);
+    starshipAnimation.remove(house.model);
+    if (followingStarship === house) followingStarship = null;
+    traffic.removePoliceStation(house.model);
     scene.remove(house.model);
     renderer.shadowMap.needsUpdate = true;
     return index;
@@ -581,7 +599,8 @@ async function startGame(renderer) {
       areaSize: getBuildAreaSize(),
       houses: houses.map(house => {
         const { x, y, z, rotation, type } = house;
-        return { x, z, rotation, type, ...(isFreeLight(type) ? { y } : {}), ...stellarSnapshot(house) };
+        return { x, z, rotation, type, ...(isFreeLight(type) ? { y } : {}), ...stellarSnapshot(house),
+          ...(type === "starship" && house.launchAt ? { launchAt: house.launchAt } : {}) };
       }),
       houseOrder: houses.map((house) => house.order),
       roads: [...roads.values()],
@@ -627,6 +646,7 @@ async function startGame(renderer) {
       button.disabled = !canAffordExpansion || (expansion[button.dataset.expand] ?? 0) >= EXPANSION_LIMIT;
     }
     updateStellarAction();
+    updateLaunchAction();
   }
 
   function placementPrice() {
@@ -644,6 +664,54 @@ async function startGame(renderer) {
   }
 
   const viewCamera = () => walker.active ? walker.camera : camera;
+
+  function currentLaunch(now = Date.now()) {
+    return houses.find(house => starshipBusy(house, now));
+  }
+  function updateLaunchAction() {
+    const base = selection?.type === "starship" ? selection : null;
+    element("launch-action").hidden = !base;
+    if (!base) return;
+    const running = currentLaunch();
+    element("launch-start").disabled = Boolean(running) || animations.has(base.model);
+    element("launch-start").textContent = running === base ? "Missão em andamento" : base.launchAt ? "↟ Preparar novo lançamento" : "↟ Lançar Starship";
+    element("launch-hint").textContent = running ? "Aguarde a missão terminar." : animations.has(base.model)
+      ? "Aguarde a construção ficar pronta." : "Grátis · contagem, lançamento e retorno · 108 s";
+  }
+  function activateStarshipMission() {
+    const base = selection;
+    if (base?.type !== "starship" || currentLaunch() || animations.has(base.model)) return;
+    base.launchAt = Date.now();dismissedLaunch = 0;
+    starshipAnimation.setEvent(base.model, base.launchAt);
+    if (walker.active) stopWalking();
+    followingStarship = reduceMotion.matches ? null : base;
+    starshipAudio.unlock();saveWorld(false);updateActions();
+    renderer.shadowMap.needsUpdate = true;
+    setStatus("Missão Aurora iniciada. Preparando a Starship para o lançamento.");invalidate();
+  }
+  function updateLaunchHud(now) {
+    const active = currentLaunch(now);
+    const latest = active ?? houses.filter(house => house.type === "starship" && house.launchAt)
+      .reduce((last,house) => !last || house.launchAt > last.launchAt ? house : last, null);
+    const hud = element("launch-hud");
+    hud.hidden = !latest || latest.launchAt === dismissedLaunch;
+    const setText = (id, text) => { const node = element(id); if (node.textContent !== text) node.textContent = text; };
+    if (latest && !hud.hidden) {
+      const elapsed = starshipElapsed(latest.launchAt, now), state = sampleStarshipMission(elapsed);
+      setText("launch-clock", state.countdown ? `T − ${String(state.countdown).padStart(2,"0")}` : state.done ? "MISSÃO CONCLUÍDA" : `T + ${String(Math.floor(elapsed - STARSHIP_LIFTOFF)).padStart(2,"0")} s`);
+      setText("launch-phase", state.phase);
+      setText("launch-altitude", `Nave: ${Math.round(state.ship.position[1])} m · Propulsor: ${Math.round(state.booster.position[1])} m`);
+      element("launch-progress").value = Math.min(elapsed, STARSHIP_DURATION);
+      element("launch-follow").hidden = !active;
+      element("launch-follow").setAttribute("aria-pressed", String(Boolean(followingStarship)));
+      setText("launch-follow", followingStarship ? "Liberar câmera" : "Acompanhar voo");
+    }
+    if (lastLaunchRunning !== Boolean(active)) {
+      if (lastLaunchRunning && !active) { followingStarship = null; setStatus("Missão Aurora concluída: propulsor capturado e Starship de volta à base."); }
+      lastLaunchRunning = Boolean(active);renderer.shadowMap.needsUpdate = true;updateActions();
+    }
+    starshipAudio.sync(active, now);
+  }
 
   function updateStellarAction() {
     const monument = selection?.type === "convergencia" ? selection : null;
@@ -725,8 +793,15 @@ async function startGame(renderer) {
       model.position.y = placementHeight(x, z, type, rotation);
       model.updateMatrixWorld();
     }
+    const clearedMeadow = houses.flatMap(({ type, x, z, rotation }) => {
+      const size = BUILDING_TYPES[type].meadowClearance;
+      if (!size) return [];
+      const [width, depth] = rotation % 2 ? [size[1], size[0]] : size;
+      return [{ x, z, halfWidth: width / 2 + .25, halfDepth: depth / 2 + .25 }];
+    });
     updatePaving((x, z) => pavingHeightAt(x, z, pavingBlocks) > 0 ||
-      streets.covers(x, z, roads));
+      streets.covers(x, z, roads) || clearedMeadow.some(rect =>
+        Math.abs(x - rect.x) < rect.halfWidth && Math.abs(z - rect.z) < rect.halfDepth));
     renderer.shadowMap.needsUpdate = true;
     parcels = roadLots(roads, area);
     for (const [key, { x, z }] of parcels) {
@@ -1014,7 +1089,7 @@ async function startGame(renderer) {
     element("action-tray").hidden = !target;
     element("move-selected").hidden = !selection;
     element("delete-selected").hidden = !selection;
-    const monumentLocked = stellarBusy(selection, Date.now());
+    const monumentLocked = missionLocked(selection, Date.now());
     for (const id of ["move-selected", "delete-selected", "rotate-left", "rotate-button"]) {
       element(id).disabled = monumentLocked;
     }
@@ -1056,6 +1131,7 @@ async function startGame(renderer) {
     }
     canvas.style.cursor = editing || choosingHouse ? "crosshair" : "grab";
     updateStellarAction();
+    updateLaunchAction();
     grid.visible = !walker.active && !roadMode && (showGrid || editing);
     roadGrid.visible = roadMode;
     streets.plotsLayer.visible = !walker.active && (editing || showGrid);
@@ -1133,8 +1209,8 @@ async function startGame(renderer) {
       setStatus(convergenceLimit);
       return;
     }
-    if (stellarBusy(moving, Date.now())) {
-      setStatus("Aguarde a sequência da Convergência terminar para mover o monumento.");
+    if (missionLocked(moving, Date.now())) {
+      setStatus("Aguarde a missão ou o evento terminar para mover esta construção.");
       return;
     }
     clearAction();
@@ -1404,7 +1480,7 @@ async function startGame(renderer) {
 
   function deleteSelection() {
     if (!selection) return;
-    if (stellarBusy(selection, Date.now())) return;
+    if (missionLocked(selection, Date.now())) return;
     if (selection.road) {
       const { x, z } = selection;
       const key = tileKey(x, z);
@@ -1447,8 +1523,8 @@ async function startGame(renderer) {
       setStatus(convergenceLimit);
       return;
     }
-    if (stellarBusy(change.house, Date.now())) {
-      setStatus("Aguarde a sequência da Convergência terminar para desfazer esta ação.");
+    if (missionLocked(change.house, Date.now())) {
+      setStatus("Aguarde a missão ou o evento terminar para desfazer esta ação.");
       return;
     }
     if (undoHistory.length) undoHistory.pop();
@@ -1499,7 +1575,7 @@ async function startGame(renderer) {
   }
 
   function rotateHouse(turn) {
-    if (stellarBusy(selection, Date.now())) return;
+    if (missionLocked(selection, Date.now())) return;
     if (isFreeLight((placement || selection)?.type)) return;
     if (placement?.road || selection?.road) return;
     let house = placement ?? selection;
@@ -1681,19 +1757,34 @@ async function startGame(renderer) {
       controls.target.add(offset);
       dirty = true;
     }
+    if (followingStarship && starshipBusy(followingStarship, Date.now()) && !walker.active) {
+      const focus = starshipAnimation.focus(followingStarship.model, Date.now());
+      if (focus) {
+        const seconds = starshipElapsed(followingStarship.launchAt, Date.now());
+        const zoom = (seconds >= 34 && seconds < 82 ? .62 : 1) * Math.max(1, .9 / camera.aspect);
+        const offset = camera.position.clone().sub(controls.target);
+        offset.lerp(cinematicOffset.clone().multiplyScalar(zoom).applyAxisAngle(camera.up, followingStarship.model.rotation.y), 1 - Math.exp(-delta * 5));
+        controls.target.copy(focus);
+        camera.position.copy(focus).add(offset);
+        dirty = true;
+      }
+    }
     const cameraChanged = !walker.active && controls.update(delta);
     if (animations.size) {
       for (const [model, sequence] of animations) {
         if (reduceMotion.matches || updateConstruction(sequence, time)) {
           finishConstruction(sequence);
           animations.delete(model);
-          if (selection?.model === model) updateStellarAction();
+          if (selection?.model === model) { updateStellarAction(); updateLaunchAction(); }
           renderer.shadowMap.needsUpdate = true;
         }
       }
       dirty = true;
     }
     const now = Date.now();
+    const flight = starshipAnimation.update(now, animations, !reduceMotion.matches);
+    updateLaunchHud(now);
+    if (flight.changed) dirty = true;
     if (convergenceAnimation.syncPower(now)) dirty = true;
     const night = isStellarNight(hourPicker.value);
     const elapsed = stellarMonument?.stellarAt ? stellarShowElapsed(stellarMonument.stellarAt, now) : 0;
@@ -1703,7 +1794,7 @@ async function startGame(renderer) {
     const restoringGrid = reactivation >= STELLAR_REACTIVATION_DURATION && reactivation < STELLAR_REACTIVATION_TOTAL;
     const running = stellarBusy(stellarMonument, now);
     const runningChanged = running !== stellarWasRunning;
-    stellarAudio.sync(running && !document.hidden ? stellarMonument : null, now);
+    stellarAudio.sync(running && !document.hidden ? stellarMonument : null, now, viewCamera());
     if (runningChanged) {
       stellarWasRunning = running;
       dirty = true;
@@ -1765,7 +1856,7 @@ async function startGame(renderer) {
     const sceneChanged = dirty || cameraChanged;
     if (sceneChanged) {
       const target = walker.active ? view.position : controls.target;
-      if (!walker.active) {
+      if (!walker.active && !followingStarship) {
         const height = terrainAt(target.x, target.z);
         camera.position.y += height - target.y;
         target.y = height;
@@ -1778,13 +1869,14 @@ async function startGame(renderer) {
       const worldFar = Math.max(viewDistance, overviewDistance + 190);
       const skyFar = night && stellarMonument?.stellarAt && elapsed >= 0 && elapsed < STELLAR_SHUTDOWN ? Math.hypot(view.position.x - stellarMonument.x,
         view.position.y - stellarMonument.model.position.y - STELLAR_ALTITUDE, view.position.z - stellarMonument.z) + 255 : 0;
-      const far = Math.max(worldFar, skyFar);
+      const flightFar = flight.running ? starshipAnimation.farDistance(view) : 0;
+      const far = Math.max(worldFar, skyFar, flightFar);
       if (view.far !== far) {
         view.far = far;
         view.updateProjectionMatrix();
       }
       scene.fog.near = Math.max(165, overviewDistance + 10);
-      scene.fog.far = worldFar;
+      scene.fog.far = Math.max(worldFar, flightFar);
       if (updateWorld(view, target)) {
         renderer.shadowMap.needsUpdate = true;
         nightLights.bind(scene);
@@ -1805,8 +1897,8 @@ async function startGame(renderer) {
       ? Math.max(0, view.position.y - terrainAt(view.position.x, view.position.z)) * 2
       : view.position.distanceTo(controls.target);
     const trafficMoving = traffic.update(trafficFocus, trafficZoom, delta, !reduceMotion.matches, !blackout,
-      gridTransition ? nightLights.supplyAt : undefined);
-    const effectsAnimated = skyForming || running || nebulaMoving || convergenceMoving || wheelMoving || lexCorpMoving || policeMoving || trafficMoving;
+      gridTransition ? nightLights.supplyAt : undefined, animations);
+    const effectsAnimated = skyForming || running || flight.running || nebulaMoving || convergenceMoving || wheelMoving || lexCorpMoving || policeMoving || trafficMoving;
     const effectFrame = effectsAnimated && time - lastRenderedFrame >= 1000 / 30 - 2;
     if (sceneChanged || effectFrame || (skyChanged && !skyForming)) {
       renderer.render(scene, view);
@@ -1817,6 +1909,7 @@ async function startGame(renderer) {
   }
 
   controls.addEventListener("change", invalidate);
+  controls.addEventListener("start", () => { followingStarship = null; invalidate(); });
   reduceMotion.addEventListener("change", invalidate);
   canvas.style.cursor = "grab";
   function clickWorld(event) {
@@ -1989,6 +2082,17 @@ async function startGame(renderer) {
   element("rotate-button").onclick = () => rotateHouse(-1);
   element("delete-selected").onclick = deleteSelection;
   stellarStart.onclick = activateStellarShow;
+  element("launch-start").onclick = activateStarshipMission;
+  element("launch-follow").onclick = () => {
+    const base = currentLaunch();
+    if (walker.active) stopWalking();
+    followingStarship = followingStarship ? null : base;invalidate();
+  };
+  element("launch-dismiss").onclick = () => {
+    const latest = houses.filter(house => house.type === "starship" && house.launchAt)
+      .reduce((last,house) => !last || house.launchAt > last.launchAt ? house : last,null);
+    dismissedLaunch = latest?.launchAt ?? 0;followingStarship = null;invalidate();
+  };
   element("place-button").onclick = placeConstruction;
   element("light-height").onchange = event => setLightHeight(event.target.valueAsNumber);
   element("light-lower").onclick = () => stepLightHeight(-.25);
@@ -2138,12 +2242,12 @@ async function startGame(renderer) {
   nightLights.update(houses, camera, daylight.lampPower);
   preparing = false;
   readyButtons.forEach(id => { element(id).disabled = false; });
-  soundToggle.disabled = !stellarAudio.supported;
+  soundToggle.disabled = !stellarAudio.supported && !starshipAudio.supported;
   hourPicker.disabled = stellarBusy(stellarMonument, Date.now());
   let lastEconomyTick = Math.floor(performance.now());
   document.addEventListener("visibilitychange", () => {
     lastEconomyTick = Math.floor(performance.now());
-    if (document.hidden) stellarAudio.stop();
+    if (document.hidden) { stellarAudio.stop(); starshipAudio.stop(); }
     else invalidate();
   });
   setInterval(() => {

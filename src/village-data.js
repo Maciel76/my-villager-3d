@@ -3,6 +3,7 @@ import { ECONOMY_CYCLE_MS, MAX_BALANCE } from "./economy.js";
 import { isFreeLight, isLightHeight } from "./placement.js";
 import { LEGACY_AREA_SIZE, isAreaSize } from "./build-area.js";
 import { isStellarTimestamp } from "./stellar-event.js";
+import { isLaunchTimestamp } from "./starship-mission.js";
 
 const hourOptions = new Set(["7.5", "12", "18", "23"]);
 export const isVillageHour = (value) => hourOptions.has(value);
@@ -46,7 +47,8 @@ export function isVillageWorld(world) {
     Array.isArray(world.houses) &&
     world.houses.every(
       (house) =>
-        record(house, ["x", "y", "z", "rotation", "type", "stellarAt", "stellarReactivatedAt"]) &&
+        record(house, ["x", "y", "z", "rotation", "type", "stellarAt", "stellarReactivatedAt", "launchAt"]) &&
+        (house.launchAt === undefined || (house.type === "starship" && isLaunchTimestamp(house.launchAt))) &&
         (!hasStellarState(house) || (house.type === "convergencia" && isStellarState(house))) &&
         (world.convergenceReserve === undefined || house.type !== "convergencia") &&
         (!Object.hasOwn(house, "y") || (isFreeLight(house.type) && isLightHeight(house.y))) &&

@@ -1,0 +1,4 @@
+Base anatomica hm08 e morph targets: MakeHuman Community.
+Licenca CC0, conforme cabecalhos dos arquivos originais.
+https://github.com/makehumancommunity/makehuman/tree/master/makehuman/data
+Adaptacao: esculturas de bombeiros, poses, equipamento e materiais para este monumento.

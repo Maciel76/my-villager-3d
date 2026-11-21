@@ -436,7 +436,13 @@ export function createConvergencia() {
   rotunda(builder, m, light);
   for (const rib of convergenceRibs()) {
     if (rib.type === "entry") {
-      drawRib(builder, m, rib);
+      const arm = new THREE.Group();
+      arm.name = `Braço de injeção ${model.children.filter(part => part.userData.injectorArm).length + 1}`;
+      arm.position.copy(rib.path.getPoint(0));
+      arm.userData.injectorArm = { axis: [Math.sin(rib.angle), 0, -Math.cos(rib.angle)] };
+      const panels = new THREE.Group();panels.position.copy(arm.position).negate();
+      const injector = build(panels);drawRib(injector, m, rib);injector.finish();
+      arm.add(panels);model.add(arm);
       continue;
     }
     const arm = new THREE.Group();

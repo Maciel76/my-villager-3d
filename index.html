@@ -24,7 +24,7 @@
       </div>
       <div class="topbar-actions">
         <button type="button" class="hud-button sound-toggle" id="sound-toggle"
-          aria-label="Som da Convergência" title="Alternar som da Convergência" aria-pressed="true" disabled>Som</button>
+          aria-label="Som dos eventos" title="Alternar som dos eventos" aria-pressed="true" disabled>Som</button>
         <button class="hud-button help-button" id="help-button" aria-label="Como jogar" title="Como jogar" disabled>?</button>
       </div>
     </header>
@@ -76,6 +76,15 @@
       </button>
     </div>
     <div class="save-state" id="save-state" role="status">Carregando progresso…</div>
+    <aside id="launch-hud" class="launch-hud" aria-label="Missão Starship" hidden>
+      <div class="launch-heading"><span>MISSÃO AURORA · STARSHIP</span>
+        <button id="launch-dismiss" class="hud-button" type="button" aria-label="Fechar painel da missão">×</button></div>
+      <strong id="launch-clock">T − 10</strong>
+      <span id="launch-phase" role="status" aria-live="polite">Contagem regressiva</span>
+      <progress id="launch-progress" max="108" value="0" aria-label="Progresso da missão"></progress>
+      <small id="launch-altitude"></small>
+      <button id="launch-follow" class="hud-button" type="button" aria-pressed="false">Acompanhar voo</button>
+    </aside>
 
     <div class="dock">
       <div class="action-tray" id="action-tray" hidden>
@@ -145,6 +154,10 @@
             <span aria-hidden="true">✦</span> Explosão Estelar
           </button>
           <span id="stellar-hint"></span>
+        </div>
+        <div id="launch-action" class="stellar-action" hidden>
+          <button id="launch-start" type="button" class="gold-button" aria-describedby="launch-hint">↟ Lançar Starship</button>
+          <span id="launch-hint">Grátis · missão completa de 108 s</span>
         </div>
       </div>
       <div class="walk-pad" id="walk-pad" role="group" aria-label="Direção da caminhada" hidden>
@@ -334,6 +347,11 @@
       </button>
       <h2 id="help-title">Como jogar</h2>
       <dl>
+        <dt>Missão Starship</dt>
+        <dd>Compre a Base Starship em Monumentos, selecione a base pronta e clique em Lançar Starship.
+          A missão grátis dura 108 segundos, com separação, captura do propulsor e pouso da nave.
+          Use Acompanhar voo para a câmera seguir a missão; arraste a cena para recuperar o controle.
+          O voo continua de onde deveria estar após recarregar o jogo. A base fica protegida contra edição durante a missão.</dd>
         <dt>Explosão Estelar</dt>
         <dd>À noite, selecione a Convergência pronta e clique em Explosão Estelar. O evento é grátis e começa quando as luzes se apagam das mais distantes até a praça.
           A poeira estelar cobre todo o céu, e a opção Noite passa a se chamar Céu nebuloso.

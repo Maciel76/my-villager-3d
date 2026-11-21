@@ -1,0 +1,32 @@
+{
+  "units": "mm",
+  "base": [
+    72000,
+    60000,
+    800
+  ],
+  "foundationVolume": 3456000000000,
+  "boosterRadius": 4500,
+  "boosterCylinderHeight": 63200,
+  "boosterHullVolume": 4020610278064.2173,
+  "shipCylinderHeight": 37500,
+  "shipHullVolume": 2385646921319.749,
+  "towerTop": 139900,
+  "stackTop": 123500,
+  "launchOrigin": [
+    -5000,
+    0,
+    8500
+  ],
+  "landingOrigin": [
+    21000,
+    -6500,
+    1260
+  ],
+  "bodyCount": 336,
+  "stages": [
+    36,
+    119,
+    222
+  ]
+}

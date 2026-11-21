@@ -4,6 +4,13 @@ import {
   STELLAR_ORBIT_RISES, STELLAR_ORBITS_DESCENT_START, STELLAR_REACTIVATION_DURATION, STELLAR_RELIGHT,
   STELLAR_SHUTDOWN, STELLAR_THRUST_START, STELLAR_WAVE_END, STELLAR_WAVES, stellarElapsed,
 } from "./stellar-event.js";
+import { CONVERGENCE_VOICES, convergenceVoiceCues } from "./convergence-voices.js";
+import { Vector3, Quaternion } from "three";
+
+export const CONVERGENCE_GRID_DOWN = { id: "gridDown", duration: 2,
+  src: new URL("./assets/audio/convergence/grid-down.wav", import.meta.url).href };
+export const CONVERGENCE_VOICE_RANGE = { refDistance: 28, maxDistance: 180, height: 12 };
+const recordings = [...CONVERGENCE_VOICES, CONVERGENCE_GRID_DOWN];
 
 const sampleRate = 24000;
 const tau = Math.PI * 2;
@@ -27,7 +34,7 @@ const sounds = {
     tone(197, 294, .16, .49, 2.3, 3.6), tone(299, 439, .13, .82, 2.55, 2.8),
     noise(1400, 2600, .11, .74, 1.9, 80),
   ]],
-  ascent: [15, [
+  ascent: [STELLAR_LAUNCH - STELLAR_LIFT_START, [
     tone(84, 158, .19, 1.6, .7, 3.4), tone(168, 318, .071, 2.8, 1.2, 4.3),
     tone(253, 479, .049, 3.2, 1.1, 5.4), noise(950, 3100, .105, 2.2, 1.3, 120),
   ]],
@@ -93,6 +100,7 @@ const show = [
   timedShowCue(STELLAR_WAVE_END, "nebula"), timedShowCue(STELLAR_SHUTDOWN, "docking", .65),
   timedShowCue(STELLAR_ORBITS_DESCENT_START, "docking", .81, .76),
   timedShowCue(STELLAR_CROWN_RETRACTED, "docking", .76, .93),
+  ...convergenceVoiceCues("show"),
 ].sort((a, b) => a.at - b.at);
 
 const reactivation = [
@@ -102,6 +110,7 @@ const reactivation = [
   cue(STELLAR_BEAM_RETURN, "beam"), cue(STELLAR_REACTIVATION_DURATION, "gridUp"),
   ...gridSwitches(STELLAR_REACTIVATION_DURATION, STELLAR_GRID_RESTORE_DURATION, true),
   cue(STELLAR_REACTIVATION_DURATION + STELLAR_GRID_RESTORE_DURATION - 1.6, "ready", .75),
+  ...convergenceVoiceCues("reactivation"),
 ].sort((a, b) => a.at - b.at);
 
 function renderSound(context, name) {
@@ -135,8 +144,13 @@ function renderSound(context, name) {
   return buffer;
 }
 
-export function createStellarAudio(AudioContext = globalThis.AudioContext ?? globalThis.webkitAudioContext) {
+export function createStellarAudio(AudioContext = globalThis.AudioContext ?? globalThis.webkitAudioContext,
+  { fetchAudio = globalThis.fetch?.bind(globalThis) } = {}) {
   const soundsByName = new Map();
+  const recordingBuffers = new Map(), loadingRecordings = new Set(), failedRecordings = new Set();
+  const recordingClips = new Map(recordings.map(clip => [clip.id, clip]));
+  const speakerPosition = new Vector3(), listenerPosition = new Vector3(), listenerRotation = new Quaternion();
+  const listenerForward = new Vector3(), listenerUp = new Vector3();
   let context, master, playback;
   let muted = false;
   let resuming = false;
@@ -158,18 +172,70 @@ export function createStellarAudio(AudioContext = globalThis.AudioContext ?? glo
       limiter.release.value = .24;
       master.connect(limiter).connect(context.destination);
     }
+    for (const clip of recordings) {
+      if (!fetchAudio || recordingBuffers.has(clip.id) || loadingRecordings.has(clip.id)) continue;
+      loadingRecordings.add(clip.id);
+      failedRecordings.delete(clip.id);
+      Promise.resolve().then(() => fetchAudio(clip.src)).then(response => {
+        if (!response.ok) throw new Error(`Voice asset ${response.status}`);
+        return response.arrayBuffer();
+      }).then(bytes => context.decodeAudioData(bytes)).then(buffer => recordingBuffers.set(clip.id, buffer))
+        .catch(() => failedRecordings.add(clip.id)).finally(() => loadingRecordings.delete(clip.id));
+    }
     if (context.state !== "running" && context.state !== "closed") {
       resuming = true;
       context.resume().catch(() => {}).finally(() => { resuming = false; });
     }
   }
 
+  function disconnectTrack(track) {
+    track.output.disconnect();
+    track.effects.disconnect();
+    track.voiceEmitter.disconnect();
+  }
+
+  function spatialAudio(track, monument, camera) {
+    if (monument.model?.getWorldPosition) monument.model.getWorldPosition(speakerPosition);
+    else speakerPosition.set(monument.x ?? 0, monument.model?.position.y ?? 0, monument.z ?? 0);
+    speakerPosition.y += CONVERGENCE_VOICE_RANGE.height;
+    const emitter = track.voiceEmitter;
+    if (emitter.positionX) {
+      emitter.positionX.value = speakerPosition.x;
+      emitter.positionY.value = speakerPosition.y;
+      emitter.positionZ.value = speakerPosition.z;
+    } else emitter.setPosition(speakerPosition.x, speakerPosition.y, speakerPosition.z);
+    if (!camera) return 1;
+    camera.getWorldPosition(listenerPosition);
+    camera.getWorldQuaternion(listenerRotation);
+    listenerForward.set(0, 0, -1).applyQuaternion(listenerRotation);
+    listenerUp.set(0, 1, 0).applyQuaternion(listenerRotation);
+    const listener = context.listener;
+    if (listener.positionX) {
+      listener.positionX.value = listenerPosition.x;
+      listener.positionY.value = listenerPosition.y;
+      listener.positionZ.value = listenerPosition.z;
+      listener.forwardX.value = listenerForward.x;
+      listener.forwardY.value = listenerForward.y;
+      listener.forwardZ.value = listenerForward.z;
+      listener.upX.value = listenerUp.x;
+      listener.upY.value = listenerUp.y;
+      listener.upZ.value = listenerUp.z;
+    } else {
+      listener.setPosition(listenerPosition.x, listenerPosition.y, listenerPosition.z);
+      listener.setOrientation(listenerForward.x, listenerForward.y, listenerForward.z, listenerUp.x, listenerUp.y, listenerUp.z);
+    }
+    const { refDistance, maxDistance } = CONVERGENCE_VOICE_RANGE;
+    return Math.max(0, Math.min(1, (maxDistance - listenerPosition.distanceTo(speakerPosition)) / (maxDistance - refDistance)));
+  }
+
   function stop() {
     if (!playback) return;
-    const { output, sources } = playback;
+    const track = playback;
+    const { output, sources } = track;
+    track.pendingRecordings.clear();
     playback = undefined;
     if (!sources.size) {
-      output.disconnect();
+      disconnectTrack(track);
       return;
     }
     const now = context.currentTime;
@@ -177,12 +243,25 @@ export function createStellarAudio(AudioContext = globalThis.AudioContext ?? glo
     for (const source of sources) source.stop(now + .08);
   }
 
-  function schedule(track, { at, sound, level, rate, pan }, elapsed, now) {
+  function schedule(track, entry, elapsed, now) {
+    const { at, sound, voice, level, rate, pan } = entry;
     const offset = Math.max(0, elapsed - at) * rate;
-    if (offset >= sounds[sound][0]) return;
-    if (!soundsByName.has(sound)) soundsByName.set(sound, renderSound(context, sound));
+    const recording = voice ?? (sound === "gridDown" ? "gridDown" : undefined);
+    let buffer;
+    if (recording && !(recording === "gridDown" && failedRecordings.has(recording))) {
+      buffer = recordingBuffers.get(recording);
+      if (!buffer) {
+        if (!failedRecordings.has(recording) && elapsed < at + recordingClips.get(recording).duration) track.pendingRecordings.add(entry);
+        return;
+      }
+    } else {
+      if (offset >= sounds[sound][0]) return;
+      if (!soundsByName.has(sound)) soundsByName.set(sound, renderSound(context, sound));
+      buffer = soundsByName.get(sound);
+    }
+    if (offset >= buffer.duration) return;
     const source = context.createBufferSource();
-    source.buffer = soundsByName.get(sound);
+    source.buffer = buffer;
     source.playbackRate.value = rate;
     const gain = context.createGain();
     gain.gain.value = level;
@@ -190,20 +269,20 @@ export function createStellarAudio(AudioContext = globalThis.AudioContext ?? glo
     source.connect(gain);
     if (panner) {
       panner.pan.value = pan;
-      gain.connect(panner).connect(track.output);
-    } else gain.connect(track.output);
+      gain.connect(panner).connect(voice ? track.voiceEmitter : track.effects);
+    } else gain.connect(voice ? track.voiceEmitter : track.effects);
     track.sources.add(source);
     source.onended = () => {
       source.disconnect();
       gain.disconnect();
       panner?.disconnect();
       track.sources.delete(source);
-      if (playback !== track && !track.sources.size) track.output.disconnect();
+      if (playback !== track && !track.sources.size) disconnectTrack(track);
     };
     source.start(Math.max(now, track.startsAt + at), offset);
   }
 
-  function sync(monument, wallTime) {
+  function sync(monument, wallTime, camera) {
     const timestamp = monument?.stellarAt ?? monument?.stellarReactivatedAt;
     if (!timestamp || muted || context?.state !== "running") {
       stop();
@@ -219,11 +298,34 @@ export function createStellarAudio(AudioContext = globalThis.AudioContext ?? glo
       output.gain.setValueAtTime(0, now);
       output.gain.linearRampToValueAtTime(1, now + .025);
       output.connect(master);
-      playback = { timestamp, startsAt, score, output, sources: new Set(), index: 0 };
+      const effects = context.createGain(); effects.connect(output);
+      const voiceEmitter = context.createPanner();
+      voiceEmitter.panningModel = "HRTF";
+      voiceEmitter.distanceModel = "linear";
+      voiceEmitter.refDistance = CONVERGENCE_VOICE_RANGE.refDistance;
+      voiceEmitter.maxDistance = CONVERGENCE_VOICE_RANGE.maxDistance;
+      voiceEmitter.rolloffFactor = 1;
+      voiceEmitter.connect(output);
+      playback = { timestamp, startsAt, score, output, effects, voiceEmitter, sources: new Set(), pendingRecordings: new Set(), index: 0 };
     }
+    const audibility = spatialAudio(playback, monument, camera);
     while (score[playback.index]?.at <= elapsed + .6) {
       schedule(playback, score[playback.index], elapsed, now);
       playback.index++;
+    }
+    for (const entry of playback.pendingRecordings) {
+      const recording = entry.voice ?? entry.sound;
+      if (recordingBuffers.has(recording) || failedRecordings.has(recording) || elapsed >= entry.at + recordingClips.get(recording).duration) {
+        playback.pendingRecordings.delete(entry);
+        if (recordingBuffers.has(recording) || failedRecordings.has(recording)) schedule(playback, entry, elapsed, now);
+      }
+    }
+    const speaking = score.some(entry => entry.voice && recordingBuffers.has(entry.voice) &&
+      elapsed >= entry.at && elapsed < entry.at + recordingBuffers.get(entry.voice).duration);
+    const effectsLevel = speaking ? 1 - .75 * audibility : 1;
+    if (playback.effectsLevel !== effectsLevel) {
+      playback.effects.gain.setTargetAtTime(effectsLevel, now, .07);
+      playback.effectsLevel = effectsLevel;
     }
   }
 

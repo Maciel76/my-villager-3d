@@ -1,12 +1,13 @@
 import * as THREE from "three";
 import { ASPHALT_Y, DIRECTIONS, tileKey, WALK_Y } from "./road-layout.js";
 import { LOT_SIZE } from "./village-area.js";
+import { createRoadTraffic } from "./traffic-driving.js";
+import { createPoliceFleet } from "./police-fleet.js";
+export { carCurve } from "./traffic-driving.js";
 
 const CAR_LIMIT = 36;
 const WALKER_LIMIT = 56;
-const RIGHT_LANE = 1.55;
 const SIDEWALK = 4.55;
-const HALF = LOT_SIZE / 2;
 
 const choice = (items) => items[Math.floor(Math.random() * items.length)];
 const carColors = ["#dd6550", "#ecb658", "#519da3", "#6380a3", "#e4e3d5", "#768868"];
@@ -40,47 +41,6 @@ export function streetGraph(roads) {
     }
   }
   return [...tiles.values()];
-}
-
-function nextRoad(tile, from) {
-  const onward = tile.neighbors.filter((neighbor) => neighbor !== from);
-  const straight = onward.find((item) => item.x === 2 * tile.x - from.x && item.z === 2 * tile.z - from.z);
-  if (straight && Math.random() < 0.65) return straight;
-  return onward.length ? choice(onward) : from;
-}
-
-export function carCurve(tile, from, to) {
-  const dx = (tile.x - from.x) / LOT_SIZE;
-  const dz = (tile.z - from.z) / LOT_SIZE;
-  const ex = (to.x - tile.x) / LOT_SIZE;
-  const ez = (to.z - tile.z) / LOT_SIZE;
-  const start = new THREE.Vector3(tile.x - dx * HALF - dz * RIGHT_LANE, 0, tile.z - dz * HALF + dx * RIGHT_LANE);
-  const end = new THREE.Vector3(tile.x + ex * HALF - ez * RIGHT_LANE, 0, tile.z + ez * HALF + ex * RIGHT_LANE);
-  const bend = to === from ? 9 : 5;
-  const curve = new THREE.CubicBezierCurve3(start,
-    new THREE.Vector3(start.x + dx * bend, 0, start.z + dz * bend),
-    new THREE.Vector3(end.x - ex * bend, 0, end.z - ez * bend),
-    end,
-  );
-  curve.arcLengthDivisions = 12;
-  return curve;
-}
-
-function startDrive(car, tile, from) {
-  car.tile = tile;
-  car.to = nextRoad(tile, from);
-  car.curve = carCurve(tile, from, car.to);
-  car.length = car.curve.getLength();
-  car.distance = 0;
-}
-
-function drivePose(car, point, tangent) {
-  const fraction = Math.min(1, car.distance / car.length);
-  car.curve.getPointAt(fraction, point);
-  car.curve.getTangentAt(fraction, tangent);
-  car.yaw = Math.atan2(tangent.x, tangent.z);
-  car.position.copy(point);
-  car.position.y = ASPHALT_Y;
 }
 
 function startWalk(person, from, to) {
@@ -145,7 +105,10 @@ function meshes(root, limit, specs) {
 
 const box = (w, h, d) => new THREE.BoxGeometry(w, h, d);
 
-export function createTraffic(scene, heightAt) {
+export function createTraffic(scene, heightAt, options={}) {
+  const roadHeight=(x,z)=>Math.max(ASPHALT_Y,heightAt?.(x,z)??ASPHALT_Y);
+  const driving=createRoadTraffic({...options,heightAt:roadHeight});
+  const fleet=createPoliceFleet(driving,{...options,heightAt:roadHeight});
   const root = new THREE.Group();
   root.name = "Tráfego da cidade";
   root.visible = false;
@@ -172,9 +135,6 @@ export function createTraffic(scene, heightAt) {
     { geometry: new THREE.CylinderGeometry(.065,.06,.44,6), finish:"#ffffff", colorKey:"color", step:-.20,
       offsets:[[-.23,1.05,0],[.23,1.05,0]] },
   ]);
-  const point = new THREE.Vector3();
-  const tangent = new THREE.Vector3();
-  const probe = new THREE.Vector3();
   let tiles = [];
   let cars = [];
   let people = [];
@@ -195,15 +155,14 @@ export function createTraffic(scene, heightAt) {
       Math.ceil(demand.residents / 32 + demand.employed / 12));
     const pedestrianCount = Math.min(WALKER_LIMIT, visible.length,
       Math.ceil(demand.residents / 12 + demand.employed / 10));
-    cars = cars.filter(car => distance(car.position) <= radius + 20).slice(0, carCount);
+    const retained=cars.filter(car=>distance(car.position)<=radius+20).slice(0,carCount);
+    for(const car of cars)if(!retained.includes(car))driving.remove(car);
+    cars=retained;
     people = people.filter(person => distance(person.position) <= radius + 20).slice(0, pedestrianCount);
     for (let attempt = 0; drivable.length && cars.length < carCount && attempt < carCount * 6; attempt++) {
       const tile = choice(drivable);
-      const car = { position: new THREE.Vector3(), speed: 6 + Math.random() * 2.4, color: choice(carColors) };
-      startDrive(car, tile, choice(tile.neighbors));
-      car.distance = car.length * (.12 + Math.random() * .76);
-      drivePose(car, point, tangent);
-      if (!cars.some(other => other.position.distanceToSquared(car.position) < 17)) cars.push(car);
+      const car=driving.addRoadVehicle(tile,choice(tile.neighbors),.12+Math.random()*.76,{color:choice(carColors),kind:"civilian"});
+      if(car)cars.push(car);
     }
     while (sources.length && people.length < pedestrianCount) {
       const from = choice(choice(sources).corners);
@@ -216,29 +175,16 @@ export function createTraffic(scene, heightAt) {
     }
   }
 
-  function advanceCar(car, dt) {
-    const next = Math.min(car.distance + car.speed * dt, car.length);
-    car.curve.getPointAt(next / car.length, probe);
-    for (const other of cars) {
-      if (other === car) continue;
-      const approaching = probe.distanceToSquared(other.position) < car.position.distanceToSquared(other.position);
-      if (!approaching) continue;
-      if (probe.distanceToSquared(other.position) < 2.7 ** 2) return;
-      const dx = other.position.x - probe.x, dz = other.position.z - probe.z;
-      const tx = Math.sin(car.yaw), tz = Math.cos(car.yaw);
-      const ahead = dx * tx + dz * tz;
-      if (ahead > 0 && ahead < 3.9 && Math.abs(dx * tz - dz * tx) < 1.0 &&
-          Math.cos(other.yaw - car.yaw) > 0.8) return;
-    }
-    car.distance = next;
-    drivePose(car, point, tangent);
-    if (next === car.length) startDrive(car, car.to, car.tile);
-  }
-
   return {
+    addPoliceStation:model=>fleet.add(model),
+    removePoliceStation:model=>fleet.remove(model),
+    get vehicles(){return driving.vehicles;},
+    get policeFleets(){return fleet.states;},
     setRoads(roads) {
-      tiles = streetGraph(roads);
-      cars = [];
+      const next=streetGraph(roads),keys=new Set(next.map(t=>tileKey(t.x,t.z)));
+      const preserve=tiles.length>0&&tiles.every(tile=>keys.has(tileKey(tile.x,tile.z)));
+      if(preserve)driving.rebindTiles(next);else{driving.clear();cars=[];}
+      tiles=next;fleet.setTiles(tiles,preserve);
       people = [];
       anchor = null;
     },
@@ -248,21 +194,26 @@ export function createTraffic(scene, heightAt) {
         anchor = null;
       }
     },
-    update(focus, zoom, dt, animate, gridAvailable = true, supplyAt) {
+    update(focus, zoom, dt, animate, gridAvailable = true, supplyAt, construction=new Map()) {
       headlights.visible = taillights.visible = gridAvailable;
       root.visible = tiles.length > 0 && zoom < 430 && demand.residents > 0;
-      if (!root.visible) return false;
+      if(!root.visible&&cars.length){
+        for(const car of cars)driving.remove(car);
+        cars=[];people=[];anchor=null;paintCars([],false);paintPeople([],false);
+      }
+      const policeActive=fleet.prepare(animate?dt:0,construction);
+      if(!root.visible&&!policeActive)return false;
       const radius = THREE.MathUtils.clamp(77 + zoom * .48, 77, 215);
       const repopulate = !anchor || Math.hypot(focus.x - anchor.x, focus.z - anchor.z) > 24 ||
         Math.abs(radius - activeRadius) > 30;
-      if (repopulate) {
+      if (root.visible&&repopulate) {
         anchor = { x: focus.x, z: focus.z };
         activeRadius = radius;
         populate(focus, radius);
       }
       if (animate) {
-        for (const car of cars) advanceCar(car, dt);
-        for (const person of people) {
+        driving.update(dt);
+        for (const person of root.visible?people:[]) {
           const distance = person.speed * dt;
           person.distance += distance;
           person.stride += distance * 6;
@@ -274,13 +225,14 @@ export function createTraffic(scene, heightAt) {
           walkPose(person, heightAt);
         }
       }
+      fleet.sync();
       if (animate || repopulate || lastAnimated !== animate)
         paintPeople(people, animate);
       if (animate || repopulate || lastAnimated !== animate || supplyAt || lastSupply)
         paintCars(cars, animate, supplyAt);
       lastAnimated = animate;
       lastSupply = supplyAt;
-      return animate && (cars.length > 0 || people.length > 0);
+      return animate && (policeActive || root.visible&&(cars.length > 0 || people.length > 0));
     },
   };
 }

@@ -16,10 +16,12 @@ export const STELLAR_EVENT_DURATION = STELLAR_DRAIN_DURATION + STELLAR_DURATION;
 export const STELLAR_ALTITUDE = 640;
 export const STELLAR_LIFT_HEIGHT = 47;
 export const STELLAR_LIFT_START = 40;
-export const STELLAR_LAUNCH = 55;
+export const STELLAR_RINGS_ALIGNED = STELLAR_LIFT_START - 1;
+// Leave room for the alignment confirmation, reactor status and countdown.
+export const STELLAR_LAUNCH = 60;
 export const STELLAR_THRUST_START = STELLAR_LAUNCH - .56;
-export const STELLAR_ARRIVAL = 55.67;
-export const STELLAR_BURST = 57.15;
+export const STELLAR_ARRIVAL = STELLAR_LAUNCH + .67;
+export const STELLAR_BURST = STELLAR_LAUNCH + 2.15;
 export const STELLAR_WAVES = [
   { start: STELLAR_BURST, duration: 1.55, peak: 1 },
   { start: STELLAR_BURST + 3.65, duration: 1.65, peak: .48 },
