@@ -1870,14 +1870,15 @@ async function startGame(renderer) {
       const skyFar = night && stellarMonument?.stellarAt && elapsed >= 0 && elapsed < STELLAR_SHUTDOWN ? Math.hypot(view.position.x - stellarMonument.x,
         view.position.y - stellarMonument.model.position.y - STELLAR_ALTITUDE, view.position.z - stellarMonument.z) + 255 : 0;
       const flightFar = flight.running ? starshipAnimation.farDistance(view) : 0;
-      const far = Math.max(worldFar, skyFar, flightFar);
+      const terrainFar = Math.max(worldFar, flightFar);
+      const far = Math.max(terrainFar, skyFar);
       if (view.far !== far) {
         view.far = far;
         view.updateProjectionMatrix();
       }
       scene.fog.near = Math.max(165, overviewDistance + 10);
-      scene.fog.far = Math.max(worldFar, flightFar);
-      if (updateWorld(view, target)) {
+      scene.fog.far = terrainFar;
+      if (updateWorld(view, target, terrainFar)) {
         renderer.shadowMap.needsUpdate = true;
         nightLights.bind(scene);
       }

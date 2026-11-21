@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { convergence, radial } from "./convergencia.js";
 import { STELLAR_ALTITUDE, STELLAR_ARRIVAL, STELLAR_BURST, STELLAR_LAUNCH, STELLAR_LIFT_HEIGHT } from "./stellar-event.js";
 
@@ -120,7 +121,7 @@ void main() {
 
 const glow = (color) => new THREE.MeshBasicMaterial({
   color, transparent: true, depthWrite: false, fog: false, toneMapped: false,
-  blending: THREE.AdditiveBlending, side: THREE.DoubleSide, opacity: 0,
+  blending: THREE.AdditiveBlending, side: THREE.DoubleSide, forceSinglePass: true, opacity: 0,
 });
 
 function shader(parameters, fragmentShader, vertexShader = quad) {
@@ -198,7 +199,11 @@ export function createStellarEffects() {
   const ringFormationTime = 1.35;
   const firstRingHeight = convergence.crownY + 17.5;
   const ringGeo = torus(1, .018);
-  const arcGeo = torus(1, .027, Math.PI * .47);
+  const firstArc = torus(1, .027, Math.PI * .47);
+  const oppositeArc = firstArc.clone().rotateY(Math.PI);
+  const arcGeo = mergeGeometries([firstArc, oppositeArc]);
+  firstArc.dispose();
+  oppositeArc.dispose();
   const elevator = Array.from({ length: ringCount }, (_, i) => {
     const fraction = i / (ringCount - 1);
     const height = lerp(firstRingHeight, STELLAR_ALTITUDE, fraction);
@@ -208,9 +213,7 @@ export function createStellarEffects() {
     gate.position.y = height;
     const edge = new THREE.Mesh(ringGeo, glow("#b0bef4"));
     const tracer = new THREE.Mesh(arcGeo, glow(i % 2 ? "#e0bfff" : "#a7eaff"));
-    const pair = tracer.clone();
-    pair.rotation.y = Math.PI;
-    gate.add(edge, tracer, pair);
+    gate.add(edge, tracer);
     escalator.add(gate);
     return { gate, edge, tracer, startsAt, radius };
   });

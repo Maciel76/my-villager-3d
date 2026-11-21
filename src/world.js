@@ -228,7 +228,7 @@ export function createWorld(scene, materials, initialArea = buildArea()) {
   let lastX, lastZ, lastRange;
   let renderedArea = getBuildAreaSize();
 
-  function update(camera, focus = camera.position) {
+  function update(camera, focus = camera.position, terrainFar = camera.far) {
     const size = getBuildAreaSize();
     const areaChanged = renderedArea !== size;
     if (areaChanged) {
@@ -250,7 +250,7 @@ export function createWorld(scene, materials, initialArea = buildArea()) {
     // Cache whole chunk rings, otherwise every camera tick regenerates the
     // shadow map and scans the entire forest even when no chunk changed.
     const range = Math.ceil(
-      camera.far * Math.hypot(1, vertical, vertical * camera.aspect) / CHUNK_SIZE,
+      terrainFar * Math.hypot(1, vertical, vertical * camera.aspect) / CHUNK_SIZE,
     ) * CHUNK_SIZE;
     if (centerX === lastX && centerZ === lastZ && range === lastRange)
       return false;

@@ -34,6 +34,7 @@ const skyVertex = `
   void main() {
     skyRay = position;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    gl_Position.z = gl_Position.w;
   }
 `;
 
@@ -193,12 +194,13 @@ export function createDaylight(scene, renderer, buildings) {
       vertexShader: skyVertex,
       fragmentShader: skyFragment,
       side: THREE.BackSide,
-      depthTest: false,
+      depthTest: true,
       depthWrite: false,
       toneMapped: false,
     }),
   );
-  sky.renderOrder = -1000;
+  // Fill the uncovered pixels after opaque geometry and before transparent effects.
+  sky.renderOrder = 1000;
   sky.frustumCulled = false;
   scene.add(sky);
 

@@ -18,10 +18,12 @@ with sync_playwright() as playwright:
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.goto('http://127.0.0.1:5173/src/stellar-audio.js')
     page.evaluate('''async () => {
-      const { createStellarAudio, CONVERGENCE_GRID_DOWN } = await import('/src/stellar-audio.js');
+      const { createStellarAudio, CONVERGENCE_EFFECT_RECORDINGS } = await import('/src/stellar-audio.js');
       const { CONVERGENCE_VOICES } = await import('/src/convergence-voices.js');
       const { createStellarTimeline } = await import('/src/stellar-timeline.js');
-      const { STELLAR_DRAIN_DURATION, STELLAR_THRUST_START } = await import('/src/stellar-event.js');
+      const { STELLAR_DRAIN_DURATION, STELLAR_THRUST_START, STELLAR_BURST } = await import('/src/stellar-event.js');
+      window.effectTimes = { impulse: STELLAR_DRAIN_DURATION + STELLAR_THRUST_START,
+        burstEffect: STELLAR_DRAIN_DURATION + STELLAR_BURST };
       const alignment = CONVERGENCE_VOICES.find(clip => clip.id === 'overload');
       const timeline = createStellarTimeline();
       if (timeline.sample(alignment.at - STELLAR_DRAIN_DURATION).ringAlignment !== 1)
@@ -30,7 +32,7 @@ with sync_playwright() as playwright:
       if (countdown.at + countdown.duration >= STELLAR_DRAIN_DURATION + STELLAR_THRUST_START)
         throw Error('Countdown overlaps ignition');
       window.clips = CONVERGENCE_VOICES;
-      window.recordings = [...clips, CONVERGENCE_GRID_DOWN];
+      window.recordings = [...clips, ...CONVERGENCE_EFFECT_RECORDINGS];
       window.audioProbe = { decoded: [], starts: [], buffers: new Map() };
       class TrackingContext extends AudioContext {
         constructor() { super(); audioProbe.context = this; }
@@ -63,7 +65,7 @@ with sync_playwright() as playwright:
       document.body.replaceChildren(button);
     }''')
     page.get_by_role('button', name='Unlock audio').click()
-    page.wait_for_function('audioProbe.decoded.length === 8 && audioProbe.context.state === "running"')
+    page.wait_for_function('audioProbe.decoded.length === recordings.length && audioProbe.context.state === "running"')
     page.evaluate('''() => {
       const timestamp = Date.now();
       player.sync({ stellarAt: timestamp }, timestamp);
@@ -83,6 +85,15 @@ with sync_playwright() as playwright:
         player.sync(monument, timestamp + (clip.at + .36) * 1000);
         if (count !== audioProbe.starts.length) throw Error(`Repeated sound: ${clip.id}`);
       }
+      for (const [id, at] of Object.entries(effectTimes)) {
+        player.stop();
+        const timestamp = 1000000;
+        player.sync({ stellarAt: timestamp }, timestamp + (at + .25) * 1000);
+        const effect = audioProbe.starts.findLast(entry => entry.recording === id);
+        if (!effect || Math.abs(effect.offset - .25) > .001) throw Error(`Missing recorded effect: ${id}`);
+        if (id === 'burstEffect' && !audioProbe.starts.some(entry => entry.voice === 'burst' && !entry.stopped))
+          throw Error('Explosion effect replaced the narration');
+      }
       player.setMuted(true);
       if (audioProbe.starts.some(entry => !entry.stopped)) throw Error('Mute left active sources');
       const count = audioProbe.starts.length;
@@ -92,7 +103,8 @@ with sync_playwright() as playwright:
     }''')
     assert not errors, errors
     assert {clip['id'] for clip in result['decoded']} == {
-        'activation', 'overload', 'half-charge', 'charged', 'countdown', 'burst', 'restoration', 'gridDown'
+        'activation', 'overload', 'half-charge', 'charged', 'countdown', 'burst', 'restoration', 'gridDown',
+        'impulse', 'burstEffect'
     }
     # Render the actual recorded voice through the production spatial graph.
     # Suppress only effects so their global sound cannot mask a leaking voice.
@@ -124,8 +136,8 @@ with sync_playwright() as playwright:
         });
         player.unlock();
         const deadline = performance.now() + 5000;
-        while (decoded < 8 && performance.now() < deadline) await new Promise(resolve => setTimeout(resolve, 5));
-        if (decoded !== 8) throw Error('Offline recordings not loaded');
+        while (decoded < recordings.length && performance.now() < deadline) await new Promise(resolve => setTimeout(resolve, 5));
+        if (decoded !== recordings.length) throw Error('Offline recordings not loaded');
         await new Promise(resolve => setTimeout(resolve, 0));
         const model = new Object3D(), camera = new PerspectiveCamera();
         model.position.set(30, 2, 60);

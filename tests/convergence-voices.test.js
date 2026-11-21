@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { CONVERGENCE_VOICES, convergenceVoiceCues } from '../src/convergence-voices.js';
-import { createStellarAudio, CONVERGENCE_GRID_DOWN, CONVERGENCE_VOICE_RANGE } from '../src/stellar-audio.js';
+import { createStellarAudio, CONVERGENCE_EFFECT_RECORDINGS, CONVERGENCE_GRID_DOWN,
+  CONVERGENCE_VOICE_RANGE } from '../src/stellar-audio.js';
 import { Object3D, PerspectiveCamera } from 'three';
 import { createStellarTimeline } from '../src/stellar-timeline.js';
 import { STELLAR_BURST, STELLAR_DRAIN_DURATION, STELLAR_LAUNCH, STELLAR_REACTIVATION_DURATION,
@@ -10,7 +11,7 @@ import { STELLAR_BURST, STELLAR_DRAIN_DURATION, STELLAR_LAUNCH, STELLAR_REACTIVA
 
 function audioFixture({ delayed = false, fail = false } = {}) {
   const starts = [], gains = [], requests = [], contexts = [], releases = [], panners = [];
-  const clips = [...CONVERGENCE_VOICES, CONVERGENCE_GRID_DOWN];
+  const clips = [...CONVERGENCE_VOICES, ...CONVERGENCE_EFFECT_RECORDINGS];
   const parameter = () => ({ value: 1, targets: [], setValueAtTime() {}, linearRampToValueAtTime() {},
     setTargetAtTime(value) { this.targets.push(value); } });
   const node = () => ({ outputs: [], connect(target) { this.outputs.push(target); return target; },
@@ -77,7 +78,7 @@ test('loads each recording once and schedules every voice without changing its s
   await audio.settle();
   audio.player.unlock();
   await audio.settle();
-  assert.equal(audio.requests.length, 8);
+  assert.equal(audio.requests.length, CONVERGENCE_VOICES.length + CONVERGENCE_EFFECT_RECORDINGS.length);
   for (const clip of CONVERGENCE_VOICES) {
     audio.player.stop();
     audio.sync(clip.phase, clip.at + .35);
@@ -89,6 +90,21 @@ test('loads each recording once and schedules every voice without changing its s
     audio.sync(clip.phase, clip.at + .4);
     assert.equal(audio.voices().length, count, 'successive frames must not repeat a voice');
   }
+});
+
+test('the recorded impulse and boom follow the updated launch without replacing the burst narration', async () => {
+  const audio = audioFixture();
+  audio.player.unlock();
+  await audio.settle();
+  for (const [id, at] of [['impulse', STELLAR_THRUST_START], ['burstEffect', STELLAR_BURST]]) {
+    const clip = CONVERGENCE_EFFECT_RECORDINGS.find(recording => recording.id === id);
+    assert.equal((await readFile(new URL(clip.src))).toString('ascii', 0, 4), 'RIFF');
+    audio.sync('show', STELLAR_DRAIN_DURATION + at + .25);
+    const effect = audio.starts.find(start => start.source.buffer.effect === id);
+    assert.ok(effect, id);
+    assert.ok(Math.abs(effect.offset - .25) < .00001, id);
+  }
+  assert.ok(audio.voices().some(start => start.source.buffer.voice === 'burst'));
 });
 
 test('alignment confirmation starts after the rings align, with no overlapping narration', () => {

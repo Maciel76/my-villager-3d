@@ -1,0 +1,174 @@
+PROMPT PARA GERADOR DE SOM | A CONVERGÊNCIA, VILA VERDE
+
+DIREÇÃO SONORA
+
+Crie efeitos sonoros cinematográficos originais para A Convergência, um monumento de metal e plasma que fornece energia a uma cidade. A câmera é livre. Use como referência de escuta um observador na praça, a uma distância em que ainda se percebe o tamanho da estrutura. Entregue apenas efeitos sonoros e ambiência.
+
+Reserve espaço na mixagem para as falas da Convergência, especialmente durante a contagem regressiva e no primeiro clarão. Dê peso à estrutura com metal espesso, motores elétricos graves, vibração de suportes e ressonância de anéis. Dê ao mini-sol uma textura viva de plasma, com pequenas descargas e um brilho agudo que cresce com a energia. Use o estéreo para mostrar o apagão chegando de longe, os refletores acendendo ao redor da praça e o som do disparo se afastando para cima. Deixe a praça silenciosa o suficiente para que os movimentos mais delicados apareçam.
+
+A Explosão Estelar é o ponto mais forte de toda a mixagem. Faça a primeira onda iluminar acusticamente a cena com um impacto amplo, seguido de um grave sustentado por cerca de dois segundos, uma abertura de frequências altas e reverberação de espaço aberto. A segunda onda soa como um reflexo frio propagando-se no céu. A terceira é mais difusa e distante. Use como ponto de partida picos cerca de 8 dB e 15 dB abaixo do primeiro estrondo, respectivamente. Preserve o breve quase silêncio entre a chegada da esfera ao topo e a explosão.
+
+Gere os dois blocos como arquivos separados, cada um começando em 00:00. Cada linha descreve o segundo que começa no tempo indicado. As marcações com milissegundos dentro das linhas têm prioridade para os impactos e mudanças de fase. Se disponível, exporte em WAV PCM estéreo, 48 kHz, 24 bits, com pico verdadeiro máximo de −1 dBTP. Para edição posterior, mantenha separados os efeitos mecânicos, a rede elétrica e os efeitos de céu se o gerador oferecer faixas individuais.
+
+BLOCO 1 | EXPLOSÃO ESTELAR | DURAÇÃO EXATA 02:01.000
+
+00:00 | O jogador ativa a Convergência. Um contator distante abre e a vibração da rede começa a afundar.
+00:01 | Apagam as luzes mais afastadas. Estalos pequenos e abafados surgem nas bordas do estéreo.
+00:02 | O apagão avança pelas ruas externas. O zumbido elétrico perde altura e corpo.
+00:03 | Mais fachadas ao longe se apagam. Um grupo curto de estalos se aproxima.
+00:04 | A falta de energia alcança áreas intermediárias. Relés irregulares, com intervalos entre eles.
+00:05 | O som da rede cai mais um degrau. A ambiência noturna começa a sobressair.
+00:06 | O corte passa por outros quarteirões. Pé de motor e vibração elétrica cedem ao fundo.
+00:07 | As luzes restantes nas ruas mais próximas começam a cair. Os estalos já soam mais presentes.
+00:08 | A onda chega na direção da praça. Use contatos secos e uma leve ressonância no chão.
+00:09 | A energia se concentra perto do monumento. O grave da cidade afina e some em trechos.
+00:10 | Os últimos conjuntos próximos perdem força. Um relé de maior porte vibra brevemente.
+00:11 | As últimas luzes perto da praça apagam. Feche o som da rede com um clique pesado e abra espaço.
+00:12 | O apagão está completo e o céu escurece. Primeiro refletor em 00:12.000. O mini-sol ilumina a praça. Começa um ronco baixo de plasma.
+00:13 | Segundo refletor em 00:13.200. Estalo elétrico curto com um motor direcional discreto.
+00:14 | Terceiro refletor em 00:14.400. Mude a posição do relé ao redor da praça.
+00:15 | Quarto refletor em 00:15.600. Brilho rápido, com o plasma mais presente no centro.
+00:16 | Quinto refletor em 00:16.800. Uma articulação dos braços abre sob carga.
+00:17 | Os refletores já ativos sustentam o feixe. Ouve-se um leve giro metálico por baixo do ronco.
+00:18 | Sexto refletor em 00:18.000. Relé seco, cauda elétrica curta e deslocada no estéreo.
+00:19 | Sétimo refletor em 00:19.200. Reforço grave pequeno para o peso da estrutura.
+00:20 | Oitavo refletor em 00:20.400. Feche a sequência com um acionamento mais firme.
+00:21 | O conjunto de refletores estabiliza. Deixe um espaço breve antes da carga principal.
+00:22 | Começa a carga principal. O giro dos anéis acelera e o plasma ganha um tom grave mais denso.
+00:23 | O núcleo mantém força crescente. Vibração circular leve, com pequenos pulsos elétricos.
+00:24 | O feixe ganha presença. Uma camada fina de ar ionizado aparece acima do grave.
+00:25 | Os anéis aceleram de forma contínua. A textura do metal começa a girar mais rápido.
+00:26 | O plasma cintila. Descargas curtas acompanham o giro sem formar um ritmo musical.
+00:27 | A coluna de luz aumenta de intensidade. Abra a faixa média aos poucos.
+00:28 | A rotação continua ganhando velocidade. Um tremor leve passa pelos suportes.
+00:29 | A carga se acumula no centro. Acrescente um brilho agudo muito fino sobre o grave.
+00:30 | O feixe permanece firme. A ressonância da praça cresce sem antecipar o estrondo.
+00:31 | A coroa superior começa a ganhar intensidade. Entra uma ressonância metálica alta e distante.
+00:32 | A coroa vibra e o núcleo ganha força. Separe o grave do chão do brilho acima.
+00:33 | As argolas físicas seguem rápidas. Faça o movimento circular com textura de metal e energia.
+00:34 | A carga sobe mais um nível. Um pulso curto percorre o interior do feixe.
+00:35 | A coluna se prepara para formar os anéis de luz suspensos. Reduza os detalhes para abrir espaço.
+00:36 | Anel de luz 1 em 00:36.000. Aro sonoro curto, claro e contido, logo acima da coroa.
+00:37 | Anel de luz 2 em 00:37.916. Repita a assinatura elétrica com uma cauda ligeiramente mais alta.
+00:38 | Os dois anéis de luz estabilizam. Deixe a vibração do feixe manter a continuidade.
+00:39 | Anel de luz 3 em 00:39.831. A fala sobre a carga começa em 00:39.300. Deixe o pulso do anel em segundo plano.
+00:40 | A voz anuncia a carga do núcleo. Um brilho curto de plasma sobe acima do fundo.
+00:41 | Anel de luz 4 em 00:41.747. Use uma resposta breve e distante.
+00:42 | Os quatro aros sustentam o feixe. Mantenha o fundo de energia contínuo.
+00:43 | Anel de luz 5 em 00:43.663. Pulso nítido e curto em altura.
+00:44 | Cresce a tensão mecânica na praça. O som dos aros formados perde corpo com a distância.
+00:45 | Anel de luz 6 em 00:45.578. Um brilho rápido sobe na coluna.
+00:46 | As três argolas físicas começam a se alinhar na horizontal. Reduza gradualmente a oscilação mecânica.
+00:47 | Anel de luz 7 em 00:47.494. As argolas físicas se endireitam embaixo com um deslizamento contínuo.
+00:48 | A rotação fica mais regular conforme as argolas se alinham.
+00:49 | Anel de luz 8 em 00:49.409. Deixe aparecer o giro circular sob o feixe.
+00:50 | As pétalas da coroa começam a abrir com dobradiças sob pressão.
+00:51 | As argolas já giram na horizontal. Fala de confirmação em 00:51.100, seguida de um pulso discreto do anel de luz 9 em 00:51.325.
+00:52 | O mini-sol começa a subir em 00:52.000. As argolas físicas começam a se separar em alturas em 00:52.400.
+00:53 | Anel de luz 10 em 00:53.241. A argola maior sobe, a média desce e a menor desce mais.
+00:54 | O mini-sol sobe gradualmente. A argola menor ganha profundidade no grave enquanto a maior se eleva.
+00:55 | Anel de luz 11 em 00:55.156. O plasma sobe acima do som das argolas físicas.
+00:56 | Os aros de luz no céu soam mais distantes. A confirmação do alinhamento termina por volta de 00:56.429.
+00:57 | Anel de luz 12 em 00:57.072. A fala de carga completa começa em 00:57.313. As argolas terminam de se separar em 00:57.600.
+00:58 | Anel de luz 13 em 00:58.987. Use pouco grave e um brilho suspenso no alto.
+00:59 | O mini-sol segue subindo. A carga fica mais apertada e urgente sob a fala.
+01:00 | Anel de luz 14 em 01:00.903. Um pulso claro e distante.
+01:01 | O núcleo se aproxima da posição de disparo. O feixe soa contínuo.
+01:02 | Anel de luz 15 em 01:02.819. Abra espaço para a conclusão da fala de carga.
+01:03 | A fala de carga termina por volta de 01:03.582. Deixe um intervalo breve antes da contagem.
+01:04 | A contagem começa em 01:04.132. Anel de luz 16 em 01:04.734, com um toque acusticamente discreto.
+01:05 | As argolas físicas giram em três alturas sob a contagem. Aumente a pressão aos poucos.
+01:06 | Anel de luz 17 em 01:06.650, na ponta do feixe a 640 m. Um pulso fino e distante.
+01:07 | O último aro se completa. Una o ronco das camadas sem encobrir a contagem.
+01:08 | O conjunto completo de anéis sustenta o feixe a partir de 01:08.000. O céu escurece.
+01:09 | Os braços do monumento se abrem mais. Deixe a tensão mecânica crescer sob a voz.
+01:10 | A coroa chega à abertura máxima. O plasma está comprimido e o impulso se aproxima.
+01:11 | A contagem termina em 01:11.290. Impulso em 01:11.440. As três argolas sobem juntas. A menor sobe 30 m, a média 22 m e a maior 13 m. Faça a pressão subir de baixo e convergir no mini-sol.
+01:12 | Disparo em 01:12.000. Pancada curta e rasgo de ar ascendente. As argolas começam a baixar em 01:12.120. A esfera chega aos 640 m em 01:12.670.
+01:13 | A esfera está no topo. Quase silêncio, com uma tensão fina e distante. As argolas continuam baixando.
+01:14 | Explosão, primeira onda e fala em 01:14.150. Estrondo mais forte da faixa, com ataque nítido e grave amplo. Reserve espaço para a voz.
+01:15 | A primeira onda termina de cruzar o céu por volta de 01:15.700. Sustente a sensação de clarão com grave espalhado.
+01:16 | O clarão perde força. A reverberação fica mais distante e a fala termina por volta de 01:16.658.
+01:17 | A luz do clarão termina em 01:17.700. Segunda onda em 01:17.800. Um reflexo azul-prateado mais fraco abre no estéreo.
+01:18 | A segunda onda atravessa o céu. Use um sopro amplo, com pouco grave.
+01:19 | A segunda onda acaba em 01:19.450. As argolas terminam de baixar em 01:19.600. Terceira onda em 01:19.700, mais suave e difusa.
+01:20 | O terceiro reflexo se espalha com um brilho violeta distante.
+01:21 | A terceira onda se apaga em 01:21.500. A nebulosa começa a surgir em uma textura aérea quase silenciosa.
+01:22 | A poeira estelar aparece aos poucos. Um ruído fino e espaçado, com bastante ar.
+01:23 | A nebulosa se alarga. A vibração das argolas fica em segundo plano.
+01:24 | A formação colorida ganha definição. Use uma ambiência lisa com pequenos brilhos ocasionais.
+01:25 | Manchas de luz se espalham pelo céu. Deixe caudas longas e discretas.
+01:26 | O céu ganha corpo e a praça segue sem energia. Deixe um brilho breve se dissolver.
+01:27 | O feixe perde força. A camada de plasma central fica mais fina.
+01:28 | A corrente no monumento baixa. O giro das argolas ainda deixa uma ressonância discreta.
+01:29 | A aurora ocupa cada vez mais o céu. Mantenha a ambiência espaçosa e suave.
+01:30 | A carga de plasma chega ao fim. Retire o ronco elétrico mais grave.
+01:31 | Alguns pontos de luz se tornam mais delicados. Reduza a textura de motores sob a aurora.
+01:32 | A nebulosa já cobre quase todo o céu. Um repouso amplo, com um fio de ar.
+01:33 | Os últimos refletores da sequência se apagam. Use contatos fracos perto da praça.
+01:34 | O monumento segue desacelerando. Vibração residual curta, com espaço entre os detalhes.
+01:35 | A aurora se estabiliza lentamente. Quase todo o som vem da ambiência aberta.
+01:36 | Os aros de luz altos perdem brilho. Faça o som aéreo se afastar.
+01:37 | As argolas físicas ainda giram. Deixe uma ressonância muito leve perto do centro.
+01:38 | A rotação começa a perder velocidade. O movimento circular desacelera de forma contínua.
+01:39 | Os aros de luz do feixe desaparecem. O fundo fica mais limpo.
+01:40 | O giro mecânico vai chegando ao repouso. Os últimos harmônicos se desmancham.
+01:41 | Prepare a parada do monumento. Deixe a aurora suave em contraste com o ferro se aquietando.
+01:42 | A Convergência apaga as luzes próprias e o giro para. Um desligamento firme, de volume menor que o disparo. A nebulosa já está formada.
+01:43 | As argolas ficam suspensas, paradas. Deixe espaço e pouca ressonância residual.
+01:44 | A estrutura permanece em repouso. Ambiência noturna discreta sob a nebulosa.
+01:45 | A praça continua sem energia elétrica. Quase silêncio com horizonte aberto.
+01:46 | Antes do recolhimento, um mecanismo interno prende a estrutura. Use metal curto e contido.
+01:47 | As três argolas começam a descer. Um arrasto baixo e mecânico acompanha o movimento.
+01:48 | As argolas baixam gradualmente. O som desce em altura e fica mais próximo da base.
+01:49 | A descida continua. Deixe a massa da estrutura vibrar em baixa intensidade.
+01:50 | As argolas se aproximam da praça e vão se recolhendo. O mecanismo perde velocidade.
+01:51 | Os três aros quase chegaram à base. Um deslizamento curto termina em amortecimento.
+01:52 | Último trecho da descida das argolas. Deixe a vibração residual preparar o encaixe.
+01:53 | As argolas encaixam na base. A coroa se recolhe a partir de agora. Metal discreto e grave por baixo.
+01:54 | A coroa termina de se recolher e começa a descer em 01:54.700. Comece o som de descida na altura da estrutura.
+01:55 | A coroa baixa devagar. Use um deslizamento audível, desde o alto em direção à base.
+01:56 | A coroa continua descendo. Diminua o tom da ressonância à medida que ela se aproxima do chão.
+01:57 | O mecanismo reduz a velocidade. Deixe pequenos atritos metálicos desaparecerem.
+01:58 | A coroa está chegando à base. O som se concentra perto do piso e fica menor.
+01:59 | A coroa está quase assentada. Reduza o arrasto e deixe um espaço breve.
+02:00 | A coroa termina de assentar. Um encaixe macio e uma cauda curta até o fim. O céu nebuloso permanece e a cidade segue em apagão.
+02:01.000 | Fim exato do arquivo. Corte em silêncio, com a cauda concluída.
+
+BLOCO 2 | REATIVAÇÃO DA CONVERGÊNCIA | DURAÇÃO EXATA 00:34.000
+
+00:00 | O jogador aciona a reativação. Contator curto no monumento, braços começando a abrir em 00:00.250. A argola menor inicia a subida em 00:00.900.
+00:01 | O mini-sol começa a surgir em 00:01.100, minúsculo. Use um ponto de plasma baixo em volume e um motor leve subindo com a argola pequena.
+00:02 | A argola pequena continua a subir. Os braços chegam à primeira abertura. O plasma ganha corpo aos poucos.
+00:03 | A argola pequena chega ao centro em 00:03.600 e acelera. Dê-lhe uma assinatura metálica leve e rápida.
+00:04 | A argola média começa a subir em 00:04.050. Acrescente um motor de tom médio enquanto a pequena continua girando.
+00:05 | A argola média cruza a estrutura. O mini-sol cresce. Preserve o giro nítido da primeira argola.
+00:06 | A argola média alcança seu lugar em 00:06.800 e acelera. As duas rotações agora têm texturas distintas.
+00:07 | A argola maior começa a subir em 00:07.250. Entra um motor mais pesado. O mini-sol continua crescendo.
+00:08 | A argola maior sobe. Use metal de massa maior e deixe aparecer as duas rotações de cima.
+00:09 | A maior se aproxima de seu lugar. Cresce a ressonância do plasma, com os três motores se juntando.
+00:10 | A argola maior se posiciona em 00:10.000 e ganha velocidade. O mini-sol está quase no tamanho final.
+00:11 | A aceleração extra começa a ceder. Faça as argolas passarem do giro rápido ao giro estável de forma contínua.
+00:12 | O mini-sol alcança o tamanho final em 00:12.450. O centro mantém uma vibração viva enquanto a velocidade se estabiliza.
+00:13 | As argolas já mantêm o giro normal. A coroa começa a subir em 00:13.300 e a nebulosa começa a sumir. Entra a ressonância de metal no alto.
+00:14 | A coroa continua subindo. O seu mecanismo soa mais distante do chão, com rotação constante no centro.
+00:15 | Um pulso de energia sobe dos suportes até a coroa. Dê a ele uma textura curta e leve.
+00:16 | A coroa chega à altura final em 00:16.650. Suas seções começam a abrir. Use um assentamento alto seguido de movimento de dobradiças.
+00:17 | A coroa termina de abrir em 00:17.250. Em 00:17.900, começa a reacender. Um contato elétrico claro, com breve reverberação.
+00:18 | A coroa termina de ganhar brilho por volta de 00:18.650. Sustente um campo de energia no alto enquanto o feixe se prepara.
+00:19 | O feixe surge em 00:19.100. Crie um rasgo luminoso que cresce da base para cima. As argolas e o mini-sol seguem girando.
+00:20 | A coluna de luz cresce e o som do feixe começa a estabilizar. A nebulosa está se dissolvendo.
+00:21 | A coluna se aproxima da ponta do céu. O brilho do mini-sol se estabiliza. Prepare a passagem para a rede elétrica.
+00:22 | A reativação termina em 00:22.000, com o feixe completo e a noite normal. Começa o retorno da energia na praça e nas luzes mais próximas.
+00:23 | A energia avança pela vizinhança imediata. Relés mais próximos e um zumbido elétrico que se espalha.
+00:24 | As primeiras ruas ao redor reacendem. Coloque contatos secos em pontos diferentes do estéreo.
+00:25 | O retorno passa pelas ruas próximas. A pressão do som sai do centro da praça e se alarga.
+00:26 | A onda chega a outros quarteirões. Os acionamentos ficam mais espaçados e ligeiramente mais distantes.
+00:27 | Postes e fachadas no meio do percurso voltam a receber energia. Um grupo curto de relés responde ao longe.
+00:28 | A energia continua abrindo bairros. O zumbido se espalha em largura e perde intensidade no primeiro plano.
+00:29 | A onda se afasta da Convergência. Estalos menores e mais abafados aparecem nas bordas.
+00:30 | A energia se aproxima das ruas externas. Deixe o movimento sonoro se afastar da praça.
+00:31 | Os bairros mais distantes começam a reacender. Sons elétricos finos, com pouca cauda.
+00:32 | A onda percorre a reta final. Restam poucos acionamentos de longe e o feixe se mantém estável.
+00:33 | As últimas luzes distantes voltam. Feche com um assentamento discreto da rede e uma cauda curta.
+00:34.000 | Fim exato do arquivo. Toda a vila está com energia e o monumento está pronto.

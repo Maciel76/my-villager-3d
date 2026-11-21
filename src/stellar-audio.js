@@ -9,8 +9,13 @@ import { Vector3, Quaternion } from "three";
 
 export const CONVERGENCE_GRID_DOWN = { id: "gridDown", duration: 2,
   src: new URL("./assets/audio/convergence/grid-down.wav", import.meta.url).href };
+export const CONVERGENCE_EFFECT_RECORDINGS = [
+  CONVERGENCE_GRID_DOWN,
+  { id: "impulse", duration: 2.31, src: new URL("./assets/audio/impulso-convergencia.wav", import.meta.url).href },
+  { id: "burstEffect", duration: 3.5, src: new URL("./assets/audio/explosao-estelar.wav", import.meta.url).href },
+];
 export const CONVERGENCE_VOICE_RANGE = { refDistance: 28, maxDistance: 180, height: 12 };
-const recordings = [...CONVERGENCE_VOICES, CONVERGENCE_GRID_DOWN];
+const recordings = [...CONVERGENCE_VOICES, ...CONVERGENCE_EFFECT_RECORDINGS];
 
 const sampleRate = 24000;
 const tau = Math.PI * 2;
@@ -37,18 +42,6 @@ const sounds = {
   ascent: [STELLAR_LAUNCH - STELLAR_LIFT_START, [
     tone(84, 158, .19, 1.6, .7, 3.4), tone(168, 318, .071, 2.8, 1.2, 4.3),
     tone(253, 479, .049, 3.2, 1.1, 5.4), noise(950, 3100, .105, 2.2, 1.3, 120),
-  ]],
-  thrust: [.66, [
-    tone(61, 268, .39, .11, .08, 10), tone(231, 1038, .22, .14, .13),
-    noise(340, 5200, .38, .16, .09, 80),
-  ]],
-  launch: [1.48, [
-    tone(112, 35, .34, .014, 1.1), tone(390, 2110, .15, .043, 1.32),
-    noise(4800, 550, .73, .012, 1.3, 130),
-  ]],
-  burst: [3.55, [
-    tone(103, 30, .79, .025, 3.33), tone(196, 43, .32, .021, 3.32),
-    tone(390, 191, .10, .016, 3.44, 4.2), noise(4600, 140, .87, .015, 3.48, 28),
   ]],
   echo: [1.6, [
     tone(190, 72, .35, .13, 1.32), tone(541, 392, .095, .19, 1.35, 5),
@@ -93,8 +86,8 @@ const show = [
   cue(0, "gridDown"), ...gridSwitches(0, STELLAR_DRAIN_DURATION, false),
   ...Array.from({ length: 8 }, (_, i) => timedShowCue(.2 + i * 1.2, "reflector", .61, .88 + .035 * i, (i % 2 ? 1 : -1) * .34)),
   timedShowCue(9, "charge"), timedShowCue(STELLAR_LIFT_START - 6, "align", .78),
-  timedShowCue(STELLAR_LIFT_START, "ascent"), timedShowCue(STELLAR_THRUST_START, "thrust"),
-  timedShowCue(STELLAR_LAUNCH, "launch"), timedShowCue(STELLAR_BURST, "burst"),
+  timedShowCue(STELLAR_LIFT_START, "ascent"), timedShowCue(STELLAR_THRUST_START, "impulse", .58),
+  timedShowCue(STELLAR_BURST, "burstEffect", .73),
   timedShowCue(STELLAR_WAVES[1].start, "echo", .62, 1.04, -.28),
   timedShowCue(STELLAR_WAVES[2].start, "echo", .40, .89, .28),
   timedShowCue(STELLAR_WAVE_END, "nebula"), timedShowCue(STELLAR_SHUTDOWN, "docking", .65),
@@ -177,7 +170,7 @@ export function createStellarAudio(AudioContext = globalThis.AudioContext ?? glo
       loadingRecordings.add(clip.id);
       failedRecordings.delete(clip.id);
       Promise.resolve().then(() => fetchAudio(clip.src)).then(response => {
-        if (!response.ok) throw new Error(`Voice asset ${response.status}`);
+        if (!response.ok) throw new Error(`Audio asset ${response.status}`);
         return response.arrayBuffer();
       }).then(bytes => context.decodeAudioData(bytes)).then(buffer => recordingBuffers.set(clip.id, buffer))
         .catch(() => failedRecordings.add(clip.id)).finally(() => loadingRecordings.delete(clip.id));
@@ -246,12 +239,12 @@ export function createStellarAudio(AudioContext = globalThis.AudioContext ?? glo
   function schedule(track, entry, elapsed, now) {
     const { at, sound, voice, level, rate, pan } = entry;
     const offset = Math.max(0, elapsed - at) * rate;
-    const recording = voice ?? (sound === "gridDown" ? "gridDown" : undefined);
+    const recording = recordingClips.get(voice ?? sound);
     let buffer;
-    if (recording && !(recording === "gridDown" && failedRecordings.has(recording))) {
-      buffer = recordingBuffers.get(recording);
+    if (recording && !(sound === "gridDown" && (failedRecordings.has(sound) || !fetchAudio))) {
+      buffer = recordingBuffers.get(recording.id);
       if (!buffer) {
-        if (!failedRecordings.has(recording) && elapsed < at + recordingClips.get(recording).duration) track.pendingRecordings.add(entry);
+        if (loadingRecordings.has(recording.id) && offset < recording.duration) track.pendingRecordings.add(entry);
         return;
       }
     } else {
