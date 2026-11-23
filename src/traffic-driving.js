@@ -78,7 +78,8 @@ export function createRoadTraffic({random=Math.random,heightAt=()=>ASPHALT_Y}={}
     vehicles.add(car);if(junction(tile))locks.set(key(tile),car);return car;
   }
   function addDeparture(options){
-    const car=make({...options,mode:"parked",halfLength:2.45,halfWidth:1.2,groundOffset:-.18});
+    const car=make({...options,mode:"parked",halfLength:options.halfLength??2.45,
+      halfWidth:options.halfWidth??1.2,groundOffset:options.groundOffset??-.18});
     car.curve=options.curve;car.length=car.curve.getLength();car.distance=0;pose({...car,mode:"driveway"},0,car);
     vehicles.add(car);return car;
   }

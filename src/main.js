@@ -39,9 +39,9 @@ import {
 } from "./stellar-event.js";
 import { createStellarTimeline } from "./stellar-timeline.js";
 import { createStellarAudio } from "./stellar-audio.js";
-import { NEBULA_CYCLE_SECONDS } from "./ceu-nebuloso.js";
 import { createMeteorShower } from "./chuva-de-meteoros.js";
 import { createFerrisWheel, createFerrisWheelAnimation } from "./roda-gigante.js";
+import { createFlagAnimation } from "./flags.js";
 import { createLexCorpAnimation } from "./torre-lexcorp.js";
 import { createPoliceStationAnimation } from "./posto-policial.js";
 import { createStarshipAnimation } from "./starship-effects.js";
@@ -241,6 +241,7 @@ async function startGame(renderer) {
   let stellarMonument = null;
   let stellarWasRunning = false;
   const ferrisWheelAnimation = createFerrisWheelAnimation();
+  const flagAnimation = createFlagAnimation();
   const lexCorpAnimation = createLexCorpAnimation(scene,{groundHeight:terrainAt});
   const policeAnimation = createPoliceStationAnimation(scene,{groundHeight:terrainAt});
 
@@ -532,12 +533,14 @@ async function startGame(renderer) {
       if (timestamp > (stellarMonument?.stellarAt ?? stellarMonument?.stellarReactivatedAt ?? 0)) stellarMonument = house;
     }
     if (house.type === "rodaGigante") ferrisWheelAnimation.add(house.model);
+    if (house.model.userData.flagCountry) flagAnimation.add(house.model);
     if (house.type === "starship") starshipAnimation.add(house.model, house.launchAt);
     if (house.type === "lexCorp") lexCorpAnimation.add(house.model);
     if (house.type === "policeStation") {
       policeAnimation.add(house.model);
       traffic.addPoliceStation(house.model);
     }
+    if (house.type === "fireStation") traffic.addFireStation(house.model);
     syncModel(house);
   }
 
@@ -570,11 +573,13 @@ async function startGame(renderer) {
     finishHouseAnimation(house);
     convergenceAnimation.remove(house.model);
     ferrisWheelAnimation.remove(house.model);
+    flagAnimation.remove(house.model);
     lexCorpAnimation.remove(house.model);
     policeAnimation.remove(house.model);
     starshipAnimation.remove(house.model);
     if (followingStarship === house) followingStarship = null;
     traffic.removePoliceStation(house.model);
+    traffic.removeFireStation(house.model);
     scene.remove(house.model);
     renderer.shadowMap.needsUpdate = true;
     return index;
@@ -1738,7 +1743,8 @@ async function startGame(renderer) {
 
   function draw(time) {
     framePending = false;
-    const delta = Math.min((time - lastFrame) / 1000, 0.04);
+    const frameSeconds = Math.max(0, (time - lastFrame) / 1000);
+    const delta = Math.min(frameSeconds, 0.04);
     lastFrame = time;
     if (walker.active) {
       const wasFlying = walker.flying;
@@ -1847,11 +1853,12 @@ async function startGame(renderer) {
       nebulaDirection.sub(view.position).normalize();
     }
     const horizonAngle = THREE.MathUtils.degToRad(view.fov / 2 + 5);
-    const nebulaMoving = nebula > 0 && !reduceMotion.matches && !document.hidden &&
+    const animateNebula = nebula > 0 && !reduceMotion.matches && !document.hidden;
+    const nebulaMoving = animateNebula &&
       view.getWorldDirection(nebulaViewDirection).y > -Math.sin(horizonAngle);
-    if (nebulaMoving) nebulaSeconds = (nebulaSeconds + delta) % NEBULA_CYCLE_SECONDS;
+    if (animateNebula) nebulaSeconds += frameSeconds;
     meteorShower.update(night && skyReady && nebula > .75 && !reduceMotion.matches, nebulaMoving ? delta : 0);
-    const skyChanged = daylight.setNebula(nebula, nebulaDirection, nebulaSeconds / NEBULA_CYCLE_SECONDS * Math.PI * 2);
+    const skyChanged = daylight.setNebula(nebula, nebulaDirection, nebulaSeconds);
     daylight.setStellarWaves(night ? stellarState?.waves : undefined, reduceMotion.matches ? .40 : 1);
     const sceneChanged = dirty || cameraChanged;
     if (sceneChanged) {
@@ -1889,6 +1896,7 @@ async function startGame(renderer) {
     }
     const convergenceMoving = convergenceAnimation.update(view, time, animations, !reduceMotion.matches, now, night, blackout);
     const wheelMoving = ferrisWheelAnimation.update(view, time, animations, !reduceMotion.matches, !blackout, nightLights.supplyAt);
+    const flagsMoving = flagAnimation.update(view, time, animations, !reduceMotion.matches && !document.hidden);
     const lexCorpMoving = lexCorpAnimation.update(view, time, animations, !reduceMotion.matches,
       daylight.lampPower, !blackout, nightLights.supplyAt);
     const policeMoving = policeAnimation.update(view, time, animations, !reduceMotion.matches,
@@ -1899,9 +1907,10 @@ async function startGame(renderer) {
       : view.position.distanceTo(controls.target);
     const trafficMoving = traffic.update(trafficFocus, trafficZoom, delta, !reduceMotion.matches, !blackout,
       gridTransition ? nightLights.supplyAt : undefined, animations);
-    const effectsAnimated = skyForming || running || flight.running || nebulaMoving || convergenceMoving || wheelMoving || lexCorpMoving || policeMoving || trafficMoving;
+    const effectsAnimated = skyForming || running || flight.running || nebulaMoving || convergenceMoving || wheelMoving || flagsMoving || lexCorpMoving || policeMoving || trafficMoving;
     const effectFrame = effectsAnimated && time - lastRenderedFrame >= 1000 / 30 - 2;
     if (sceneChanged || effectFrame || (skyChanged && !skyForming)) {
+      daylight.prepareSky(view);
       renderer.render(scene, view);
       lastRenderedFrame = time;
     }

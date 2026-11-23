@@ -28,7 +28,7 @@ test("every parcel fits without overlapping a neighbour, street, or map boundary
       `${house.type} at ${house.x},${house.z}`);
     if (isLamp(house.type)) assert.notEqual(lampSiteHeight(house.x, house.z, roads), null);
   }
-  assert.equal(cityPlanSummary(world).occupiedParcels + world.roads.length, 393);
+  assert.equal(cityPlanSummary(world).occupiedParcels + world.roads.length, 420);
 });
 
 test("every road connects to one network and all buildings face a street", () => {

@@ -28,6 +28,7 @@ export const DECORATION_FAMILIES = {
   leisure: "Lazer",
   rustic: "Rústico",
   trees: "Árvores",
+  flags: "Bandeiras",
 };
 
 // The old rounded display sizes left invisible empty margins around each item.

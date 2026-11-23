@@ -47,14 +47,15 @@ function capturePreviews(renderer, templates, cityLights) {
       Object.entries(templates).map(([type, template]) => {
         const model = template.clone();
         stage.add(model);
+        const flag = BUILDING_TYPES[type].family === "flags";
         const sphere = new THREE.Box3()
-          .setFromObject(model)
+          .setFromObject(flag ? model.getObjectByName("Tecido da bandeira") : model)
           .getBoundingSphere(new THREE.Sphere());
         const palace = type === "palace";
         const convergence = type === "convergencia";
         const wheel = type === "rodaGigante";
         const tower = type === "miranteOriental" || type === "edificioOrion" || type === "lexCorp";
-        const angle = wheel ? [.31, .18, 1] : convergence ? [.29, .29, 1] : tower
+        const angle = flag ? [.17, .12, 1] : wheel ? [.31, .18, 1] : convergence ? [.29, .29, 1] : tower
           ? [0.36, 0.21, 0.91]
           : isPaving(type) ? [0.46, 1.35, 0.89]
             : [palace ? 0.37 : 0.59, palace ? 0.42 : type === "lampSolar" ? 0.77 : 0.52, 0.91];
@@ -188,7 +189,7 @@ export function createShop(renderer, templates, onChoose, onRenderPreview, cityL
     : isPaving(type)
       ? `${width} × ${depth} m`
       : isDecoration(type)
-      ? `${details.family === "trees" ? "Plantio " : ""}${formatSize(width)} × ${formatSize(depth)} m · ${details.plantingBed ? "Recebe árvores" : "Posicionar"}`
+      ? `${details.family === "trees" ? "Plantio " : details.family === "flags" ? "Base " : ""}${formatSize(width)} × ${formatSize(depth)} m · ${details.plantingBed ? "Recebe árvores" : "Posicionar"}`
       : details.lotSpan
       ? `${(width * depth) / LOT_SIZE ** 2} lotes · ${width} × ${depth} m`
       : "Posicionar";

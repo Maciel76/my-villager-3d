@@ -49,12 +49,12 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUT / "decorations-initial.png"))
     page.click("#shop-button")
     page.click('[data-category="decoration"]')
-    assert page.locator(".decoration-choice:visible").count() == 38
-    assert page.locator("#catalog-count").inner_text() == "38 decorações"
+    assert page.locator(".decoration-choice:visible").count() == 58
+    assert page.locator("#catalog-count").inner_text() == "58 decorações"
     sources = page.locator(".decoration-choice img").evaluate_all("imgs => imgs.map(img => img.src)")
-    assert len(set(sources)) == 38 and all(source.startswith("data:image/webp") for source in sources)
+    assert len(set(sources)) == 58 and all(source.startswith("data:image/webp") for source in sources)
     page.screenshot(path=str(OUT / "decorations-shop.png"))
-    for family, count in [("garden", 6), ("square", 5), ("leisure", 5), ("rustic", 4), ("trees", 12), ("beds", 6)]:
+    for family, count in [("garden", 6), ("square", 5), ("leisure", 5), ("rustic", 4), ("trees", 12), ("beds", 6), ("flags", 20)]:
         page.click(f'[data-decoration-family="{family}"]')
         assert page.locator(".decoration-choice:visible").count() == count
     page.click('[data-decoration-family="all"]')
@@ -62,7 +62,7 @@ with sync_playwright() as p:
     assert page.locator("#decoration-menu").is_hidden()
     page.click('[data-category="decoration"]')
     page.click('[data-house="decorBench"]')
-    results.append("38 unique previews, six family filters and category switching")
+    results.append("58 unique previews, seven family filters and category switching")
 
     def state():
         return page.evaluate("() => __decorTest.state()")
@@ -126,7 +126,7 @@ with sync_playwright() as p:
     page.set_viewport_size({"width": 390, "height": 844})
     page.click("#shop-button")
     page.click('[data-category="decoration"]')
-    assert page.locator(".decoration-choice:visible").count() == 38
+    assert page.locator(".decoration-choice:visible").count() == 58
     assert page.evaluate("() => document.documentElement.scrollWidth <= innerWidth")
     page.locator('[data-house="decorSignpost"]').scroll_into_view_if_needed()
     page.screenshot(path=str(OUT / "decorations-mobile.png"))

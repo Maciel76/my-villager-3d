@@ -4,6 +4,7 @@ import * as THREE from "three";
 import { convergence, createConvergencia, createUnlitConvergence } from "../src/convergencia.js";
 import { createConvergenceAnimation } from "../src/convergencia-efeitos.js";
 import { createDaylight, markNightLight } from "../src/daylight.js";
+import { GARGANTUA_CYCLE_SECONDS } from "../src/gargantua.js";
 import { createNightLights } from "../src/night-lights.js";
 import { footprint, readSave } from "../src/placement.js";
 import { createStellarTimeline } from "../src/stellar-timeline.js";
@@ -171,6 +172,43 @@ test("the city blackout cuts all electric lighting and restores the previous set
   assert.equal(daylight.setStellarLighting(false, 0, 0), true);
   assert.deepEqual([daylight.lampPower, streetLamp.emissiveIntensity, sign.emissiveIntensity, window.envMapIntensity],
     [1, 2, .8, .65]);
+});
+
+test("Gargântua illuminates the city during the blackout and fades with the nebula", () => {
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.Fog("#ffffff", 30, 150);
+  const daylight = createDaylight(scene, { shadowMap: {} }, {});
+  const uniforms = daylight.sky.material.uniforms;
+  const origin = new THREE.Vector3(0, 1, 0);
+  const fill = scene.children.find(light => light.isHemisphereLight);
+  const disc = scene.getObjectByName("Clarão da Explosão Estelar");
+  daylight.setHour(23);
+  daylight.setStellarLighting(true, 0, 0);
+  const darkIntensity = fill.intensity;
+  daylight.setNebula(.2, origin, 0);
+  assert.equal(disc.intensity, 0);
+  daylight.setNebula(1, origin, 0);
+  const initialOrbit = uniforms.gargantuaOrbit.value;
+  const bodies = daylight.sky.getObjectByName("Corpos celestes de Gargântua");
+  const planets = bodies.children.filter(object => object.geometry?.type === "SphereGeometry");
+  assert.equal(planets.length, 4);
+  const initialPositions = planets.map(planet => planet.position.clone());
+  assert(bodies.visible);
+  assert(fill.intensity > darkIntensity);
+  assert(disc.intensity > 0);
+  assert.equal(daylight.lampPower, 0);
+  assert(disc.position.clone().sub(disc.target.position).normalize().dot(uniforms.gargantuaDirection.value) > .999);
+  daylight.setNebula(1, origin, 9);
+  assert.notEqual(uniforms.gargantuaOrbit.value, initialOrbit);
+  assert(planets.every((planet, index) => !planet.position.equals(initialPositions[index])));
+  daylight.setNebula(1, origin, GARGANTUA_CYCLE_SECONDS - .01);
+  const previousOrbit = uniforms.gargantuaOrbit.value;
+  daylight.setNebula(1, origin, GARGANTUA_CYCLE_SECONDS + .01);
+  assert(uniforms.gargantuaOrbit.value > previousOrbit && uniforms.gargantuaOrbit.value - previousOrbit < .01);
+  daylight.setNebula(0, origin, 9);
+  assert(!bodies.visible);
+  assert.equal(disc.intensity, 0);
+  assert.equal(fill.intensity, darkIntensity);
 });
 
 test("stellar activation survives the village save and belongs only to the Convergence", () => {

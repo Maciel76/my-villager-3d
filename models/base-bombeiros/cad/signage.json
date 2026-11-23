@@ -1,0 +1,197 @@
+[
+  {
+    "command": "sketch.create",
+    "params": {
+      "name": "Fachada Corpo de Bombeiros",
+      "plane": {
+        "origin": [
+          0,
+          -2710,
+          0
+        ],
+        "x_dir": [
+          1,
+          0,
+          0
+        ],
+        "y_dir": [
+          0,
+          0,
+          1
+        ]
+      }
+    }
+  },
+  {
+    "command": "sketch.text",
+    "params": {
+      "text": "CORPO DE BOMBEIROS",
+      "at": [
+        -11000,
+        6640
+      ],
+      "height": 1070,
+      "align": "center",
+      "font": "C:/Users/Maciel Ribeiro/AppData/Local/Temp/solidcraft-mcp-26776-3df2084/arialbd.ttf"
+    }
+  },
+  {
+    "command": "sketch.solve",
+    "params": {}
+  },
+  {
+    "command": "sketch.finish",
+    "params": {}
+  },
+  {
+    "command": "solid.extrude",
+    "params": {
+      "name": "Facade raised lettering",
+      "body_name": "static-white-FacadeLettering",
+      "distance": 30,
+      "operation": "new"
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "static-white-FacadeLettering",
+        "static-white-FacadeLettering (2)",
+        "static-white-FacadeLettering (3)",
+        "static-white-FacadeLettering (4)",
+        "static-white-FacadeLettering (5)",
+        "static-white-FacadeLettering (6)",
+        "static-white-FacadeLettering (7)",
+        "static-white-FacadeLettering (8)",
+        "static-white-FacadeLettering (9)",
+        "static-white-FacadeLettering (10)",
+        "static-white-FacadeLettering (11)",
+        "static-white-FacadeLettering (12)",
+        "static-white-FacadeLettering (13)",
+        "static-white-FacadeLettering (14)",
+        "static-white-FacadeLettering (15)",
+        "static-white-FacadeLettering (16)"
+      ],
+      "color": "#f4eee4",
+      "name": "fire_white",
+      "pbr": {
+        "metallic": 0.05,
+        "roughness": 0.55,
+        "dielectric_ior": 1.45
+      }
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-red-EmergencySign",
+      "body_name": "static-red-EmergencySign",
+      "center": [
+        17500,
+        -4400,
+        7950
+      ],
+      "length": 9800,
+      "width": 200,
+      "height": 1300,
+      "operation": "new"
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "static-red-EmergencySign"
+      ],
+      "color": "#b51d24",
+      "name": "fire_red",
+      "pbr": {
+        "metallic": 0.18,
+        "roughness": 0.38,
+        "dielectric_ior": 1.48
+      }
+    }
+  },
+  {
+    "command": "sketch.create",
+    "params": {
+      "name": "Emergencia 193",
+      "plane": {
+        "origin": [
+          0,
+          -4510,
+          0
+        ],
+        "x_dir": [
+          1,
+          0,
+          0
+        ],
+        "y_dir": [
+          0,
+          0,
+          1
+        ]
+      }
+    }
+  },
+  {
+    "command": "sketch.text",
+    "params": {
+      "text": "EMERGÊNCIA 193",
+      "at": [
+        17500,
+        7600
+      ],
+      "height": 650,
+      "font": "C:/Users/Maciel Ribeiro/AppData/Local/Temp/solidcraft-mcp-26776-3df2084/arialbd.ttf",
+      "align": "center"
+    }
+  },
+  {
+    "command": "sketch.solve",
+    "params": {}
+  },
+  {
+    "command": "sketch.finish",
+    "params": {}
+  },
+  {
+    "command": "solid.extrude",
+    "params": {
+      "name": "Emergency lettering",
+      "body_name": "static-white-EmergencyLettering",
+      "distance": 25,
+      "operation": "new"
+    }
+  },
+  {
+    "command": "appearance.assign",
+    "params": {
+      "bodies": [
+        "static-white-EmergencyLettering",
+        "static-white-EmergencyLettering (2)",
+        "static-white-EmergencyLettering (3)",
+        "static-white-EmergencyLettering (4)",
+        "static-white-EmergencyLettering (5)",
+        "static-white-EmergencyLettering (6)",
+        "static-white-EmergencyLettering (7)",
+        "static-white-EmergencyLettering (8)",
+        "static-white-EmergencyLettering (9)",
+        "static-white-EmergencyLettering (10)",
+        "static-white-EmergencyLettering (11)",
+        "static-white-EmergencyLettering (12)",
+        "static-white-EmergencyLettering (13)",
+        "static-white-EmergencyLettering (14)"
+      ],
+      "color": "#f4eee4",
+      "name": "fire_white",
+      "pbr": {
+        "metallic": 0.05,
+        "roughness": 0.55,
+        "dielectric_ior": 1.45
+      }
+    }
+  }
+]

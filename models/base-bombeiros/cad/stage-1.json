@@ -1,0 +1,766 @@
+[
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "L",
+      "expression": "60000 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "W",
+      "expression": "48000 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "T",
+      "expression": "450 mm"
+    }
+  },
+  {
+    "command": "parameters.add",
+    "params": {
+      "name": "TowerH",
+      "expression": "22000 mm"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-concrete-Foundation",
+      "body_name": "static-concrete-Foundation",
+      "operation": "new",
+      "center": [
+        0,
+        0,
+        "T/2"
+      ],
+      "length": "L",
+      "width": "W",
+      "height": "T"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-asphalt-Apron",
+      "body_name": "static-asphalt-Apron",
+      "operation": "new",
+      "center": [
+        0,
+        -12500,
+        505
+      ],
+      "length": "L - 1600",
+      "width": 20200,
+      "height": 110
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-paving-Sidewalk",
+      "body_name": "static-paving-Sidewalk",
+      "operation": "new",
+      "center": [
+        0,
+        "-W/2 + 1200",
+        590
+      ],
+      "length": "L - 1200",
+      "width": 1600,
+      "height": 270
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-concrete-GarageFloor",
+      "body_name": "static-concrete-GarageFloor",
+      "operation": "new",
+      "center": [
+        -11000,
+        7500,
+        650
+      ],
+      "length": 34800,
+      "width": 19500,
+      "height": 400
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GarageBackWall",
+      "body_name": "static-ivory-GarageBackWall",
+      "operation": "new",
+      "center": [
+        -11000,
+        17250,
+        3890
+      ],
+      "length": 34800,
+      "width": 380,
+      "height": 6100
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GarageWestWall",
+      "body_name": "static-ivory-GarageWestWall",
+      "operation": "new",
+      "center": [
+        -28200,
+        7500,
+        3890
+      ],
+      "length": 400,
+      "width": 19500,
+      "height": 6100
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GarageEastWall",
+      "body_name": "static-ivory-GarageEastWall",
+      "operation": "new",
+      "center": [
+        6200,
+        7500,
+        3890
+      ],
+      "length": 400,
+      "width": 19500,
+      "height": 6100
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-GarageRoof",
+      "body_name": "static-charcoal-GarageRoof",
+      "operation": "new",
+      "center": [
+        -11000,
+        7500,
+        7120
+      ],
+      "length": 36000,
+      "width": 20700,
+      "height": 400
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-red-GarageRoofRedTrim",
+      "body_name": "static-red-GarageRoofRedTrim",
+      "operation": "new",
+      "center": [
+        -11000,
+        7500,
+        7460
+      ],
+      "length": 36300,
+      "width": 21000,
+      "height": 300
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-red-GarageFrontFascia",
+      "body_name": "static-red-GarageFrontFascia",
+      "operation": "new",
+      "center": [
+        -11000,
+        -2400,
+        7140
+      ],
+      "length": 36000,
+      "width": 600,
+      "height": 1880
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GarageLightCanopy",
+      "body_name": "static-ivory-GarageLightCanopy",
+      "operation": "new",
+      "center": [
+        -11000,
+        -3200,
+        6080
+      ],
+      "length": 35500,
+      "width": 2500,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GaragePier0",
+      "body_name": "static-ivory-GaragePier0",
+      "operation": "new",
+      "center": [
+        -27600,
+        -2100,
+        3440
+      ],
+      "length": 500,
+      "width": 750,
+      "height": 5600
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-PierBase0",
+      "body_name": "static-charcoal-PierBase0",
+      "operation": "new",
+      "center": [
+        -27600,
+        -2100,
+        1050
+      ],
+      "length": 650,
+      "width": 900,
+      "height": 460
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GaragePier1",
+      "body_name": "static-ivory-GaragePier1",
+      "operation": "new",
+      "center": [
+        -20200,
+        -2100,
+        3440
+      ],
+      "length": 500,
+      "width": 750,
+      "height": 5600
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-PierBase1",
+      "body_name": "static-charcoal-PierBase1",
+      "operation": "new",
+      "center": [
+        -20200,
+        -2100,
+        1050
+      ],
+      "length": 650,
+      "width": 900,
+      "height": 460
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GaragePier2",
+      "body_name": "static-ivory-GaragePier2",
+      "operation": "new",
+      "center": [
+        -12800,
+        -2100,
+        3440
+      ],
+      "length": 500,
+      "width": 750,
+      "height": 5600
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-PierBase2",
+      "body_name": "static-charcoal-PierBase2",
+      "operation": "new",
+      "center": [
+        -12800,
+        -2100,
+        1050
+      ],
+      "length": 650,
+      "width": 900,
+      "height": 460
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GaragePier3",
+      "body_name": "static-ivory-GaragePier3",
+      "operation": "new",
+      "center": [
+        -5400,
+        -2100,
+        3440
+      ],
+      "length": 500,
+      "width": 750,
+      "height": 5600
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-PierBase3",
+      "body_name": "static-charcoal-PierBase3",
+      "operation": "new",
+      "center": [
+        -5400,
+        -2100,
+        1050
+      ],
+      "length": 650,
+      "width": 900,
+      "height": 460
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GaragePier4",
+      "body_name": "static-ivory-GaragePier4",
+      "operation": "new",
+      "center": [
+        2000,
+        -2100,
+        3440
+      ],
+      "length": 500,
+      "width": 750,
+      "height": 5600
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-PierBase4",
+      "body_name": "static-charcoal-PierBase4",
+      "operation": "new",
+      "center": [
+        2000,
+        -2100,
+        1050
+      ],
+      "length": 650,
+      "width": 900,
+      "height": 460
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-GaragePier5",
+      "body_name": "static-ivory-GaragePier5",
+      "operation": "new",
+      "center": [
+        6200,
+        -2100,
+        3440
+      ],
+      "length": 500,
+      "width": 750,
+      "height": 5600
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-PierBase5",
+      "body_name": "static-charcoal-PierBase5",
+      "operation": "new",
+      "center": [
+        6200,
+        -2100,
+        1050
+      ],
+      "length": 650,
+      "width": 900,
+      "height": 460
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-AdminCore",
+      "body_name": "static-ivory-AdminCore",
+      "operation": "new",
+      "center": [
+        18100,
+        4900,
+        4550
+      ],
+      "length": 17800,
+      "width": 18300,
+      "height": 7900
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-red-AdminRedSpine",
+      "body_name": "static-red-AdminRedSpine",
+      "operation": "new",
+      "center": [
+        25500,
+        4900,
+        4650
+      ],
+      "length": 2600,
+      "width": 18400,
+      "height": 8100
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-glass-AdminGlassGround",
+      "body_name": "static-glass-AdminGlassGround",
+      "operation": "new",
+      "center": [
+        17000,
+        -4340,
+        2400
+      ],
+      "length": 12500,
+      "width": 100,
+      "height": 2800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-glass-AdminGlassUpper",
+      "body_name": "static-glass-AdminGlassUpper",
+      "operation": "new",
+      "center": [
+        17000,
+        -4350,
+        6100
+      ],
+      "length": 12500,
+      "width": 100,
+      "height": 2300
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-glass-AdminGlassEast",
+      "body_name": "static-glass-AdminGlassEast",
+      "operation": "new",
+      "center": [
+        27050,
+        3500,
+        6050
+      ],
+      "length": 90,
+      "width": 11100,
+      "height": 2150
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-AdminCanopy",
+      "body_name": "static-charcoal-AdminCanopy",
+      "operation": "new",
+      "center": [
+        17200,
+        -5500,
+        4200
+      ],
+      "length": 15100,
+      "width": 3200,
+      "height": 240
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-AdminRoof",
+      "body_name": "static-charcoal-AdminRoof",
+      "operation": "new",
+      "center": [
+        18100,
+        4900,
+        8670
+      ],
+      "length": 18800,
+      "width": 19300,
+      "height": 400
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-AdminCornice",
+      "body_name": "static-ivory-AdminCornice",
+      "operation": "new",
+      "center": [
+        18100,
+        4900,
+        9030
+      ],
+      "length": 19200,
+      "width": 19700,
+      "height": 300
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-red-AdminEntranceRedPortal",
+      "body_name": "static-red-AdminEntranceRedPortal",
+      "operation": "new",
+      "center": [
+        16900,
+        -4450,
+        3850
+      ],
+      "length": 3600,
+      "width": 450,
+      "height": 5900
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-glass-EntranceDoors",
+      "body_name": "static-glass-EntranceDoors",
+      "operation": "new",
+      "center": [
+        16900,
+        -4750,
+        2300
+      ],
+      "length": 2850,
+      "width": 90,
+      "height": 3250
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-paving-EntranceThreshold",
+      "body_name": "static-paving-EntranceThreshold",
+      "operation": "new",
+      "center": [
+        17100,
+        -6800,
+        700
+      ],
+      "length": 7000,
+      "width": 3800,
+      "height": 500
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-red-TrainingTower",
+      "body_name": "static-red-TrainingTower",
+      "operation": "new",
+      "center": [
+        -23500,
+        19100,
+        "TowerH/2 + 500"
+      ],
+      "length": 7000,
+      "width": 6600,
+      "height": "TowerH"
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-TowerCap",
+      "body_name": "static-ivory-TowerCap",
+      "operation": "new",
+      "center": [
+        -23500,
+        19100,
+        "TowerH + 720"
+      ],
+      "length": 7700,
+      "width": 7300,
+      "height": 440
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-TowerRoof",
+      "body_name": "static-charcoal-TowerRoof",
+      "operation": "new",
+      "center": [
+        -23500,
+        19100,
+        "TowerH + 980"
+      ],
+      "length": 8000,
+      "width": 7600,
+      "height": 180
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-TowerStairBlock",
+      "body_name": "static-ivory-TowerStairBlock",
+      "operation": "new",
+      "center": [
+        -27600,
+        19000,
+        6900
+      ],
+      "length": 1600,
+      "width": 6500,
+      "height": 12800
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-ivory-ServiceShed",
+      "body_name": "static-ivory-ServiceShed",
+      "operation": "new",
+      "center": [
+        12000,
+        18400,
+        2250
+      ],
+      "length": 10400,
+      "width": 6700,
+      "height": 3500
+    }
+  },
+  {
+    "command": "solid.box",
+    "params": {
+      "name": "static-charcoal-ServiceShedRoof",
+      "body_name": "static-charcoal-ServiceShedRoof",
+      "operation": "new",
+      "center": [
+        12000,
+        18400,
+        4100
+      ],
+      "length": 11000,
+      "width": 7300,
+      "height": 260
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "static-steel-ReserveWater0",
+      "body_name": "static-steel-ReserveWater0",
+      "operation": "new",
+      "base": [
+        21100,
+        18700,
+        480
+      ],
+      "radius": 1050,
+      "height": 3300,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "static-charcoal-ReserveTankCap0",
+      "body_name": "static-charcoal-ReserveTankCap0",
+      "operation": "new",
+      "base": [
+        21100,
+        18700,
+        3780
+      ],
+      "radius": 1120,
+      "height": 180,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "static-steel-ReserveWater1",
+      "body_name": "static-steel-ReserveWater1",
+      "operation": "new",
+      "base": [
+        24000,
+        18700,
+        480
+      ],
+      "radius": 1050,
+      "height": 3300,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "static-charcoal-ReserveTankCap1",
+      "body_name": "static-charcoal-ReserveTankCap1",
+      "operation": "new",
+      "base": [
+        24000,
+        18700,
+        3780
+      ],
+      "radius": 1120,
+      "height": 180,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "static-steel-ReserveWater2",
+      "body_name": "static-steel-ReserveWater2",
+      "operation": "new",
+      "base": [
+        26900,
+        18700,
+        480
+      ],
+      "radius": 1050,
+      "height": 3300,
+      "axis": "Z"
+    }
+  },
+  {
+    "command": "solid.cylinder",
+    "params": {
+      "name": "static-charcoal-ReserveTankCap2",
+      "body_name": "static-charcoal-ReserveTankCap2",
+      "operation": "new",
+      "base": [
+        26900,
+        18700,
+        3780
+      ],
+      "radius": 1120,
+      "height": 180,
+      "axis": "Z"
+    }
+  }
+]

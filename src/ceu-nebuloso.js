@@ -20,18 +20,21 @@ export function createNebulaNoise() {
   return texture;
 }
 
-// Sample direction directly in 3D so the gas joins across the meridian and at the zenith.
-export const nebulaGLSL = `
+export const nebulaNoiseGLSL = `
 uniform highp sampler3D nebulaNoise;
-uniform float nebulaAmount;
-uniform vec3 nebulaOrigin;
-uniform float nebulaPhase;
-
 float gasNoise(vec3 p) {
   vec3 f=fract(p);
   p=floor(p)+f*f*(3.0-2.0*f);
-  return texture(nebulaNoise,(p+.5)/${NOISE_SIZE.toFixed(1)}).r;
+  return textureLod(nebulaNoise,(p+.5)/${NOISE_SIZE.toFixed(1)},0.0).r;
 }
+`;
+
+// Sample direction directly in 3D so the gas joins across the meridian and at the zenith.
+export const nebulaGLSL = `
+${nebulaNoiseGLSL}
+uniform float nebulaAmount;
+uniform vec3 nebulaOrigin;
+uniform float nebulaPhase;
 
 float nebulaReveal(vec3 ray) {
   float arc=(1.0-dot(ray,nebulaOrigin))*.5;
@@ -78,6 +81,8 @@ vec3 nebulaSkyColor(vec3 ray) {
   p+=vec3(.25*drift,.26*cycle,-.16*drift+.08*cycle);
   vec3 curl=vec3(gasNoise(p*.59+4.7),gasNoise(p*.67-28.9),gasNoise(p*.53+13.1))-.5;
   p+=curl*3.45;
+  // Advect the denser gas at a different rate from the thin, illuminated filaments.
+  p+=.28*vec3(sin(nebulaPhase*2.0+ray.z*4.0),cos(nebulaPhase+ray.x*3.0),sin(nebulaPhase-ray.y*5.0));
   float mass=gasField(p);
   vec3 shear=curl*(.25*drift+.31*cycle);
   float grain=gasField(p*1.72+vec3(6.1,15.3,8.5)+shear);
@@ -96,14 +101,21 @@ vec3 nebulaSkyColor(vec3 ray) {
   vec3 tint=mix(mix(crimson,rose,ion),ember,smoothstep(.49,.77,mass+curl.y*.27)*.35);
   // Different parts of the cloud shift at different times, keeping some of the warm red.
   float sweep=.5+.5*sin(nebulaPhase+ray.x*3.4+ray.z*2.1+grain*3.2);
-  float coloredGas=pow(cycle,.75)*mix(.06,.77,smoothstep(.24,.84,sweep));
+  float coloredGas=mix(.74,.97,pow(cycle,.75))*mix(.68,.99,smoothstep(.24,.84,sweep));
   float cooler=smoothstep(.37,.75,ion*.48+.52*sweep);
-  vec3 accent=mix(vec3(.235,.075,.36),vec3(.061,.143,.27),cooler);
+  vec3 accent=mix(vec3(.183,.042,.38),vec3(.052,.12,.34),cooler);
   tint=nebulaTint(tint,accent,coloredGas);
   vec3 brightGas=nebulaTint(vec3(.65,.20,.22),accent,coloredGas*.8);
   vec3 color=charcoal+cold*smoothstep(.18,.63,grain)*(1.0-gas*.72)*(1.0-dense*.76);
   color+=tint*(gas*(.66+detail)*shadow+edge*gas*.32);
   color+=brightGas*pow(gas,3.0)*ridges*shadow*.46;
+  float curtain = dot(ray, normalize(vec3(-.43,.22,-.87)));
+  float stream = ray.y - .30 - .16 * sin(ray.x*7.8 + ray.z*5.1 + .42*sin(nebulaPhase));
+  stream += (grain-.50)*.24;
+  float curtainGlow = exp(-stream*stream*82.0) * smoothstep(.08,.91,curtain);
+  float threads = .36 + .64*pow(.5+.5*sin(grain*67.0+ray.x*12.0-nebulaPhase*2.0),3.0);
+  vec3 curtainColor = mix(vec3(.29,.025,.26),vec3(.043,.10,.38),ion);
+  color += curtainColor * curtainGlow * threads * (.10+.64*gas) * shadow;
 
   vec2 stars=ray.xz/max(.68,1.0+ray.y);
   float veil=mix(.91,.45,dense*.7+gas*.3);

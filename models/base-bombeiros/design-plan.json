@@ -1,0 +1,30 @@
+{
+  "units": "mm",
+  "footprint": [
+    60000,
+    48000
+  ],
+  "height": 24060,
+  "foundationVolume": 1296000000000,
+  "foundationBounds": {
+    "min": [
+      -30000,
+      -24000,
+      0
+    ],
+    "max": [
+      30000,
+      24000,
+      450
+    ]
+  },
+  "garageBays": 4,
+  "trucks": 4,
+  "trainingTower": 22000,
+  "bodies": 916,
+  "stages": [
+    50,
+    293,
+    598
+  ]
+}

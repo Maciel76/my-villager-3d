@@ -91,10 +91,16 @@ Para gerar e abrir o build local com salvamento, use `npm run build` e
 - Clique ou toque em uma construção para **Mover**, girar em passos de 90°
   com **↺** e **↻**, ou **Excluir**.
 - Em **Loja → Decorações**, escolha as 20 peças de jardim, praça, lazer e
-  estilo rústico, mais **12 árvores** e **6 canteiros**. Decorações podem
+  estilo rústico, mais **12 árvores**, **6 canteiros** e **20 bandeiras**. Decorações podem
   ocupar os espaços vazios dentro dos lotes, entre casas, nas calçadas e nas
   ruas. A colisão considera as construções reais, e as setas ajustam **25 cm**.
   **R** gira, **Esc** encerra, e a posição fica salva com a vila.
+- No filtro **Bandeiras**, escolha um país e posicione o mastro. O tecido
+  ondula ao vento e retoma a animação depois de mover, desfazer ou reabrir a
+  vila. Os mastros têm 6,6 m, com base de concreto, adriça e ponteira dourada.
+  A animação pausa fora da câmera, em abas ocultas e com movimento reduzido.
+  Os desenhos ficam em `src/assets/flags`, com a origem e a versão registradas
+  em `sources.json`; não há dependência de uma CDN durante o jogo.
 - No filtro **Canteiros**, escolha um bloco e coloque no meio da rua. Depois,
   em **Árvores**, escolha uma espécie e clique na terra do canteiro. As árvores
   apoiam na altura correta, permitem várias unidades nos módulos longos e
@@ -250,8 +256,8 @@ pedestres usam as calçadas. Aproxime a câmera ou use **Caminhar** para vê-los
 
 ## Cidade planejada
 
-A versão paisagística em `src/garden-city-plan.js` distribui 47 construções,
-44 árvores, 24 canteiros, 83 peças de decoração e 140 postes pelas nove quadras.
+A versão paisagística em `src/garden-city-plan.js` distribui construções,
+44 árvores, 24 canteiros, mobiliário, postes e 20 bandeiras pelas nove quadras.
 Quarenta lotes ficam reservados a jardins, pequenas praças e lazer. O plano
 inclui todos os modelos atuais, com fontes, gazebos, áreas de piquenique,
 brinquedos, uma praça da igreja e uma alameda de cerejeiras junto ao palácio.

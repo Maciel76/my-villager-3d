@@ -1,5 +1,8 @@
 import * as THREE from "three";
-import { createNebulaNoise, nebulaGLSL } from "./ceu-nebuloso.js";
+import { createNebulaNoise, nebulaGLSL, NEBULA_CYCLE_SECONDS } from "./ceu-nebuloso.js";
+import { createGargantuaMotion, gargantuaGLSL } from "./gargantua.js";
+import { createGargantuaBloom } from "./gargantua-bloom.js";
+import { createGargantuaBodies } from "./gargantua-bodies.js";
 import { STELLAR_ALTITUDE, STELLAR_WAVES } from "./stellar-event.js";
 
 export function markNightLight(material, strength = 1.35) {
@@ -52,6 +55,7 @@ const skyFragment = `
   }
 
   ${nebulaGLSL}
+  ${gargantuaGLSL}
 
   float bell(float distance, float width) {
     float spread = distance / width;
@@ -93,7 +97,7 @@ const skyFragment = `
   void main() {
     vec3 ray = normalize(skyRay);
     if (nebulaAmount >= 1.0) {
-      gl_FragColor = vec4(illuminateSky(ray, nebulaSkyColor(ray)), 1.0);
+      gl_FragColor = vec4(illuminateSky(ray, cosmicSkyColor(ray)), 1.0);
       #include <colorspace_fragment>
       return;
     }
@@ -141,7 +145,7 @@ const skyFragment = `
 
     if (nebulaAmount > 0.0) {
       float reveal = nebulaReveal(ray);
-      if (reveal > 0.0) color = mix(color, nebulaSkyColor(ray), reveal);
+      if (reveal > 0.0) color = mix(color, cosmicSkyColor(ray), reveal);
     }
     gl_FragColor = vec4(illuminateSky(ray, color), 1.0);
     #include <colorspace_fragment>
@@ -170,6 +174,8 @@ export function createDaylight(scene, renderer, buildings) {
   const moonDirection = new THREE.Vector3();
   const zenith = new THREE.Color();
   const horizon = new THREE.Color();
+  const gargantuaMotion = createGargantuaMotion();
+  const gargantuaDirection = new THREE.Vector3(.25, .37, -.89).normalize();
   const uniforms = {
     sunDirection: { value: sunDirection },
     moonDirection: { value: moonDirection },
@@ -183,6 +189,12 @@ export function createDaylight(scene, renderer, buildings) {
     nebulaOrigin: { value: new THREE.Vector3(0, 1, 0) },
     nebulaNoise: { value: createNebulaNoise() },
     nebulaPhase: { value: 0 },
+    gargantuaDirection: { value: gargantuaDirection },
+    gargantuaReveal: { value: 0 },
+    gargantuaOrbit: { value: 0 },
+    gargantuaGlow: { value: 1 },
+    gargantuaBloom: { value: null },
+    gargantuaBloomStrength: { value: 0 },
     stellarFlash: { value: 0 },
     stellarWaves: { value: STELLAR_WAVES.map(() => new THREE.Vector2()) },
     skyExposure: { value: 1 },
@@ -203,6 +215,8 @@ export function createDaylight(scene, renderer, buildings) {
   sky.renderOrder = 1000;
   sky.frustumCulled = false;
   scene.add(sky);
+  const updateGargantuaBodies = createGargantuaBodies(sky, uniforms);
+  const prepareSky = createGargantuaBloom(renderer, uniforms);
 
   const luminous = new Map();
   const reflections = new Map();
@@ -210,7 +224,7 @@ export function createDaylight(scene, renderer, buildings) {
     template.traverse((part) => {
       for (const material of Array.isArray(part.material) ? part.material : [part.material]) {
         if (material?.emissive?.getHex()) luminous.set(material, material.emissiveIntensity);
-        if (material?.envMap) reflections.set(material, material.envMapIntensity);
+        if (material?.envMap) reflections.set(material, { map: material.envMap, intensity: material.envMapIntensity });
       }
     });
   }
@@ -222,14 +236,19 @@ export function createDaylight(scene, renderer, buildings) {
   const whiteSun = new THREE.Color("#fff3db");
   const fogBase = new THREE.Color();
   const ambientSkyBase = new THREE.Color();
-  const nebulaFog = new THREE.Color("#372035");
-  const nebulaAmbient = new THREE.Color("#d58aa8");
+  const nebulaFog = new THREE.Color("#543656");
+  const nebulaAmbient = new THREE.Color("#b994e0");
+  const nebulaGround = new THREE.Color("#665079");
+  const discLight = new THREE.Color("#ffd1aa");
+  const flashLight = new THREE.Color("#fff4df");
   const flashFog = new THREE.Color("#dbe6ee");
   const ambientGroundBase = new THREE.Color();
   let lightingChanged = true;
   let hourLampPower = 0;
   let gridAvailable = true;
   let ambientBase = 0;
+  let nightAttenuation = 0;
+  let reflectionSky;
 
   function tintAtmosphere() {
     const amount = uniforms.nebulaAmount.value;
@@ -237,8 +256,65 @@ export function createDaylight(scene, renderer, buildings) {
     scene.fog.color.copy(fogBase).lerp(nebulaFog, amount)
       .multiplyScalar(THREE.MathUtils.lerp(.15, 1, uniforms.skyExposure.value))
       .lerp(flashFog, flash * .82);
-    ambient.color.copy(ambientSkyBase).lerp(nebulaAmbient, amount * .48).lerp(daySky, flash * .87);
-    ambient.groundColor.copy(ambientGroundBase).lerp(dayGround, flash * .88);
+    ambient.color.copy(ambientSkyBase).lerp(nebulaAmbient, amount * .86).lerp(daySky, flash * .87);
+    ambient.groundColor.copy(ambientGroundBase).lerp(nebulaGround, amount * .72).lerp(dayGround, flash * .88);
+  }
+
+  function captureNebulaReflections() {
+    // One small capture of the sky supplies roughness-aware reflections across the city.
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        ...uniforms,
+        nebulaAmount: { value: 1 }, nebulaPhase: { value: Math.PI * .8 },
+        gargantuaReveal: { value: 1 }, gargantuaOrbit: { value: 0 }, gargantuaGlow: { value: 1 },
+        gargantuaBloomStrength: { value: 0 },
+        stellarFlash: { value: 0 }, stellarWaves: { value: STELLAR_WAVES.map(() => new THREE.Vector2()) },
+        skyExposure: { value: 1 },
+      },
+      vertexShader: skyVertex, fragmentShader: skyFragment,
+      side: THREE.BackSide, depthTest: false, depthWrite: false, toneMapped: false,
+    });
+    const capture = new THREE.Scene();
+    capture.add(new THREE.Mesh(sky.geometry, material));
+    const generator = new THREE.PMREMGenerator(renderer);
+    try {
+      reflectionSky = generator.fromScene(capture, 0, .1, 250, { size: 128 });
+      reflectionSky.texture.name = "Reflexos de Gargântua e da nebulosa";
+    } finally {
+      generator.dispose();
+      material.dispose();
+    }
+  }
+
+  function updateReflections() {
+    const night = uniforms.night.value;
+    const amount = uniforms.nebulaAmount.value * night;
+    if (amount > 0 && !reflectionSky && reflections.size && renderer.isWebGLRenderer) captureNebulaReflections();
+    const skyMap = amount > 0 ? reflectionSky?.texture : undefined;
+    for (const [material, { map, intensity }] of reflections) {
+      const nextMap = skyMap ?? map;
+      if (material.envMap !== nextMap) {
+        material.envMap = nextMap;
+        material.needsUpdate = true;
+      }
+      material.envMapIntensity = skyMap ? intensity * amount * 1.46 : intensity * (gridAvailable ? 1 : 1 - .94 * night);
+    }
+  }
+
+  function illuminateCity() {
+    const night = uniforms.night.value;
+    const amount = uniforms.nebulaAmount.value * night;
+    const flash = uniforms.stellarFlash.value;
+    const glow = uniforms.gargantuaGlow.value;
+    const disc = uniforms.gargantuaReveal.value * amount * glow;
+    ambient.intensity = ambientBase * (1 - .92 * night * nightAttenuation) + amount * .61 + disc * .15 + flash * 1.45;
+    moon.intensity = .35 * night * (1 - .985 * nightAttenuation) * (1 - amount * .84);
+    blast.intensity = flash ? 2.6 * flash : disc * 1.08;
+    blast.color.copy(flash ? flashLight : discLight);
+    if (!flash && disc) {
+      blast.position.copy(gargantuaDirection).multiplyScalar(192);
+      blast.target.position.set(0, 0, 0);
+    }
   }
 
   function powerFixtures() {
@@ -254,7 +330,6 @@ export function createDaylight(scene, renderer, buildings) {
       gridAvailable = !blackout;
       powerFixtures();
     }
-    const night = uniforms.night.value;
     // A blackout removes electric light even by day, without dimming the sun.
     const exposure = 1 - darkness * .985;
     if (uniforms.skyExposure.value !== exposure || uniforms.stellarFlash.value !== flash) {
@@ -262,13 +337,9 @@ export function createDaylight(scene, renderer, buildings) {
       uniforms.stellarFlash.value = flash;
       tintAtmosphere();
     }
-    if (gridChanged || lightingChanged) for (const [material, intensity] of reflections) {
-      material.envMapIntensity = intensity * (blackout ? 1 - .94 * night : 1);
-    }
-    const nightAttenuation = 1 - (1 - darkness) ** 2;
-    ambient.intensity = ambientBase * (1 - .92 * night * nightAttenuation) + flash * 1.45;
-    moon.intensity = .35 * night * (1 - .985 * nightAttenuation);
-    blast.intensity = 2.6 * flash;
+    if (gridChanged || lightingChanged) updateReflections();
+    nightAttenuation = 1 - (1 - darkness) ** 2;
+    illuminateCity();
     if (flash && source) {
       blast.position.copy(source);
       blast.position.y += STELLAR_ALTITUDE;
@@ -320,6 +391,8 @@ export function createDaylight(scene, renderer, buildings) {
 
     hourLampPower = 1 - THREE.MathUtils.smoothstep(height, -0.28, 0.075);
     powerFixtures();
+    updateReflections();
+    illuminateCity();
   }
 
   function positionLights(target) {
@@ -344,7 +417,7 @@ export function createDaylight(scene, renderer, buildings) {
   }
 
   return {
-    setHour, positionLights, sky,
+    setHour, positionLights, sky, prepareSky,
     setStellarLighting,
     setStellarWaves(waves, multiplier) {
       for (const [index, uniform] of uniforms.stellarWaves.value.entries()) {
@@ -352,13 +425,24 @@ export function createDaylight(scene, renderer, buildings) {
         uniform.set(wave?.radius ?? 0, (wave?.power ?? 0) * multiplier);
       }
     },
-    setNebula(amount, origin, phase) {
+    setNebula(amount, origin, seconds) {
       uniforms.nebulaOrigin.value.copy(origin);
-      uniforms.nebulaPhase.value = phase;
-      if (uniforms.nebulaAmount.value === amount) return false;
+      uniforms.nebulaPhase.value = (seconds % NEBULA_CYCLE_SECONDS) / NEBULA_CYCLE_SECONDS * Math.PI * 2;
+      const changed = uniforms.nebulaAmount.value !== amount;
       uniforms.nebulaAmount.value = amount;
-      tintAtmosphere();
-      return true;
+      uniforms.gargantuaReveal.value = THREE.MathUtils.smoothstep(amount, .28, .97);
+      updateGargantuaBodies(seconds, uniforms.gargantuaReveal.value);
+      if (amount > 0) {
+        const { orbit, glow } = gargantuaMotion(seconds);
+        uniforms.gargantuaOrbit.value = orbit;
+        uniforms.gargantuaGlow.value = glow;
+      }
+      if (changed) {
+        tintAtmosphere();
+        updateReflections();
+      }
+      if (amount > 0 || changed) illuminateCity();
+      return changed;
     },
     get lampPower() { return gridAvailable ? hourLampPower : 0; },
   };

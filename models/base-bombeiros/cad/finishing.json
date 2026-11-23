@@ -1,0 +1,60 @@
+[
+  {
+    "command": "solid.move",
+    "params": {
+      "bodies": [
+        "static-red-GarageFrontFascia",
+        "static-white-FacadeLettering",
+        "static-white-FacadeLettering (2)",
+        "static-white-FacadeLettering (3)",
+        "static-white-FacadeLettering (4)",
+        "static-white-FacadeLettering (5)",
+        "static-white-FacadeLettering (6)",
+        "static-white-FacadeLettering (7)",
+        "static-white-FacadeLettering (8)",
+        "static-white-FacadeLettering (9)",
+        "static-white-FacadeLettering (10)",
+        "static-white-FacadeLettering (11)",
+        "static-white-FacadeLettering (12)",
+        "static-white-FacadeLettering (13)",
+        "static-white-FacadeLettering (14)",
+        "static-white-FacadeLettering (15)",
+        "static-white-FacadeLettering (16)"
+      ],
+      "translate": [
+        0,
+        -700,
+        0
+      ],
+      "name": "Project garage fascia and lettering"
+    }
+  },
+  {
+    "command": "solid.move",
+    "params": {
+      "bodies": [
+        "static-red-EmergencySign",
+        "static-white-EmergencyLettering",
+        "static-white-EmergencyLettering (2)",
+        "static-white-EmergencyLettering (3)",
+        "static-white-EmergencyLettering (4)",
+        "static-white-EmergencyLettering (5)",
+        "static-white-EmergencyLettering (6)",
+        "static-white-EmergencyLettering (7)",
+        "static-white-EmergencyLettering (8)",
+        "static-white-EmergencyLettering (9)",
+        "static-white-EmergencyLettering (10)",
+        "static-white-EmergencyLettering (11)",
+        "static-white-EmergencyLettering (12)",
+        "static-white-EmergencyLettering (13)",
+        "static-white-EmergencyLettering (14)"
+      ],
+      "translate": [
+        0,
+        -650,
+        0
+      ],
+      "name": "Project emergency sign beyond brises"
+    }
+  }
+]

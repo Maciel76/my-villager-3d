@@ -3,6 +3,7 @@ import { ASPHALT_Y, DIRECTIONS, tileKey, WALK_Y } from "./road-layout.js";
 import { LOT_SIZE } from "./village-area.js";
 import { createRoadTraffic } from "./traffic-driving.js";
 import { createPoliceFleet } from "./police-fleet.js";
+import { createFireFleet } from "./fire-fleet.js";
 export { carCurve } from "./traffic-driving.js";
 
 const CAR_LIMIT = 36;
@@ -109,6 +110,7 @@ export function createTraffic(scene, heightAt, options={}) {
   const roadHeight=(x,z)=>Math.max(ASPHALT_Y,heightAt?.(x,z)??ASPHALT_Y);
   const driving=createRoadTraffic({...options,heightAt:roadHeight});
   const fleet=createPoliceFleet(driving,{...options,heightAt:roadHeight});
+  const fireFleet=createFireFleet(driving,{...options,heightAt:roadHeight});
   const root = new THREE.Group();
   root.name = "Tráfego da cidade";
   root.visible = false;
@@ -178,13 +180,16 @@ export function createTraffic(scene, heightAt, options={}) {
   return {
     addPoliceStation:model=>fleet.add(model),
     removePoliceStation:model=>fleet.remove(model),
+    addFireStation:model=>fireFleet.add(model),
+    removeFireStation:model=>fireFleet.remove(model),
     get vehicles(){return driving.vehicles;},
     get policeFleets(){return fleet.states;},
+    get fireFleets(){return fireFleet.states;},
     setRoads(roads) {
       const next=streetGraph(roads),keys=new Set(next.map(t=>tileKey(t.x,t.z)));
       const preserve=tiles.length>0&&tiles.every(tile=>keys.has(tileKey(tile.x,tile.z)));
       if(preserve)driving.rebindTiles(next);else{driving.clear();cars=[];}
-      tiles=next;fleet.setTiles(tiles,preserve);
+      tiles=next;fleet.setTiles(tiles,preserve);fireFleet.setTiles(tiles,preserve);
       people = [];
       anchor = null;
     },
@@ -202,7 +207,8 @@ export function createTraffic(scene, heightAt, options={}) {
         cars=[];people=[];anchor=null;paintCars([],false);paintPeople([],false);
       }
       const policeActive=fleet.prepare(animate?dt:0,construction);
-      if(!root.visible&&!policeActive)return false;
+      const fireActive=fireFleet.prepare(animate?dt:0,construction);
+      if(!root.visible&&!policeActive&&!fireActive)return false;
       const radius = THREE.MathUtils.clamp(77 + zoom * .48, 77, 215);
       const repopulate = !anchor || Math.hypot(focus.x - anchor.x, focus.z - anchor.z) > 24 ||
         Math.abs(radius - activeRadius) > 30;
@@ -226,13 +232,14 @@ export function createTraffic(scene, heightAt, options={}) {
         }
       }
       fleet.sync();
+      fireFleet.sync();
       if (animate || repopulate || lastAnimated !== animate)
         paintPeople(people, animate);
       if (animate || repopulate || lastAnimated !== animate || supplyAt || lastSupply)
         paintCars(cars, animate, supplyAt);
       lastAnimated = animate;
       lastSupply = supplyAt;
-      return animate && (policeActive || root.visible&&(cars.length > 0 || people.length > 0));
+      return animate && (policeActive || fireActive || root.visible&&(cars.length > 0 || people.length > 0));
     },
   };
 }

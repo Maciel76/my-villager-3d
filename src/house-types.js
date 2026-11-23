@@ -1,6 +1,7 @@
 import { DECORATION_TYPES } from "./decoration-types.js";
 import { TREE_TYPES } from "./tree-types.js";
 import { PLANTING_BED_TYPES } from "./planting-bed-types.js";
+import { FLAG_TYPES } from "./flag-types.js";
 import { PAVING_TYPES } from "./paving-types.js";
 
 export const DEFAULT_HOUSE = "cottage";
@@ -40,6 +41,11 @@ const APARTMENTS = {
 };
 
 const LANDMARKS = {
+  fireStation: {
+    label: "Quartel Corpo de Bombeiros", lotSpan: [5, 4], height: 24.06, workplaces: 60,
+    meadowClearance: [60, 48],
+    description: "Quatro garagens, viaturas de resgate, torre de treinamento e central de emergência 193.",
+  },
   starship: {
     label: "Base Starship — Porto Aurora", lotSpan: [6, 5], height: 139.9,
     meadowClearance: [72, 60],
@@ -79,7 +85,7 @@ export const BUILDING_TYPES = Object.fromEntries(
     landmarks: LANDMARKS,
     lighting: LIGHTING,
     paving: PAVING_TYPES,
-    decoration: { ...DECORATION_TYPES, ...TREE_TYPES, ...PLANTING_BED_TYPES },
+    decoration: { ...DECORATION_TYPES, ...TREE_TYPES, ...PLANTING_BED_TYPES, ...FLAG_TYPES },
   }).flatMap(([category, models]) =>
     Object.entries(models).map(([type, details]) => [
       type,

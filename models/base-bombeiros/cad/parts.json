@@ -1,0 +1,5651 @@
+{
+  "parts": [
+    {
+      "name": "static-concrete-Foundation",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-asphalt-Apron",
+      "finish": "asphalt",
+      "rig": "static"
+    },
+    {
+      "name": "static-paving-Sidewalk",
+      "finish": "paving",
+      "rig": "static"
+    },
+    {
+      "name": "static-concrete-GarageFloor",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GarageBackWall",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GarageWestWall",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GarageEastWall",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-GarageRoof",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-GarageRoofRedTrim",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-GarageFrontFascia",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GarageLightCanopy",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GaragePier0",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-PierBase0",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GaragePier1",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-PierBase1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GaragePier2",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-PierBase2",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GaragePier3",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-PierBase3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GaragePier4",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-PierBase4",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-GaragePier5",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-PierBase5",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminCore",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-AdminRedSpine",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-glass-AdminGlassGround",
+      "finish": "glass",
+      "rig": "static"
+    },
+    {
+      "name": "static-glass-AdminGlassUpper",
+      "finish": "glass",
+      "rig": "static"
+    },
+    {
+      "name": "static-glass-AdminGlassEast",
+      "finish": "glass",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-AdminCanopy",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-AdminRoof",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminCornice",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-AdminEntranceRedPortal",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-glass-EntranceDoors",
+      "finish": "glass",
+      "rig": "static"
+    },
+    {
+      "name": "static-paving-EntranceThreshold",
+      "finish": "paving",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-TrainingTower",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-TowerCap",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-TowerRoof",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-TowerStairBlock",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-ServiceShed",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-ServiceShedRoof",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-ReserveWater0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-ReserveTankCap0",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-ReserveWater1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-ReserveTankCap1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-ReserveWater2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-ReserveTankCap2",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor0Slat0",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor0Slat1",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor0Slat2",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor0Slat3",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-garageGlass-BayDoor0Glazing",
+      "finish": "garageGlass",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor0Guide-1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay0BollardStripe-1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay0BollardStripe-1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay0BollardStripe-1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay0BollardStripe-1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay0BollardStripe-1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor0Guide1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay0BollardStripe1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay0BollardStripe1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay0BollardStripe1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay0BollardStripe1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay0BollardStripe1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay0FloorLine",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay0ApronStop-16500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay0ApronStop-15000",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay0ApronStop-13500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-Bay0CeilingLight",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor1Slat0",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor1Slat1",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor1Slat2",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor1Slat3",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-garageGlass-BayDoor1Glazing",
+      "finish": "garageGlass",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor1Guide-1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay1BollardStripe-1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay1BollardStripe-1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay1BollardStripe-1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay1BollardStripe-1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay1BollardStripe-1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor1Guide1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay1BollardStripe1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay1BollardStripe1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay1BollardStripe1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay1BollardStripe1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay1BollardStripe1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay1FloorLine",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay1ApronStop-16500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay1ApronStop-15000",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay1ApronStop-13500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-Bay1CeilingLight",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor2Slat0",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor2Slat1",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor2Slat2",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor2Slat3",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-garageGlass-BayDoor2Glazing",
+      "finish": "garageGlass",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor2Guide-1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay2BollardStripe-1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay2BollardStripe-1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay2BollardStripe-1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay2BollardStripe-1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay2BollardStripe-1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor2Guide1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay2BollardStripe1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay2BollardStripe1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay2BollardStripe1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay2BollardStripe1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay2BollardStripe1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay2FloorLine",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay2ApronStop-16500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay2ApronStop-15000",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay2ApronStop-13500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-Bay2CeilingLight",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat0",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat1",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat2",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat3",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat4",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat5",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat6",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat7",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-door-BayDoor3Slat8",
+      "finish": "door",
+      "rig": "static"
+    },
+    {
+      "name": "static-garageGlass-BayDoor3Glazing",
+      "finish": "garageGlass",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor3Guide-1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay3BollardStripe-1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay3BollardStripe-1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay3BollardStripe-1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay3BollardStripe-1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay3BollardStripe-1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-BayDoor3Guide1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay3BollardStripe1_0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay3BollardStripe1_1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay3BollardStripe1_2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-Bay3BollardStripe1_3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay3BollardStripe1_4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-Bay3FloorLine",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay3ApronStop-16500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay3ApronStop-15000",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Bay3ApronStop-13500",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-Bay3CeilingLight",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion0_0",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion0_1",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion0_2",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion0_3",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion1_0",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion1_1",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion1_2",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminMullion1_3",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminEastMullion-1300",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminEastMullion1600",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminEastMullion4500",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminEastMullion7400",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminEastMullion10300",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminHorizontalBand4200",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-AdminHorizontalBand7850",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin0",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin2",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin4",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin5",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin6",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin7",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin8",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SunshadeFin9",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-solar-SolarPanel0",
+      "finish": "solar",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid0_0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid0_1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid0_2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid0_3",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid0_4",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-solar-SolarPanel1",
+      "finish": "solar",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid1_0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid1_1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid1_2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid1_3",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid1_4",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-solar-SolarPanel2",
+      "finish": "solar",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid2_0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid2_1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid2_2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid2_3",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid2_4",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-solar-SolarPanel3",
+      "finish": "solar",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid3_0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid3_1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid3_2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid3_3",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-SolarGrid3_4",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-TowerTrainingOpening0",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-TowerSill0",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-TowerLandingStripe0",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail0_-24850",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail0_-22150",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerHandrail0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-TowerTrainingOpening1",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-TowerSill1",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-TowerLandingStripe1",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail1_-24850",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail1_-22150",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerHandrail1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-TowerTrainingOpening2",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-TowerSill2",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-TowerLandingStripe2",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail2_-24850",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail2_-22150",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerHandrail2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-TowerTrainingOpening3",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-TowerSill3",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-TowerLandingStripe3",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail3_-24850",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail3_-22150",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerHandrail3",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-TowerTrainingOpening4",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-ivory-TowerSill4",
+      "finish": "ivory",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-TowerLandingStripe4",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail4_-24850",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerRail4_-22150",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-TowerHandrail4",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-RappelPost-26100",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-RappelPost-20900",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-RappelCrossbar",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-RappelRope-25400",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-RappelRope-21600",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll0",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll1",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll2",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack3",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll3",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack4",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll4",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack5",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll5",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack6",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll6",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HoseRack7",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-tan-HoseRoll7",
+      "finish": "tan",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-FloodPole-28400_-20300",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-FloodLight-28400_-20300",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-FloodPole-28400_7800",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-FloodLight-28400_7800",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-FloodPole-28400_21400",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-FloodLight-28400_21400",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-FloodPole28300_-20300",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-FloodLight28300_-20300",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-FloodPole28300_7800",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-FloodLight28300_7800",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-FloodPole28300_21400",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-warm-FloodLight28300_21400",
+      "finish": "warm",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-Hydrant-26400",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-HydrantCap-26400",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HydrantOutlet-26400",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-HydrantBollard-26400_-1",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-HydrantBollard-26400_1",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-Hydrant26400",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-HydrantCap26400",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-HydrantOutlet26400",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-HydrantBollard26400_-1",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-yellow-HydrantBollard26400_1",
+      "finish": "yellow",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking0",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking1",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking2",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking3",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking4",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking5",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking6",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-VisitorParking7",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-blue-VisitorAccessible",
+      "finish": "blue",
+      "rig": "static"
+    },
+    {
+      "name": "static-concrete-Planter-19000_-20900",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-soil-PlanterSoil-19000_-20900",
+      "finish": "soil",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_-20900_0",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_-20900_1",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_-20900_2",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_-20900_3",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_-20900_4",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-concrete-Planter-4000_-20900",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-soil-PlanterSoil-4000_-20900",
+      "finish": "soil",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_-20900_0",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_-20900_1",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_-20900_2",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_-20900_3",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_-20900_4",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-concrete-Planter16000_-20900",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-soil-PlanterSoil16000_-20900",
+      "finish": "soil",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_-20900_0",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_-20900_1",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_-20900_2",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_-20900_3",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_-20900_4",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-concrete-Planter-19000_21500",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-soil-PlanterSoil-19000_21500",
+      "finish": "soil",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_21500_0",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_21500_1",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_21500_2",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_21500_3",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-19000_21500_4",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-concrete-Planter-4000_21500",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-soil-PlanterSoil-4000_21500",
+      "finish": "soil",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_21500_0",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_21500_1",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_21500_2",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_21500_3",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant-4000_21500_4",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-concrete-Planter16000_21500",
+      "finish": "concrete",
+      "rig": "static"
+    },
+    {
+      "name": "static-soil-PlanterSoil16000_21500",
+      "finish": "soil",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_21500_0",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_21500_1",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_21500_2",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_21500_3",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Plant16000_21500_4",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SideFence-29200",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-charcoal-SideFence29200",
+      "finish": "charcoal",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost0",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost1",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost2",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost3",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost4",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost5",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost6",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost7",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost8",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost9",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost10",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost11",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost12",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost13",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost14",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost15",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFencePost16",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFenceRail1000",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-RearFenceRail2350",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-Flagpole9200",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-green-Flag9200",
+      "finish": "green",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-Flagpole11100",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-white-Flag11100",
+      "finish": "white",
+      "rig": "static"
+    },
+    {
+      "name": "static-steel-Flagpole13000",
+      "finish": "steel",
+      "rig": "static"
+    },
+    {
+      "name": "static-red-Flag13000",
+      "finish": "red",
+      "rig": "static"
+    },
+    {
+      "name": "truck0-charcoal-Chassis",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-red-Cab",
+      "finish": "red",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-red-CabRoof",
+      "finish": "red",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-vehicleGlass-Windshield",
+      "finish": "vehicleGlass",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-vehicleGlass-CabRear",
+      "finish": "vehicleGlass",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-vehicleGlass-CabWindow-1",
+      "finish": "vehicleGlass",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-white-CabDoorStripe-1",
+      "finish": "white",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-CabHandle-1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-CabStep-1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-Mirror-1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-MirrorArm-1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-vehicleGlass-CabWindow1",
+      "finish": "vehicleGlass",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-white-CabDoorStripe1",
+      "finish": "white",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-CabHandle1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-CabStep1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-Mirror1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-MirrorArm1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-Grille",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-GrilleBar0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-GrilleBar1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-GrilleBar2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-GrilleBar3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-GrilleBar4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-FrontBumper",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-warm-Headlight-1",
+      "finish": "warm",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-siren-EmergencyFront-1",
+      "finish": "siren",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-warm-Headlight1",
+      "finish": "warm",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-siren-EmergencyFront1",
+      "finish": "siren",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-SirenBridge",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-siren-Siren-1",
+      "finish": "siren",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-siren-Siren1",
+      "finish": "siren",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-rubber-Tire0_-1",
+      "finish": "rubber",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-Wheel0_-1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-WheelHub0_-1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_-1_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_-1_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_-1_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_-1_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_-1_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_-1_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-rubber-Tire0_1",
+      "finish": "rubber",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-Wheel0_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-WheelHub0_1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_1_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_1_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_1_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_1_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_1_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt0_1_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-rubber-Tire1_-1",
+      "finish": "rubber",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-Wheel1_-1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-WheelHub1_-1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_-1_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_-1_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_-1_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_-1_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_-1_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_-1_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-rubber-Tire1_1",
+      "finish": "rubber",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-Wheel1_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-WheelHub1_1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_1_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_1_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_1_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_1_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_1_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-WheelBolt1_1_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-red-EquipmentBody",
+      "finish": "red",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-EquipmentRoof",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-white-BodyStripe-1",
+      "finish": "white",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-door-Compartment-1_0",
+      "finish": "door",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_0_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_0_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_0_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_0_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_0_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_0_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-ShutterHandle-1_0",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-door-Compartment-1_1",
+      "finish": "door",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_1_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_1_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_1_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_1_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_1_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_1_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-ShutterHandle-1_1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-door-Compartment-1_2",
+      "finish": "door",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_2_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_2_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_2_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_2_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_2_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat-1_2_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-ShutterHandle-1_2",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-white-BodyStripe1",
+      "finish": "white",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-door-Compartment1_0",
+      "finish": "door",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_0_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_0_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_0_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_0_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_0_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_0_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-ShutterHandle1_0",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-door-Compartment1_1",
+      "finish": "door",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_1_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_1_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_1_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_1_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_1_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_1_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-ShutterHandle1_1",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-door-Compartment1_2",
+      "finish": "door",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_2_0",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_2_1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_2_2",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_2_3",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_2_4",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-ShutterSlat1_2_5",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-charcoal-ShutterHandle1_2",
+      "finish": "charcoal",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-RearBumper",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-siren-RearLamp-1",
+      "finish": "siren",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-siren-RearLamp1",
+      "finish": "siren",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-tan-RoofHose0",
+      "finish": "tan",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-tan-RoofHose1",
+      "finish": "tan",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-tan-RoofHose2",
+      "finish": "tan",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-red-RoofMonitor",
+      "finish": "red",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-MonitorNozzle",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-PumpOutlet-1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck0-steel-PumpOutlet1",
+      "finish": "steel",
+      "rig": "truck0"
+    },
+    {
+      "name": "truck1-charcoal-Chassis",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-red-Cab",
+      "finish": "red",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-red-CabRoof",
+      "finish": "red",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-vehicleGlass-Windshield",
+      "finish": "vehicleGlass",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-vehicleGlass-CabRear",
+      "finish": "vehicleGlass",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-vehicleGlass-CabWindow-1",
+      "finish": "vehicleGlass",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-white-CabDoorStripe-1",
+      "finish": "white",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-CabHandle-1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-CabStep-1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-Mirror-1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-MirrorArm-1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-vehicleGlass-CabWindow1",
+      "finish": "vehicleGlass",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-white-CabDoorStripe1",
+      "finish": "white",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-CabHandle1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-CabStep1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-Mirror1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-MirrorArm1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-Grille",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-GrilleBar0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-GrilleBar1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-GrilleBar2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-GrilleBar3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-GrilleBar4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-FrontBumper",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-warm-Headlight-1",
+      "finish": "warm",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-siren-EmergencyFront-1",
+      "finish": "siren",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-warm-Headlight1",
+      "finish": "warm",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-siren-EmergencyFront1",
+      "finish": "siren",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-SirenBridge",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-siren-Siren-1",
+      "finish": "siren",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-siren-Siren1",
+      "finish": "siren",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-rubber-Tire0_-1",
+      "finish": "rubber",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-Wheel0_-1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-WheelHub0_-1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_-1_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_-1_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_-1_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_-1_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_-1_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_-1_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-rubber-Tire0_1",
+      "finish": "rubber",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-Wheel0_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-WheelHub0_1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_1_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_1_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_1_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_1_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_1_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt0_1_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-rubber-Tire1_-1",
+      "finish": "rubber",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-Wheel1_-1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-WheelHub1_-1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_-1_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_-1_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_-1_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_-1_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_-1_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_-1_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-rubber-Tire1_1",
+      "finish": "rubber",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-Wheel1_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-WheelHub1_1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_1_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_1_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_1_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_1_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_1_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-WheelBolt1_1_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-red-EquipmentBody",
+      "finish": "red",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-EquipmentRoof",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-white-BodyStripe-1",
+      "finish": "white",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-door-Compartment-1_0",
+      "finish": "door",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_0_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_0_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_0_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_0_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_0_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_0_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-ShutterHandle-1_0",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-door-Compartment-1_1",
+      "finish": "door",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_1_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_1_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_1_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_1_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_1_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_1_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-ShutterHandle-1_1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-door-Compartment-1_2",
+      "finish": "door",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_2_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_2_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_2_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_2_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_2_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat-1_2_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-ShutterHandle-1_2",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-white-BodyStripe1",
+      "finish": "white",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-door-Compartment1_0",
+      "finish": "door",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_0_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_0_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_0_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_0_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_0_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_0_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-ShutterHandle1_0",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-door-Compartment1_1",
+      "finish": "door",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_1_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_1_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_1_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_1_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_1_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_1_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-ShutterHandle1_1",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-door-Compartment1_2",
+      "finish": "door",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_2_0",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_2_1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_2_2",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_2_3",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_2_4",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-ShutterSlat1_2_5",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-charcoal-ShutterHandle1_2",
+      "finish": "charcoal",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-RearBumper",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-siren-RearLamp-1",
+      "finish": "siren",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-siren-RearLamp1",
+      "finish": "siren",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-tan-RoofHose0",
+      "finish": "tan",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-tan-RoofHose1",
+      "finish": "tan",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-tan-RoofHose2",
+      "finish": "tan",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-red-RoofMonitor",
+      "finish": "red",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-MonitorNozzle",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-PumpOutlet-1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck1-steel-PumpOutlet1",
+      "finish": "steel",
+      "rig": "truck1"
+    },
+    {
+      "name": "truck2-charcoal-Chassis",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-red-Cab",
+      "finish": "red",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-red-CabRoof",
+      "finish": "red",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-vehicleGlass-Windshield",
+      "finish": "vehicleGlass",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-vehicleGlass-CabRear",
+      "finish": "vehicleGlass",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-vehicleGlass-CabWindow-1",
+      "finish": "vehicleGlass",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-white-CabDoorStripe-1",
+      "finish": "white",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-CabHandle-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-CabStep-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-Mirror-1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-MirrorArm-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-vehicleGlass-CabWindow1",
+      "finish": "vehicleGlass",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-white-CabDoorStripe1",
+      "finish": "white",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-CabHandle1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-CabStep1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-Mirror1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-MirrorArm1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-Grille",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-GrilleBar0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-GrilleBar1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-GrilleBar2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-GrilleBar3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-GrilleBar4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-FrontBumper",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-warm-Headlight-1",
+      "finish": "warm",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-siren-EmergencyFront-1",
+      "finish": "siren",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-warm-Headlight1",
+      "finish": "warm",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-siren-EmergencyFront1",
+      "finish": "siren",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-SirenBridge",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-siren-Siren-1",
+      "finish": "siren",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-siren-Siren1",
+      "finish": "siren",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-rubber-Tire0_-1",
+      "finish": "rubber",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-Wheel0_-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-WheelHub0_-1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_-1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_-1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_-1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_-1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_-1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_-1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-rubber-Tire0_1",
+      "finish": "rubber",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-Wheel0_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-WheelHub0_1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt0_1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-rubber-Tire1_-1",
+      "finish": "rubber",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-Wheel1_-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-WheelHub1_-1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_-1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_-1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_-1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_-1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_-1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_-1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-rubber-Tire1_1",
+      "finish": "rubber",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-Wheel1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-WheelHub1_1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt1_1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-rubber-Tire2_-1",
+      "finish": "rubber",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-Wheel2_-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-WheelHub2_-1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_-1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_-1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_-1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_-1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_-1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_-1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-rubber-Tire2_1",
+      "finish": "rubber",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-Wheel2_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-WheelHub2_1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-WheelBolt2_1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-red-EquipmentBody",
+      "finish": "red",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-EquipmentRoof",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-white-BodyStripe-1",
+      "finish": "white",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-door-Compartment-1_0",
+      "finish": "door",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_0_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_0_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_0_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_0_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_0_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_0_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-ShutterHandle-1_0",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-door-Compartment-1_1",
+      "finish": "door",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-ShutterHandle-1_1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-door-Compartment-1_2",
+      "finish": "door",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_2_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_2_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_2_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_2_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_2_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat-1_2_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-ShutterHandle-1_2",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-white-BodyStripe1",
+      "finish": "white",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-door-Compartment1_0",
+      "finish": "door",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_0_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_0_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_0_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_0_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_0_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_0_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-ShutterHandle1_0",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-door-Compartment1_1",
+      "finish": "door",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_1_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_1_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_1_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_1_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_1_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_1_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-ShutterHandle1_1",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-door-Compartment1_2",
+      "finish": "door",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_2_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_2_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_2_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_2_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_2_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-ShutterSlat1_2_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-ShutterHandle1_2",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-RearBumper",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-siren-RearLamp-1",
+      "finish": "siren",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-siren-RearLamp1",
+      "finish": "siren",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-charcoal-LadderTurntable",
+      "finish": "charcoal",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRail3950_-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRail3950_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_6",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_7",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_8",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_9",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_10",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_11",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_12",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_13",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_14",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_15",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung3950_16",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRail4200_-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRail4200_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_6",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_7",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_8",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_9",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_10",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_11",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_12",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4200_13",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRail4450_-1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRail4450_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_0",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_1",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_2",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_3",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_4",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_5",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_6",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_7",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_8",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_9",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-steel-LadderRung4450_10",
+      "finish": "steel",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck2-white-LadderBasket",
+      "finish": "white",
+      "rig": "truck2"
+    },
+    {
+      "name": "truck3-charcoal-Chassis",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-red-Cab",
+      "finish": "red",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-red-CabRoof",
+      "finish": "red",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-vehicleGlass-Windshield",
+      "finish": "vehicleGlass",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-vehicleGlass-CabRear",
+      "finish": "vehicleGlass",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-vehicleGlass-CabWindow-1",
+      "finish": "vehicleGlass",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-white-CabDoorStripe-1",
+      "finish": "white",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-CabHandle-1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-CabStep-1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-Mirror-1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-MirrorArm-1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-vehicleGlass-CabWindow1",
+      "finish": "vehicleGlass",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-white-CabDoorStripe1",
+      "finish": "white",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-CabHandle1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-CabStep1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-Mirror1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-MirrorArm1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-Grille",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-GrilleBar0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-GrilleBar1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-GrilleBar2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-GrilleBar3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-GrilleBar4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-FrontBumper",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-warm-Headlight-1",
+      "finish": "warm",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-siren-EmergencyFront-1",
+      "finish": "siren",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-warm-Headlight1",
+      "finish": "warm",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-siren-EmergencyFront1",
+      "finish": "siren",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-SirenBridge",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-siren-Siren-1",
+      "finish": "siren",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-siren-Siren1",
+      "finish": "siren",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-rubber-Tire0_-1",
+      "finish": "rubber",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-Wheel0_-1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-WheelHub0_-1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_-1_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_-1_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_-1_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_-1_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_-1_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_-1_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-rubber-Tire0_1",
+      "finish": "rubber",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-Wheel0_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-WheelHub0_1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_1_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_1_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_1_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_1_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_1_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt0_1_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-rubber-Tire1_-1",
+      "finish": "rubber",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-Wheel1_-1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-WheelHub1_-1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_-1_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_-1_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_-1_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_-1_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_-1_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_-1_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-rubber-Tire1_1",
+      "finish": "rubber",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-Wheel1_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-WheelHub1_1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_1_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_1_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_1_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_1_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_1_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-WheelBolt1_1_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-white-EquipmentBody",
+      "finish": "white",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-EquipmentRoof",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-red-BodyStripe-1",
+      "finish": "red",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-door-Compartment-1_0",
+      "finish": "door",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_0_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_0_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_0_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_0_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_0_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_0_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-ShutterHandle-1_0",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-door-Compartment-1_1",
+      "finish": "door",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_1_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_1_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_1_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_1_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_1_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_1_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-ShutterHandle-1_1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-door-Compartment-1_2",
+      "finish": "door",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_2_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_2_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_2_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_2_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_2_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat-1_2_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-ShutterHandle-1_2",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-red-BodyStripe1",
+      "finish": "red",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-door-Compartment1_0",
+      "finish": "door",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_0_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_0_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_0_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_0_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_0_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_0_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-ShutterHandle1_0",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-door-Compartment1_1",
+      "finish": "door",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_1_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_1_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_1_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_1_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_1_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_1_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-ShutterHandle1_1",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-door-Compartment1_2",
+      "finish": "door",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_2_0",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_2_1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_2_2",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_2_3",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_2_4",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-ShutterSlat1_2_5",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-charcoal-ShutterHandle1_2",
+      "finish": "charcoal",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-RearBumper",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-siren-RearLamp-1",
+      "finish": "siren",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-siren-RearLamp1",
+      "finish": "siren",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-tan-RoofHose0",
+      "finish": "tan",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-tan-RoofHose1",
+      "finish": "tan",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-tan-RoofHose2",
+      "finish": "tan",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-red-RoofMonitor",
+      "finish": "red",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-MonitorNozzle",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-PumpOutlet-1",
+      "finish": "steel",
+      "rig": "truck3"
+    },
+    {
+      "name": "truck3-steel-PumpOutlet1",
+      "finish": "steel",
+      "rig": "truck3"
+    }
+  ],
+  "finishes": {
+    "concrete": [
+      "static-concrete-Foundation",
+      "static-concrete-GarageFloor",
+      "static-concrete-Planter-19000_-20900",
+      "static-concrete-Planter-4000_-20900",
+      "static-concrete-Planter16000_-20900",
+      "static-concrete-Planter-19000_21500",
+      "static-concrete-Planter-4000_21500",
+      "static-concrete-Planter16000_21500"
+    ],
+    "asphalt": [
+      "static-asphalt-Apron"
+    ],
+    "paving": [
+      "static-paving-Sidewalk",
+      "static-paving-EntranceThreshold"
+    ],
+    "ivory": [
+      "static-ivory-GarageBackWall",
+      "static-ivory-GarageWestWall",
+      "static-ivory-GarageEastWall",
+      "static-ivory-GarageLightCanopy",
+      "static-ivory-GaragePier0",
+      "static-ivory-GaragePier1",
+      "static-ivory-GaragePier2",
+      "static-ivory-GaragePier3",
+      "static-ivory-GaragePier4",
+      "static-ivory-GaragePier5",
+      "static-ivory-AdminCore",
+      "static-ivory-AdminCornice",
+      "static-ivory-TowerCap",
+      "static-ivory-TowerStairBlock",
+      "static-ivory-ServiceShed",
+      "static-ivory-AdminMullion0_0",
+      "static-ivory-AdminMullion0_1",
+      "static-ivory-AdminMullion0_2",
+      "static-ivory-AdminMullion0_3",
+      "static-ivory-AdminMullion1_0",
+      "static-ivory-AdminMullion1_1",
+      "static-ivory-AdminMullion1_2",
+      "static-ivory-AdminMullion1_3",
+      "static-ivory-AdminEastMullion-1300",
+      "static-ivory-AdminEastMullion1600",
+      "static-ivory-AdminEastMullion4500",
+      "static-ivory-AdminEastMullion7400",
+      "static-ivory-AdminEastMullion10300",
+      "static-ivory-AdminHorizontalBand4200",
+      "static-ivory-AdminHorizontalBand7850",
+      "static-ivory-TowerSill0",
+      "static-ivory-TowerSill1",
+      "static-ivory-TowerSill2",
+      "static-ivory-TowerSill3",
+      "static-ivory-TowerSill4"
+    ],
+    "charcoal": [
+      "static-charcoal-GarageRoof",
+      "static-charcoal-PierBase0",
+      "static-charcoal-PierBase1",
+      "static-charcoal-PierBase2",
+      "static-charcoal-PierBase3",
+      "static-charcoal-PierBase4",
+      "static-charcoal-PierBase5",
+      "static-charcoal-AdminCanopy",
+      "static-charcoal-AdminRoof",
+      "static-charcoal-TowerRoof",
+      "static-charcoal-ServiceShedRoof",
+      "static-charcoal-ReserveTankCap0",
+      "static-charcoal-ReserveTankCap1",
+      "static-charcoal-ReserveTankCap2",
+      "static-charcoal-Bay0BollardStripe-1_1",
+      "static-charcoal-Bay0BollardStripe-1_3",
+      "static-charcoal-Bay0BollardStripe1_1",
+      "static-charcoal-Bay0BollardStripe1_3",
+      "static-charcoal-Bay1BollardStripe-1_1",
+      "static-charcoal-Bay1BollardStripe-1_3",
+      "static-charcoal-Bay1BollardStripe1_1",
+      "static-charcoal-Bay1BollardStripe1_3",
+      "static-charcoal-Bay2BollardStripe-1_1",
+      "static-charcoal-Bay2BollardStripe-1_3",
+      "static-charcoal-Bay2BollardStripe1_1",
+      "static-charcoal-Bay2BollardStripe1_3",
+      "static-charcoal-Bay3BollardStripe-1_1",
+      "static-charcoal-Bay3BollardStripe-1_3",
+      "static-charcoal-Bay3BollardStripe1_1",
+      "static-charcoal-Bay3BollardStripe1_3",
+      "static-charcoal-SunshadeFin0",
+      "static-charcoal-SunshadeFin1",
+      "static-charcoal-SunshadeFin2",
+      "static-charcoal-SunshadeFin3",
+      "static-charcoal-SunshadeFin4",
+      "static-charcoal-SunshadeFin5",
+      "static-charcoal-SunshadeFin6",
+      "static-charcoal-SunshadeFin7",
+      "static-charcoal-SunshadeFin8",
+      "static-charcoal-SunshadeFin9",
+      "static-charcoal-TowerTrainingOpening0",
+      "static-charcoal-TowerTrainingOpening1",
+      "static-charcoal-TowerTrainingOpening2",
+      "static-charcoal-TowerTrainingOpening3",
+      "static-charcoal-TowerTrainingOpening4",
+      "static-charcoal-RappelPost-26100",
+      "static-charcoal-RappelPost-20900",
+      "static-charcoal-RappelCrossbar",
+      "static-charcoal-SideFence-29200",
+      "static-charcoal-SideFence29200",
+      "truck0-charcoal-Chassis",
+      "truck0-charcoal-Mirror-1",
+      "truck0-charcoal-Mirror1",
+      "truck0-charcoal-Grille",
+      "truck0-charcoal-SirenBridge",
+      "truck0-charcoal-WheelHub0_-1",
+      "truck0-charcoal-WheelHub0_1",
+      "truck0-charcoal-WheelHub1_-1",
+      "truck0-charcoal-WheelHub1_1",
+      "truck0-charcoal-ShutterHandle-1_0",
+      "truck0-charcoal-ShutterHandle-1_1",
+      "truck0-charcoal-ShutterHandle-1_2",
+      "truck0-charcoal-ShutterHandle1_0",
+      "truck0-charcoal-ShutterHandle1_1",
+      "truck0-charcoal-ShutterHandle1_2",
+      "truck1-charcoal-Chassis",
+      "truck1-charcoal-Mirror-1",
+      "truck1-charcoal-Mirror1",
+      "truck1-charcoal-Grille",
+      "truck1-charcoal-SirenBridge",
+      "truck1-charcoal-WheelHub0_-1",
+      "truck1-charcoal-WheelHub0_1",
+      "truck1-charcoal-WheelHub1_-1",
+      "truck1-charcoal-WheelHub1_1",
+      "truck1-charcoal-ShutterHandle-1_0",
+      "truck1-charcoal-ShutterHandle-1_1",
+      "truck1-charcoal-ShutterHandle-1_2",
+      "truck1-charcoal-ShutterHandle1_0",
+      "truck1-charcoal-ShutterHandle1_1",
+      "truck1-charcoal-ShutterHandle1_2",
+      "truck2-charcoal-Chassis",
+      "truck2-charcoal-Mirror-1",
+      "truck2-charcoal-Mirror1",
+      "truck2-charcoal-Grille",
+      "truck2-charcoal-SirenBridge",
+      "truck2-charcoal-WheelHub0_-1",
+      "truck2-charcoal-WheelHub0_1",
+      "truck2-charcoal-WheelHub1_-1",
+      "truck2-charcoal-WheelHub1_1",
+      "truck2-charcoal-WheelHub2_-1",
+      "truck2-charcoal-WheelHub2_1",
+      "truck2-charcoal-ShutterHandle-1_0",
+      "truck2-charcoal-ShutterHandle-1_1",
+      "truck2-charcoal-ShutterHandle-1_2",
+      "truck2-charcoal-ShutterHandle1_0",
+      "truck2-charcoal-ShutterHandle1_1",
+      "truck2-charcoal-ShutterHandle1_2",
+      "truck2-charcoal-LadderTurntable",
+      "truck3-charcoal-Chassis",
+      "truck3-charcoal-Mirror-1",
+      "truck3-charcoal-Mirror1",
+      "truck3-charcoal-Grille",
+      "truck3-charcoal-SirenBridge",
+      "truck3-charcoal-WheelHub0_-1",
+      "truck3-charcoal-WheelHub0_1",
+      "truck3-charcoal-WheelHub1_-1",
+      "truck3-charcoal-WheelHub1_1",
+      "truck3-charcoal-ShutterHandle-1_0",
+      "truck3-charcoal-ShutterHandle-1_1",
+      "truck3-charcoal-ShutterHandle-1_2",
+      "truck3-charcoal-ShutterHandle1_0",
+      "truck3-charcoal-ShutterHandle1_1",
+      "truck3-charcoal-ShutterHandle1_2"
+    ],
+    "red": [
+      "static-red-GarageRoofRedTrim",
+      "static-red-GarageFrontFascia",
+      "static-red-AdminRedSpine",
+      "static-red-AdminEntranceRedPortal",
+      "static-red-TrainingTower",
+      "static-red-Hydrant-26400",
+      "static-red-HydrantCap-26400",
+      "static-red-Hydrant26400",
+      "static-red-HydrantCap26400",
+      "static-red-Flag13000",
+      "truck0-red-Cab",
+      "truck0-red-CabRoof",
+      "truck0-red-EquipmentBody",
+      "truck0-red-RoofMonitor",
+      "truck1-red-Cab",
+      "truck1-red-CabRoof",
+      "truck1-red-EquipmentBody",
+      "truck1-red-RoofMonitor",
+      "truck2-red-Cab",
+      "truck2-red-CabRoof",
+      "truck2-red-EquipmentBody",
+      "truck3-red-Cab",
+      "truck3-red-CabRoof",
+      "truck3-red-BodyStripe-1",
+      "truck3-red-BodyStripe1",
+      "truck3-red-RoofMonitor"
+    ],
+    "glass": [
+      "static-glass-AdminGlassGround",
+      "static-glass-AdminGlassUpper",
+      "static-glass-AdminGlassEast",
+      "static-glass-EntranceDoors"
+    ],
+    "steel": [
+      "static-steel-ReserveWater0",
+      "static-steel-ReserveWater1",
+      "static-steel-ReserveWater2",
+      "static-steel-BayDoor0Guide-1",
+      "static-steel-BayDoor0Guide1",
+      "static-steel-BayDoor1Guide-1",
+      "static-steel-BayDoor1Guide1",
+      "static-steel-BayDoor2Guide-1",
+      "static-steel-BayDoor2Guide1",
+      "static-steel-BayDoor3Guide-1",
+      "static-steel-BayDoor3Guide1",
+      "static-steel-SolarGrid0_0",
+      "static-steel-SolarGrid0_1",
+      "static-steel-SolarGrid0_2",
+      "static-steel-SolarGrid0_3",
+      "static-steel-SolarGrid0_4",
+      "static-steel-SolarGrid1_0",
+      "static-steel-SolarGrid1_1",
+      "static-steel-SolarGrid1_2",
+      "static-steel-SolarGrid1_3",
+      "static-steel-SolarGrid1_4",
+      "static-steel-SolarGrid2_0",
+      "static-steel-SolarGrid2_1",
+      "static-steel-SolarGrid2_2",
+      "static-steel-SolarGrid2_3",
+      "static-steel-SolarGrid2_4",
+      "static-steel-SolarGrid3_0",
+      "static-steel-SolarGrid3_1",
+      "static-steel-SolarGrid3_2",
+      "static-steel-SolarGrid3_3",
+      "static-steel-SolarGrid3_4",
+      "static-steel-TowerRail0_-24850",
+      "static-steel-TowerRail0_-22150",
+      "static-steel-TowerHandrail0",
+      "static-steel-TowerRail1_-24850",
+      "static-steel-TowerRail1_-22150",
+      "static-steel-TowerHandrail1",
+      "static-steel-TowerRail2_-24850",
+      "static-steel-TowerRail2_-22150",
+      "static-steel-TowerHandrail2",
+      "static-steel-TowerRail3_-24850",
+      "static-steel-TowerRail3_-22150",
+      "static-steel-TowerHandrail3",
+      "static-steel-TowerRail4_-24850",
+      "static-steel-TowerRail4_-22150",
+      "static-steel-TowerHandrail4",
+      "static-steel-HoseRack0",
+      "static-steel-HoseRack1",
+      "static-steel-HoseRack2",
+      "static-steel-HoseRack3",
+      "static-steel-HoseRack4",
+      "static-steel-HoseRack5",
+      "static-steel-HoseRack6",
+      "static-steel-HoseRack7",
+      "static-steel-FloodPole-28400_-20300",
+      "static-steel-FloodPole-28400_7800",
+      "static-steel-FloodPole-28400_21400",
+      "static-steel-FloodPole28300_-20300",
+      "static-steel-FloodPole28300_7800",
+      "static-steel-FloodPole28300_21400",
+      "static-steel-HydrantOutlet-26400",
+      "static-steel-HydrantOutlet26400",
+      "static-steel-RearFencePost0",
+      "static-steel-RearFencePost1",
+      "static-steel-RearFencePost2",
+      "static-steel-RearFencePost3",
+      "static-steel-RearFencePost4",
+      "static-steel-RearFencePost5",
+      "static-steel-RearFencePost6",
+      "static-steel-RearFencePost7",
+      "static-steel-RearFencePost8",
+      "static-steel-RearFencePost9",
+      "static-steel-RearFencePost10",
+      "static-steel-RearFencePost11",
+      "static-steel-RearFencePost12",
+      "static-steel-RearFencePost13",
+      "static-steel-RearFencePost14",
+      "static-steel-RearFencePost15",
+      "static-steel-RearFencePost16",
+      "static-steel-RearFenceRail1000",
+      "static-steel-RearFenceRail2350",
+      "static-steel-Flagpole9200",
+      "static-steel-Flagpole11100",
+      "static-steel-Flagpole13000",
+      "truck0-steel-CabHandle-1",
+      "truck0-steel-CabStep-1",
+      "truck0-steel-MirrorArm-1",
+      "truck0-steel-CabHandle1",
+      "truck0-steel-CabStep1",
+      "truck0-steel-MirrorArm1",
+      "truck0-steel-GrilleBar0",
+      "truck0-steel-GrilleBar1",
+      "truck0-steel-GrilleBar2",
+      "truck0-steel-GrilleBar3",
+      "truck0-steel-GrilleBar4",
+      "truck0-steel-FrontBumper",
+      "truck0-steel-Wheel0_-1",
+      "truck0-steel-WheelBolt0_-1_0",
+      "truck0-steel-WheelBolt0_-1_1",
+      "truck0-steel-WheelBolt0_-1_2",
+      "truck0-steel-WheelBolt0_-1_3",
+      "truck0-steel-WheelBolt0_-1_4",
+      "truck0-steel-WheelBolt0_-1_5",
+      "truck0-steel-Wheel0_1",
+      "truck0-steel-WheelBolt0_1_0",
+      "truck0-steel-WheelBolt0_1_1",
+      "truck0-steel-WheelBolt0_1_2",
+      "truck0-steel-WheelBolt0_1_3",
+      "truck0-steel-WheelBolt0_1_4",
+      "truck0-steel-WheelBolt0_1_5",
+      "truck0-steel-Wheel1_-1",
+      "truck0-steel-WheelBolt1_-1_0",
+      "truck0-steel-WheelBolt1_-1_1",
+      "truck0-steel-WheelBolt1_-1_2",
+      "truck0-steel-WheelBolt1_-1_3",
+      "truck0-steel-WheelBolt1_-1_4",
+      "truck0-steel-WheelBolt1_-1_5",
+      "truck0-steel-Wheel1_1",
+      "truck0-steel-WheelBolt1_1_0",
+      "truck0-steel-WheelBolt1_1_1",
+      "truck0-steel-WheelBolt1_1_2",
+      "truck0-steel-WheelBolt1_1_3",
+      "truck0-steel-WheelBolt1_1_4",
+      "truck0-steel-WheelBolt1_1_5",
+      "truck0-steel-EquipmentRoof",
+      "truck0-steel-ShutterSlat-1_0_0",
+      "truck0-steel-ShutterSlat-1_0_1",
+      "truck0-steel-ShutterSlat-1_0_2",
+      "truck0-steel-ShutterSlat-1_0_3",
+      "truck0-steel-ShutterSlat-1_0_4",
+      "truck0-steel-ShutterSlat-1_0_5",
+      "truck0-steel-ShutterSlat-1_1_0",
+      "truck0-steel-ShutterSlat-1_1_1",
+      "truck0-steel-ShutterSlat-1_1_2",
+      "truck0-steel-ShutterSlat-1_1_3",
+      "truck0-steel-ShutterSlat-1_1_4",
+      "truck0-steel-ShutterSlat-1_1_5",
+      "truck0-steel-ShutterSlat-1_2_0",
+      "truck0-steel-ShutterSlat-1_2_1",
+      "truck0-steel-ShutterSlat-1_2_2",
+      "truck0-steel-ShutterSlat-1_2_3",
+      "truck0-steel-ShutterSlat-1_2_4",
+      "truck0-steel-ShutterSlat-1_2_5",
+      "truck0-steel-ShutterSlat1_0_0",
+      "truck0-steel-ShutterSlat1_0_1",
+      "truck0-steel-ShutterSlat1_0_2",
+      "truck0-steel-ShutterSlat1_0_3",
+      "truck0-steel-ShutterSlat1_0_4",
+      "truck0-steel-ShutterSlat1_0_5",
+      "truck0-steel-ShutterSlat1_1_0",
+      "truck0-steel-ShutterSlat1_1_1",
+      "truck0-steel-ShutterSlat1_1_2",
+      "truck0-steel-ShutterSlat1_1_3",
+      "truck0-steel-ShutterSlat1_1_4",
+      "truck0-steel-ShutterSlat1_1_5",
+      "truck0-steel-ShutterSlat1_2_0",
+      "truck0-steel-ShutterSlat1_2_1",
+      "truck0-steel-ShutterSlat1_2_2",
+      "truck0-steel-ShutterSlat1_2_3",
+      "truck0-steel-ShutterSlat1_2_4",
+      "truck0-steel-ShutterSlat1_2_5",
+      "truck0-steel-RearBumper",
+      "truck0-steel-MonitorNozzle",
+      "truck0-steel-PumpOutlet-1",
+      "truck0-steel-PumpOutlet1",
+      "truck1-steel-CabHandle-1",
+      "truck1-steel-CabStep-1",
+      "truck1-steel-MirrorArm-1",
+      "truck1-steel-CabHandle1",
+      "truck1-steel-CabStep1",
+      "truck1-steel-MirrorArm1",
+      "truck1-steel-GrilleBar0",
+      "truck1-steel-GrilleBar1",
+      "truck1-steel-GrilleBar2",
+      "truck1-steel-GrilleBar3",
+      "truck1-steel-GrilleBar4",
+      "truck1-steel-FrontBumper",
+      "truck1-steel-Wheel0_-1",
+      "truck1-steel-WheelBolt0_-1_0",
+      "truck1-steel-WheelBolt0_-1_1",
+      "truck1-steel-WheelBolt0_-1_2",
+      "truck1-steel-WheelBolt0_-1_3",
+      "truck1-steel-WheelBolt0_-1_4",
+      "truck1-steel-WheelBolt0_-1_5",
+      "truck1-steel-Wheel0_1",
+      "truck1-steel-WheelBolt0_1_0",
+      "truck1-steel-WheelBolt0_1_1",
+      "truck1-steel-WheelBolt0_1_2",
+      "truck1-steel-WheelBolt0_1_3",
+      "truck1-steel-WheelBolt0_1_4",
+      "truck1-steel-WheelBolt0_1_5",
+      "truck1-steel-Wheel1_-1",
+      "truck1-steel-WheelBolt1_-1_0",
+      "truck1-steel-WheelBolt1_-1_1",
+      "truck1-steel-WheelBolt1_-1_2",
+      "truck1-steel-WheelBolt1_-1_3",
+      "truck1-steel-WheelBolt1_-1_4",
+      "truck1-steel-WheelBolt1_-1_5",
+      "truck1-steel-Wheel1_1",
+      "truck1-steel-WheelBolt1_1_0",
+      "truck1-steel-WheelBolt1_1_1",
+      "truck1-steel-WheelBolt1_1_2",
+      "truck1-steel-WheelBolt1_1_3",
+      "truck1-steel-WheelBolt1_1_4",
+      "truck1-steel-WheelBolt1_1_5",
+      "truck1-steel-EquipmentRoof",
+      "truck1-steel-ShutterSlat-1_0_0",
+      "truck1-steel-ShutterSlat-1_0_1",
+      "truck1-steel-ShutterSlat-1_0_2",
+      "truck1-steel-ShutterSlat-1_0_3",
+      "truck1-steel-ShutterSlat-1_0_4",
+      "truck1-steel-ShutterSlat-1_0_5",
+      "truck1-steel-ShutterSlat-1_1_0",
+      "truck1-steel-ShutterSlat-1_1_1",
+      "truck1-steel-ShutterSlat-1_1_2",
+      "truck1-steel-ShutterSlat-1_1_3",
+      "truck1-steel-ShutterSlat-1_1_4",
+      "truck1-steel-ShutterSlat-1_1_5",
+      "truck1-steel-ShutterSlat-1_2_0",
+      "truck1-steel-ShutterSlat-1_2_1",
+      "truck1-steel-ShutterSlat-1_2_2",
+      "truck1-steel-ShutterSlat-1_2_3",
+      "truck1-steel-ShutterSlat-1_2_4",
+      "truck1-steel-ShutterSlat-1_2_5",
+      "truck1-steel-ShutterSlat1_0_0",
+      "truck1-steel-ShutterSlat1_0_1",
+      "truck1-steel-ShutterSlat1_0_2",
+      "truck1-steel-ShutterSlat1_0_3",
+      "truck1-steel-ShutterSlat1_0_4",
+      "truck1-steel-ShutterSlat1_0_5",
+      "truck1-steel-ShutterSlat1_1_0",
+      "truck1-steel-ShutterSlat1_1_1",
+      "truck1-steel-ShutterSlat1_1_2",
+      "truck1-steel-ShutterSlat1_1_3",
+      "truck1-steel-ShutterSlat1_1_4",
+      "truck1-steel-ShutterSlat1_1_5",
+      "truck1-steel-ShutterSlat1_2_0",
+      "truck1-steel-ShutterSlat1_2_1",
+      "truck1-steel-ShutterSlat1_2_2",
+      "truck1-steel-ShutterSlat1_2_3",
+      "truck1-steel-ShutterSlat1_2_4",
+      "truck1-steel-ShutterSlat1_2_5",
+      "truck1-steel-RearBumper",
+      "truck1-steel-MonitorNozzle",
+      "truck1-steel-PumpOutlet-1",
+      "truck1-steel-PumpOutlet1",
+      "truck2-steel-CabHandle-1",
+      "truck2-steel-CabStep-1",
+      "truck2-steel-MirrorArm-1",
+      "truck2-steel-CabHandle1",
+      "truck2-steel-CabStep1",
+      "truck2-steel-MirrorArm1",
+      "truck2-steel-GrilleBar0",
+      "truck2-steel-GrilleBar1",
+      "truck2-steel-GrilleBar2",
+      "truck2-steel-GrilleBar3",
+      "truck2-steel-GrilleBar4",
+      "truck2-steel-FrontBumper",
+      "truck2-steel-Wheel0_-1",
+      "truck2-steel-WheelBolt0_-1_0",
+      "truck2-steel-WheelBolt0_-1_1",
+      "truck2-steel-WheelBolt0_-1_2",
+      "truck2-steel-WheelBolt0_-1_3",
+      "truck2-steel-WheelBolt0_-1_4",
+      "truck2-steel-WheelBolt0_-1_5",
+      "truck2-steel-Wheel0_1",
+      "truck2-steel-WheelBolt0_1_0",
+      "truck2-steel-WheelBolt0_1_1",
+      "truck2-steel-WheelBolt0_1_2",
+      "truck2-steel-WheelBolt0_1_3",
+      "truck2-steel-WheelBolt0_1_4",
+      "truck2-steel-WheelBolt0_1_5",
+      "truck2-steel-Wheel1_-1",
+      "truck2-steel-WheelBolt1_-1_0",
+      "truck2-steel-WheelBolt1_-1_1",
+      "truck2-steel-WheelBolt1_-1_2",
+      "truck2-steel-WheelBolt1_-1_3",
+      "truck2-steel-WheelBolt1_-1_4",
+      "truck2-steel-WheelBolt1_-1_5",
+      "truck2-steel-Wheel1_1",
+      "truck2-steel-WheelBolt1_1_0",
+      "truck2-steel-WheelBolt1_1_1",
+      "truck2-steel-WheelBolt1_1_2",
+      "truck2-steel-WheelBolt1_1_3",
+      "truck2-steel-WheelBolt1_1_4",
+      "truck2-steel-WheelBolt1_1_5",
+      "truck2-steel-Wheel2_-1",
+      "truck2-steel-WheelBolt2_-1_0",
+      "truck2-steel-WheelBolt2_-1_1",
+      "truck2-steel-WheelBolt2_-1_2",
+      "truck2-steel-WheelBolt2_-1_3",
+      "truck2-steel-WheelBolt2_-1_4",
+      "truck2-steel-WheelBolt2_-1_5",
+      "truck2-steel-Wheel2_1",
+      "truck2-steel-WheelBolt2_1_0",
+      "truck2-steel-WheelBolt2_1_1",
+      "truck2-steel-WheelBolt2_1_2",
+      "truck2-steel-WheelBolt2_1_3",
+      "truck2-steel-WheelBolt2_1_4",
+      "truck2-steel-WheelBolt2_1_5",
+      "truck2-steel-EquipmentRoof",
+      "truck2-steel-ShutterSlat-1_0_0",
+      "truck2-steel-ShutterSlat-1_0_1",
+      "truck2-steel-ShutterSlat-1_0_2",
+      "truck2-steel-ShutterSlat-1_0_3",
+      "truck2-steel-ShutterSlat-1_0_4",
+      "truck2-steel-ShutterSlat-1_0_5",
+      "truck2-steel-ShutterSlat-1_1_0",
+      "truck2-steel-ShutterSlat-1_1_1",
+      "truck2-steel-ShutterSlat-1_1_2",
+      "truck2-steel-ShutterSlat-1_1_3",
+      "truck2-steel-ShutterSlat-1_1_4",
+      "truck2-steel-ShutterSlat-1_1_5",
+      "truck2-steel-ShutterSlat-1_2_0",
+      "truck2-steel-ShutterSlat-1_2_1",
+      "truck2-steel-ShutterSlat-1_2_2",
+      "truck2-steel-ShutterSlat-1_2_3",
+      "truck2-steel-ShutterSlat-1_2_4",
+      "truck2-steel-ShutterSlat-1_2_5",
+      "truck2-steel-ShutterSlat1_0_0",
+      "truck2-steel-ShutterSlat1_0_1",
+      "truck2-steel-ShutterSlat1_0_2",
+      "truck2-steel-ShutterSlat1_0_3",
+      "truck2-steel-ShutterSlat1_0_4",
+      "truck2-steel-ShutterSlat1_0_5",
+      "truck2-steel-ShutterSlat1_1_0",
+      "truck2-steel-ShutterSlat1_1_1",
+      "truck2-steel-ShutterSlat1_1_2",
+      "truck2-steel-ShutterSlat1_1_3",
+      "truck2-steel-ShutterSlat1_1_4",
+      "truck2-steel-ShutterSlat1_1_5",
+      "truck2-steel-ShutterSlat1_2_0",
+      "truck2-steel-ShutterSlat1_2_1",
+      "truck2-steel-ShutterSlat1_2_2",
+      "truck2-steel-ShutterSlat1_2_3",
+      "truck2-steel-ShutterSlat1_2_4",
+      "truck2-steel-ShutterSlat1_2_5",
+      "truck2-steel-RearBumper",
+      "truck2-steel-LadderRail3950_-1",
+      "truck2-steel-LadderRail3950_1",
+      "truck2-steel-LadderRung3950_0",
+      "truck2-steel-LadderRung3950_1",
+      "truck2-steel-LadderRung3950_2",
+      "truck2-steel-LadderRung3950_3",
+      "truck2-steel-LadderRung3950_4",
+      "truck2-steel-LadderRung3950_5",
+      "truck2-steel-LadderRung3950_6",
+      "truck2-steel-LadderRung3950_7",
+      "truck2-steel-LadderRung3950_8",
+      "truck2-steel-LadderRung3950_9",
+      "truck2-steel-LadderRung3950_10",
+      "truck2-steel-LadderRung3950_11",
+      "truck2-steel-LadderRung3950_12",
+      "truck2-steel-LadderRung3950_13",
+      "truck2-steel-LadderRung3950_14",
+      "truck2-steel-LadderRung3950_15",
+      "truck2-steel-LadderRung3950_16",
+      "truck2-steel-LadderRail4200_-1",
+      "truck2-steel-LadderRail4200_1",
+      "truck2-steel-LadderRung4200_0",
+      "truck2-steel-LadderRung4200_1",
+      "truck2-steel-LadderRung4200_2",
+      "truck2-steel-LadderRung4200_3",
+      "truck2-steel-LadderRung4200_4",
+      "truck2-steel-LadderRung4200_5",
+      "truck2-steel-LadderRung4200_6",
+      "truck2-steel-LadderRung4200_7",
+      "truck2-steel-LadderRung4200_8",
+      "truck2-steel-LadderRung4200_9",
+      "truck2-steel-LadderRung4200_10",
+      "truck2-steel-LadderRung4200_11",
+      "truck2-steel-LadderRung4200_12",
+      "truck2-steel-LadderRung4200_13",
+      "truck2-steel-LadderRail4450_-1",
+      "truck2-steel-LadderRail4450_1",
+      "truck2-steel-LadderRung4450_0",
+      "truck2-steel-LadderRung4450_1",
+      "truck2-steel-LadderRung4450_2",
+      "truck2-steel-LadderRung4450_3",
+      "truck2-steel-LadderRung4450_4",
+      "truck2-steel-LadderRung4450_5",
+      "truck2-steel-LadderRung4450_6",
+      "truck2-steel-LadderRung4450_7",
+      "truck2-steel-LadderRung4450_8",
+      "truck2-steel-LadderRung4450_9",
+      "truck2-steel-LadderRung4450_10",
+      "truck3-steel-CabHandle-1",
+      "truck3-steel-CabStep-1",
+      "truck3-steel-MirrorArm-1",
+      "truck3-steel-CabHandle1",
+      "truck3-steel-CabStep1",
+      "truck3-steel-MirrorArm1",
+      "truck3-steel-GrilleBar0",
+      "truck3-steel-GrilleBar1",
+      "truck3-steel-GrilleBar2",
+      "truck3-steel-GrilleBar3",
+      "truck3-steel-GrilleBar4",
+      "truck3-steel-FrontBumper",
+      "truck3-steel-Wheel0_-1",
+      "truck3-steel-WheelBolt0_-1_0",
+      "truck3-steel-WheelBolt0_-1_1",
+      "truck3-steel-WheelBolt0_-1_2",
+      "truck3-steel-WheelBolt0_-1_3",
+      "truck3-steel-WheelBolt0_-1_4",
+      "truck3-steel-WheelBolt0_-1_5",
+      "truck3-steel-Wheel0_1",
+      "truck3-steel-WheelBolt0_1_0",
+      "truck3-steel-WheelBolt0_1_1",
+      "truck3-steel-WheelBolt0_1_2",
+      "truck3-steel-WheelBolt0_1_3",
+      "truck3-steel-WheelBolt0_1_4",
+      "truck3-steel-WheelBolt0_1_5",
+      "truck3-steel-Wheel1_-1",
+      "truck3-steel-WheelBolt1_-1_0",
+      "truck3-steel-WheelBolt1_-1_1",
+      "truck3-steel-WheelBolt1_-1_2",
+      "truck3-steel-WheelBolt1_-1_3",
+      "truck3-steel-WheelBolt1_-1_4",
+      "truck3-steel-WheelBolt1_-1_5",
+      "truck3-steel-Wheel1_1",
+      "truck3-steel-WheelBolt1_1_0",
+      "truck3-steel-WheelBolt1_1_1",
+      "truck3-steel-WheelBolt1_1_2",
+      "truck3-steel-WheelBolt1_1_3",
+      "truck3-steel-WheelBolt1_1_4",
+      "truck3-steel-WheelBolt1_1_5",
+      "truck3-steel-EquipmentRoof",
+      "truck3-steel-ShutterSlat-1_0_0",
+      "truck3-steel-ShutterSlat-1_0_1",
+      "truck3-steel-ShutterSlat-1_0_2",
+      "truck3-steel-ShutterSlat-1_0_3",
+      "truck3-steel-ShutterSlat-1_0_4",
+      "truck3-steel-ShutterSlat-1_0_5",
+      "truck3-steel-ShutterSlat-1_1_0",
+      "truck3-steel-ShutterSlat-1_1_1",
+      "truck3-steel-ShutterSlat-1_1_2",
+      "truck3-steel-ShutterSlat-1_1_3",
+      "truck3-steel-ShutterSlat-1_1_4",
+      "truck3-steel-ShutterSlat-1_1_5",
+      "truck3-steel-ShutterSlat-1_2_0",
+      "truck3-steel-ShutterSlat-1_2_1",
+      "truck3-steel-ShutterSlat-1_2_2",
+      "truck3-steel-ShutterSlat-1_2_3",
+      "truck3-steel-ShutterSlat-1_2_4",
+      "truck3-steel-ShutterSlat-1_2_5",
+      "truck3-steel-ShutterSlat1_0_0",
+      "truck3-steel-ShutterSlat1_0_1",
+      "truck3-steel-ShutterSlat1_0_2",
+      "truck3-steel-ShutterSlat1_0_3",
+      "truck3-steel-ShutterSlat1_0_4",
+      "truck3-steel-ShutterSlat1_0_5",
+      "truck3-steel-ShutterSlat1_1_0",
+      "truck3-steel-ShutterSlat1_1_1",
+      "truck3-steel-ShutterSlat1_1_2",
+      "truck3-steel-ShutterSlat1_1_3",
+      "truck3-steel-ShutterSlat1_1_4",
+      "truck3-steel-ShutterSlat1_1_5",
+      "truck3-steel-ShutterSlat1_2_0",
+      "truck3-steel-ShutterSlat1_2_1",
+      "truck3-steel-ShutterSlat1_2_2",
+      "truck3-steel-ShutterSlat1_2_3",
+      "truck3-steel-ShutterSlat1_2_4",
+      "truck3-steel-ShutterSlat1_2_5",
+      "truck3-steel-RearBumper",
+      "truck3-steel-MonitorNozzle",
+      "truck3-steel-PumpOutlet-1",
+      "truck3-steel-PumpOutlet1"
+    ],
+    "door": [
+      "static-door-BayDoor0Slat0",
+      "static-door-BayDoor0Slat1",
+      "static-door-BayDoor0Slat2",
+      "static-door-BayDoor0Slat3",
+      "static-door-BayDoor1Slat0",
+      "static-door-BayDoor1Slat1",
+      "static-door-BayDoor1Slat2",
+      "static-door-BayDoor1Slat3",
+      "static-door-BayDoor2Slat0",
+      "static-door-BayDoor2Slat1",
+      "static-door-BayDoor2Slat2",
+      "static-door-BayDoor2Slat3",
+      "static-door-BayDoor3Slat0",
+      "static-door-BayDoor3Slat1",
+      "static-door-BayDoor3Slat2",
+      "static-door-BayDoor3Slat3",
+      "static-door-BayDoor3Slat4",
+      "static-door-BayDoor3Slat5",
+      "static-door-BayDoor3Slat6",
+      "static-door-BayDoor3Slat7",
+      "static-door-BayDoor3Slat8",
+      "truck0-door-Compartment-1_0",
+      "truck0-door-Compartment-1_1",
+      "truck0-door-Compartment-1_2",
+      "truck0-door-Compartment1_0",
+      "truck0-door-Compartment1_1",
+      "truck0-door-Compartment1_2",
+      "truck1-door-Compartment-1_0",
+      "truck1-door-Compartment-1_1",
+      "truck1-door-Compartment-1_2",
+      "truck1-door-Compartment1_0",
+      "truck1-door-Compartment1_1",
+      "truck1-door-Compartment1_2",
+      "truck2-door-Compartment-1_0",
+      "truck2-door-Compartment-1_1",
+      "truck2-door-Compartment-1_2",
+      "truck2-door-Compartment1_0",
+      "truck2-door-Compartment1_1",
+      "truck2-door-Compartment1_2",
+      "truck3-door-Compartment-1_0",
+      "truck3-door-Compartment-1_1",
+      "truck3-door-Compartment-1_2",
+      "truck3-door-Compartment1_0",
+      "truck3-door-Compartment1_1",
+      "truck3-door-Compartment1_2"
+    ],
+    "garageGlass": [
+      "static-garageGlass-BayDoor0Glazing",
+      "static-garageGlass-BayDoor1Glazing",
+      "static-garageGlass-BayDoor2Glazing",
+      "static-garageGlass-BayDoor3Glazing"
+    ],
+    "yellow": [
+      "static-yellow-Bay0BollardStripe-1_0",
+      "static-yellow-Bay0BollardStripe-1_2",
+      "static-yellow-Bay0BollardStripe-1_4",
+      "static-yellow-Bay0BollardStripe1_0",
+      "static-yellow-Bay0BollardStripe1_2",
+      "static-yellow-Bay0BollardStripe1_4",
+      "static-yellow-Bay0FloorLine",
+      "static-yellow-Bay1BollardStripe-1_0",
+      "static-yellow-Bay1BollardStripe-1_2",
+      "static-yellow-Bay1BollardStripe-1_4",
+      "static-yellow-Bay1BollardStripe1_0",
+      "static-yellow-Bay1BollardStripe1_2",
+      "static-yellow-Bay1BollardStripe1_4",
+      "static-yellow-Bay1FloorLine",
+      "static-yellow-Bay2BollardStripe-1_0",
+      "static-yellow-Bay2BollardStripe-1_2",
+      "static-yellow-Bay2BollardStripe-1_4",
+      "static-yellow-Bay2BollardStripe1_0",
+      "static-yellow-Bay2BollardStripe1_2",
+      "static-yellow-Bay2BollardStripe1_4",
+      "static-yellow-Bay2FloorLine",
+      "static-yellow-Bay3BollardStripe-1_0",
+      "static-yellow-Bay3BollardStripe-1_2",
+      "static-yellow-Bay3BollardStripe-1_4",
+      "static-yellow-Bay3BollardStripe1_0",
+      "static-yellow-Bay3BollardStripe1_2",
+      "static-yellow-Bay3BollardStripe1_4",
+      "static-yellow-Bay3FloorLine",
+      "static-yellow-TowerLandingStripe0",
+      "static-yellow-TowerLandingStripe1",
+      "static-yellow-TowerLandingStripe2",
+      "static-yellow-TowerLandingStripe3",
+      "static-yellow-TowerLandingStripe4",
+      "static-yellow-HydrantBollard-26400_-1",
+      "static-yellow-HydrantBollard-26400_1",
+      "static-yellow-HydrantBollard26400_-1",
+      "static-yellow-HydrantBollard26400_1"
+    ],
+    "white": [
+      "static-white-Bay0ApronStop-16500",
+      "static-white-Bay0ApronStop-15000",
+      "static-white-Bay0ApronStop-13500",
+      "static-white-Bay1ApronStop-16500",
+      "static-white-Bay1ApronStop-15000",
+      "static-white-Bay1ApronStop-13500",
+      "static-white-Bay2ApronStop-16500",
+      "static-white-Bay2ApronStop-15000",
+      "static-white-Bay2ApronStop-13500",
+      "static-white-Bay3ApronStop-16500",
+      "static-white-Bay3ApronStop-15000",
+      "static-white-Bay3ApronStop-13500",
+      "static-white-VisitorParking0",
+      "static-white-VisitorParking1",
+      "static-white-VisitorParking2",
+      "static-white-VisitorParking3",
+      "static-white-VisitorParking4",
+      "static-white-VisitorParking5",
+      "static-white-VisitorParking6",
+      "static-white-VisitorParking7",
+      "static-white-Flag11100",
+      "truck0-white-CabDoorStripe-1",
+      "truck0-white-CabDoorStripe1",
+      "truck0-white-BodyStripe-1",
+      "truck0-white-BodyStripe1",
+      "truck1-white-CabDoorStripe-1",
+      "truck1-white-CabDoorStripe1",
+      "truck1-white-BodyStripe-1",
+      "truck1-white-BodyStripe1",
+      "truck2-white-CabDoorStripe-1",
+      "truck2-white-CabDoorStripe1",
+      "truck2-white-BodyStripe-1",
+      "truck2-white-BodyStripe1",
+      "truck2-white-LadderBasket",
+      "truck3-white-CabDoorStripe-1",
+      "truck3-white-CabDoorStripe1",
+      "truck3-white-EquipmentBody"
+    ],
+    "warm": [
+      "static-warm-Bay0CeilingLight",
+      "static-warm-Bay1CeilingLight",
+      "static-warm-Bay2CeilingLight",
+      "static-warm-Bay3CeilingLight",
+      "static-warm-FloodLight-28400_-20300",
+      "static-warm-FloodLight-28400_7800",
+      "static-warm-FloodLight-28400_21400",
+      "static-warm-FloodLight28300_-20300",
+      "static-warm-FloodLight28300_7800",
+      "static-warm-FloodLight28300_21400",
+      "truck0-warm-Headlight-1",
+      "truck0-warm-Headlight1",
+      "truck1-warm-Headlight-1",
+      "truck1-warm-Headlight1",
+      "truck2-warm-Headlight-1",
+      "truck2-warm-Headlight1",
+      "truck3-warm-Headlight-1",
+      "truck3-warm-Headlight1"
+    ],
+    "solar": [
+      "static-solar-SolarPanel0",
+      "static-solar-SolarPanel1",
+      "static-solar-SolarPanel2",
+      "static-solar-SolarPanel3"
+    ],
+    "tan": [
+      "static-tan-RappelRope-25400",
+      "static-tan-RappelRope-21600",
+      "static-tan-HoseRoll0",
+      "static-tan-HoseRoll1",
+      "static-tan-HoseRoll2",
+      "static-tan-HoseRoll3",
+      "static-tan-HoseRoll4",
+      "static-tan-HoseRoll5",
+      "static-tan-HoseRoll6",
+      "static-tan-HoseRoll7",
+      "truck0-tan-RoofHose0",
+      "truck0-tan-RoofHose1",
+      "truck0-tan-RoofHose2",
+      "truck1-tan-RoofHose0",
+      "truck1-tan-RoofHose1",
+      "truck1-tan-RoofHose2",
+      "truck3-tan-RoofHose0",
+      "truck3-tan-RoofHose1",
+      "truck3-tan-RoofHose2"
+    ],
+    "blue": [
+      "static-blue-VisitorAccessible"
+    ],
+    "soil": [
+      "static-soil-PlanterSoil-19000_-20900",
+      "static-soil-PlanterSoil-4000_-20900",
+      "static-soil-PlanterSoil16000_-20900",
+      "static-soil-PlanterSoil-19000_21500",
+      "static-soil-PlanterSoil-4000_21500",
+      "static-soil-PlanterSoil16000_21500"
+    ],
+    "green": [
+      "static-green-Plant-19000_-20900_0",
+      "static-green-Plant-19000_-20900_1",
+      "static-green-Plant-19000_-20900_2",
+      "static-green-Plant-19000_-20900_3",
+      "static-green-Plant-19000_-20900_4",
+      "static-green-Plant-4000_-20900_0",
+      "static-green-Plant-4000_-20900_1",
+      "static-green-Plant-4000_-20900_2",
+      "static-green-Plant-4000_-20900_3",
+      "static-green-Plant-4000_-20900_4",
+      "static-green-Plant16000_-20900_0",
+      "static-green-Plant16000_-20900_1",
+      "static-green-Plant16000_-20900_2",
+      "static-green-Plant16000_-20900_3",
+      "static-green-Plant16000_-20900_4",
+      "static-green-Plant-19000_21500_0",
+      "static-green-Plant-19000_21500_1",
+      "static-green-Plant-19000_21500_2",
+      "static-green-Plant-19000_21500_3",
+      "static-green-Plant-19000_21500_4",
+      "static-green-Plant-4000_21500_0",
+      "static-green-Plant-4000_21500_1",
+      "static-green-Plant-4000_21500_2",
+      "static-green-Plant-4000_21500_3",
+      "static-green-Plant-4000_21500_4",
+      "static-green-Plant16000_21500_0",
+      "static-green-Plant16000_21500_1",
+      "static-green-Plant16000_21500_2",
+      "static-green-Plant16000_21500_3",
+      "static-green-Plant16000_21500_4",
+      "static-green-Flag9200"
+    ],
+    "vehicleGlass": [
+      "truck0-vehicleGlass-Windshield",
+      "truck0-vehicleGlass-CabRear",
+      "truck0-vehicleGlass-CabWindow-1",
+      "truck0-vehicleGlass-CabWindow1",
+      "truck1-vehicleGlass-Windshield",
+      "truck1-vehicleGlass-CabRear",
+      "truck1-vehicleGlass-CabWindow-1",
+      "truck1-vehicleGlass-CabWindow1",
+      "truck2-vehicleGlass-Windshield",
+      "truck2-vehicleGlass-CabRear",
+      "truck2-vehicleGlass-CabWindow-1",
+      "truck2-vehicleGlass-CabWindow1",
+      "truck3-vehicleGlass-Windshield",
+      "truck3-vehicleGlass-CabRear",
+      "truck3-vehicleGlass-CabWindow-1",
+      "truck3-vehicleGlass-CabWindow1"
+    ],
+    "siren": [
+      "truck0-siren-EmergencyFront-1",
+      "truck0-siren-EmergencyFront1",
+      "truck0-siren-Siren-1",
+      "truck0-siren-Siren1",
+      "truck0-siren-RearLamp-1",
+      "truck0-siren-RearLamp1",
+      "truck1-siren-EmergencyFront-1",
+      "truck1-siren-EmergencyFront1",
+      "truck1-siren-Siren-1",
+      "truck1-siren-Siren1",
+      "truck1-siren-RearLamp-1",
+      "truck1-siren-RearLamp1",
+      "truck2-siren-EmergencyFront-1",
+      "truck2-siren-EmergencyFront1",
+      "truck2-siren-Siren-1",
+      "truck2-siren-Siren1",
+      "truck2-siren-RearLamp-1",
+      "truck2-siren-RearLamp1",
+      "truck3-siren-EmergencyFront-1",
+      "truck3-siren-EmergencyFront1",
+      "truck3-siren-Siren-1",
+      "truck3-siren-Siren1",
+      "truck3-siren-RearLamp-1",
+      "truck3-siren-RearLamp1"
+    ],
+    "rubber": [
+      "truck0-rubber-Tire0_-1",
+      "truck0-rubber-Tire0_1",
+      "truck0-rubber-Tire1_-1",
+      "truck0-rubber-Tire1_1",
+      "truck1-rubber-Tire0_-1",
+      "truck1-rubber-Tire0_1",
+      "truck1-rubber-Tire1_-1",
+      "truck1-rubber-Tire1_1",
+      "truck2-rubber-Tire0_-1",
+      "truck2-rubber-Tire0_1",
+      "truck2-rubber-Tire1_-1",
+      "truck2-rubber-Tire1_1",
+      "truck2-rubber-Tire2_-1",
+      "truck2-rubber-Tire2_1",
+      "truck3-rubber-Tire0_-1",
+      "truck3-rubber-Tire0_1",
+      "truck3-rubber-Tire1_-1",
+      "truck3-rubber-Tire1_1"
+    ]
+  },
+  "colors": {
+    "concrete": [
+      "#a9afa9",
+      0,
+      0.88
+    ],
+    "asphalt": [
+      "#343b40",
+      0,
+      0.96
+    ],
+    "paving": [
+      "#d1cdc0",
+      0,
+      0.86
+    ],
+    "ivory": [
+      "#ece8dc",
+      0.03,
+      0.68
+    ],
+    "white": [
+      "#eef0e8",
+      0.05,
+      0.55
+    ],
+    "red": [
+      "#b91423",
+      0.22,
+      0.38
+    ],
+    "charcoal": [
+      "#26323b",
+      0.45,
+      0.55
+    ],
+    "steel": [
+      "#aab9c2",
+      0.8,
+      0.29
+    ],
+    "door": [
+      "#9eabb0",
+      0.55,
+      0.58
+    ],
+    "glass": [
+      "#3c879e",
+      0.45,
+      0.21
+    ],
+    "garageGlass": [
+      "#508a9c",
+      0.38,
+      0.25
+    ],
+    "vehicleGlass": [
+      "#183e54",
+      0.48,
+      0.16
+    ],
+    "yellow": [
+      "#f1bd35",
+      0.1,
+      0.62
+    ],
+    "blue": [
+      "#2c6a9e",
+      0.08,
+      0.65
+    ],
+    "solar": [
+      "#162b55",
+      0.55,
+      0.29
+    ],
+    "warm": [
+      "#fff0c1",
+      0.05,
+      0.25
+    ],
+    "siren": [
+      "#ff2539",
+      0.1,
+      0.25
+    ],
+    "rubber": [
+      "#1b2125",
+      0,
+      0.94
+    ],
+    "tan": [
+      "#bca582",
+      0,
+      0.87
+    ],
+    "green": [
+      "#4b7148",
+      0,
+      0.91
+    ],
+    "soil": [
+      "#3f3d33",
+      0,
+      0.98
+    ]
+  }
+}

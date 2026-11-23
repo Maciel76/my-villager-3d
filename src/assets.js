@@ -5,6 +5,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import decorationUrl from "./assets/models/optimized/decorations.glb?url";
 import { prepareDecorationModels } from "./decorations.js";
+import { loadFlagModels } from "./flag-assets.js";
 import treeUrl from "./assets/models/optimized/trees.glb?url";
 import { TREE_TYPES } from "./tree-types.js";
 import plantingBedUrl from "./assets/models/optimized/planting-beds.glb?url";
@@ -35,6 +36,8 @@ import lexCorpUrl from "./assets/models/optimized/torre-lexcorp.glb?url";
 import { prepareLexCorpModel } from "./torre-lexcorp.js";
 import policeStationUrl from "./assets/models/optimized/posto-policial.glb?url";
 import { preparePoliceStationModel } from "./posto-policial.js";
+import fireStationUrl from "./assets/models/optimized/base-bombeiros.glb?url";
+import { prepareFireStationModel } from "./fire-station.js";
 import firefightersMonumentUrl from "./assets/models/optimized/monumento-bombeiros.glb?url";
 import { prepareFirefightersMonument } from "./monumento-bombeiros.js";
 import starshipUrl from "./assets/models/optimized/starship.glb?url";
@@ -213,6 +216,7 @@ export async function loadBuildingModels(materials) {
     rotunda: rotundaUrl,
     lexCorp: lexCorpUrl,
     policeStation: policeStationUrl,
+    fireStation: fireStationUrl,
     monumentoBombeiros: firefightersMonumentUrl,
     starship: starshipUrl,
     convergencia: refinedConvergenceUrl,
@@ -230,6 +234,7 @@ export async function loadBuildingModels(materials) {
       if (type === "rotunda") return [type, prepareRotundaModel(scene, materials, projectTexture)];
       if (type === "lexCorp") return [type, prepareLexCorpModel(scene, materials, projectTexture)];
       if (type === "policeStation") return [type, preparePoliceStationModel(scene, materials, projectTexture)];
+      if (type === "fireStation") return [type, prepareFireStationModel(scene, materials, projectTexture)];
       if (type === "monumentoBombeiros") return [type, prepareFirefightersMonument(scene, projectTexture)];
       scene.updateMatrixWorld(true);
       const bounds = new THREE.Box3().setFromObject(scene);
@@ -272,9 +277,10 @@ export async function loadBuildingModels(materials) {
       return [type, building];
     }),
   );
-  const [decorations, trees, beds] = await Promise.all([
+  const [decorations, trees, beds, flagModels] = await Promise.all([
     loader.loadAsync(decorationUrl), loader.loadAsync(treeUrl), loader.loadAsync(plantingBedUrl),
+    loadFlagModels(),
   ]);
   return { ...Object.fromEntries(models), ...prepareDecorationModels(decorations.scene),
-    ...prepareDecorationModels(trees.scene, TREE_TYPES), ...prepareDecorationModels(beds.scene, PLANTING_BED_TYPES) };
+    ...prepareDecorationModels(trees.scene, TREE_TYPES), ...prepareDecorationModels(beds.scene, PLANTING_BED_TYPES), ...flagModels };
 }

@@ -1,4 +1,5 @@
 import { BUILDING_TYPES } from "./house-types.js";
+import { FLAG_TYPES } from "./flag-types.js";
 import { footprint, isDecoration, isLamp, isFreeLight, isPaving, overlapsLot } from "./placement.js";
 import { canBuildHouse, roadLots, tileKey } from "./road-layout.js";
 import { CITY_STREETS, CITY_EXPANSION, MIRANTE_AVENUE, extendNorthernAvenue, extendEasternAvenue, extendLexCorpAvenue, extendPoliceAvenue } from "./city-plan.js";
@@ -41,6 +42,7 @@ export function createGardenCityPlan() {
     ["rodaGigante",120,-54,2],
     ["lexCorp",-66,-138,0],
     ["policeStation",42,132,2],
+    ["fireStation",-36,126,2],
     ["monumentoBombeiros",-30,-108,2],
     ["starship",126,132,2],
     ["oriental",-54,-54,2],["cottage",-36,-60,1],["chalet",-36,-48,1],["cafe",-60,-36,0],
@@ -174,6 +176,21 @@ export function createGardenCityPlan() {
     if(v&&h)add("lampDouble",x+4,z+4);
     else if(v)add(x<0?"lampUrban":"lampSolar",x+side*4,z,side>0?2:0);
     else add(z< -24?"lampColonial":"lampUrban",x,z+side*4,side>0?1:3);
+  }
+  // One national flag per pocket park, using only spare planting space after
+  // all trees, furniture and street lights have received their positions.
+  for (const [index, type] of Object.keys(FLAG_TYPES).entries()) {
+    const offsets = [[-4,-4],[4,4],[-4,4],[4,-4],[0,-4],[0,4],[-4,0],[4,0],[-2,-4],[2,4],[0,0]];
+    let placed = false;
+    for (let park = 0; park < gardens.length && !placed; park++) {
+      const garden = gardens[(index + park) % gardens.length];
+      for (const [dx, dz] of offsets) {
+        const x = garden.x + dx, z = garden.z + dz;
+        if (!canBuildHouse(x,z,houses,roads,lots,null,type,0,area)) continue;
+        add(type,x,z); placed = true; break;
+      }
+    }
+    if (!placed) throw new Error(`Parque sem espaço para ${type}`);
   }
   const missing=Object.keys(BUILDING_TYPES).filter(type=>!isFreeLight(type)&&!houses.some(h=>h.type===type));
   if(missing.length)throw new Error(`Catálogo sem lugar no plano: ${missing.join(", ")}`);
